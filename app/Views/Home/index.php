@@ -36,7 +36,10 @@
 		<div class="row">
 			<div class="col-12 mr-lg-5">
 				<div class="text-center text-lg-right">
-					<a href="login.html" class="btn mr-lg-3 btn-style btn-lg btn-clean float-lg-none btn-c-4129 btn-rd">Accedi</a>
+					<a href="<?php echo base_url();?>/signin"
+            class="btn mr-lg-3 btn-style btn-lg btn-clean float-lg-none btn-c-4129 btn-rd">
+            Accedi
+          </a>
 					<div class="btn-group btn-dropdown dropdown bloc-style float-lg-none">
 						<a href="#" class="btn dropdown-toggle btn-c-4129 btn-iscriviti-style btn-clean btn-lg pr-lg-4 btn-rd" data-toggle="dropdown" aria-expanded="false">Iscriviti</a>
 						<ul class="dropdown-menu" role="menu">
@@ -44,7 +47,7 @@
 								<a href="register-associazione.html" class="dropdown-item a-block link-style text-lg-left">Associazione</a>
 							</li>
 							<li>
-								<a href="register.html" class="dropdown-item a-block link-utente-style text-lg-left">Utente</a>
+								<a href="<?php echo base_url();?>/signup" class="dropdown-item a-block link-utente-style text-lg-left">Utente</a>
 							</li>
 						</ul>
 					</div>

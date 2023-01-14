@@ -1,1 +1,5 @@
+# Exclude log
 *.log
+
+#Exclude session
+/writable/session/

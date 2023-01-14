@@ -6,9 +6,10 @@ use CodeIgniter\Controller;
   
 class ProfileController extends Controller
 {
-    public function index()
-    {
-        $session = session();
-        echo "Hello : ".$session->get('name');
-    }
+  public function index()
+  {
+    $session = session();
+    echo "Hello : ".$session->get('name');
+    return view('Profile/index');
+  }
 }
