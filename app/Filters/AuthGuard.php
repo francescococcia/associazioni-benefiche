@@ -9,17 +9,16 @@ use CodeIgniter\Filters\FilterInterface;
 
 class AuthGuard implements FilterInterface
 {
-    public function before(RequestInterface $request, $arguments = null)
+  public function before(RequestInterface $request, $arguments = null)
+  {
+    if (!session()->get('isLoggedIn'))
     {
-        if (!session()->get('isLoggedIn'))
-        {
-            return redirect()
-                ->to('/signin');
-        }
+      return redirect()->to('/signin');
     }
-    
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
-    {
-        
-    }
+  }
+  
+  public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
+  {
+      
+  }
 }
