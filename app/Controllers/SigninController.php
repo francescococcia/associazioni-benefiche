@@ -48,4 +48,8 @@ class SigninController extends Controller
         return redirect()->to('/signin');
     }
   }
+
+  public function signout(){
+    return redirect()->to('/signin');
+  }
 }

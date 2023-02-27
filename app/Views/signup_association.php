@@ -38,21 +38,25 @@
           </div>
           <?php endif;?>
 
-        <form action="<?php echo base_url(); ?>/SignupController/store" method="post"
+        <form action="<?php echo base_url(); ?>/SignupController/store_association" method="post"
           id="form_18619" data-form-type="blocs-form" novalidate=""
           data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
+            <input type="hidden" name="is_responsible" value="true" />
             <h1 class="mb-4 h1-registrati-style align-self-center">
-              Modulo di registrazione
+              Modulo di registrazionee
             </h1>
             <div class="form-group">
-              <label>Nome</label>
+              <label>Nome Associazione</label>
               <input type="text" name="first_name" placeholder="Name" required="" value="<?= set_value('first_name') ?>" class="form-control mb-lg-3" >
               <div class="form-group">
-                <label>Cognome</label>
-                <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" required="" value="<?= set_value('last_name') ?>">
+                <label>Codice Fiscale</label>
+                <input type="text" name="tax_code" placeholder="Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
               </div>
             </div>
+
             <div class="form-group">
+              <label>Sede Legale</label>
+              <input name="head_office" placeholder="Sede Legale" class="form-control mb-lg-3 pt-lg-0" type="text" value="<?= set_value('head_office') ?>" required="">
               <label>Email</label>
               <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
               <div class="form-group">
