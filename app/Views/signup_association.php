@@ -38,16 +38,17 @@
           </div>
           <?php endif;?>
 
-        <form action="<?php echo base_url(); ?>/SignupController/store_association" method="post"
+        <form action="<?php echo base_url(); ?>/SignupAssociationController/store" method="post"
           id="form_18619" data-form-type="blocs-form" novalidate=""
           data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
-            <input type="hidden" name="is_responsible" value="true" />
+            <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
+
             <h1 class="mb-4 h1-registrati-style align-self-center">
               Modulo di registrazionee
             </h1>
             <div class="form-group">
               <label>Nome Associazione</label>
-              <input type="text" name="first_name" placeholder="Name" required="" value="<?= set_value('first_name') ?>" class="form-control mb-lg-3" >
+              <input type="text" name="name" placeholder="Name" required="" value="<?= set_value('name') ?>" class="form-control mb-lg-3" >
               <div class="form-group">
                 <label>Codice Fiscale</label>
                 <input type="text" name="tax_code" placeholder="Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
