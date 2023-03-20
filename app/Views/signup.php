@@ -1,25 +1,5 @@
-<!doctype html>
-<html>
-<head>
-<?= $this->include('partial/head'); ?>
-    <title>Register</title>
-
-
-    
-<!-- Analytics -->
- 
-<!-- Analytics END -->
-    
-</head>
-<body>
-
-
-
-<!-- Main container -->
-<div class="page-container">
-    
-  <?= $this->include('partial/navbar'); ?>
-
+<?= $this->extend('Layout/default') ?>
+<?= $this->section('content') ?>
   <!-- bloc-7 -->
   <div class="bloc l-bloc full-width-bloc" id="bloc-7">
     <div class="container bloc-no-padding-lg">
@@ -52,6 +32,16 @@
                 <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" required="" value="<?= set_value('last_name') ?>">
               </div>
             </div>
+
+            <div class="form-group">
+              <label>Numero di telefono</label>
+              <input type="text" name="phone_number" placeholder="Numero" required="" value="<?= set_value('phone_number') ?>" class="form-control mb-lg-3" >
+              <div class="form-group">
+                <label>Data di nascinta</label>
+                <input type="text" name="birth_date" placeholder="Data di nascita" required="" class="form-control" required="" value="<?= set_value('birth_date') ?>">
+              </div>
+            </div>
+
             <div class="form-group">
               <label>Email</label>
               <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
@@ -77,18 +67,4 @@
     </div>
   </div>
   <!-- bloc-7 END -->
-
-
-  <?= $this->include('partial/footer'); ?>
-
-</div>
-<!-- Main container END -->
-    
-
-
-<?= $this->include('partial/import_js'); ?>
-
-
-</body>
-</html>
-
+<?= $this->endSection() ?>

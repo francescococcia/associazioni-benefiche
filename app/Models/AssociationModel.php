@@ -8,7 +8,7 @@ class AssociationModel extends Model{
 
   protected $table = 'associations';
 
-  protected $allowedFields = ['name', 'user_id', 'head_office', 'tax_code'];
+  protected $allowedFields = ['name', 'user_id', 'legal_address', 'tax_code'];
 
   public function login($email, $password)
   {

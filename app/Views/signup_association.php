@@ -1,24 +1,5 @@
-<!doctype html>
-<html>
-<head>
-<?= $this->include('partial/head'); ?>
-    <title>Register</title>
-
-
-    
-<!-- Analytics -->
- 
-<!-- Analytics END -->
-    
-</head>
-<body>
-
-
-
-<!-- Main container -->
-<div class="page-container">
-    
-  <?= $this->include('partial/navbar'); ?>
+<?= $this->extend('Layout/default') ?>
+<?= $this->section('content') ?>
 
   <!-- bloc-7 -->
   <div class="bloc l-bloc full-width-bloc" id="bloc-7">
@@ -41,7 +22,6 @@
         <form action="<?php echo base_url(); ?>/SignupAssociationController/store" method="post"
           id="form_18619" data-form-type="blocs-form" novalidate=""
           data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
-            <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
 
             <h1 class="mb-4 h1-registrati-style align-self-center">
               Modulo di registrazionee
@@ -57,7 +37,13 @@
 
             <div class="form-group">
               <label>Sede Legale</label>
-              <input name="head_office" placeholder="Sede Legale" class="form-control mb-lg-3 pt-lg-0" type="text" value="<?= set_value('head_office') ?>" required="">
+              <input
+                name="legal_address"
+                placeholder="Sede Legale"
+                class="form-control mb-lg-3 pt-lg-0"
+                type="text"
+                value="<?= set_value('legal_address') ?>"
+                required="">
               <label>Email</label>
               <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
               <div class="form-group">
@@ -72,7 +58,7 @@
               <!-- <label class="form-check-label">
                 Ricevi aggiornamenti via mail
               </label> -->
-            </div> 
+            </div>
             <button class="bloc-button btn btn-d btn-lg btn-block mt-lg-4 mb-lg-5" type="submit">
               Invia
             </button>
@@ -82,18 +68,4 @@
     </div>
   </div>
   <!-- bloc-7 END -->
-
-
-  <?= $this->include('partial/footer'); ?>
-
-</div>
-<!-- Main container END -->
-    
-
-
-<?= $this->include('partial/import_js'); ?>
-
-
-</body>
-</html>
-
+<?= $this->endSection() ?>
