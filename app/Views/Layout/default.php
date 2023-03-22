@@ -1,19 +1,19 @@
 <!doctype html>
 <html>
   <head>
-  <?= $this->include('partial/head'); ?>
+  <?= $this->include('Layout/partial/head'); ?>
       <title>Register</title>
   </head>
   <body>
 
     <!-- Main container -->
     <div class="page-container">
-      <?= $this->include('partial/navbar'); ?>
+      <?= $this->include('Layout/partial/navbar'); ?>
       <?= $this->renderSection('content') ?>
-      <?= $this->include('partial/footer'); ?>
+      <?= $this->include('Layout/partial/footer'); ?>
     </div>
     <!-- Main container END -->
 
-    <?= $this->include('partial/import_js'); ?>
+    <?= $this->include('Layout/partial/import_js'); ?>
   </body>
 </html>

@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <?= $this->include('partial/head'); ?>
-    <title>Home</title>        
+    <?= $this->include('Layout/partial/head'); ?>
+    <title>Home</title>
   </head>
   <body>
 
@@ -12,7 +12,7 @@
 
     <!-- Main container -->
     <div class="page-container">
-        
+
       <!-- bloc-1 -->
       <div class="bloc bloc-fill-screen scroll-fx-out-fade d-bloc" id="bloc-1" style="background-image:url(<?= base_url('public/img/Comunita.jpg') ?>);">
         <div class="container fill-bloc-top-edge">
@@ -120,7 +120,7 @@
               <picture>
                 <source type="image/webp" srcset="<?php echo base_url('public/img/lazyload-ph.png'); ?>"
                   data-srcset="<?php echo base_url('public/img/image-AMBULATORI.webp'); ?>">
-                  <img src="<?php echo base_url('public/img/lazyload-ph.png'); ?>" data-src="<?php echo base_url('public/img/image-AMBULATORI.jpg'); ?>" 
+                  <img src="<?php echo base_url('public/img/lazyload-ph.png'); ?>" data-src="<?php echo base_url('public/img/image-AMBULATORI.jpg'); ?>"
                     class="img-fluid img-image-ambulato-style img-rd-lg float-lg-none ml-lg-5 lazyload" alt="image AMBULATORI" width="515" height="450"></picture>
             </div>
             <div class="align-self-center offset-md-1 col-md-10 col-sm-10 offset-sm-1 offset-1 col-10 col-lg-4 offset-lg-0">
@@ -186,13 +186,13 @@
       <!-- ScrollToTop Button END-->
 
 
-      <?= $this->include('partial/footer'); ?>
+      <?= $this->include('Layout/partial/footer'); ?>
 
     </div>
     <!-- Main container END -->
-        
 
-    <?= $this->include('partial/import_js'); ?>
+
+    <?= $this->include('Layout/partial/import_js'); ?>
 
 
   </body>

@@ -10,50 +10,22 @@ class ProfileController extends Controller
 {
   public function index()
   {
-    $data = ['titolo' => "ciao"];
-    // $session = session();
-    // $session = session();
-    // $data = []; // create an empty array
-    // $userModel = new UserModel();
-
-    // $email = $this->request->getVar('email');
-    // $password = $this->request->getVar('password');
-
-    // $data = $userModel->where('email', $email)->first();
-    // echo "Hello : ".$session->get('first_name');
-    // return view('Profile/index', $data);
-    // $data = []; // create an empty array
-    // $email = $this->request->getVar('email');
-    // $userModel = new UserModel();
-    // $user = $userModel->where('email', $email)->first();
-
-    // $data['user'] = $user; // add the user data to the array
-
-    // echo view('Profile/index', $data);
-    
     // Get the user data
     $userModel = new UserModel();
     $userId = session()->get('id');
     $userData = $userModel->find($userId);
 
+    $associationsModel = new AssociationModel();
+    // Build the query
+    $query = $userModel->select('*')
+    ->where('is_platform_manager', 1)
+    ->get();
+
+    // Get the results
+    $associations = $query->getResult();
     // Pass the user data to the view
-    $data = [
-        'userData' => $userData
-    ];
-
-    // Load the view
-    return view('Profile/index', $data);
+    $data = ['userData' => $userData];
+    return view('Profile/index', $associations);
   }
-  
-  public function index2()
-{
-    $associationModel = new AssociationModel();
-    $associations = $associationModel->findAll();
-    
-    $data = [
-        'associations' => $associations
-    ];
 
-    return view('Profile/index', $data);
-}
 }

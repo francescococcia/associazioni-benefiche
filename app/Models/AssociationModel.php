@@ -28,5 +28,13 @@ class AssociationModel extends Model{
 
     return false;
   }
+  
+  // Define a new method in model for associations
+public function getAssociationsWithUser()
+{
+    $builder = $this->db->table('associations');
+    $builder->join('users', 'users.id = associations.user_id');
+    return $builder->get()->getResult();
+}
 
 }
