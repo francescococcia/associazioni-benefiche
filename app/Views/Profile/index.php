@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col">
       <h1>Test</h1>
-      <h1><?= print_r($associations) ?>!</h1>
+      <h1><#?= print_r($associations) ?>!</h1>
       <h1>Welcome to your dashboard, <?= $userData['first_name'] ?>!</h1>
       <p>Your email address is <?= $userData['email'] ?></p>
       <ol>
