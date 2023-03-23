@@ -8,27 +8,16 @@ use App\Models\AssociationModel;
 
 class ProfileController extends Controller
 {
-  // public function index()
-  // {
-  //   // Get the user data
-  //   $userModel = new UserModel();
-  //   $userId = session()->get('id');
-  //   $userData = $userModel->find($userId);
-
-  //   // Pass the user data to the view
-  //   $data = ['userData' => $userData];
-  //   return view('Profile/index', $data);
-  // }
   public function index()
   {
     // Get the user data
     $userModel = new UserModel();
     $userId = session()->get('id');
     $userData = $userModel->find($userId);
+
+    $platformManagers = $userModel->getAllAssociationsWithPlatformManagers();
     // Pass the user data to the view
-    // $data = ['userData' => $userData];
-    $data['users'] = $this->$userData->getAllAssociationsWithPlatformManagers();
+    $data = ['userData' => $userData,'platformManagers' => $platformManagers];
     return view('Profile/index', $data);
   }
-
 }
