@@ -51,4 +51,11 @@ class SigninController extends Controller
   public function signout(){
     return redirect()->to('/signin');
   }
+
+  public function destroy()
+    {
+      AuthGuard::logout();
+      return redirect()->to('/signin');
+
+    }
 }

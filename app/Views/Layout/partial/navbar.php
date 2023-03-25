@@ -11,11 +11,14 @@
 					<div class="collapse navbar-collapse navbar-38523">
 							<ul class="site-navigation nav navbar-nav ml-auto">
 								<li class="nav-item">
-									<a href="index.html" class="nav-link">Home</a>
+									<a href="<?php echo base_url();?>/profile" class="nav-link">Home</a>
 								</li>
 								<li class="nav-item">
 									<div class="dropdown-divider">
 									</div>
+								</li>
+								<li class="nav-item">
+									<a href="<?php echo base_url();?>/events" class="nav-link">Eventi</a>
 								</li>
 								<li class="nav-item">
 									<a href="index.html" class="nav-link">Store</a>
@@ -28,6 +31,18 @@
 								</li>
 								<li class="nav-item">
 									<a href="lilt.html" class="a-btn nav-link">lilty</a>
+								</li>
+								<li class="nav-item">
+									<div class="dropdown">
+										<button id="dLabel" type="button" class='btn btn-primary mb-2' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Dropdown trigger
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dLabel">
+											<a class="dropdown-item" href="#">Another action</a>
+											<a class="dropdown-item" href="#">Something else here</a>
+											<a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Logout</a>
+										</div>
+									</div>
 								</li>
 							</ul>
 						</div>

@@ -22,7 +22,7 @@ class UserModel extends Model{
   public function getAllAssociationsWithPlatformManagers()
   {
     $builder = $this->db->table('users');
-    $builder->select('users.*');
+    $builder->select('users.*,associations.*');
     $builder->join('associations', 'users.id = associations.user_id');
     $builder->where('users.is_platform_manager', true);
     $query = $builder->get();

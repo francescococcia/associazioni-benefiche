@@ -43,6 +43,10 @@ $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::sto
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+// $routes->get('/logout', 'Auth::logout', ['as' => 'logout']);
+// $routes->get('logout', 'Auth::logout');
+$routes->get('/logout', 'Home::exit');
+$routes->get('/events', 'EventsController::index');
 
 /*
  * --------------------------------------------------------------------
