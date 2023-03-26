@@ -5,6 +5,10 @@ Options All -Indexes
 # Rewrite engine
 # ----------------------------------------------------------------------
 
+RewriteEngine On
+RewriteCond %{SERVER_PORT} !^8080$
+RewriteRule ^(.*)$ http://localhost:8080/$1 [L,R]
+
 # Turning on the rewrite engine is necessary for the following rules and features.
 # FollowSymLinks must be enabled for this to work.
 <IfModule mod_rewrite.c>
