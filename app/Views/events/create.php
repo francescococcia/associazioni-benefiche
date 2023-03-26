@@ -3,7 +3,7 @@
 <div class="container text-center">
   <div class="row">
     <div class="col">
-      <a href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
+      <button>Aggiungi evento</button>
     </div>
   </div>
   <div class="row">

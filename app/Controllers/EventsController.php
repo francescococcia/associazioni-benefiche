@@ -14,6 +14,39 @@ class EventsController extends Controller
         return view('events/index', $data);
     }
 
+    public function new()
+    {
+        helper(['form']);
+
+        $data = [];
+
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                'title' => 'required|min_length[3]|max_length[255]',
+                'description' => 'required',
+                'start_date' => 'required|valid_date',
+                'end_date' => 'required|valid_date'
+            ];
+
+            if ($this->validate($rules)) {
+                $model = new EventModel();
+
+                $model->save([
+                    'title' => $this->request->getVar('title'),
+                    'description' => $this->request->getVar('description'),
+                    'start_date' => $this->request->getVar('start_date'),
+                    'end_date' => $this->request->getVar('end_date')
+                ]);
+
+                return redirect()->to('/events');
+            } else {
+                $data['validation'] = $this->validator;
+            }
+        }
+
+        return view('events/new', $data);
+    }
+
     public function view($id = null)
     {
         $model = new EventModel();

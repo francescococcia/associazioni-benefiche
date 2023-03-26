@@ -47,6 +47,7 @@ $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 // $routes->get('logout', 'Auth::logout');
 $routes->get('/logout', 'Home::exit');
 $routes->get('/events', 'EventsController::index');
+$routes->get('/events/new', 'EventsController::new');
 
 /*
  * --------------------------------------------------------------------

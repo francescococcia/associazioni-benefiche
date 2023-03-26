@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     $platformManagers = $userModel->getAllAssociationsWithPlatformManagers();
     // Pass the user data to the view
-    $data = ['userData' => $userData,'platformManagers' => $platformManagers];
+    $data = ['userData' => $userData, 'platformManagers' => $platformManagers];
     return view('Profile/index', $data);
   }
 }
