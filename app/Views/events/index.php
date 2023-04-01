@@ -6,6 +6,7 @@
       <a href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
     </div>
   </div>
+  <h1><?= print_r($session) ?>!</h1>
   <div class="row">
     <div class="col">
       <ul>
@@ -13,9 +14,10 @@
           <li>
             Titolo: <?php echo $event['title']; ?><br>
             Descrizione: <?php echo $event['description']; ?><br>
-            Data: <?php echo $event['date']; ?>
+            Data: <?php echo $event['date']; ?><br>
             Luogo: <?php echo $event['location']; ?>
           </li>
+          <hr>
         <?php endforeach; ?>
       </ul>
     </div>

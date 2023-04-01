@@ -50,8 +50,7 @@ class SignupAssociationController extends Controller
 
       $associationModel->insert($associationData);
 
-
-        return redirect()->to('/signin');
+      return redirect()->to('/signin');
     } else {
       $data['validation'] = $this->validator;
       echo view('signup_association', $data);

@@ -43,7 +43,6 @@
                       </ul>
                     </div>
                   </div>
-                  <a href="<?= site_url('login') ?>">Login</a>
               <?php endif; ?>
             </div>
           </div>
