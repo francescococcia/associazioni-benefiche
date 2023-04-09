@@ -28,14 +28,4 @@ class UserModel extends Model{
     $query = $builder->get();
     return $query->getResultArray();
   }
-
-  public function getUserWithAssociation($userId)
-  {
-    $query = $this->select('associations.id')
-        ->join('associations', 'associations.id = users.association_id')
-        ->where('users.id', $userId)
-        ->get();
-
-    return $query->getRow();
-  }
 }

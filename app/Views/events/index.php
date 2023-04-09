@@ -6,7 +6,7 @@
       <a href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
     </div>
   </div>
-  <h1><?= print_r($session) ?>!</h1>
+  <!-- <h1><#?= $session ?>!</h1> -->
   <div class="row">
     <div class="col">
       <ul>
