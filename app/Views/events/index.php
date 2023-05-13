@@ -17,10 +17,20 @@
             Data: <?php echo $event['date']; ?><br>
             Luogo: <?php echo $event['location']; ?>
           </li>
+          <!-- <form method="post" action="<#?php echo base_url(); ?>/ParticipantsController/create<#?= $event['id']; ?>"> -->
+          <form method="post" action="<?php echo base_url(); ?>/ParticipantsController/create">
+            <input type="hidden" name="event_id" value="<?= $event['id']; ?>">
+            <button type="submit">Partecipa</button>
+          </form>
           <hr>
         <?php endforeach; ?>
       </ul>
     </div>
   </div>
 </div>
+<?php if(session()->has('success')): ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->get('success') ?>
+    </div>
+<?php endif; ?>
 <?= $this->endSection() ?>
