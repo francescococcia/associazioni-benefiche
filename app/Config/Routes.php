@@ -43,10 +43,23 @@ $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::sto
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+// Events routes
 $routes->get('/events', 'EventsController::index');
 $routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create');
 $routes->get('events/new', 'EventsController::new');
+// Participants routes
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create');
+// Products routes
+$routes->get('/store', 'ProductsController::index');
+$routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create');
+$routes->get('store/new', 'ProductsController::new');
+// $routes->get('store', 'ProductsController::index');
+// $routes->get('store/create', 'ProductsController::create');
+// $routes->post('store/store', 'ProductsController::store');
+// $routes->get('store/edit/(:num)', 'ProductsController::edit/$1');
+// $routes->post('store/update/(:num)', 'ProductsController::update/$1');
+// $routes->get('store/delete/(:num)', 'ProductsController::delete/$1');
+
 
 $routes->get('/logout', 'Home::exit');
 /*

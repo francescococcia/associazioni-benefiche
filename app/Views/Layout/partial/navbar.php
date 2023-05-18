@@ -21,7 +21,7 @@
 									<a href="<?php echo base_url();?>/events" class="nav-link">Eventi</a>
 								</li>
 								<li class="nav-item">
-									<a href="index.html" class="nav-link">Store</a>
+									<a href="<?php echo base_url();?>/store" class="nav-link">Store</a>
 								</li>
 								<li class="nav-item">
 									<a href="index.html" class="nav-link">Chi siamo</a>
