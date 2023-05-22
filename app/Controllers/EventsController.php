@@ -34,29 +34,28 @@ class EventsController extends Controller
 
     if ($this->request->getMethod() == 'post') {
       $rules = [
-          'title' => 'required|min_length[3]|max_length[255]',
-          'description' => 'required',
-          'date' => 'required',
-          'location' => 'required'
+        'title' => 'required|min_length[3]|max_length[255]',
+        'description' => 'required',
+        'date' => 'required',
+        'location' => 'required'
       ];
 
       if ($this->validate($rules)) {
-          $model = new EventModel();
-          // $associationModel = new AssociationModel();
+        $model = new EventModel();
 
-          $data = [
-              'association_id' => $this->request->getPost('association_id'),
-              'title' => $this->request->getPost('title'),
-              'description' => $this->request->getPost('description'),
-              'date' => $this->request->getPost('date'),
-              'location' => $this->request->getPost('location'),
-          ];
+        $data = [
+            'association_id' => $this->request->getPost('association_id'),
+            'title' => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'date' => $this->request->getPost('date'),
+            'location' => $this->request->getPost('location'),
+        ];
 
-          $model->save($data);
-          $session->setFlashdata('message', 'Event created successfully!');
-          return redirect()->to('/events');
+        $model->save($data);
+        $session->setFlashdata('message', 'Event created successfully!');
+        return redirect()->to('/events');
       } else {
-          $data['validation'] = $this->validator;
+        $data['validation'] = $this->validator;
       }
     }
     $data = $session->get();

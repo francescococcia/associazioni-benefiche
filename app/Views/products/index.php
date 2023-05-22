@@ -3,11 +3,9 @@
 <div class="container text-center">
   <div class="row">
     <div class="col">
-      <a href="<?php echo base_url();?>/products/new">Aggiungi prodotto</a>
-      <a href="<#?php echo base_url('store/create'); ?>">Add New Product</a>
+      <a href="<?php echo base_url();?>/store/new">Aggiungi prodotto</a>
     </div>
   </div>
-  <!-- <h1><#?= $session ?>!</h1> -->
   <div class="row">
     <div class="col">
       <ul>
@@ -15,12 +13,12 @@
           <li>
             Nome: <?php echo $product['name']; ?><br>
             Descrizione: <?php echo $product['description']; ?><br>
-            Prezzo: <?php echo $product['price']; ?>
+            Prezzo: <?php echo $product['price']; ?><br>
+            Quantity: <?php echo $product['quantity']; ?>
           </li>
-          <!-- <form method="post" action="<#?php echo base_url(); ?>/ParticipantsController/create<#?= $product['id']; ?>"> -->
           <form method="post" action="<?php echo base_url(); ?>/ProductsController/create">
             <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-            <button type="submit">Partecipa</button>
+            <button type="submit">Aggiungi al carrello</button>
           </form>
           <hr>
         <?php endforeach; ?>

@@ -10,21 +10,27 @@
 					</button>
 					<div class="collapse navbar-collapse navbar-38523">
 							<ul class="site-navigation nav navbar-nav ml-auto">
-								<li class="nav-item">
+								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'profile') ? 'active' : ''; ?>">
 									<a href="<?php echo base_url();?>/profile" class="nav-link">Home</a>
 								</li>
 								<li class="nav-item">
 									<div class="dropdown-divider">
 									</div>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
 									<a href="<?php echo base_url();?>/events" class="nav-link">Eventi</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
 									<a href="<?php echo base_url();?>/store" class="nav-link">Store</a>
+								</li>
+								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === '') ? 'active' : ''; ?>">
+									<a href="<?php echo base_url();?>/" class="nav-link">Carrello</a>
 								</li>
 								<li class="nav-item">
 									<a href="index.html" class="nav-link">Chi siamo</a>
+								</li>
+								<li class="nav-item">
+									<a href="index.html" class="nav-link">Cassa</a>
 								</li>
 								<li class="nav-item">
 									<a href="index.html" class="nav-link">Contatti</a>

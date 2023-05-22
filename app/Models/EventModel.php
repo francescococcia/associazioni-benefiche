@@ -8,7 +8,13 @@ class EventModel extends Model
 {
     protected $table = 'events';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['association_id', 'title', 'description', 'date', 'location'];
+    protected $allowedFields = [
+        'association_id',
+        'title',
+        'description',
+        'date',
+        'location'
+    ];
 
     public function getEvents()
     {

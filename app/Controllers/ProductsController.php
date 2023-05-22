@@ -16,10 +16,9 @@ class ProductsController extends Controller
   {
     $model = new ProductModel();
     $data['products'] = $model->findAll();
-    // return $this->respond($data);
     return view('products/index', $data);
   }
-  
+
   public function new($association_id = null)
   {
     helper(['form']);
@@ -38,29 +37,28 @@ class ProductsController extends Controller
 
     if ($this->request->getMethod() == 'post') {
       $rules = [
-          'name' => 'required|min_length[3]|max_length[255]',
-          'description' => 'required',
-          'price' => 'required',
-          'quantity' => 'required'
+        'name' => 'required|min_length[3]|max_length[255]',
+        'description' => 'required',
+        'price' => 'required',
+        'quantity' => 'required'
       ];
 
       if ($this->validate($rules)) {
-          $model = new ProductModel();
-          // $associationModel = new AssociationModel();
+        $model = new ProductModel();
 
-          $data = [
-              'association_id' => $this->request->getPost('association_id'),
-              'name' => $this->request->getPost('name'),
-              'description' => $this->request->getPost('description'),
-              'price' => $this->request->getPost('price'),
-              'quantity' => $this->request->getPost('quantity'), 
-          ];
+        $data = [
+          'association_id' => $this->request->getPost('association_id'),
+          'name' => $this->request->getPost('name'),
+          'description' => $this->request->getPost('description'),
+          'price' => $this->request->getPost('price'),
+          'quantity' => $this->request->getPost('quantity'),
+        ];
 
-          $model->save($data);
-          $session->setFlashdata('message', 'Event created successfully!');
-          return redirect()->to('/store');
+        $model->save($data);
+        $session->setFlashdata('message', 'Event created successfully!');
+        return redirect()->to('/store');
       } else {
-          $data['validation'] = $this->validator;
+        $data['validation'] = $this->validator;
       }
     }
     $data = $session->get();
