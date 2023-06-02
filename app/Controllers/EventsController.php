@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\EventModel;
 use App\Models\AssociationModel;
+use App\Models\ParticipantModel;
 use CodeIgniter\Controller;
 
 class EventsController extends Controller
@@ -12,6 +13,18 @@ class EventsController extends Controller
   {
     $model = new EventModel();
     $data['events'] = $model->getEvents();
+
+    // Get the current user ID
+    $userId = session()->get('id');
+
+    $participantModel = new ParticipantModel();
+
+
+    // Loop through the events and check if the user has participated in each event
+    foreach ($data['events'] as &$event) {
+      $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
+      $event['userParticipated'] = $participant !== null;
+    }
 
     return view('events/index', $data);
   }
@@ -74,5 +87,19 @@ class EventsController extends Controller
     }
 
     return view('events/view', $data);
+  }
+
+  public function show($id)
+  {
+    $model = new EventModel();
+    $event = $model->find($id);
+
+    if (!$event) {
+        // Event not found, redirect or show error message
+        return redirect()->to('events')->with('error', 'Event not found');
+    }
+
+    $data['event'] = $event;
+    return view('events/show', $data);
   }
 }

@@ -15,7 +15,7 @@ class ProductsController extends Controller
   public function index()
   {
     $model = new ProductModel();
-    $data['products'] = $model->findAll();
+    $data['products'] = $model->orderBy('id', 'DESC')->findAll();
     return view('products/index', $data);
   }
 

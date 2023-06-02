@@ -47,6 +47,7 @@ $routes->get('/profile', 'ProfileController::index', ['filter' => 'authGuard']);
 $routes->get('/events', 'EventsController::index');
 $routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create');
 $routes->get('events/new', 'EventsController::new');
+$routes->get('events/detail/(:segment)', 'EventsController::show/$1');
 // Participants routes
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create');
 // Products routes
@@ -59,6 +60,9 @@ $routes->get('store/new', 'ProductsController::new');
 // $routes->get('store/edit/(:num)', 'ProductsController::edit/$1');
 // $routes->post('store/update/(:num)', 'ProductsController::update/$1');
 // $routes->get('store/delete/(:num)', 'ProductsController::delete/$1');
+
+// Partecipants routes
+$routes->post('participants/create', 'ParticipantsController::create');
 
 
 $routes->get('/logout', 'Home::exit');
