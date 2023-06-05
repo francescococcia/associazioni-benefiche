@@ -43,17 +43,35 @@ $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::sto
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/profile', 'ProfileController::index', ['filter' => 'authGuard']);
+
+//Admin routes
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
+  $routes->get('dashboard', 'Home::index');
+  $routes->get('users', 'UsersController::index');
+  $routes->post('users/delete/(:num)', 'UsersController::delete/$1');
+  $routes->get('events', 'EventsController::index');
+  $routes->post('events/delete/(:num)', 'EventsController::delete/$1');
+});
+
+// Reports routes
+$routes->get('/reports/create', 'ReportsController::create');
+$routes->post('/reports/store', 'ReportsController::store');
+
+
+
 // Events routes
-$routes->get('/events', 'EventsController::index');
-$routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create');
-$routes->get('events/new', 'EventsController::new');
-$routes->get('events/detail/(:segment)', 'EventsController::show/$1');
+$routes->get('/events', 'EventsController::index', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create',['filter' => 'authGuard']);
+$routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
+$routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
+
 // Participants routes
-$routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create');
+$routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
+
 // Products routes
-$routes->get('/store', 'ProductsController::index');
-$routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create');
-$routes->get('store/new', 'ProductsController::new');
+$routes->get('/store', 'ProductsController::index', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create', ['filter' => 'authGuard']);
+$routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
 // $routes->get('store', 'ProductsController::index');
 // $routes->get('store/create', 'ProductsController::create');
 // $routes->post('store/store', 'ProductsController::store');
@@ -62,7 +80,7 @@ $routes->get('store/new', 'ProductsController::new');
 // $routes->get('store/delete/(:num)', 'ProductsController::delete/$1');
 
 // Partecipants routes
-$routes->post('participants/create', 'ParticipantsController::create');
+$routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
 
 
 $routes->get('/logout', 'Home::exit');

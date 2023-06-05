@@ -9,6 +9,7 @@
     <!-- Main container -->
     <div class="page-container">
       <?= $this->include('Layout/partial/navbar'); ?>
+      <?= $this->include('Layout/partial/messages'); ?>
       <?= $this->renderSection('content') ?>
       <?= $this->include('Layout/partial/footer'); ?>
     </div>

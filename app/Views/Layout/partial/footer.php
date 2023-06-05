@@ -2,7 +2,6 @@
   <a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1',this)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path class="scroll-to-top-btn-icon" d="M30,22.656l-14-13-14,13"/></svg></a>
   <!-- ScrollToTop Button END-->
 
-
   <!-- bloc-7 -->
   <div class="bloc full-width-bloc b-parallax l-bloc" id="bloc-7">
     <div class="container bloc-lg bloc-sm-lg">
@@ -17,7 +16,9 @@
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="text-center">
-            <a href="index.html" class="btn btn-lg btn-c-6332 btn-clean">Inviaci una segnalazione</a>
+            <a href="<?php echo base_url();?>/submitReport" class="btn btn-lg btn-c-6332 btn-clean">
+              Inviaci una segnalazione
+            </a>
           </div>
         </div>
       </div>

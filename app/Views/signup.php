@@ -38,7 +38,7 @@
               <input type="text" name="phone_number" placeholder="Numero" required="" value="<?= set_value('phone_number') ?>" class="form-control mb-lg-3" >
               <div class="form-group">
                 <label>Data di nascinta</label>
-                <input type="text" name="birth_date" placeholder="Data di nascita" required="" class="form-control" required="" value="<?= set_value('birth_date') ?>">
+                <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" required="" value="<?= set_value('birth_date') ?>">
               </div>
             </div>
 
