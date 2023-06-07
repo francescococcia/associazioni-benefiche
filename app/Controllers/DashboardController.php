@@ -6,7 +6,7 @@ use App\Models\UserModel;
 use App\Models\AssociationModel;
 
 
-class ProfileController extends Controller
+class DashboardController extends Controller
 {
   public function index()
   {
@@ -18,6 +18,6 @@ class ProfileController extends Controller
     $platformManagers = $userModel->getAllAssociationsWithPlatformManagers();
     // Pass the user data to the view
     $data = ['userData' => $userData, 'platformManagers' => $platformManagers];
-    return view('Profile/index', $data);
+    return view('dashboard/index', $data);
   }
 }

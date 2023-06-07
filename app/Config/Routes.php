@@ -35,6 +35,16 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+//Admin routes
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
+  $routes->get('dashboard', 'Home::index', ['filter' => 'authGuard']);
+  $routes->get('users', 'UsersController::index', ['filter' => 'authGuard']);
+  $routes->post('users/delete/(:num)', 'UsersController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('events', 'EventsController::index', ['filter' => 'authGuard']);
+  $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('reports', 'ReportsController::index', ['filter' => 'authGuard']);
+});
+
 $routes->get('/', 'Home::index');
 $routes->get('/signup-association', 'SignupAssociationController::index');
 $routes->match(['get', 'post'], 'SignupAssociationController/store', 'SignupAssociationController::store');
@@ -42,28 +52,19 @@ $routes->get('/signup', 'SignupController::index');
 $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
-$routes->get('/profile', 'ProfileController::index', ['filter' => 'authGuard']);
+$routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard']);
 
-//Admin routes
-$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
-  $routes->get('dashboard', 'Home::index');
-  $routes->get('users', 'UsersController::index');
-  $routes->post('users/delete/(:num)', 'UsersController::delete/$1');
-  $routes->get('events', 'EventsController::index');
-  $routes->post('events/delete/(:num)', 'EventsController::delete/$1');
-});
 
 // Reports routes
 $routes->get('/reports/create', 'ReportsController::create');
 $routes->post('/reports/store', 'ReportsController::store');
-
-
 
 // Events routes
 $routes->get('/events', 'EventsController::index', ['filter' => 'authGuard']);
 $routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create',['filter' => 'authGuard']);
 $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
 $routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('/events/search', 'EventsController::search');
 
 // Participants routes
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
@@ -81,6 +82,10 @@ $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
 
 // Partecipants routes
 $routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
+
+// Users routes
+$routes->get('/profile', 'UsersController::edit');
+$routes->post('/users/update', 'UsersController::update');
 
 
 $routes->get('/logout', 'Home::exit');

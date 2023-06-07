@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="text-center">
-            <a href="<?php echo base_url();?>/submitReport" class="btn btn-lg btn-c-6332 btn-clean">
+            <a href="<?php echo base_url();?>/reports/create" class="btn btn-lg btn-c-6332 btn-clean">
               Inviaci una segnalazione
             </a>
           </div>

@@ -20,7 +20,7 @@
             <div class="col-12 mr-lg-5">
               <?php if ($isLoggedIn): ?>
                 <div class="text-center text-lg-right">
-                  <a href="<?php echo base_url();?>/profile"
+                  <a href="<?php echo base_url();?>/dashboard"
                     class="btn mr-lg-3 btn-style btn-lg btn-clean float-lg-none btn-c-4129 btn-rd">
                     Home
                   </a>

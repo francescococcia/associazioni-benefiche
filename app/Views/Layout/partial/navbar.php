@@ -10,8 +10,8 @@
 					</button>
 					<div class="collapse navbar-collapse navbar-38523">
 							<ul class="site-navigation nav navbar-nav ml-auto">
-								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'profile') ? 'active' : ''; ?>">
-									<a href="<?php echo base_url();?>/profile" class="nav-link">Home</a>
+								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'dashboard') ? 'active' : ''; ?>">
+									<a href="<?php echo base_url();?>/dashboard" class="nav-link">Home</a>
 								</li>
 								<li class="nav-item">
 									<div class="dropdown-divider">
@@ -19,6 +19,9 @@
 								</li>
 								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
 									<a href="<?php echo base_url();?>/events" class="nav-link">Eventi</a>
+								</li>
+								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
+									<a href="<?php echo base_url();?>/events/search" class="nav-link">Cerca Eventi</a>
 								</li>
 								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
 									<a href="<?php echo base_url();?>/store" class="nav-link">Store</a>
@@ -45,10 +48,11 @@
 											Dropdown trigger
 										</button>
 										<div class="dropdown-menu" aria-labelledby="dLabel">
+											<a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>
 											<?php if (session()->get('isAdmin')): ?>
 												<a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
 												<a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
-												<a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Segnalazioni</a>
+												<a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
 											<?php endif; ?>
 											<a class="dropdown-item" href="#">Something else here</a>
 											<a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Logout</a>

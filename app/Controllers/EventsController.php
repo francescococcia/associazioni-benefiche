@@ -102,4 +102,20 @@ class EventsController extends Controller
     $data['event'] = $event;
     return view('events/show', $data);
   }
+
+  public function search()
+  {
+    $description = $this->request->getVar('description');
+
+    if (!empty($description)) {
+        $eventModel = new EventModel();
+        $events = $eventModel->like('description', $description)->findAll();
+    } else {
+        $events = [];
+    }
+
+    $data['events'] = $events;
+
+    return view('events/search_results', $data);
+  }
 }
