@@ -11,7 +11,7 @@
             Contatti
           </h1>
           <h5 class="mb-4 btn-resize-mode h5-style mb-lg-5">
-            e-mail:<br>telefono:
+            e-mail: associazionibenefiche@gmail.com<br>telefono: 3939366655
           </h5>
         </div>
         <div class="col-md-3 col-sm-6">

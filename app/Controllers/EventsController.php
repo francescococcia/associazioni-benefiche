@@ -104,18 +104,18 @@ class EventsController extends Controller
   }
 
   public function search()
+{
+    return view('events/search');
+}
+
+  public function results()
   {
     $description = $this->request->getVar('description');
 
-    if (!empty($description)) {
-        $eventModel = new EventModel();
-        $events = $eventModel->like('description', $description)->findAll();
-    } else {
-        $events = [];
-    }
+    $eventModel = new EventModel();
+    $events = $eventModel->like('description', $description)->findAll();
 
     $data['events'] = $events;
-
     return view('events/search_results', $data);
   }
 }

@@ -29,10 +29,11 @@
             <div class="form-group">
               <label>Nome Associazione</label>
               <input type="text" name="name" placeholder="Name" required="" value="<?= set_value('name') ?>" class="form-control mb-lg-3" >
-              <div class="form-group">
-                <label>Codice Fiscale</label>
-                <input type="text" name="tax_code" placeholder="Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
-              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Codice Fiscale</label>
+              <input type="text" name="tax_code" placeholder="Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
             </div>
 
             <div class="form-group">
@@ -44,14 +45,21 @@
                 type="text"
                 value="<?= set_value('legal_address') ?>"
                 required="">
+            </div>
+
+            <div class="form-group">
               <label>Email</label>
               <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
-                <label>Conferma Password</label>
-                <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
-              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
+            </div>
+
+            <div class="form-group">
+              <label>Conferma Password</label>
+              <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
             </div>
             <div class="form-check">
               <!-- <input class="form-check-input" type="checkbox" id="optin_49815_18619" data-validation-minchecked-minchecked="1" name="optin_49815"> -->

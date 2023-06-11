@@ -6,7 +6,12 @@
 <?php if (!empty($events)) : ?>
     <ul>
         <?php foreach ($events as $event) : ?>
-            <li><?= $event['description']; ?></li>
+            <li>
+            Titolo: <?php echo $event['title']; ?><br>
+            Descrizione: <?php echo $event['description']; ?><br>
+            Data: <?php echo $event['date']; ?><br>
+            Luogo: <?php echo $event['location']; ?>
+          </li>
         <?php endforeach; ?>
     </ul>
 <?php else : ?>

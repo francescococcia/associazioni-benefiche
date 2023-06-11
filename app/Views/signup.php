@@ -27,37 +27,43 @@
             <div class="form-group">
               <label>Nome</label>
               <input type="text" name="first_name" placeholder="Name" required="" value="<?= set_value('first_name') ?>" class="form-control mb-lg-3" >
-              <div class="form-group">
-                <label>Cognome</label>
-                <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" required="" value="<?= set_value('last_name') ?>">
-              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Cognome</label>
+              <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" required="" value="<?= set_value('last_name') ?>">
             </div>
 
             <div class="form-group">
               <label>Numero di telefono</label>
               <input type="text" name="phone_number" placeholder="Numero" required="" value="<?= set_value('phone_number') ?>" class="form-control mb-lg-3" >
-              <div class="form-group">
-                <label>Data di nascinta</label>
-                <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" required="" value="<?= set_value('birth_date') ?>">
-              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Data di nascinta</label>
+              <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" required="" value="<?= set_value('birth_date') ?>">
             </div>
 
             <div class="form-group">
               <label>Email</label>
               <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
-                <label>Conferma Password</label>
-                <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
-              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
+            </div>
+
+            <div class="form-group">
+              <label>Conferma Password</label>
+              <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
             </div>
             <div class="form-check">
               <!-- <input class="form-check-input" type="checkbox" id="optin_49815_18619" data-validation-minchecked-minchecked="1" name="optin_49815"> -->
               <!-- <label class="form-check-label">
                 Ricevi aggiornamenti via mail
               </label> -->
-            </div> 
+            </div>
             <button class="bloc-button btn btn-d btn-lg btn-block mt-lg-4 mb-lg-5" type="submit">
               Invia
             </button>

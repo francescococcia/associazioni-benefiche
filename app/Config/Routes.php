@@ -54,6 +54,9 @@ $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController:
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard']);
 
+// Email routes
+$routes->get('/email', 'EmailController::index');
+$routes->match(['get', 'post'], 'EmailController/sendMail', 'EmailController::sendMail');
 
 // Reports routes
 $routes->get('/reports/create', 'ReportsController::create');
@@ -65,6 +68,7 @@ $routes->match(['get', 'post'], 'EventsController/create', 'EventsController::cr
 $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
 $routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
 $routes->get('/events/search', 'EventsController::search');
+$routes->get('/events/results', 'EventsController::results');
 
 // Participants routes
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);

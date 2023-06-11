@@ -17,16 +17,16 @@ class UsersController extends BaseController
 
   public function delete($userId)
   {
-  //   $userModel = new UserModel();
+    $userModel = new UserModel();
 
-  //   // Check if the user exists
-  //   if (!$userModel->find($userId)) {
-  //       return redirect()->back()->with('error', 'User not found.');
-  //   }
+    // Check if the user exists
+    if (!$userModel->find($userId)) {
+      return redirect()->back()->with('error', 'User not found.');
+    }
 
-  //   // Delete the user
-  //   $userModel->delete($userId);
+    // Delete the user
+    $userModel->delete($userId);
 
-  //   return redirect()->back()->with('error', 'User deleted successfully.');
+    return redirect()->back()->with('success', 'User deleted successfully.');
   }
 }
