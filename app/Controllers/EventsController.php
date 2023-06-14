@@ -104,9 +104,9 @@ class EventsController extends Controller
   }
 
   public function search()
-{
+  {
     return view('events/search');
-}
+  }
 
   public function results()
   {

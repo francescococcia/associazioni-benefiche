@@ -11,16 +11,16 @@
         <form action="<?php echo base_url(); ?>/ProductsController/create" method="post">
           <input type="hidden" name="association_id" value="<?= $association_id ?>">
           <label for="name">Name</label>
-          <input type="text" name="name" value="<?= set_value('name') ?>"><br><br>
+          <input type="text" name="name" value="<?= set_value('name') ?>" required=""><br><br>
 
           <label for="description">Description</label>
-          <textarea name="description"><?= set_value('description') ?></textarea><br><br>
+          <textarea name="description" required=""><?= set_value('description') ?></textarea><br><br>
 
           <label for="price">Price</label>
-          <input type="text" name="price" value="<?= set_value('price') ?>"><br><br>
+          <input type="number" name="price" value="<?= set_value('price') ?>" required=""><br><br>
 
           <label for="quantity">Quantity</label>
-          <input type="text" name="quantity" value="<?= set_value('quantity') ?>"><br><br>
+          <input type="number" name="quantity" value="<?= set_value('quantity') ?>" required=""><br><br>
 
           <input type="submit" name="submit" value="Save">
         </form>

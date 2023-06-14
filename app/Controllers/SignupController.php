@@ -23,6 +23,7 @@ class SignupController extends Controller
   public function store()
   {
     helper(['form']);
+    helper('email_helper');
     $rules = [
       'first_name'          => 'required|min_length[2]|max_length[50]',
       'last_name'          => 'required|min_length[2]|max_length[50]',
@@ -45,10 +46,17 @@ class SignupController extends Controller
         'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
       ];
 
-      $userModel->save($data);
+      if($userModel->save($data)){
+        $firstName = $this->request->getVar('first_name');
+        $to = $this->request->getVar('email');
+        $subject = 'Conferma Iscrizione';
+        $message = 'Benvenuto ' . $firstName . ', clicca questo link per accedere http://localhost/associazioni-benefiche/signin';
 
-      return redirect()->to('/signin');
-    }else{
+        sendMail($to, $subject, $message);
+        return redirect()->to('/signin')->with('success', 'Iscrizione effettuata!');
+      }
+
+    } else {
       $data['validation'] = $this->validator;
       echo view('signup', $data);
     }

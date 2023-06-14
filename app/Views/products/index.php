@@ -16,6 +16,7 @@
             Prezzo: <?php echo $product['price']; ?><br>
             Quantity: <?php echo $product['quantity']; ?>
           </li>
+          <a href="<?= site_url('product/detail/'.$product['id']) ?>" class="btn btn-primary">View Details</a>
           <form method="post" action="<?php echo base_url(); ?>/ProductsController/create">
             <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
             <button type="submit">Aggiungi al carrello</button>

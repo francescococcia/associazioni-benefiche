@@ -54,10 +54,6 @@ $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController:
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard']);
 
-// Email routes
-$routes->get('/email', 'EmailController::index');
-$routes->match(['get', 'post'], 'EmailController/sendMail', 'EmailController::sendMail');
-
 // Reports routes
 $routes->get('/reports/create', 'ReportsController::create');
 $routes->post('/reports/store', 'ReportsController::store');
@@ -76,7 +72,9 @@ $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsCo
 // Products routes
 $routes->get('/store', 'ProductsController::index', ['filter' => 'authGuard']);
 $routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'ProductsController/buy', 'ProductsController::buy', ['filter' => 'authGuard']);
 $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
+$routes->get('product/detail/(:segment)', 'ProductsController::show/$1', ['filter' => 'authGuard']);
 // $routes->get('store', 'ProductsController::index');
 // $routes->get('store/create', 'ProductsController::create');
 // $routes->post('store/store', 'ProductsController::store');
@@ -88,8 +86,10 @@ $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
 $routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
 
 // Users routes
-$routes->get('/profile', 'UsersController::edit');
-$routes->post('/users/update', 'UsersController::update');
+$routes->get('/profile', 'UsersController::edit', ['filter' => 'authGuard']);
+$routes->post('/users/update', 'UsersController::update', ['filter' => 'authGuard']);
+$routes->add('forgot-password', 'UsersController::forgotPassword');
+$routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersController::sendForgotPassword');
 
 
 $routes->get('/logout', 'Home::exit');
