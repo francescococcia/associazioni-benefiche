@@ -67,20 +67,27 @@ class ProductsController extends Controller
     return view('products/new', $data);
   }
 
-  public function show($id)
-  {
-    $model = new ProductModel();
-    $product = $model->find($id);
+  public function show($id) {
+    $productModel = new ProductModel();
+    $product = $productModel->find($id);
 
     if (!$product) {
-        // Product not found, redirect or show error message
-        return redirect()->to('store')->with('error', 'Product not found');
+      // Product not found, redirect or show error message
+      return redirect()->to('store')->with('error', 'Product not found');
     }
 
+    // Get the logged-in user's ID
+    $userId = session()->get('id');
+
+    // Check if the quantity is available
+    $isQuantityAvailable = $productModel->isQuantityAvailable($userId, $id, $product['quantity']);
+
     $data['product'] = $product;
+    $data['isQuantityAvailable'] = $isQuantityAvailable;
+
     return view('products/show', $data);
   }
-  
+
   public function buy()
   {
     // Load the ProductModel and OrderModel
@@ -95,27 +102,36 @@ class ProductsController extends Controller
     $quantities = $this->request->getPost('quantity');
 
     // Process each product
-    foreach ($productIds as $productId) {
-        // Retrieve the quantity for the current product
-        $quantity = $quantities[$productId];
+    foreach ($productIds as $index => $productId) {
+      // Retrieve the quantity for the current product
+      $quantity = $quantities[$index];
 
-        // Perform your desired actions with the product and quantity
-        // For example, you can save the product and quantity to the database or add them to the shopping cart
+      // Check if the quantity is available
+      // if (!$productModel->isQuantityAvailable($userId, $productId, $quantity)) {
+      //     // Insufficient quantity, redirect with an error message
+      //     return redirect()->back()->with('error', 'Insufficient quantity for product: ' . $productId);
+      // } else{
+      //   $quantities = $productModel->isQuantityAvailable($userId, $productId, $quantity);
+      // }
 
-        // Example: Save the order details to the "orders" table
-        $data = [
-            'user_id' => $userId,
-            'product_id' => $productId,
-            'quantity' => $quantity,
-            'date' => date('Y-m-d H:i:s')
-        ];
+      // Perform your desired actions with the product and quantity
+      // For example, you can save the product and quantity to the database or add them to the shopping cart
 
-        $orderModel->insert($data);
-      }
+      // Example: Save the order details to the "orders" table
+      $data = [
+          'user_id' => $userId,
+          'product_id' => $productId,
+          'quantity' => $quantity,
+          'date' => date('Y-m-d H:i:s')
+      ];
 
-      // Redirect to a success page or perform further actions
-      return redirect()->to('/store')->with('message', 'Products bought successfully!');
+      $orderModel->insert($data);
     }
+
+    // Redirect to a success page or perform further actions
+    return redirect()->to('/store')->with('message', 'Products bought successfully!');
+  }
+
 
   // public function update($id = null)
   // {
