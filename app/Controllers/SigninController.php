@@ -39,16 +39,13 @@ class SigninController extends Controller
         // Check if the user is an admin
         if ($data['is_admin']) {
           // Redirect to the admin dashboard or any other admin page
-          $ses_data = [
-            'id' => $data['id'],
-            'first_name' => $data['first_name'],
-            'email' => $data['email'],
-            'isLoggedIn' => TRUE,
-            'isAdmin' => TRUE
-          ];
+          $ses_data['isAdmin'] = TRUE;
           $session->set($ses_data);
           return redirect()->to('/admin/dashboard');
-          // return view('/admin/dashboard');
+        }
+
+        if ($data['is_platform_manager']) {
+          $ses_data['isPlatformManager'] = TRUE;
         }
 
         $session->set($ses_data);

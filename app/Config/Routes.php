@@ -58,6 +58,10 @@ $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard
 $routes->get('/reports/create', 'ReportsController::create');
 $routes->post('/reports/store', 'ReportsController::store');
 
+// Feedback routes
+$routes->get('/feedbacks/create', 'FeedbacksController::create');
+$routes->post('/feedbacks/store', 'FeedbacksController::store');
+
 // Events routes
 $routes->get('/events', 'EventsController::index', ['filter' => 'authGuard']);
 $routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create',['filter' => 'authGuard']);
@@ -75,6 +79,7 @@ $routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController
 $routes->match(['get', 'post'], 'ProductsController/buy', 'ProductsController::buy', ['filter' => 'authGuard']);
 $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
 $routes->get('product/detail/(:segment)', 'ProductsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('cash-desk', 'ProductsController::cashDesk');
 // $routes->get('store', 'ProductsController::index');
 // $routes->get('store/create', 'ProductsController::create');
 // $routes->post('store/store', 'ProductsController::store');

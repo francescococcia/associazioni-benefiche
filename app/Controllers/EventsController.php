@@ -99,7 +99,9 @@ class EventsController extends Controller
         return redirect()->to('events')->with('error', 'Event not found');
     }
 
+    $participantId = $model->getIdParticipant($id);
     $data['event'] = $event;
+    $data['participantId'] = $participantId;
     return view('events/show', $data);
   }
 

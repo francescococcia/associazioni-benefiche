@@ -40,4 +40,16 @@ class EventModel extends Model
     {
         return $this->delete($id);
     }
+
+    public function getIdParticipant($eventId)
+    {
+        $builder = $this->db->table('participants')
+            ->select('participants.id')
+            ->where('participants.event_id',$eventId);
+
+        $query = $builder->get();
+        $result = $query->getRow();
+
+        return $result;
+    }
 }

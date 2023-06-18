@@ -16,7 +16,12 @@ class ProductsController extends Controller
   public function index()
   {
     $model = new ProductModel();
-    $data['products'] = $model->orderBy('id', 'DESC')->findAll();
+    if(session()->get('isPlatformManager')){
+      $userId = session()->get('id');
+      $data['products'] = $model->getAllProductsByPlatformManager($userId);
+    } else {
+      $data['products'] = $model->orderBy('id', 'DESC')->findAll();
+    }
     return view('products/index', $data);
   }
 
@@ -76,11 +81,8 @@ class ProductsController extends Controller
       return redirect()->to('store')->with('error', 'Product not found');
     }
 
-    // Get the logged-in user's ID
-    $userId = session()->get('id');
-
     // Check if the quantity is available
-    $isQuantityAvailable = $productModel->isQuantityAvailable($userId, $id, $product['quantity']);
+    $isQuantityAvailable = $productModel->isQuantityAvailable($id, $product['quantity']);
 
     $data['product'] = $product;
     $data['isQuantityAvailable'] = $isQuantityAvailable;
@@ -98,39 +100,79 @@ class ProductsController extends Controller
     $userId = session()->get('id');
 
     // Get the submitted form data
-    $productIds = $this->request->getPost('product_id');
-    $quantities = $this->request->getPost('quantity');
+    $productId = $this->request->getPost('product_id');
+    $quantity = $this->request->getPost('quantity');
 
-    // Process each product
-    foreach ($productIds as $index => $productId) {
-      // Retrieve the quantity for the current product
-      $quantity = $quantities[$index];
+    // Example: Save the order details to the "orders" table
+    $data = [
+      'user_id' => $userId,
+      'product_id' => $productId,
+      'quantity' => $quantity,
+      'date' => date('Y-m-d H:i:s')
+    ];
 
-      // Check if the quantity is available
-      // if (!$productModel->isQuantityAvailable($userId, $productId, $quantity)) {
-      //     // Insufficient quantity, redirect with an error message
-      //     return redirect()->back()->with('error', 'Insufficient quantity for product: ' . $productId);
-      // } else{
-      //   $quantities = $productModel->isQuantityAvailable($userId, $productId, $quantity);
-      // }
-
-      // Perform your desired actions with the product and quantity
-      // For example, you can save the product and quantity to the database or add them to the shopping cart
-
-      // Example: Save the order details to the "orders" table
-      $data = [
-          'user_id' => $userId,
-          'product_id' => $productId,
-          'quantity' => $quantity,
-          'date' => date('Y-m-d H:i:s')
-      ];
-
-      $orderModel->insert($data);
-    }
+    $orderModel->insert($data);
 
     // Redirect to a success page or perform further actions
     return redirect()->to('/store')->with('message', 'Products bought successfully!');
   }
+
+  public function cashDesk3(){
+    // Get the selected products (e.g., from a shopping cart or session variable)
+    $productModel = new ProductModel();
+    $userId = session()->get('id'); // get the ID of the currently logged-in user from the session
+    // Load the user model
+    $association_model = new AssociationModel();
+    $associationId = $association_model->getUserWithAssociation($userId);
+
+    $selectedProducts = $productModel->checkProductsSell($associationId);
+
+    // Retrieve the product details from the database using the ProductModel
+    // $productModel = new ProductModel();
+    // $products = [];
+
+    // foreach ($selectedProducts as $productId) {
+    //     $product = $productModel->find($productId);
+
+    //     if ($product) {
+    //         $products[] = $product;
+    //     }
+    // }
+
+    // // Calculate the total price and quantity
+    // $totalPrice = 0;
+    // $totalQuantity = 0;
+
+    // foreach ($products as $product) {
+    //     $quantity = $_POST['quantity'][$product['id']]; // Adjust this based on your form field names
+    //     $subtotal = $product['price'] * $quantity;
+
+    //     $totalPrice += $subtotal;
+    //     $totalQuantity += $quantity;
+    // }
+
+    // $data['products'] = $products;
+    // $data['totalPrice'] = $totalPrice;
+    // $data['totalQuantity'] = $totalQuantity;
+    // $data['selectedProducts'] = $selectedProducts;
+
+
+    // Load the checkout view
+    return view('products/cash_desk', $selectedProducts);
+  }
+  
+  public function cashDesk() {
+    $productModel = new ProductModel();
+    $association_model = new AssociationModel();
+
+    $selectedProducts = $productModel->checkProductsSell();
+
+    $data['selectedProducts'] = $selectedProducts;
+
+    return view('products/cash_desk', $data);
+}
+
+
 
 
   // public function update($id = null)

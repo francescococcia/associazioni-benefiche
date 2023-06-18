@@ -6,6 +6,9 @@
       <a href="<?php echo base_url();?>/store/new">Aggiungi prodotto</a>
     </div>
   </div>
+  <?php if (empty($products)): ?>
+    <h1>Non ci sono prodotti</h1>
+    <?php endif; ?>
   <div class="row">
     <div class="col">
       <ul>
@@ -19,7 +22,6 @@
           <a href="<?= site_url('product/detail/'.$product['id']) ?>" class="btn btn-primary">View Details</a>
           <form method="post" action="<?php echo base_url(); ?>/ProductsController/create">
             <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-            <button type="submit">Aggiungi al carrello</button>
           </form>
           <hr>
         <?php endforeach; ?>

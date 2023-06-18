@@ -37,13 +37,10 @@
 							</li>
 
 							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === '') ? 'active' : ''; ?>">
-								<a href="<?php echo base_url();?>/" class="nav-link">Carrello</a>
+								<a href="<?php echo base_url();?>/cash-desk" class="nav-link">Cassa</a>
 							</li>
 							<li class="nav-item">
 								<a href="index.html" class="nav-link">Chi siamo</a>
-							</li>
-							<li class="nav-item">
-								<a href="index.html" class="nav-link">Cassa</a>
 							</li>
 							<li class="nav-item">
 								<a href="index.html" class="nav-link">Contatti</a>

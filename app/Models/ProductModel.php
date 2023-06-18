@@ -16,37 +16,47 @@ class ProductModel extends Model
     'quantity'
   ];
 
-  public function isQuantityAvailable($userId, $productId, $quantity) {
+  public function isQuantityAvailable($productId, $quantity) {
     $builder = $this->db->table('orders');
     $builder->select('SUM(quantity) as total_quantity');
-    $builder->where('user_id', $userId);
     $builder->where('product_id', $productId);
     $query = $builder->get();
     $row = $query->getRow();
 
     $totalQuantity = $row->total_quantity ?? 0; // Total quantity ordered for the specified user and product
     if($quantity > $totalQuantity){
-      return $quantity;
+      return $quantity - $totalQuantity;
+    } else {
+      return 0;
     }
-    return $totalQuantity;
   }
-  // public function isQuantityAvailable($productId, $quantity)
-  //   {
-  //       $product = $this->find($productId);
 
-  //       if (!$product) {
-  //           // Product not found
-  //           return false;
-  //       }
+  public function checkProductsSell() {
+    $builder = $this->db->table('orders')
+      ->select('associations.name as association_name, SUM(products.price * orders.quantity) as total_price')
+      ->join('products', 'orders.product_id = products.id', 'inner')
+      ->join('associations', 'products.association_id = associations.id', 'inner')
+      ->groupBy('associations.id');
 
-  //       // Get the total quantity ordered for the given product
-  //       $orderModel = new OrderModel();
-  //       $totalOrderedQuantity = $orderModel->where('product_id', $productId)->sum('quantity');
+    $query = $builder->get();
+    $result = $query->getResultArray();
 
-  //       // Calculate the available quantity
-  //       $availableQuantity = $product['quantity'] - $totalOrderedQuantity;
+    return $result;
+  }
 
-  //       return $availableQuantity >= $quantity;
-  //   }
-  
+  public function getAllProductsByPlatformManager($userId) {
+    $builder = $this->db->table('products');
+    $builder->select('products.*');
+    $builder->join('associations', 'products.association_id = associations.id');
+    $builder->where('associations.user_id', $userId);
+    $query = $builder->get();
+
+    $result = $query->getResultArray();
+
+    if (!empty($result)) {
+        return $result;
+    } else {
+        return []; // Return an empty array if no results are found
+    }
+  }
 }
