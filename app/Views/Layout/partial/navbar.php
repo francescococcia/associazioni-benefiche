@@ -56,6 +56,7 @@
 										</button>
 										<div class="dropdown-menu" aria-labelledby="dLabel">
 											<a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>
+											<a class="dropdown-item" href="<?php echo base_url();?>/profile">Visualizza Eventi</a>
 											<?php if (session()->get('isAdmin')): ?>
 												<a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
 												<a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>

@@ -1,11 +1,13 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
 <div class="container text-center">
+  <?php if(session()->get('isPlatformManager')): ?>
   <div class="row">
     <div class="col">
       <a href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
     </div>
   </div>
+  <?php endif; ?>
   <!-- <h1><#?= $session ?>!</h1> -->
   <div class="row">
     <div class="col">

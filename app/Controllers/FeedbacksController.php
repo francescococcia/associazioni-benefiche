@@ -8,16 +8,17 @@ class FeedbacksController extends BaseController
 {
   public function create()
   {
-    return view('feedbacks/index');
+    $participantId = $_GET['participant_id'];
+    $data['participantId'] = $participantId;
+    return view('feedbacks/index',  $data);
   }
 
-
-  public function store()
+  public function store($participantId)
   {
     // Create a new instance of the FeedbackModel
     $feedbackModel = new FeedbackModel();
     $userId = session()->get('id');
-    $participantId = $_GET['participant_id'];
+    // $participantId = $_GET['participant_id'];
 
     // Prepare the data to be inserted
     $data = [

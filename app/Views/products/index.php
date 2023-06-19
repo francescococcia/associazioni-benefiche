@@ -1,11 +1,13 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
 <div class="container text-center">
-  <div class="row">
-    <div class="col">
-      <a href="<?php echo base_url();?>/store/new">Aggiungi prodotto</a>
+  <?php if(session()->get('isPlatformManager')): ?>
+    <div class="row">
+      <div class="col">
+        <a href="<?php echo base_url();?>/store/new">Aggiungi prodotto</a>
+      </div>
     </div>
-  </div>
+  <?php endif; ?>
   <?php if (empty($products)): ?>
     <h1>Non ci sono prodotti</h1>
     <?php endif; ?>
