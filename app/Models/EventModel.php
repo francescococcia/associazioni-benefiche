@@ -52,4 +52,20 @@ class EventModel extends Model
 
         return $result;
     }
+
+    public function getAllEventsByPlatformManager($userId) {
+      $builder = $this->db->table('events');
+      $builder->select('events.*');
+      $builder->join('associations', 'events.association_id = associations.id');
+      $builder->where('associations.user_id', $userId);
+      $query = $builder->get();
+
+      $result = $query->getResultArray();
+
+      if (!empty($result)) {
+          return $result;
+      } else {
+          return []; // Return an empty array if no results are found
+      }
+    }
 }

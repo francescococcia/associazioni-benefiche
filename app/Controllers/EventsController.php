@@ -12,13 +12,15 @@ class EventsController extends Controller
   public function index()
   {
     $model = new EventModel();
-    $data['events'] = $model->getEvents();
-
-    // Get the current user ID
     $userId = session()->get('id');
 
-    $participantModel = new ParticipantModel();
+    if(session()->get('isPlatformManager')){
+      $data['events'] = $model->getAllEventsByPlatformManager($userId);
+    } else {
+      $data['events'] = $model->orderBy('id', 'DESC')->findAll();
+    }
 
+    $participantModel = new ParticipantModel();
 
     // Loop through the events and check if the user has participated in each event
     foreach ($data['events'] as &$event) {
@@ -95,8 +97,8 @@ class EventsController extends Controller
     $event = $model->find($id);
 
     if (!$event) {
-        // Event not found, redirect or show error message
-        return redirect()->to('events')->with('error', 'Event not found');
+      // Event not found, redirect or show error message
+      return redirect()->to('events')->with('error', 'Event not found');
     }
 
     $participantId = $model->getIdParticipant($id);

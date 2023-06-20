@@ -20,8 +20,8 @@
             Luogo: <?php echo $event['location']; ?>
           </li>
 
-          <?php if ($event['userParticipated']): ?>
-              <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="btn btn-primary">View Details</a>
+          <?php if ($event['userParticipated'] || session()->get('isPlatformManager')): ?>
+            <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="btn btn-primary">View Details</a>
           <?php else: ?>
             <form method="post" action="<?= site_url('participants/create') ?>">
               <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
