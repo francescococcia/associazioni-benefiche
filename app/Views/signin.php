@@ -12,11 +12,11 @@
 					</picture>
 				</div>
 				<div class="align-self-center offset-md-1 col-md-10 col-sm-10 offset-sm-1 offset-1 col-10 col-lg-5 pr-lg-3 offset-lg-0">
-				<?php if(session()->getFlashdata('msg')):?>
-						<div class="alert alert-warning">
-								<?= session()->getFlashdata('msg') ?>
-						</div>
-				<?php endif;?>
+          <?php if(session()->getFlashdata('msg')):?>
+            <div class="alert alert-warning">
+                <?= session()->getFlashdata('msg') ?>
+            </div>
+          <?php endif;?>
 
 					<form action="<?php echo base_url(); ?>/SigninController/loginAuth" method="post"
 						data-form-type="blocs-form" novalidate="" data-success-msg="Your message has been sent."

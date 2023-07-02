@@ -48,25 +48,24 @@
 							<li class="nav-item">
 								<a href="lilt.html" class="a-btn nav-link">lilty</a>
 							</li>
+
 							<?php if (session()->get('isLoggedIn')): ?>
-								<li class="nav-item">
-									<div class="dropdown">
-										<button id="dLabel" type="button" class='btn btn-primary mb-2' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Dropdown trigger
-										</button>
-										<div class="dropdown-menu" aria-labelledby="dLabel">
-											<a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>
-											<a class="dropdown-item" href="<?php echo base_url();?>/profile">Visualizza Eventi</a>
-											<?php if (session()->get('isAdmin')): ?>
-												<a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
-												<a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
-												<a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
-											<?php endif; ?>
-											<a class="dropdown-item" href="#">Something else here</a>
-											<a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Logout</a>
-										</div>
-									</div>
-								</li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> <?= session()->get('email')?>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>
+                    <a class="dropdown-item" href="<?php echo base_url();?>/profile">Visualizza Eventi</a>
+                    <?php if (session()->get('isAdmin')): ?>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
+                    <?php endif; ?>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Logout</a>
+                  </div>
+                </li>
 							<?php endif; ?>
 						</ul>
 					</div>
