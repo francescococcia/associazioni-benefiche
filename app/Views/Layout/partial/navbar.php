@@ -55,14 +55,17 @@
                     <i class="fas fa-user"></i> <?= session()->get('email')?>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>
+                    <?php if (session()->get('isPlatformManager')): ?>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/profile-manager">Profilo</a>
+                    <?php else: ?>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>  
+                    <?php endif; ?>
                     <a class="dropdown-item" href="<?php echo base_url();?>/profile">Visualizza Eventi</a>
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
                     <?php endif; ?>
-                    <a class="dropdown-item" href="#">Something else here</a>
                     <a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Logout</a>
                   </div>
                 </li>

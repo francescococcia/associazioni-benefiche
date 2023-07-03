@@ -30,15 +30,14 @@
 							</label>
 							<input type="email" id="email" name="email" placeholder="Email" value="<?= set_value('email') ?>"
 							data-error-validation-msg="Not a valid email address" class="form-control mb-lg-3 pt-lg-0"  required="">
-							<div class="form-group">
+						</div>
+            <div class="form-group">
 								<label>
 									Password
 								</label>
 								<input type="password" name="password" required="" placeholder="Password" class="form-control" >
-								<!-- <input class="form-control" type="password" required="" id="input_2372"> -->
 							</div>
-						</div> 
-						<button class="bloc-button btn btn-d mt-lg-4 btn-invia-style btn-lg float-lg-none" type="submit">
+						<button class="btn btn-d mt-lg-4 btn-invia-style btn-lg float-lg-none" type="submit">
 							Accedi
 						</button>
 					</form>

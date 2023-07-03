@@ -96,6 +96,10 @@ $routes->post('/users/update', 'UsersController::update', ['filter' => 'authGuar
 $routes->add('forgot-password', 'UsersController::forgotPassword');
 $routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersController::sendForgotPassword');
 
+// Association routes
+$routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
+$routes->post('/associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
+
 
 $routes->get('/logout', 'Home::exit');
 /*
