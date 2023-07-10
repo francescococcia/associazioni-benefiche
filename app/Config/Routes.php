@@ -99,7 +99,8 @@ $routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersCont
 // Association routes
 $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
 $routes->post('/associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
-
+$routes->get('/associations/create', 'AssociationsController::create');
+$routes->post('/associations/store', 'AssociationsController::store');
 
 $routes->get('/logout', 'Home::exit');
 /*

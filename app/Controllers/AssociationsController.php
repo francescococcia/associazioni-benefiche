@@ -7,6 +7,54 @@ use App\Models\AssociationModel;
 
 class AssociationsController extends BaseController
 {
+  public function create()
+  {
+      // Load necessary helpers and libraries
+      helper('form');
+      helper('url');
+      helper('filesystem');
+
+      // Get the uploaded file
+      $file = $this->request->getFile('image');
+
+      // Check if a file was uploaded
+      if ($file && $file->isValid()) {
+          // Configure the upload settings
+          $config = [
+              'upload_path' => './uploads/',
+              'allowed_types' => 'gif|jpg|jpeg|png',
+              'max_size' => 2048, // Maximum file size in kilobytes
+              'encrypt_name' => true, // Encrypt the uploaded file name
+          ];
+
+          // Initialize the upload
+          $upload = new UploadedFile($file, new \Config\Upload(), false);
+
+          // Set the upload configuration
+          $upload->initialize($config);
+
+          // Check if the upload was successful
+          if ($upload->isValid() && $upload->store()) {
+              // File upload was successful
+              $filename = $upload->getName();
+
+              // Save the file information to the database or perform other actions
+              // ...
+
+              // Redirect to a success page or perform further actions
+              return redirect()->to('/associations')->with('success', 'Image uploaded successfully!');
+          } else {
+              // File upload failed
+              $error = $upload->getErrorString();
+              // Handle the error
+              return redirect()->back()->with('error', 'File upload failed: ' . $error);
+          }
+      }
+
+      // No file uploaded or invalid file
+      return redirect()->back()->with('error', 'No valid file uploaded.');
+  }
+
   public function edit()
   {
     $userId = session()->get('id');
