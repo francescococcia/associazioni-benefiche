@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-12 m-5">
       <!-- <h1><#?= print_r($platformManagers) ?>!</h1> -->
-
+      <a href="<?= site_url('associations/create') ?>">Create Association</a>
       <div class="card-group">
         <?php foreach ($platformManagers as $platformManager): ?>
           <div class="card">

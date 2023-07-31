@@ -19,7 +19,7 @@
           </div>
           <?php endif;?>
 
-        <form action="<?php echo base_url(); ?>/SignupAssociationController/store" method="post"
+        <form action="<?php echo base_url(); ?>/SignupAssociationController/store" method="post" enctype="multipart/form-data"
           id="form_18619" data-form-type="blocs-form" novalidate=""
           data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
 
@@ -61,6 +61,15 @@
               <label>Conferma Password</label>
               <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
             </div>
+            
+            <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="image" class="form-label">Image</label>
+            <input class="form-control" type="file" name="image" id="image">
+        </div>
             <div class="form-check">
               <!-- <input class="form-check-input" type="checkbox" id="optin_49815_18619" data-validation-minchecked-minchecked="1" name="optin_49815"> -->
               <!-- <label class="form-check-label">

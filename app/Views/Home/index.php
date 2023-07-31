@@ -75,6 +75,59 @@
       </div>
       <!-- bloc-1 END -->
 
+      <?php $counter = 1; ?>
+      <?php foreach ($associations as $association): ?>
+        <!-- bloc-2 -->
+        <?php if ($counter % 2 === 1): ?>
+          <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2">
+            <div class="container bloc-no-padding">
+              <div class="row mb-lg-5 mt-lg-5">
+                <div class="col-md-12 col-lg-6 offset-lg-1">
+                <picture>
+                  <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                    data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                    class="img-fluid img-style float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload"
+                    alt="<?php echo $association['image']; ?>" width="500" height="450">
+                </picture>
+                </div>
+                <div class="align-self-center offset-md-1 col-md-10 col-sm-10 offset-sm-1 offset-1 col-10 col-lg-4 offset-lg-0">
+                  <h1 class="mg-md h1-style">
+                    <?php echo $association['name']; ?>
+                  </h1>
+                <p><?php echo $association['description']; ?> </p>
+                <a href="famiglia_africa.html" class="btn btn-lg btn-c-2169">Maggiori informazioni</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php else: ?>
+
+          <!-- bloc-2 END -->
+          <div class="bloc full-width-bloc l-bloc" id="bloc-3">
+            <div class="container bloc-no-padding">
+              <div class="row mb-lg-5 mr-lg-5">
+                <div class="order-md-0 col-md-12 col-lg-6 order-lg-1 ml-lg-0 offset-lg-0">
+                  <picture>
+                  <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                    data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                    class="img-fluid img-bloc-3-style img-rd-lg float-lg-right mr-lg-5 lazyload"
+                    alt="<?php echo $association['image']; ?>" width="491" height="450">
+                </div>
+                <div class="align-self-center offset-md-1 col-md-10 col-lg-4 col-sm-10 offset-sm-1 col-10 offset-1 offset-lg-2">
+                  <h1 class="mg-md h1-ciao-vinny-style">
+                    <?php echo $association['name']; ?>
+                  </h1>
+                  <p><?php echo $association['description']; ?> </p>
+                  <a href="ciao_vinny.html" class="btn btn-lg btn-c-857">Maggiori informazioni</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endif; ?>
+
+        <?php $counter++; ?>
+      <?php endforeach; ?>
+
       <!-- bloc-2 -->
       <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2">
         <div class="container bloc-no-padding">
