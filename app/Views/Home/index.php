@@ -50,11 +50,12 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <h1 class="text-center h1-2-style threeD-t mx-auto d-block pl-lg-5 mt-lg-5 text-lg-center pt-lg-5 tc-7963">
-                Associazioni Benefiche Bari
+              <h1 class="text-center threeD-t h1-2-style mx-auto d-block pl-lg-5 mt-lg-5 text-lg-center pt-lg-5 tc-7963"
+              id='custom-style-title'>
+                Mani Generose
               </h1>
               <h3 class="mb-4 h3-style text-lg-center float-lg-none sm-shadow tc-7963 ml-lg-5">
-                Benvenuto nel portale delle associazioni di Bari
+                il portale delle associazioni benefiche di Bari
               </h3>
             </div>
           </div>
@@ -206,3 +207,11 @@
 
   </body>
 </html>
+
+<style>
+  #custom-style-title {
+    font-family: cursive !important;
+    /* text-shadow: #091 1px 0 10px; */
+    text-transform:uppercase;
+  }
+</style>
