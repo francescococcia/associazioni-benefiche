@@ -60,7 +60,7 @@ class SignupAssociationController extends Controller
 
           // Move the uploaded file to the destination directory
           $uniqueId = uniqid(); // You can use any method to generate a unique identifier
-          if ($uniqueId . '_' . $image->move($config['upload_path'])) {
+          if ($image->move($config['upload_path'], $uniqueId . '_' . $image->getName())) {
 
             $imagePath = $image->getName();
 
@@ -71,7 +71,7 @@ class SignupAssociationController extends Controller
                   'legal_address' => $this->request->getVar('legal_address'),
                   'tax_code' => $this->request->getVar('tax_code'),
                   'description' => $this->request->getVar('description'),
-                  'image' => $uniqueId . '_' . $imagePath,
+                  'image' => $image->getName(), // Salva solo il nome del file senza l'identificatore
               ];
 
               $associationModel->insert($associationData);

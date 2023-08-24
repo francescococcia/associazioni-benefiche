@@ -1,5 +1,5 @@
 <!-- bloc-6 -->
-<div class="bloc l-bloc" id="bloc-6">
+<div class="bloc l-bloc mb-3" style='background-color: #ffffc1;'>
 	<div class="container bloc-sm">
 		<div class="row">
 			<div class="col">
@@ -12,9 +12,9 @@
 						<ul class="site-navigation nav navbar-nav ml-auto">
 
 							<?php if (session()->get('isLoggedIn')): ?>
-								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'dashboard') ? 'active' : ''; ?>">
-									<a href="<?php echo base_url();?>/dashboard" class="nav-link">Home</a>
-								</li>
+								<!-- <li class="nav-item <#?php echo (service('request')->uri->getSegment(1) === 'dashboard') ? 'active' : ''; ?>">
+									<a href="<$?php echo base_url();?>/dashboard" class="nav-link">Home</a>
+								</li> -->
 								<li class="nav-item">
 									<div class="dropdown-divider">
 									</div>
@@ -41,12 +41,6 @@
 							</li>
 							<li class="nav-item">
 								<a href="index.html" class="nav-link">Chi siamo</a>
-							</li>
-							<li class="nav-item">
-								<a href="index.html" class="nav-link">Contatti</a>
-							</li>
-							<li class="nav-item">
-								<a href="lilt.html" class="a-btn nav-link">lilty</a>
 							</li>
 
 							<?php if (session()->get('isLoggedIn')): ?>
