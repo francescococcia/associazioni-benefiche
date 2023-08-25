@@ -95,7 +95,7 @@
                     <?php echo $association['name']; ?>
                   </h1>
                 <p><?php echo $association['description']; ?> </p>
-                <a href="famiglia_africa.html" class="btn btn-lg btn-c-2169">Maggiori informazioni</a>
+                <a href="<?= site_url('/dashboard') ?>" class="btn btn-lg btn-c-2169">Maggiori informazioni</a>
                 </div>
               </div>
             </div>
@@ -118,7 +118,7 @@
                     <?php echo $association['name']; ?>
                   </h1>
                   <p><?php echo $association['description']; ?> </p>
-                  <a href="ciao_vinny.html" class="btn btn-lg btn-c-857">Maggiori informazioni</a>
+                  <a href="<?= site_url('/dashboard') ?>" class="btn btn-lg btn-c-857">Maggiori informazioni</a>
                 </div>
               </div>
             </div>

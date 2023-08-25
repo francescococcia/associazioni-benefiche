@@ -65,9 +65,11 @@
                   </div>
                 </div>
 
-                <button class="btn mt-lg-4 btn btn-primary" type="submit">
-                  Invia
-                </button>
+                <div class="text-center">
+                  <button class="btn mt-lg-4 btn btn-primary" type="submit">
+                    Invia
+                  </button>
+                </div>
               </div>
             </div>
           </form>
