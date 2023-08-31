@@ -68,4 +68,15 @@ class EventModel extends Model
           return []; // Return an empty array if no results are found
       }
     }
+    
+    public function getJoinedEventsByUserId($userId)
+  {
+    $builder = $this->db->table('participants');
+    $builder->select('events.*');
+    $builder->join('events', 'events.id = participants.event_id');
+    $builder->where('participants.user_id', $userId);
+    $builder->orderBy('events.date', 'desc');
+
+    return $builder->get()->getResultArray();
+  }
 }

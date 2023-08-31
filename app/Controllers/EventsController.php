@@ -122,4 +122,16 @@ class EventsController extends Controller
     $data['events'] = $events;
     return view('events/search_results', $data);
   }
+
+  public function joinedEvents()
+  {
+      $eventModel = new EventModel();
+
+      // Assuming you have a function to retrieve the current user's ID
+      $userId = session()->get('id'); // Replace this with the actual method to get user ID
+      $joinedEvents = $eventModel->getJoinedEventsByUserId($userId);
+
+      // Pass the data to the view
+      return view('events/joined_events', ['joinedEvents' => $joinedEvents]);
+  }
 }

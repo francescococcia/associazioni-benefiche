@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="text-center">
-                  <button class="btn mt-lg-4 btn btn-primary" type="submit">
+                  <button class="btn btn-clean float-lg-none btn-c-4129 btn-rd mt-lg-4" type="submit">
                     Invia
                   </button>
                 </div>
@@ -79,28 +79,5 @@
       </div>
     </div>
   </div>
-  
-  <style>
-    .input_container {
-  border: 1px solid #e5e5e5;
-}
-
-input[type=file]::file-selector-button {
-  background-color: #fff;
-  color: #000;
-  border: 0px;
-  border-right: 1px solid #e5e5e5;
-  padding: 10px 15px;
-  margin-right: 20px;
-  transition: .5s;
-}
-
-input[type=file]::file-selector-button:hover {
-  background-color: #eee;
-  border: 0px;
-  border-right: 1px solid #e5e5e5;
-}
-</style>
-
 
 <?= $this->endSection() ?>

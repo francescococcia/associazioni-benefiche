@@ -35,9 +35,9 @@
 												<input type="password" name="password" required="" placeholder="Password"
 														class="form-control">
 										</div>
-										
+
 										<div class="text-center">
-											<button class="btn mt-lg-4 text-center btn btn-primary"
+											<button class="btn btn-clean float-lg-none btn-c-4129 btn-rd mt-lg-4"
 													type="submit">
 													Accedi
 											</button>

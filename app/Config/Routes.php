@@ -69,6 +69,8 @@ $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
 $routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
 $routes->get('/events/search', 'EventsController::search');
 $routes->get('/events/results', 'EventsController::results');
+$routes->get('/joined-events', 'EventsController::joinedEvents');
+
 
 // Participants routes
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
@@ -98,9 +100,13 @@ $routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersCont
 
 // Association routes
 $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
-$routes->post('/associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
+$routes->post('/associations/update/', 'AssociationsController::update', ['filter' => 'authGuard']);
+
+// $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
+// $routes->post('/associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
 $routes->get('/associations/create', 'AssociationsController::create');
 $routes->post('/associations/store', 'AssociationsController::store');
+$routes->get('/associations/(:num)', 'AssociationsController::show/$1');
 
 $routes->get('/logout', 'Home::exit');
 /*

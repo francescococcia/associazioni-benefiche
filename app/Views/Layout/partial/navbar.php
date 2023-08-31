@@ -1,10 +1,11 @@
 <!-- bloc-6 -->
-<div class="bloc l-bloc mb-3" style='background-color: #ffffc1;'>
+<div class="bloc l-bloc" style='background-color: #FFFFC1'>
+<!-- #ffffc1; -->
 	<div class="container bloc-sm">
 		<div class="row">
 			<div class="col">
 				<nav class="navbar navbar-light row navbar-expand-md" role="navigation">
-					<a class="navbar-brand" href="<?php echo base_url();?>/">Associazioni Benefiche Bari</a>
+					<a class="navbar-brand strokeme" href="<?php echo base_url();?>/">Associazioni Benefiche Bari</a>
 					<button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-38523" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path class="svg-menu-icon" d="m2 9h28m-28 7h28m-28 7h28"></path></svg></span>
 					</button>
@@ -13,7 +14,7 @@
 
 							<?php if (session()->get('isLoggedIn')): ?>
 								<!-- <li class="nav-item <#?php echo (service('request')->uri->getSegment(1) === 'dashboard') ? 'active' : ''; ?>">
-									<a href="<$?php echo base_url();?>/dashboard" class="nav-link">Home</a>
+									<a href="<$?php echo base_url();?>/dashboard" class="nav-link strokeme">Home</a>
 								</li> -->
 								<li class="nav-item">
 									<div class="dropdown-divider">
@@ -21,40 +22,41 @@
 								</li>
 
 								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
-									<a href="<?php echo base_url();?>/events" class="nav-link">Eventi</a>
+									<a href="<?php echo base_url();?>/events" class="nav-link strokeme">Eventi</a>
 								</li>
 							<?php endif; ?>
 
 							<?php if (!session()->get('isLoggedIn')): ?>
 								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events' &&
 									service('request')->uri->getSegment(2) === 'search') ? 'active' : ''; ?>">
-									<a href="<?php echo base_url();?>/events/search" class="nav-link">Cerca Eventi</a>
+									<a href="<?php echo base_url();?>/events/search" class="nav-link strokeme">Cerca Eventi</a>
 								</li>
 							<?php endif; ?>
 
 							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
-								<a href="<?php echo base_url();?>/store" class="nav-link">Store</a>
+								<a href="<?php echo base_url();?>/store" class="nav-link strokeme">Store</a>
 							</li>
 
-							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === '') ? 'active' : ''; ?>">
-								<a href="<?php echo base_url();?>/cash-desk" class="nav-link">Cassa</a>
+							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
+								<a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
 							</li>
 							<li class="nav-item">
-								<a href="index.html" class="nav-link">Chi siamo</a>
+								<a href="index.html" class="nav-link strokeme">Chi siamo</a>
 							</li>
 
 							<?php if (session()->get('isLoggedIn')): ?>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link strokeme dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i> <?= session()->get('email')?>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <?php if (session()->get('isPlatformManager')): ?>
-                      <a class="dropdown-item" href="<?php echo base_url();?>/profile-manager">Profilo</a>
+                      <!-- <a class="dropdown-item" href="<#?php echo base_url();?>/profile-manager">Profilo</a> -->
+                      <a class="dropdown-item" href="<?= site_url('/profile-manager') ?>">Profilo</a>
                     <?php else: ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>  
                     <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo base_url();?>/profile">Visualizza Eventi</a>
+                    <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
@@ -71,4 +73,15 @@
 		</div>
 	</div>
 </div>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style='background-color: #FFFFC1!important;'>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#">Features</a>
+      <a class="nav-item nav-link" href="#">Pricing</a>
+      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    </div>
+  </div>
+</nav> -->
 <!-- bloc-6 END -->

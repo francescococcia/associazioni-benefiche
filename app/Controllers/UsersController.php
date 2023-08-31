@@ -75,7 +75,7 @@ class UsersController extends BaseController
     $userModel->update($userId, $userData);
 
     // Set the success message
-    $session->setFlashdata('success', 'User updated successfully.');
+    $session->setFlashdata('success', 'Informazioni aggiornate.');
 
     return redirect()->to('/profile');
   }

@@ -5,6 +5,7 @@
     <title>Home</title>
   </head>
   <body>
+    <?= $this->include('Layout/partial/navbar'); ?>
 
     <!-- Preloader -->
     <div id="page-loading-blocs-notifaction" class="page-preloader" style="background:#FFFFFF url(<?php echo base_url('public/img/ug_classe_bambini_1.webp'); ?>) no-repeat center center;animation-name: preloader-fade"></div>
@@ -79,7 +80,7 @@
       <?php foreach ($associations as $association): ?>
         <!-- bloc-2 -->
         <?php if ($counter % 2 === 1): ?>
-          <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2">
+          <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2" style='background-color: #F6F6F6;'>
             <div class="container bloc-no-padding">
               <div class="row mb-lg-5 mt-lg-5">
                 <div class="col-md-12 col-lg-6 offset-lg-1">
@@ -95,7 +96,7 @@
                     <?php echo $association['name']; ?>
                   </h1>
                 <p><?php echo $association['description']; ?> </p>
-                <a href="<?= site_url('/dashboard') ?>" class="btn btn-lg btn-c-2169">Maggiori informazioni</a>
+                <a href="<?= site_url('associations/'.$association['id']) ?>" class="btn btn-lg btn-c-2169">Maggiori informazioni</a>
                 </div>
               </div>
             </div>
@@ -103,7 +104,7 @@
         <?php else: ?>
 
           <!-- bloc-2 END -->
-          <div class="bloc full-width-bloc l-bloc" id="bloc-3">
+          <div class="bloc full-width-bloc l-bloc" id="bloc-3" style='background-color: #F6F6F6;'>
             <div class="container bloc-no-padding">
               <div class="row mb-lg-5 mr-lg-5">
                 <div class="order-md-0 col-md-12 col-lg-6 order-lg-1 ml-lg-0 offset-lg-0">
@@ -118,7 +119,8 @@
                     <?php echo $association['name']; ?>
                   </h1>
                   <p><?php echo $association['description']; ?> </p>
-                  <a href="<?= site_url('/dashboard') ?>" class="btn btn-lg btn-c-857">Maggiori informazioni</a>
+                  <a href="<?= site_url('associations/'.$association['id']) ?>" class="btn btn-lg btn-c-2169">Maggiori informazioni</a>
+                  <!-- <a href="<?= site_url('/dashboard') ?>" class="btn btn-lg btn-c-857">Maggiori informazioni</a> -->
                 </div>
               </div>
             </div>
@@ -128,7 +130,28 @@
         <?php $counter++; ?>
       <?php endforeach; ?>
 
-      <footer  id="footer" style='color: #ffffff;background-color: #333333;'>
+
+    <div class="bloc full-width-bloc b-parallax l-bloc">
+      <div class="container bloc-lg bloc-sm-lg">
+        <div class="row align-items-center ml-lg-0 no-gutters mt-lg-5">
+          <div class="col-md-3 col-sm-6 align-self-center offset-lg-3">
+            <h1 class="text-sm-left text-center h4-style text-lg-left">
+              Su Di Noi
+            </h1>
+            <h5 class="mb-4 btn-resize-mode h5-style mb-lg-5">
+            Così come dovrebbe essere<br>
+        Fin dal suo primo giorno nel settore, Associazioni offre ai suoi clienti un'ottima selezione di prodotti a prezzi imbattibili. Il nostro negozio online è diventato sinonimo di qualità e forniamo ai clienti un'ampia varietà di merci, tra cui alcuni prodotti in edizione limitata e articoli stagionali per tutte le tasche. Dai un'occhiata e inizia a comprare oggi stesso
+            </h5>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-3">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      <footer  id="footer" style='color: #ffffff;background-color: #FFFFC1;'>
         <?= $this->include('Layout/partial/footer'); ?>
       </footer>
 

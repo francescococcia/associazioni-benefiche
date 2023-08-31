@@ -12,12 +12,17 @@ class DashboardController extends Controller
   {
     // Get the user data
     $userModel = new UserModel();
+    $associationModel = new AssociationModel();
     $userId = session()->get('id');
     $userData = $userModel->find($userId);
 
     $platformManagers = $userModel->getAllAssociationsWithPlatformManagers();
     // Pass the user data to the view
-    $data = ['userData' => $userData, 'platformManagers' => $platformManagers];
+    $data = [
+      'userData' => $userData,
+      'platformManagers' => $platformManagers,
+      'associationModel' => $associationModel
+    ];
     return view('dashboard/index', $data);
   }
 }
