@@ -40,9 +40,6 @@
 							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
 								<a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
 							</li>
-							<li class="nav-item">
-								<a href="index.html" class="nav-link strokeme">Chi siamo</a>
-							</li>
 
 							<?php if (session()->get('isLoggedIn')): ?>
                 <li class="nav-item dropdown">
@@ -54,9 +51,11 @@
                       <!-- <a class="dropdown-item" href="<#?php echo base_url();?>/profile-manager">Profilo</a> -->
                       <a class="dropdown-item" href="<?= site_url('/profile-manager') ?>">Profilo</a>
                     <?php else: ?>
-                      <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a>  
+                      <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a> 
                     <?php endif; ?>
+
                     <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
+
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>

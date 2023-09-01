@@ -27,8 +27,13 @@ class ReportsController extends BaseController
 
     // Insert the data into the database
     $reportModel->insert($data);
+    $session = session();
+    $session->setFlashdata('success', 'Segnalazione inviata.');
+
+    // Redirect back to the current page
+    return redirect()->to(current_url());
 
     // Redirect to a success page or display a success message
-    return redirect()->to('/dashboard')->with('success', 'Report submitted successfully');
+    // return redirect()->to('/dashboard')->with('success', 'Report submitted successfully');
   }
 }

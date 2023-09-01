@@ -80,7 +80,8 @@
       <?php foreach ($associations as $association): ?>
         <!-- bloc-2 -->
         <?php if ($counter % 2 === 1): ?>
-          <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2" style='background-color: #F6F6F6;'>
+          <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2">
+          <!-- <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2" style='background-color: #F6F6F6;'> -->
             <div class="container bloc-no-padding">
               <div class="row mb-lg-5 mt-lg-5">
                 <div class="col-md-12 col-lg-6 offset-lg-1">
@@ -104,7 +105,8 @@
         <?php else: ?>
 
           <!-- bloc-2 END -->
-          <div class="bloc full-width-bloc l-bloc" id="bloc-3" style='background-color: #F6F6F6;'>
+          <div class="bloc full-width-bloc l-bloc" id="bloc-3">
+          <!-- <div class="bloc full-width-bloc l-bloc" id="bloc-3" style='background-color: #F6F6F6;'> -->
             <div class="container bloc-no-padding">
               <div class="row mb-lg-5 mr-lg-5">
                 <div class="order-md-0 col-md-12 col-lg-6 order-lg-1 ml-lg-0 offset-lg-0">
@@ -131,7 +133,7 @@
       <?php endforeach; ?>
 
 
-    <div class="bloc full-width-bloc b-parallax l-bloc">
+    <div class="bloc full-width-bloc b-parallax l-bloc" style='background-color:#E6E6A6'>
       <div class="container bloc-lg bloc-sm-lg">
         <div class="row align-items-center ml-lg-0 no-gutters mt-lg-5">
           <div class="col-md-3 col-sm-6 align-self-center offset-lg-3">
