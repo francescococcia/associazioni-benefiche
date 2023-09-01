@@ -117,10 +117,12 @@ class EventsController extends Controller
     $description = $this->request->getVar('description');
 
     $eventModel = new EventModel();
-    $events = $eventModel->like('description', $description)->findAll();
+    if($description != ''){
+      $events = $eventModel->like('description', $description)->findAll();
+    }
 
     $data['events'] = $events;
-    return view('events/search_results', $data);
+    return view('events/search', $data);
   }
 
   public function joinedEvents()

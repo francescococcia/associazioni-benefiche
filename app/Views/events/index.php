@@ -1,42 +1,44 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-<div class="container text-center">
-  <?php if(session()->get('isPlatformManager')): ?>
-  <div class="row">
-    <div class="col">
-      <a href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
-    </div>
-  </div>
-  <?php endif; ?>
-  <!-- <h1><#?= $session ?>!</h1> -->
-  <div class="row">
-    <div class="col">
-      <ul>
-        <?php foreach ($events as $event): ?>
-          <li>
-            Titolo: <?php echo $event['title']; ?><br>
-            Descrizione: <?php echo $event['description']; ?><br>
-            Data: <?php echo $event['date']; ?><br>
-            Luogo: <?php echo $event['location']; ?>
-          </li>
-
-          <?php if ($event['userParticipated'] || session()->get('isPlatformManager')): ?>
-            <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="btn btn-primary">View Details</a>
+<div class="content mb-5">
+    <div class="wrap">
+      <div class="page-headline-wrap cc-category-headline">
+        <h1>Eventi</h1>
+        <?php if(session()->get('isPlatformManager')): ?>
+          <p class="big-paragraph">Visualizza gli eventi inserti</p>
+          <div class="row">
+            <div class="col">
+              <a
+                class="btn btn-clean btn-c-4129 btn-rd"
+                href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
+            </div>
+          </div>
           <?php else: ?>
-            <form method="post" action="<?= site_url('participants/create') ?>">
-              <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-              <button type="submit" class="btn btn-primary">Partecipa</button>
-            </form>
+            <p class="big-paragraph">Partecipa ad un evento</p>
           <?php endif; ?>
-          <hr>
+      </div>
+
+    </div>
+	</div>
+
+  <div class="container offset-lg-2 mt-4 mb-4">
+    <div class="row justify-content-center">
+      <?php if ($events) : ?>
+        <?php foreach ($events as $event) : ?>
+          <div class="col-auto mb-3">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                  <h5 class="card-title"><?php echo $event['title']; ?></h5>
+                  <p class="card-text">Descrizione: <?php echo $event['description']; ?></p>
+                  <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="card-link">Dettagli</a>
+              </div>
+            </div>
+          </div>
         <?php endforeach; ?>
-      </ul>
+      <?php else : ?>
+        <p>Nessun evento trovato.</p>
+      <?php endif; ?>
     </div>
   </div>
-</div>
-<?php if(session()->has('success')): ?>
-  <div class="alert alert-success" role="alert">
-      <?= session()->get('success') ?>
-  </div>
-<?php endif; ?>
+
 <?= $this->endSection() ?>

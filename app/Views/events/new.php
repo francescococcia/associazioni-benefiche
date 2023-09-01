@@ -3,11 +3,7 @@
   <div class="container text-center">
     <div class="row">
       <div class="col">
-        <?php if (session()->has('message')) : ?>
-          <div class="alert alert-success">
-            <?= session('message') ?>
-          </div>
-        <?php endif ?>
+
         <form action="<?php echo base_url(); ?>/EventsController/create" method="post">
           <input type="hidden" name="association_id" value="<?= $association_id ?>">
           <label for="title">Title</label>

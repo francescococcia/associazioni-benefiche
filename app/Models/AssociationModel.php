@@ -43,7 +43,7 @@ class AssociationModel extends Model{
     $builder->where('associations.user_id', $userId);
     $query = $builder->get();
     $row = $query->getRow();
-
-    return $row ? $row->id : '';
+    return $row ? $row->id : null;
   }
+
 }

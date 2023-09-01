@@ -5,7 +5,7 @@
   <!-- bloc-7 -->
   <div class="bloc full-width-bloc b-parallax l-bloc">
     <div class="container bloc-lg bloc-sm-lg">
-      <div class="row align-items-center ml-lg-0 no-gutters mt-lg-5">
+      <div class="row align-items-center ml-lg-0 no-gutters">
         <div class="col-md-3 col-sm-6 align-self-center offset-lg-3">
           <h1 class="text-sm-left text-center h4-style text-lg-left">
             CONTATTACI

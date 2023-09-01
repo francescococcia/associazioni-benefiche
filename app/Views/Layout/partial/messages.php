@@ -23,7 +23,7 @@
 
   .closebtn {
     margin-left: 15px;
-    color: white;
+    color: black;
     font-weight: bold;
     float: right;
     font-size: 22px;

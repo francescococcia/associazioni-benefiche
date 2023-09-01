@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col">
 				<nav class="navbar navbar-light row navbar-expand-md" role="navigation">
-					<a class="navbar-brand strokeme" href="<?php echo base_url();?>/">Associazioni Benefiche Bari</a>
+					<a class="navbar-brand strokeme" href="<?php echo base_url();?>/">MANI GENEROSE</a>
 					<button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-38523" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path class="svg-menu-icon" d="m2 9h28m-28 7h28m-28 7h28"></path></svg></span>
 					</button>
@@ -28,7 +28,7 @@
 
 							<?php if (!session()->get('isLoggedIn')): ?>
 								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events' &&
-									service('request')->uri->getSegment(2) === 'search') ? 'active' : ''; ?>">
+									service('request')->uri->getSegment(2) === 'search' || service('request')->uri->getSegment(1) === 'results') ? 'active' : ''; ?>">
 									<a href="<?php echo base_url();?>/events/search" class="nav-link strokeme">Cerca Eventi</a>
 								</li>
 							<?php endif; ?>

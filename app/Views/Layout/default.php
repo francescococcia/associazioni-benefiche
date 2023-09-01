@@ -10,7 +10,7 @@
         flex-direction: column;
         /* background-color: #F3E8D8; */
         /* background-color: #FFFFC1; */
-        background-color: #F6F6F6;
+        /* background-color: #F6F6F6; */
       }
 
       .page-container {

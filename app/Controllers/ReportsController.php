@@ -31,7 +31,7 @@ class ReportsController extends BaseController
     $session->setFlashdata('success', 'Segnalazione inviata.');
 
     // Redirect back to the current page
-    return redirect()->to(current_url());
+    return redirect()->back();
 
     // Redirect to a success page or display a success message
     // return redirect()->to('/dashboard')->with('success', 'Report submitted successfully');
