@@ -68,7 +68,7 @@ class EventModel extends Model
           return []; // Return an empty array if no results are found
       }
     }
-    
+
     public function getJoinedEventsByUserId($userId)
   {
     $builder = $this->db->table('participants');

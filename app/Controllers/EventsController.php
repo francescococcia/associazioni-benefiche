@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
 use App\Models\EventModel;
 use App\Models\AssociationModel;
 use App\Models\ParticipantModel;
+use App\Models\FeedbackModel;
 use CodeIgniter\Controller;
 
 class EventsController extends Controller
@@ -104,6 +106,50 @@ class EventsController extends Controller
     $participantId = $model->getIdParticipant($id);
     $data['event'] = $event;
     $data['participantId'] = $participantId;
+
+    //
+    $userId = session()->get('id');
+
+    if(session()->get('isPlatformManager')){
+      $data['events'] = $model->getAllEventsByPlatformManager($userId);
+    } else {
+      $data['events'] = $model->orderBy('id', 'DESC')->findAll();
+    }
+
+    $participantModel = new ParticipantModel();
+
+    // Loop through the events and check if the user has participated in each event
+    // foreach ($data['events'] as &$event) {
+      $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
+      $event['userParticipated'] = $participant !== null;
+    // }
+    $data['participantModel'] = $participant;
+
+    // Get all feedback related to the event
+
+    $participantModel = new ParticipantModel();
+    $participants = $participantModel->where('event_id', $id)->findAll();
+
+    $feedbackModel = new FeedbackModel(); // Replace with your actual Feedback model
+    $feedbackData = [];
+    // Get the user's first name and last name based on the feedback's user_id
+    $userModel = new UserModel();
+    foreach ($participants as $participant) {
+        $feedback = $feedbackModel->where('participant_id', $participant['id'])->findAll();
+        if (!empty($feedback)) {
+            $feedbackData[$participant['id']] = $feedback;
+        }
+    }
+
+    // $userData = $userModel->user($feedback['user_id']);
+
+    // Pass the feedback and user data to the view
+    $data['feedback'] = $feedback;
+
+    $data['feedbackData'] = $feedbackData;
+    
+
+    //
     return view('events/show', $data);
   }
 
@@ -133,7 +179,9 @@ class EventsController extends Controller
       $userId = session()->get('id'); // Replace this with the actual method to get user ID
       $joinedEvents = $eventModel->getJoinedEventsByUserId($userId);
 
+      $data['joinedEvents'] = $joinedEvents;
+
       // Pass the data to the view
-      return view('events/joined_events', ['joinedEvents' => $joinedEvents]);
+      return view('events/joined_events', $data);
   }
 }

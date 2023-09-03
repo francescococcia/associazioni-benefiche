@@ -54,7 +54,9 @@
                       <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a> 
                     <?php endif; ?>
 
-                    <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
+                    <?php if (!session()->get('isPlatformManager')): ?>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
+                    <?php endif; ?>
 
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>

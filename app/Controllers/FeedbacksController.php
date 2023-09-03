@@ -31,8 +31,10 @@ class FeedbacksController extends BaseController
 
     // Insert the data into the database
     $feedbackModel->insert($data);
+    $session = session();
+    $session->setFlashdata('success', 'Feedback inviato.');
 
-    // Redirect to a success page or display a success message
-    return redirect()->to('/dashboard')->with('success', 'Feedback submitted successfully');
+    // Redirect back to the current page
+    return redirect()->back();
   }
 }

@@ -1,6 +1,6 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-<div class="content mb-5">
+  <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
         <h1>Eventi</h1>
@@ -21,7 +21,7 @@
     </div>
 	</div>
 
-  <div class="container offset-lg-2 mt-4 mb-4">
+  <div class="container offset-lg-3 mt-4 mb-4">
     <div class="row justify-content-center">
       <?php if ($events) : ?>
         <?php foreach ($events as $event) : ?>
