@@ -67,8 +67,9 @@ $routes->get('/events', 'EventsController::index', ['filter' => 'authGuard']);
 $routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create',['filter' => 'authGuard']);
 $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
 $routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
+$routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
 $routes->get('/events/search', 'EventsController::search');
-$routes->get('/events/results', 'EventsController::results');
 $routes->get('/joined-events', 'EventsController::joinedEvents');
 
 

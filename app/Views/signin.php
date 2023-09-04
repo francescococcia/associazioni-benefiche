@@ -20,20 +20,16 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="form-group">
-												<label>
-														Email
-												</label>
+												<label>Email</label>
 												<input type="email" id="email" name="email" placeholder="Email"
-														value="<?= set_value('email') ?>"
-														data-error-validation-msg="Not a valid email address"
-														class="form-control mb-lg-3 pt-lg-0" required="">
+                          value="<?= set_value('email') ?>"
+                          data-error-validation-msg="Email non valida"
+                          class="form-control mb-lg-3 pt-lg-0" required="">
 										</div>
 										<div class="form-group">
-												<label>
-														Password
-												</label>
-												<input type="password" name="password" required="" placeholder="Password"
-														class="form-control">
+                      <label>Password</label>
+                      <input type="password" name="password" required="" placeholder="Password"
+                          class="form-control">
 										</div>
 
 										<div class="text-center">

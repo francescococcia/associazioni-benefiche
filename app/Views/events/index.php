@@ -28,8 +28,9 @@
           <div class="col-auto mb-3">
             <div class="card" style="width: 18rem;">
               <div class="card-body">
-                  <h5 class="card-title"><?php echo $event['title']; ?></h5>
-                  <p class="card-text">Descrizione: <?php echo $event['description']; ?></p>
+                  <h5 class="card-title"><strong><?php echo $event['title']; ?></strong></h5>
+                  <p class="card-text">Luogo: <?php echo $event['location']; ?></p>
+                  <p class="card-text">Data: <?php echo date('d/m/y', strtotime($event['date'])); ?></p>
                   <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="card-link">Dettagli</a>
               </div>
             </div>

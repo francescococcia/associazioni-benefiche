@@ -12,7 +12,7 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
           <div class="col-12 col-md-8 col-lg-6">
 
-          <form  method="GET" action="<?= base_url(); ?>/events/results">
+          <form  method="GET" action="<?= base_url(); ?>/events/search">
               <div class="row">
 
                 <div class="col-md-12">
@@ -20,8 +20,8 @@
                     <select class='form-control search input-text' name="description" id="description">
                         <option value='' selected disabled hidden>Seleziona tipologia</option>
                         <option value="feste e sagre">Feste e sagre</option>
-                        <option value="serate di gal">serate di gal</option>
-                        <option value="spettacoli teatrali"> spettacoli teatrali</option>
+                        <option value="serate di gala">Serate di gala</option>
+                        <option value="spettacoli teatrali">Spettacoli teatrali</option>
                         <option value="eventi sportivi">Eventi sportivi</option>
                         <option value="cene">Cene</option>
                         <option value="sfilate">Sfilate</option>
@@ -48,15 +48,15 @@
           <div class="col-auto mb-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $event['title']; ?></h5>
-                    <p class="card-text">Descrizione: <?php echo $event['description']; ?></p>
-                    <p class="card-text">Data: <?php echo  date('d/m/y', strtotime($event['date'])); ?></p>
-                    <p class="card-text">Luogo: <?php echo $event['location']; ?></p>
+                  <h5 class="card-title"><?php echo $event['title']; ?></h5>
+                  <p class="card-text">Descrizione: <?php echo $event['description']; ?></p>
+                  <p class="card-text">Data: <?php echo  date('d/m/y', strtotime($event['date'])); ?></p>
+                  <p class="card-text">Luogo: <?php echo $event['location']; ?></p>
                 </div>
             </div>
           </div>
         <?php endforeach; ?>
-        <?php elseif ($events == '' ) : ?>
+        <?php elseif (empty($events) && $description == '') : ?>
           <p></p>
         <?php else : ?>
         <p>Nessun evento trovato.</p>

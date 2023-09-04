@@ -62,6 +62,18 @@
               </div>
             </div>
           </div>
+        <?php else: ?>
+        <div class="row">
+            <div class="col">
+              <div class="text-center">
+                <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
+                <a href="<?= site_url('events/edit/'.$event['id']) ?>"
+                  class="btn btn-md btn-clean btn-c-4129 btn-rd">
+                    Modifica
+                </a>
+              </div>
+            </div>
+          </div>
         <?php endif; ?>
       </div>
 
@@ -69,10 +81,10 @@
         <div class="col-12 m-5">
           <div class="card">
             <div class="card-body">
-              <p><strong>Title:</strong> <?= $event['title']; ?></p>
+              <h3 class="mb-3"><strong><?= $event['title']; ?></strong></h3>
+              <p><strong>Data:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
+              <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
               <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
-              <p><strong>Date:</strong> <?= $event['date']; ?></p>
-              <p><strong>Location:</strong> <?= $event['location']; ?></p>
               <?php if (empty($participantModel) && !session()->get('isPlatformManager')): ?>
               <form method="post" action="<?= site_url('participants/create') ?>">
                 <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
@@ -89,18 +101,29 @@
           <div class="col-12 m-5">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title mb-3"><strong>Feedback per questo evento</strong></h5>
+                <h4 class="card-title mb-3"><strong>Feedback per questo evento</strong></h4>
                 <?php foreach ($feedbackData as $participantId => $feedbacks): ?>
                   <?php foreach ($feedbacks as $feedback): ?>
-                    <p>Messaggio: <?= $feedback['message']; ?></p>
-                    <div class="rate">
-                      <?php for ($i = 1; $i <= 5; $i++): ?>
-                          <?php if ($i <= $feedback['rating']): ?>
-                              <i class="fas fa-star"></i>
-                          <?php else: ?>
-                              <i class="far fa-star"></i>
-                          <?php endif; ?>
-                      <?php endfor; ?>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm">
+                          <p><?= retrieveEmailUserFromFeedback($feedback['user_id'])->email ?></p>
+                          <div class="rate">
+                            <p><?php for ($i = 1; $i <= 5; $i++): ?>
+                                <?php if ($i <= $feedback['rating']): ?>
+                                    <i class="fas fa-star" style="color:#c59b08;"></i>
+                                <?php else: ?>
+                                    <i class="far fa-star"></i>
+                                <?php endif; ?>
+                            <?php endfor; ?>&nbsp;&nbsp;Feedback del <?php echo date('d/m/y', strtotime($feedback['created_at'])); ?></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm">
+                            <p> <?= $feedback['message']; ?></p>
+                          </div>
+                        </div>
                     </div>
                     <hr>
                   <?php endforeach; ?>
@@ -118,7 +141,7 @@
     .rate {
         /* float: left; */
         height: 46px;
-        padding: 0 10px;
+        /* padding: 0 10px; */
     }
     .rate:not(:checked) > input {
         position:absolute;
