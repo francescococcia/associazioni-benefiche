@@ -17,7 +17,7 @@
 
                 <div class="col-md-12">
                   <div class="input-group mb-3">
-                    <select class='form-control search input-text' name="description" id="description">
+                    <select class='form-control search input-text' name="category" id="category">
                         <option value='' selected disabled hidden>Seleziona tipologia</option>
                         <option value="feste e sagre">Feste e sagre</option>
                         <option value="serate di gala">Serate di gala</option>
@@ -41,7 +41,7 @@
     </div>
 	</div>
 
-  <div class="container offset-lg-2 mt-4 mb-4">
+  <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
       <?php if ($events) : ?>
         <?php foreach ($events as $event) : ?>
@@ -56,7 +56,7 @@
             </div>
           </div>
         <?php endforeach; ?>
-        <?php elseif (empty($events) && $description == '') : ?>
+        <?php elseif (empty($events) && $category == '') : ?>
           <p></p>
         <?php else : ?>
         <p>Nessun evento trovato.</p>

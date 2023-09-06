@@ -85,12 +85,13 @@
               <p><strong>Data:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
               <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
               <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
+              <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
               <?php if (empty($participantModel) && !session()->get('isPlatformManager')): ?>
-              <form method="post" action="<?= site_url('participants/create') ?>">
-                <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>
-              </form>
-            <?php endif; ?>
+                <form method="post" action="<?= site_url('participants/create') ?>">
+                  <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+                  <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>
+                </form>
+              <?php endif; ?>
             </div>
           </div>
         </div>

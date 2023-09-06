@@ -52,6 +52,7 @@ class EventsController extends Controller
     if ($this->request->getMethod() == 'post') {
       $rules = [
         'title' => 'required|min_length[3]|max_length[255]',
+        'category' => 'required',
         'description' => 'required',
         'date' => 'required',
         'location' => 'required'
@@ -63,13 +64,14 @@ class EventsController extends Controller
         $data = [
             'association_id' => $this->request->getPost('association_id'),
             'title' => $this->request->getPost('title'),
+            'category' => $this->request->getPost('category'),
             'description' => $this->request->getPost('description'),
             'date' => $this->request->getPost('date'),
             'location' => $this->request->getPost('location'),
         ];
 
         $model->save($data);
-        $session->setFlashdata('message', 'Event created successfully!');
+        $session->setFlashdata('message', 'Evento creato!');
         return redirect()->to('/events');
       } else {
         $data['validation'] = $this->validator;
@@ -162,13 +164,17 @@ class EventsController extends Controller
     if (!$event) {
       return redirect()->to('/events')->with('error', 'Evento non trovato');
     }
+
+    $formattedDate = date('Y-m-d', strtotime($event['date']));
     $data['event'] = $event;
+    $data['formattedDate'] = $formattedDate;
 
     return view('events/edit', $data);
   }
 
   public function update()
   {
+    $session = session();
     $eventModel = new EventModel();
     $eventId = $this->request->getVar('event_id');
     $event = $eventModel->where('id', $eventId)->first();
@@ -179,30 +185,31 @@ class EventsController extends Controller
 
     $data = [
       'title' => $this->request->getVar('title'),
+      'category' => $this->request->getVar('category'),
       'description' => $this->request->getVar('description'),
       'date' => $this->request->getVar('date'),
       'location' => $this->request->getVar('location'),
     ];
 
-      $associationModel->update($event['id'], $data);
+      $eventModel->update($event['id'], $data);
 
       $session->setFlashdata('success', 'Informazioni aggiornate.');
 
-    return redirect()->to('/event-detail/'.$event['id']);
+    return redirect()->to('/events/edit/'.$event['id']);
   }
 
   public function search()
   {
     $events = []; // Initialize the $events array
-    $description = $this->request->getVar('description');
+    $category = $this->request->getVar('category');
 
     $eventModel = new EventModel();
-    if($description != ''){
-      $events = $eventModel->like('description', $description)->findAll();
+    if($category != ''){
+      $events = $eventModel->like('category', $category)->findAll();
     }
 
     $data['events'] = $events;
-    $data['description'] = $description;
+    $data['category'] = $category;
     return view('events/search', $data);
   }
 

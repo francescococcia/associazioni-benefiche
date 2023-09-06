@@ -11,7 +11,7 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form action="<?php echo base_url(); ?>/EventsController/update" method="post">
+          <form action="<?= base_url(); ?>/events/update" method="post">
             <input type="hidden" name="event_id" value="<?= $event['id']; ?>">  
             <div class="card">
               <div class="card-body">
@@ -21,17 +21,30 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="description">Categoria</label>
+                  <select class='form-control search input-text' name="category" id="category">
+                    <option value="" selected disabled hidden>Select a category</option>
+                    <option value="feste e sagre" <?= ($event['category'] == 'feste e sagre') ? 'selected' : '' ?>>Feste e sagre</option>
+                    <option value="serate di gala" <?= ($event['category'] == 'serate di gala') ? 'selected' : '' ?>>Serate di gala</option>
+                    <option value="spettacoli teatrali" <?= ($event['category'] == 'spettacoli teatrali') ? 'selected' : '' ?>>Spettacoli teatrali</option>
+                    <option value="eventi sportivi" <?= ($event['category'] == 'eventi sportivi') ? 'selected' : '' ?>>Eventi sportivi</option>
+                    <option value="cene" <?= ($event['category'] == 'cene') ? 'selected' : ''?>>Cene</option>
+                    <option value="sfilate" <?= ($event['category'] == 'sfilate') ? 'selected' : ''?>>Sfilate</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
                   <label for="description">Description</label>
                   <textarea class="form-control" name="description"><?= $event['description'] ?></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label for="date">Start Date</label>
-                  <input class="form-control" type="date" name="date" value="<?= $event['date'] ?>">
+                  <label for="date">Data</label>
+                  <input class="form-control" type="date" name="date" value="<?= $formattedDate ?>">
                 </div>
 
                 <div class="form-group">
-                  <label for="location">Location</label>
+                  <label for="location">Luogo</label>
                   <input class="form-control" type="text" name="location" value="<?= $event['location'] ?>">
                 </div>
 

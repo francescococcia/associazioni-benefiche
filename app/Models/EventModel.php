@@ -11,6 +11,7 @@ class EventModel extends Model
     protected $allowedFields = [
         'association_id',
         'title',
+        'category',
         'description',
         'date',
         'location'
