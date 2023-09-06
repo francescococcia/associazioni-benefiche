@@ -153,78 +153,42 @@ class EventsController extends Controller
     //
     return view('events/show', $data);
   }
-  
+
   public function edit($id)
   {
-    $enventModel = new EnventModel();
-    $envent = $enventModel->where('id', $id)->first();
+    $eventModel = new EventModel();
+    $event = $eventModel->where('id', $id)->first();
 
-    if (!$envent) {
-      return redirect()->to('/envents')->with('error', 'Evento non trovato');
+    if (!$event) {
+      return redirect()->to('/events')->with('error', 'Evento non trovato');
     }
+    $data['event'] = $event;
 
-    return view('events/edit', ['association' => $association]);
+    return view('events/edit', $data);
   }
 
   public function update()
   {
-    $session = session();
-    $userId = session()->get('id');
-    $associationModel = new AssociationModel();
-    $association = $associationModel->where('user_id', $userId)->first();
+    $eventModel = new EventModel();
+    $eventId = $this->request->getVar('event_id');
+    $event = $eventModel->where('id', $eventId)->first();
 
-    if (!$association) {
-        return redirect()->to('/dashboard')->with('error', 'Association not found');
+    if (!$event) {
+      return redirect()->to('/events')->with('error', 'Evento non trovato');
     }
 
-    // Upload the image file
-    $image = $this->request->getFile('image');
+    $data = [
+      'title' => $this->request->getVar('title'),
+      'description' => $this->request->getVar('description'),
+      'date' => $this->request->getVar('date'),
+      'location' => $this->request->getVar('location'),
+    ];
 
-    if ($image->isValid() && !$image->hasMoved()) {
-        // Configure the upload settings
-        $config = [
-            'upload_path' => './uploads/',
-            'allowed_types' => 'gif|jpg|jpeg|png',
-            'max_size' => 2048, // Maximum file size in kilobytes
-            'encrypt_name' => true, // Encrypt the uploaded file name
-        ];
+      $associationModel->update($event['id'], $data);
 
-        // Create the upload directory if it doesn't exist
-        if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 0777, true);
-        }
+      $session->setFlashdata('success', 'Informazioni aggiornate.');
 
-        // Move the uploaded file to the destination directory
-        $uniqueId = uniqid(); // You can use any method to generate a unique identifier
-        if ($image->move($config['upload_path'], $uniqueId . '_' . $image->getName())) {
-
-          $imagePath = $image->getName();
-
-            // Save the image path to the database
-            $associationData = [
-              'name' => $this->request->getVar('name'),
-              'legal_address' => $this->request->getVar('legal_address'),
-              'tax_code' => $this->request->getVar('tax_code'),
-              'description' => $this->request->getVar('description'),
-              'image' => $image->getName(), // Salva solo il nome del file senza l'identificatore
-            ];
-
-            $associationModel->update($association['id'], $associationData);
-
-            $session->setFlashdata('success', 'Informazioni aggiornate.');
-
-          return redirect()->to('/profile-manager');
-            // return redirect()->to('/dashboard')->with('success', 'Association created successfully!');
-        } else {
-            // File upload failed
-            $error = $image->getErrorString();
-            // Handle the error
-            return redirect()->back()->with('error', 'File upload failed: ' . $error);
-        }
-      }
-
-
-    // return redirect()->to('/associations')->with('success', 'Association updated successfully');
+    return redirect()->to('/event-detail/'.$event['id']);
   }
 
   public function search()
