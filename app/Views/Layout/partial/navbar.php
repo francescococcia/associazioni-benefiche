@@ -20,10 +20,11 @@
 									<div class="dropdown-divider">
 									</div>
 								</li>
-
-								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
-									<a href="<?php echo base_url();?>/events" class="nav-link strokeme">Eventi</a>
-								</li>
+                <?php if (!session()->get('isAdmin')): ?>
+                  <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
+                    <a href="<?php echo base_url();?>/events" class="nav-link strokeme">Eventi</a>
+                  </li>
+                <?php endif; ?>
 							<?php endif; ?>
 
 							<?php if (!session()->get('isLoggedIn')): ?>
@@ -33,13 +34,15 @@
 								</li>
 							<?php endif; ?>
 
-							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
-								<a href="<?php echo base_url();?>/store" class="nav-link strokeme">Store</a>
-							</li>
+              <?php if (!session()->get('isAdmin')): ?>
+                <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
+                  <a href="<?php echo base_url();?>/store" class="nav-link strokeme">Negozio</a>
+                </li>
 
-							<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
-								<a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
-							</li>
+                <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
+                  <a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
+                </li>
+              <?php endif; ?>
 
 							<?php if (session()->get('isLoggedIn')): ?>
                 <li class="nav-item dropdown">
@@ -54,12 +57,13 @@
                       <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a> 
                     <?php endif; ?>
 
-                    <?php if (!session()->get('isPlatformManager')): ?>
+                    <?php if (!session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
                     <?php endif; ?>
 
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Clienti</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/admin/associations">Associaioni</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
                     <?php endif; ?>
@@ -67,7 +71,8 @@
                   </div>
                 </li>
 							<?php endif; ?>
-						</ul>
+
+            </ul>
 					</div>
 				</nav>
 			</div>

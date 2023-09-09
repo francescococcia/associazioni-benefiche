@@ -40,9 +40,12 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
   $routes->get('dashboard', 'Home::index', ['filter' => 'authGuard']);
   $routes->get('users', 'UsersController::index', ['filter' => 'authGuard']);
   $routes->post('users/delete/(:num)', 'UsersController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('associations', 'AssociationsController::index', ['filter' => 'authGuard']);
+  $routes->post('associations/delete/(:num)', 'AssociationsController::delete/$1', ['filter' => 'authGuard']);
   $routes->get('events', 'EventsController::index', ['filter' => 'authGuard']);
   $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
   $routes->get('reports', 'ReportsController::index', ['filter' => 'authGuard']);
+  $routes->post('report/delete/(:num)', 'ReportsController::delete/$1', ['filter' => 'authGuard']);
 });
 
 $routes->get('/', 'Home::index');
@@ -82,13 +85,9 @@ $routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController
 $routes->match(['get', 'post'], 'ProductsController/buy', 'ProductsController::buy', ['filter' => 'authGuard']);
 $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
 $routes->get('product/detail/(:segment)', 'ProductsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('product/edit/(:segment)', 'ProductsController::edit/$1', ['filter' => 'authGuard']);
+$routes->post('product/update', 'ProductsController::update', ['filter' => 'authGuard']);
 $routes->get('cash-desk', 'ProductsController::cashDesk');
-// $routes->get('store', 'ProductsController::index');
-// $routes->get('store/create', 'ProductsController::create');
-// $routes->post('store/store', 'ProductsController::store');
-// $routes->get('store/edit/(:num)', 'ProductsController::edit/$1');
-// $routes->post('store/update/(:num)', 'ProductsController::update/$1');
-// $routes->get('store/delete/(:num)', 'ProductsController::delete/$1');
 
 // Partecipants routes
 $routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);

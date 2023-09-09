@@ -1,4 +1,4 @@
-<?= $this->extend('Layout/default') ?>
+<?= $this->extend('Layout/default') ?>required
 <?= $this->section('content') ?>
 
   <div class="content mb-5">
@@ -19,27 +19,36 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" name="first_name" placeholder="Name" required="" value="<?= set_value('first_name') ?>" class="form-control mb-lg-3" >
+                    <input type="text" name="first_name" placeholder="Name" required value="<?= set_value('first_name') ?>" class="form-control mb-lg-3">
                   </div>
 
                   <div class="form-group">
                     <label>Cognome</label>
-                    <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" required="" value="<?= set_value('last_name') ?>">
+                    <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" value="<?= set_value('last_name') ?>">
                   </div>
 
                   <div class="form-group">
                     <label>Numero di telefono</label>
-                    <input type="text" name="phone_number" placeholder="Numero" required="" value="<?= set_value('phone_number') ?>" class="form-control mb-lg-3" >
+                    <input
+                      type="text"
+                      name="phone_number"
+                      placeholder="Numero"
+                      required
+                      value="<?= set_value('phone_number') ?>"
+                      class="form-control mb-lg-3"
+                      pattern="[0-9]+"
+                    >
                   </div>
 
                   <div class="form-group">
                     <label>Data di nascinta</label>
-                    <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" required="" value="<?= set_value('birth_date') ?>">
+                    <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" value="<?= set_value('birth_date') ?>">
                   </div>
 
                   <div class="form-group">
                     <label>Email</label>
-                    <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
+                    <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>"
+                      data-error-validation-msg="Email non valida" required="">
                   </div>
 
                   <div class="form-group">
@@ -58,7 +67,7 @@
                     </label> -->
                   </div>
                   <div class="text-center">
-                    <button class="btn btn-primary mt-lg-4" type="submit">
+                    <button class="btn btn-clean float-lg-none btn-c-4129 btn-rd mt-lg-4" type="submit">
                       Invia
                     </button>
                   </div>
@@ -70,4 +79,5 @@
 			</div>
 		</div>
 	</div>
+  
 <?= $this->endSection() ?>

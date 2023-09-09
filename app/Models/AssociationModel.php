@@ -46,4 +46,17 @@ class AssociationModel extends Model{
     return $row ? $row->id : null;
   }
 
+  public function getAllAssociations()
+{
+  $db = \Config\Database::connect();
+
+    // Build the query to retrieve associations
+    $query = $db->table('associations')
+        ->join('users', 'users.id = associations.user_id')
+        ->select('associations.*, users.email')
+        ->where('users.is_platform_manager', true)
+        ->get();
+
+    return $query->getResultArray();
+}
 }

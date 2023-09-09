@@ -90,8 +90,48 @@ class ProductsController extends Controller
     return view('products/show', $data);
   }
 
+  public function edit($id)
+  {
+    $productModel = new ProductModel();
+    $product = $productModel->where('id', $id)->first();
+
+    if (!$product) {
+      return redirect()->to('/store')->with('error', 'Prodotto non trovato');
+    }
+
+    $data['product'] = $product;
+
+    return view('products/edit', $data);
+  }
+
+  public function update()
+  {
+    $session = session();
+    $productModel = new ProductModel();
+    $productId = $this->request->getVar('product_id');
+    $product = $productModel->where('id', $productId)->first();
+
+    if (!$product) {
+      return redirect()->to('/store')->with('error', 'Evento non trovato');
+    }
+
+    $data = [
+      'name' => $this->request->getVar('name'),
+      'description' => $this->request->getVar('description'),
+      'price' => $this->request->getVar('price'),
+      'quantity' => $this->request->getVar('quantity'),
+    ];
+
+      $productModel->update($product['id'], $data);
+
+      $session->setFlashdata('success', 'Informazioni aggiornate.');
+
+    return redirect()->to('/product/edit/'.$product['id']);
+  }
+
   public function buy()
   {
+    helper('url');
     // Load the ProductModel and OrderModel
     $productModel = new ProductModel();
     $orderModel = new OrderModel();
@@ -114,7 +154,8 @@ class ProductsController extends Controller
     $orderModel->insert($data);
 
     // Redirect to a success page or perform further actions
-    return redirect()->to('/store')->with('message', 'Products bought successfully!');
+    return redirect()->to('product/detail/' . $productId);
+    // return redirect()->to('/products/detail/'.$productId)->with('message', 'Products bought successfully!');
   }
 
   public function cashDesk3(){

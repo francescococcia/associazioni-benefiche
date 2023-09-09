@@ -1,44 +1,4 @@
-<?= $this->extend('Layout/default') ?>
-<?= $this->section('content') ?>
-<div id="main-content" class="container allContent-section mt-5 py-4">
-  <div >
-    <h2>Clienti</h2>
-    <table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Cognome</th>
-            <th>Numero Telefonico</th>
-            <th>Data di Nascita</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?= $user['id'] ?></td>
-                <td><?= $user['first_name'] ?></td>
-                <td><?= $user['last_name'] ?></td>
-                <td><?= $user['phone_number'] ?></td>
-                <td><?= $user['birth_date'] ?></td>
-                <td><?= $user['email'] ?></td>
-                <td>
-                  <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post">
-                      <button class='btn btn-danger' type="submit" onclick="return confirm('Sei sicuro?')">Rimuovi</button>
-                  </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-  </div>
-</div>
-
-
-<style>
-      @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700&display=swap');
     /* * {
         margin: 0;
         padding: 0;
@@ -177,15 +137,6 @@
       max-width: 500px;
       padding: 30px 30px;
     }
-/* 
-    .btn {
-      font-weight: 700;
-      height: 36px;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      cursor: default;
-    } */
 
     /*
     * Card component
@@ -359,6 +310,3 @@
       color: #ECDAC9;
       text-decoration: none;
     }
-
-</style>
-<?= $this->endSection() ?>

@@ -14,4 +14,19 @@ class ReportsController extends BaseController
 
     return view('admin/reports/index', $data);
   }
+
+  public function delete($reportId)
+  {
+    $reportModel = new ReportModel();
+
+    // Check if the user exists
+    if (!$reportModel->find($reportId)) {
+      return redirect()->back()->with('error', 'Segnalazione non trovata.');
+    }
+
+    // Delete the user
+    $reportModel->delete($reportId);
+
+    return redirect()->back()->with('success', 'Segnalazione cancellata.');
+  }
 }

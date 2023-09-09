@@ -28,4 +28,22 @@ class UserModel extends Model{
     $query = $builder->get();
     return $query->getResultArray();
   }
+
+  public function getAllUsers()
+  {
+    $builder = $this->db->table('users');
+    $builder->select('users.*');
+    $builder->where('users.is_platform_manager', false)->orWhere('is_platform_manager', false);
+    $query = $builder->get();
+    return $query->getResultArray();
+  }
+
+  public function getAllUsersCount()
+  {
+    $builder = $this->db->table('users');
+    $builder->select('users.*');
+    $builder->where('users.is_platform_manager', false)->orWhere('is_platform_manager', false);
+    $count = $builder->countAllResults();
+    return $count;
+  }
 }

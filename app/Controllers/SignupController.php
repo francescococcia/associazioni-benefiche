@@ -27,7 +27,7 @@ class SignupController extends Controller
     $rules = [
       'first_name'          => 'required|min_length[2]|max_length[50]',
       'last_name'          => 'required|min_length[2]|max_length[50]',
-      'phone_number'          => 'required|min_length[2]|max_length[50]',
+      'phone_number'     => 'required|min_length[2]|max_length[50]|regex_match[/^[0-9]+$/]',
       'birth_date'          => 'required|min_length[2]|max_length[50]',
       'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
       'password'      => 'required|min_length[4]|max_length[50]',
@@ -50,7 +50,7 @@ class SignupController extends Controller
         $firstName = $this->request->getVar('first_name');
         $to = $this->request->getVar('email');
         $subject = 'Conferma Iscrizione';
-        $message = 'Benvenuto ' . $firstName . ', clicca questo link per accedere http://localhost/associazioni-benefiche/signin';
+        $message = 'Benvenuto ' . $firstName . ',\nclicca questo link per accedere http://localhost/associazioni-benefiche/signin';
 
         sendMail($to, $subject, $message);
         return redirect()->to('/signin')->with('success', 'Iscrizione effettuata!');

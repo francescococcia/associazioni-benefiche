@@ -100,6 +100,22 @@
         color: white;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
       } */
+      
+      .icon-container {
+      display: inline-block;
+      position: relative;
+      }
+
+      .count {
+        position: absolute;
+        top: -10px; /* Adjust this value to position the count number */
+        right: -10px; /* Adjust this value to position the count number */
+        background-color: red; /* Change the background color as needed */
+        color: white; /* Change the text color as needed */
+        border-radius: 50%; /* Makes it a circle */
+        padding: 6px 10px; /* Adjust padding as needed for your count size */
+        font-size: 14px; /* Adjust the font size as needed */
+      }
     </style>
   </head>
   <body>

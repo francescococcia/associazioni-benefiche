@@ -28,7 +28,7 @@ class EventsController extends BaseController
     // Check if the event exists
     if (!$event) {
         // Event not found, redirect or show an error message
-        return redirect()->back()->with('error', 'Event not found.');
+        return redirect()->back()->with('error', 'Evento non trovato.');
     }
 
     // Delete the associated participants
@@ -38,6 +38,6 @@ class EventsController extends BaseController
     $eventModel->delete($eventId);
 
     // Redirect or show a success message
-    return redirect()->back()->with('success', 'Event deleted successfully.');
+    return redirect()->back()->with('success', 'Evento cancellato.');
   }
 }
