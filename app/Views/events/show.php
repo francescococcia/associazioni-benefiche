@@ -5,7 +5,7 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Dettagli evento</h1>
         <p class="big-paragraph">Informazioni riguardo l'evento</p>
-        <?php if (!empty($participantModel) && !session()->get('isPlatformManager')): ?>
+        <?php if (!is_null($participantId) && !session()->get('isPlatformManager')): ?>
           <div class="row">
             <div class="col">
               <div class="text-center">
@@ -62,8 +62,10 @@
               </div>
             </div>
           </div>
-        <?php else: ?>
-        <div class="row">
+        <?php endif; ?>
+
+        <?php if (session()->get('isPlatformManager')): ?>
+          <div class="row">
             <div class="col">
               <div class="text-center">
                 <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
@@ -91,6 +93,31 @@
                   <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
                   <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>
                 </form>
+              <?php else: ?>
+                <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
+                    <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
+                </form>
+
+                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Sei sicuro di voler rimuovere l'elemento?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               <?php endif; ?>
             </div>
           </div>

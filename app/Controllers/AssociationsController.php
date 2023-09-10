@@ -178,45 +178,4 @@ class AssociationsController extends BaseController
     // Redirect to the thank you page or any other desired page
     return redirect()->to('/dashboard');
   }
-
-  public function forgotPassword()
-  {
-    helper(['form']);
-    echo view('forgot_password');
-  }
-
-  public function sendForgotPassword()
-  {
-    // Get the association's email from the form input
-    $email = $this->request->getPost('email');
-
-    // Check if the email exists in the database
-    $associationModel = new AssociationModel();
-    $association = $associationModel->where('email', $email)->first();
-
-    if (!$association) {
-      // Association does not exist
-      return redirect()->back()->with('error', 'Email not found.');
-    }
-
-    // Generate a password reset token
-    $token = bin2hex(random_bytes(16));
-
-    // Save the token in the association's record in the database
-    $associationModel->update($association['id'], ['reset_token' => $token]);
-
-    // Create the password reset URL
-    $resetUrl = base_url('reset-password?token=' . $token);
-
-    // Send the password reset email
-    $to = $association['email'];
-    $subject = 'Password Reset';
-    $message = 'Click the following link to reset your password: ' . $resetUrl;
-
-    if (send_email($to, $subject, $message)) {
-        return redirect()->back()->with('success', 'Password reset link has been sent to your email.');
-    } else {
-        return redirect()->back()->with('error', 'Failed to send password reset email.')->withInput();
-    }
-  }
 }

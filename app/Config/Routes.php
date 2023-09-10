@@ -56,6 +56,10 @@ $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::sto
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard']);
+$routes->get('/activate-account/(:any)', 'AuthController::activateAccount/$1');
+// $routes->get('/reset-password/(:any)', 'AuthController::resetPassword/$1');
+$routes->add('resetPassword/(:segment)', 'AuthController::resetPassword/$1');
+$routes->add('recoverPassword', 'AuthController::recoverPassword');
 
 // Reports routes
 $routes->get('/reports/create', 'ReportsController::create');
@@ -74,6 +78,7 @@ $routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' =>
 $routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
 $routes->get('/events/search', 'EventsController::search');
 $routes->get('/joined-events', 'EventsController::joinedEvents');
+$routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
 
 
 // Participants routes
@@ -88,6 +93,7 @@ $routes->get('product/detail/(:segment)', 'ProductsController::show/$1', ['filte
 $routes->get('product/edit/(:segment)', 'ProductsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('product/update', 'ProductsController::update', ['filter' => 'authGuard']);
 $routes->get('cash-desk', 'ProductsController::cashDesk');
+$routes->post('product/delete/(:num)', 'ProductsController::delete/$1', ['filter' => 'authGuard']);
 
 // Partecipants routes
 $routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);

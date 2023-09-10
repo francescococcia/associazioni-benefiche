@@ -44,14 +44,14 @@ class EventModel extends Model
 
     public function getIdParticipant($eventId)
     {
-        $builder = $this->db->table('participants')
-            ->select('participants.id')
-            ->where('participants.event_id',$eventId);
+      $builder = $this->db->table('participants')
+          ->select('participants.id')
+          ->where('participants.event_id',$eventId);
 
-        $query = $builder->get();
-        $result = $query->getRow();
+      $query = $builder->get();
+      $result = $query->getRow();
 
-        return $result;
+      return $result;
     }
 
     public function getAllEventsByPlatformManager($userId) {

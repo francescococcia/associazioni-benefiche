@@ -38,6 +38,10 @@
 													Accedi
 											</button>
 										</div>
+                    <hr>
+										<div class="text-center">
+                      <a href="<?= base_url() ?>/forgot-password" class="">Password dimenticata?</a>
+										</div>
 									</div>
 							</div>
 						</form>

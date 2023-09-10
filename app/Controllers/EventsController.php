@@ -40,14 +40,19 @@ class EventsController extends Controller
     // Load the user model
     $association_model = new AssociationModel();
     $associationId = $association_model->getUserWithAssociation($userId);
-    $data['session'] = $associationId;
-    echo view('events/new', ['association_id' => $associationId]);
+    $data['association_id'] = $associationId;
+
+    echo view('events/new', $data);
   }
 
   public function create()
   {
     $data = [];
     $session = session();
+    $userId = session()->get('id');
+    $association_model = new AssociationModel();
+    $associationId = $association_model->getUserWithAssociation($userId);
+    $data['association_id'] = $associationId;
 
     if ($this->request->getMethod() == 'post') {
       $rules = [
@@ -82,29 +87,15 @@ class EventsController extends Controller
     return view('events/new', $data);
   }
 
-  public function view($id = null)
-  {
-    $model = new EventModel();
-    $data['event'] = $model->getEventById($id);
-
-    if (empty($data['event']))
-    {
-        throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the event item: ' . $id);
-    }
-
-    return view('events/view', $data);
-  }
-
   public function show($id)
   {
     helper('event_helper');
-    $db = \Config\Database::connect();
     $model = new EventModel();
     $event = $model->find($id);
 
     if (!$event) {
       // Event not found, redirect or show error message
-      return redirect()->to('events')->with('error', 'Event not found');
+      return redirect()->to('events')->with('error', 'Evento non trovato');
     }
 
     $participantId = $model->getIdParticipant($id);
@@ -131,13 +122,13 @@ class EventsController extends Controller
 
     // Get all feedback related to the event
 
-    $participantModel = new ParticipantModel();
     $participants = $participantModel->where('event_id', $id)->findAll();
 
     $feedbackModel = new FeedbackModel(); // Replace with your actual Feedback model
     $feedbackData = [];
     // Get the user's first name and last name based on the feedback's user_id
     $userModel = new UserModel();
+    $feedback = [''];
     foreach ($participants as $participant) {
         $feedback = $feedbackModel->where('participant_id', $participant['id'])->findAll();
         if (!empty($feedback)) {
@@ -215,15 +206,40 @@ class EventsController extends Controller
 
   public function joinedEvents()
   {
-      $eventModel = new EventModel();
+    $eventModel = new EventModel();
 
-      // Assuming you have a function to retrieve the current user's ID
-      $userId = session()->get('id'); // Replace this with the actual method to get user ID
-      $joinedEvents = $eventModel->getJoinedEventsByUserId($userId);
+    // Assuming you have a function to retrieve the current user's ID
+    $userId = session()->get('id'); // Replace this with the actual method to get user ID
+    $joinedEvents = $eventModel->getJoinedEventsByUserId($userId);
 
-      $data['joinedEvents'] = $joinedEvents;
+    $data['joinedEvents'] = $joinedEvents;
 
-      // Pass the data to the view
-      return view('events/joined_events', $data);
+    // Pass the data to the view
+    return view('events/joined_events', $data);
+  }
+
+  public function delete($eventId)
+  {
+    // Create instances of the EventModel and ParticipantModel
+    $eventModel = new EventModel();
+    $participantModel = new ParticipantModel();
+
+    // Find the event by its ID
+    $event = $eventModel->find($eventId);
+
+    // Check if the event exists
+    if (!$event) {
+        // Event not found, redirect or show an error message
+        return redirect()->back()->with('error', 'Evento non trovato.');
+    }
+
+    // Delete the associated participants
+    $participantModel->where('event_id', $eventId)->delete();
+
+    // Delete the event
+    $eventModel->delete($eventId);
+
+    // Redirect or show a success message
+    return redirect()->to('/events')->with('success', 'Evento cancellato.');
   }
 }

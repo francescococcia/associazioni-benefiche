@@ -116,6 +116,7 @@ class UsersController extends BaseController
 
   public function sendForgotPassword()
   {
+    helper('email_helper');
     // Get the user's email from the form input
     $email = $this->request->getPost('email');
 
@@ -132,20 +133,20 @@ class UsersController extends BaseController
     $token = bin2hex(random_bytes(16));
 
     // Save the token in the user's record in the database
-    $userModel->update($user['id'], ['reset_token' => $token]);
+    // $userModel->update($user['id'], ['reset_token' => $token]);
 
     // Create the password reset URL
-    $resetUrl = base_url('reset-password?token=' . $token);
+    // $resetUrl = base_url('reset-password?token=' . $token);
+    $resetUrl = base_url("resetPassword/$token");
 
-    // Send the password reset email
-    $to = $user['email'];
-    $subject = 'Password Reset';
-    $message = 'Click the following link to reset your password: ' . $resetUrl;
-
-    if (send_email($to, $subject, $message)) {
-        return redirect()->back()->with('success', 'Password reset link has been sent to your email.');
+    if ( $userModel->update($user['id'], ['reset_token' => $token])) {
+      $to = $user['email'];
+      $subject = 'Reimposta Password';
+      $message = 'Clicca sul seguente link per reimpostare la password: ' . $resetUrl;
+      sendMail($to, $subject, $message);
+      return redirect()->back()->with('success', 'Il link per la reimpostazione della password è stato inviato al vostro indirizzo e-mail.');
     } else {
-        return redirect()->back()->with('error', 'Failed to send password reset email.')->withInput();
+        return redirect()->back()->with("error', 'Errore nell'invio della mail.")->withInput();
     }
   }
 }

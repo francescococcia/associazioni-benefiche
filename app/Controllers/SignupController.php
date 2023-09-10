@@ -36,28 +36,32 @@ class SignupController extends Controller
 
     if($this->validate($rules)){
       $userModel = new UserModel();
-
+      $activationToken = bin2hex(random_bytes(32));
       $data = [
         'first_name'     => $this->request->getVar('first_name'),
         'last_name'     => $this->request->getVar('last_name'),
         'phone_number'     => $this->request->getVar('phone_number'),
         'birth_date'     => $this->request->getVar('birth_date'),
         'email'    => $this->request->getVar('email'),
-        'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
+        'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+        'activation_token' => $activationToken,
+        'is_active' => false,
       ];
+      
+      $activationLink = base_url("/activate-account/{$activationToken}");
 
       if($userModel->save($data)){
         $firstName = $this->request->getVar('first_name');
         $to = $this->request->getVar('email');
         $subject = 'Conferma Iscrizione';
-        $message = 'Benvenuto ' . $firstName . ',\nclicca questo link per accedere http://localhost/associazioni-benefiche/signin';
+        $message = 'Benvenuto ' . $firstName . ",\nclicca questo link per accedere: \n\n{$activationLink}";
 
         sendMail($to, $subject, $message);
         return redirect()->to('/signin')->with('success', 'Iscrizione effettuata!');
       }
 
     } else {
-      $data['validation'] = $this->validator;
+      $data['validation'] = $this->rules;
       echo view('signup', $data);
     }
   }

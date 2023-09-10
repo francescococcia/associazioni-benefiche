@@ -211,59 +211,29 @@ class ProductsController extends Controller
     $data['selectedProducts'] = $selectedProducts;
 
     return view('products/cash_desk', $data);
-}
+  }
 
+  public function delete($id)
+  {
+    // Create instances of the EventModel and ParticipantModel
+    $productModel = new ProductModel();
 
+    // Find the event by its ID
+    $product = $productModel->find($id);
 
+    // Check if the event exists
+    if (!$product) {
+        // Event not found, redirect or show an error message
+        return redirect()->back()->with('error', 'Prodotto non trovato.');
+    }
 
-  // public function update($id = null)
-  // {
-  //     $model = new ProductsModel();
-  //     $data = $this->request->getJSON();
-  //     if ($model->update($id, $data)) {
-  //         $response = [
-  //             'status' => 200,
-  //             'error' => null,
-  //             'message' => [
-  //                 'success' => 'Product updated successfully'
-  //             ]
-  //         ];
-  //         return $this->respond($response);
-  //     }
-  //     else {
-  //         $response = [
-  //             'status' => 500,
-  //             'error' => 'validation_error',
-  //             'message' => [
-  //                 'error' => $model->errors()
-  //             ]
-  //         ];
-  //         return $this->respond($response);
-  //     }
-  // }
+    // Delete the associated participants
+    $productModel->where('id', $id)->delete();
 
-  // public function delete($id = null)
-  // {
-  //     $model = new ProductsModel();
-  //     if ($model->delete($id)) {
-  //         $response = [
-  //             'status' => 200,
-  //             'error' => null,
-  //             'message' => [
-  //                 'success' => 'Product deleted successfully'
-  //             ]
-  //         ];
-  //         return $this->respondDeleted($response);
-  //     }
-  //     else {
-  //         $response = [
-  //             'status' => 500,
-  //             'error' => 'validation_error',
-  //             'message' => [
-  //                 'error' => $model->errors()
-  //             ]
-  //         ];
-  //         return $this->respond($response);
-  //     }
-  // }
+    // Delete the event
+    $productModel->delete($id);
+
+    // Redirect or show a success message
+    return redirect()->to('/store')->with('success', 'Prodotto cancellato.');
+  }
 }
