@@ -96,11 +96,6 @@
         border-right: 1px solid #e5e5e5;
       }
 
-      /* .strokeme {
-        color: white;
-        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-      } */
-      
       .icon-container {
       display: inline-block;
       position: relative;
@@ -115,6 +110,15 @@
         border-radius: 50%; /* Makes it a circle */
         padding: 6px 10px; /* Adjust padding as needed for your count size */
         font-size: 14px; /* Adjust the font size as needed */
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .navbar-light .navbar-nav .nav-link{
+        font-weight: bold;
+        text-transform: uppercase;
       }
     </style>
   </head>
