@@ -180,7 +180,7 @@ class CreateTable extends Migration
   $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');
   $this->forge->createTable('orders');
 
-    // Create table partecipants
+    // Create table participants
     $this->forge->addField([
         'id' => [
             'type' => 'INT',
@@ -254,7 +254,7 @@ class CreateTable extends Migration
     $this->forge->dropTable('products');
     $this->forge->dropTable('orders');
     $this->forge->dropTable('users');
-    $this->forge->dropTable('partecipants');
+    $this->forge->dropTable('participants');
     $this->forge->dropTable('feedbacks');
   }
 }

@@ -25,25 +25,44 @@ class SigninController extends Controller
     $data = $userModel->where('email', $email)->first();
 
     if($data){
-      $pass = $data['password'];
-      $authenticatePassword = password_verify($password, $pass);
-      if($authenticatePassword){
-        $ses_data = [
-          'id' => $data['id'],
-          'first_name' => $data['first_name'],
-          'email' => $data['email'],
-          'isLoggedIn' => TRUE
-        ];
+      if($data['is_active']){
+        $pass = $data['password'];
+        $authenticatePassword = password_verify($password, $pass);
+        if($authenticatePassword){
+          $ses_data = [
+            'id' => $data['id'],
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
+            'isLoggedIn' => TRUE
+          ];
 
-        $session->set($ses_data);
-        return redirect()->to('/profile');
 
-      }else{
-        $session->setFlashdata('msg', 'Password is incorrect.');
+          // Check if the user is an admin
+          if ($data['is_admin']) {
+            // Redirect to the admin dashboard or any other admin page
+            $ses_data['isAdmin'] = TRUE;
+            $session->set($ses_data);
+            return redirect()->to('/admin/dashboard');
+          }
+
+          if ($data['is_platform_manager']) {
+            $ses_data['isPlatformManager'] = TRUE;
+          }
+
+          $session->set($ses_data);
+
+          return redirect()->to('/');
+
+        }else{
+          $session->setFlashdata('msg', 'Password non corretta.');
+          return redirect()->to('/signin');
+        }
+      } else{
+        $session->setFlashdata('msg', "Utente non attivato");
         return redirect()->to('/signin');
       }
-    } else{
-      $session->setFlashdata('msg', 'Email does not exist.');
+    } else {
+      $session->setFlashdata('msg', "Utente non trovato");
       return redirect()->to('/signin');
     }
   }

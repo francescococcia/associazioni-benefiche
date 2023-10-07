@@ -35,6 +35,19 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+//Admin routes
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
+  $routes->get('dashboard', 'Home::index', ['filter' => 'authGuard']);
+  $routes->get('users', 'UsersController::index', ['filter' => 'authGuard']);
+  $routes->post('users/delete/(:num)', 'UsersController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('associations', 'AssociationsController::index', ['filter' => 'authGuard']);
+  $routes->post('associations/delete/(:num)', 'AssociationsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('events', 'EventsController::index', ['filter' => 'authGuard']);
+  $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('reports', 'ReportsController::index', ['filter' => 'authGuard']);
+  $routes->post('report/delete/(:num)', 'ReportsController::delete/$1', ['filter' => 'authGuard']);
+});
+
 $routes->get('/', 'Home::index');
 $routes->get('/signup-association', 'SignupAssociationController::index');
 $routes->match(['get', 'post'], 'SignupAssociationController/store', 'SignupAssociationController::store');
@@ -42,12 +55,66 @@ $routes->get('/signup', 'SignupController::index');
 $routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
-$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
-// $routes->get('/logout', 'Auth::logout', ['as' => 'logout']);
-// $routes->get('logout', 'Auth::logout');
-$routes->get('/logout', 'Home::exit');
-$routes->get('/events', 'EventsController::index');
+$routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard']);
+$routes->get('/activate-account/(:any)', 'AuthController::activateAccount/$1');
+// $routes->get('/reset-password/(:any)', 'AuthController::resetPassword/$1');
+$routes->add('resetPassword/(:segment)', 'AuthController::resetPassword/$1');
+$routes->add('recoverPassword', 'AuthController::recoverPassword');
 
+// Reports routes
+$routes->get('/reports/create', 'ReportsController::create');
+$routes->post('/reports/store', 'ReportsController::store');
+
+// Feedback routes
+$routes->get('/feedbacks/create', 'FeedbacksController::create', ['filter' => 'authGuard']);
+$routes->post('/feedbacks/store/(:num)', 'FeedbacksController::store/$1', ['filter' => 'authGuard']);
+
+// Events routes
+$routes->get('/events', 'EventsController::index', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create',['filter' => 'authGuard']);
+$routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
+$routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
+$routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
+$routes->get('/events/search', 'EventsController::search');
+$routes->get('/joined-events', 'EventsController::joinedEvents');
+$routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
+
+
+// Participants routes
+$routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
+
+// Products routes
+$routes->get('/store', 'ProductsController::index', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create', ['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'ProductsController/buy', 'ProductsController::buy', ['filter' => 'authGuard']);
+$routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
+$routes->get('product/detail/(:segment)', 'ProductsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('product/edit/(:segment)', 'ProductsController::edit/$1', ['filter' => 'authGuard']);
+$routes->post('product/update', 'ProductsController::update', ['filter' => 'authGuard']);
+$routes->get('cash-desk', 'ProductsController::cashDesk');
+$routes->post('product/delete/(:num)', 'ProductsController::delete/$1', ['filter' => 'authGuard']);
+
+// Partecipants routes
+$routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
+
+// Users routes
+$routes->get('/profile', 'UsersController::edit', ['filter' => 'authGuard']);
+$routes->post('/users/update', 'UsersController::update', ['filter' => 'authGuard']);
+$routes->add('forgot-password', 'UsersController::forgotPassword');
+$routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersController::sendForgotPassword');
+
+// Association routes
+$routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
+$routes->post('/associations/update/', 'AssociationsController::update', ['filter' => 'authGuard']);
+
+// $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
+// $routes->post('/associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
+$routes->get('/associations/create', 'AssociationsController::create');
+$routes->post('/associations/store', 'AssociationsController::store');
+$routes->get('/associations/(:num)', 'AssociationsController::show/$1');
+
+$routes->get('/logout', 'Home::exit');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

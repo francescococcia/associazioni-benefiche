@@ -8,7 +8,14 @@ class AssociationModel extends Model{
 
   protected $table = 'associations';
 
-  protected $allowedFields = ['name', 'user_id', 'legal_address', 'tax_code'];
+  protected $allowedFields = [
+    'name',
+    'user_id',
+    'legal_address',
+    'tax_code',
+    'description',
+    'image'
+  ];
 
   public function login($email, $password)
   {
@@ -28,13 +35,28 @@ class AssociationModel extends Model{
 
     return false;
   }
-  
-  // Define a new method in model for associations
-public function getAssociationsWithUser()
-{
-    $builder = $this->db->table('associations');
-    $builder->join('users', 'users.id = associations.user_id');
-    return $builder->get()->getResult();
-}
 
+  public function getUserWithAssociation($userId)
+  {
+    $builder = $this->db->table('associations');
+    $builder->select('associations.id');
+    $builder->where('associations.user_id', $userId);
+    $query = $builder->get();
+    $row = $query->getRow();
+    return $row ? $row->id : null;
+  }
+
+  public function getAllAssociations()
+{
+  $db = \Config\Database::connect();
+
+    // Build the query to retrieve associations
+    $query = $db->table('associations')
+        ->join('users', 'users.id = associations.user_id')
+        ->select('associations.*, users.email')
+        ->where('users.is_platform_manager', true)
+        ->get();
+
+    return $query->getResultArray();
+}
 }

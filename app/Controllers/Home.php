@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\UserModel;
+use App\Models\AssociationModel;
 
 class Home extends BaseController
 {
@@ -14,6 +15,10 @@ class Home extends BaseController
     $isLoggedIn = session()->get('isLoggedIn');
     $data['isLoggedIn'] = $isLoggedIn;
     $data['userData'] = $userData;
+
+    $associationModel = new AssociationModel();
+    $associations = $associationModel->findAll();
+    $data['associations'] = $associations;
 
     return view('Home/index', $data);
   }
