@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/associazioni-benefiche';
+    public $baseURL = BASE.'/associazioni-benefiche';
 
     /**
      * --------------------------------------------------------------------------
