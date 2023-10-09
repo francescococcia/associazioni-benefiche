@@ -22,6 +22,7 @@ class ReportsController extends BaseController
       'name' => $this->request->getPost('name'),
       'email' => $this->request->getPost('email'),
       'message' => $this->request->getPost('message'),
+      'is_read' => false,
       'created_at' => date('Y-m-d H:i:s')
     ];
 

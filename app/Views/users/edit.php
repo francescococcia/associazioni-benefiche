@@ -27,17 +27,17 @@
 
                 <div class="form-group ">
                   <label for="last_name">Cognome</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="last_name" value="<?= $userData['last_name']; ?>" required>
+                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="last_name" value="<?= $userData['last_name']; ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="phone_number">Telefono</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="phone_number" value="<?= $userData['phone_number']; ?>" required>
+                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="phone_number" value="<?= $userData['phone_number']; ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="birth_date">Data di nascita</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="date" name="birth_date" value="<?= $userData['birth_date']; ?>" required>
+                  <input class="form-control mb-lg-3 pt-lg-0" type="date" name="birth_date" value="<?= $userData['birth_date']; ?>">
                 </div>
 
                 <div class="form-group">

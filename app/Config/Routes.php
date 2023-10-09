@@ -46,6 +46,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
   $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
   $routes->get('reports', 'ReportsController::index', ['filter' => 'authGuard']);
   $routes->post('report/delete/(:num)', 'ReportsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('report/readReport/(:num)', 'ReportsController::readReport/$1', ['filter' => 'authGuard']);
+  $routes->post('report/readReport/(:num)', 'ReportsController::readReport/$1', ['filter' => 'authGuard']);
 });
 
 $routes->get('/', 'Home::index');

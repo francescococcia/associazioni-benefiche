@@ -7,11 +7,12 @@
     <table>
       <thead>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Messaggio</th>
-            <th>Action</th>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Messaggio</th>
+          <th>Data</th>
+          <th>Azioni</th>
         </tr>
       </thead>
       <tbody>
@@ -21,34 +22,69 @@
             <td><?= $report['name'] ?></td>
             <td><?= $report['email'] ?></td>
             <td><?= $report['message'] ?></td>
-            <td>
+            <td><?php echo date('d/m/y', strtotime($report['created_at'])); ?></td>
+            <td class="row">
+              <div class="col-3">
 
-              <form action="<?= site_url('admin/report/delete/' . $report['id']) ?>" method="post" id="form_<?= $report['id'] ?>">
-                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $report['id'] ?>">Rimuovi</button>
-              </form>
+                <form action="<?= site_url('admin/report/delete/' . $report['id']) ?>" method="post" id="form_<?= $report['id'] ?>">
+                  <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $report['id'] ?>">Rimuovi</button>
+                </form>
 
-              <!-- Bootstrap Modal -->
-              <div class="modal fade" id="confirmationModal<?= $report['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Sei sicuro di voler rimuovere l'elemento?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                        <button type="button" class="btn btn-danger" onclick="deleteRow(<?= $report['id'] ?>)" id="confirmDelete<?= $report['id'] ?>">
-                            Rimuovi
-                        </button>
+                <!-- Bootstrap Modal -->
+                <div class="modal fade" id="confirmationModal<?= $report['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          Sei sicuro di voler rimuovere l'elemento?
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                          <button type="button" class="btn btn-danger" onclick="deleteRow(<?= $report['id'] ?>)" id="confirmDelete<?= $report['id'] ?>">
+                              Rimuovi
+                          </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <?php if (!$report['is_read']) : ?>
+                <div class="col-5">
+                  <form action="<?= site_url('admin/report/readReport/' . $report['id']) ?>" method="post"
+                    id="form_report<?= $report['id'] ?>">
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#readModal<?= $report['id'] ?>">Contrassegna</button>
+                  </form>
+
+                  <!-- Bootstrap Modal -->
+                  <div class="modal fade" id="readModal<?= $report['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="readModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="readModalLabel">Contrassegna come letto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Cliccando su contrassegna, invierai una mail all'untente per informarlo della presa visione della segnalazione
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn btn-primary" onclick="readReport(<?= $report['id'] ?>)" id="confirmRead<?= $report['id'] ?>">
+                                Contassegna
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endif; ?>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -62,6 +98,14 @@
     function deleteRow(id) {
       // Construct the form ID based on the user ID
       var formId = 'form_' + id;
+
+      // Submit the form with the constructed ID
+      document.getElementById(formId).submit();
+    }
+
+    function readReport(id) {
+      // Construct the form ID based on the user ID
+      var formId = 'form_report' + id;
 
       // Submit the form with the constructed ID
       document.getElementById(formId).submit();

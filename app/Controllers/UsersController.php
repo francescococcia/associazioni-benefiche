@@ -37,20 +37,6 @@ class UsersController extends BaseController
     $session = session();
     $userId = $session->get('id');
 
-    // Validate the input
-    $validationRules = [
-        'email' => 'required|valid_email',
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'phone_number' => 'required',
-        'birth_date' => 'required',
-        'password' => 'matches[confirm_password]'
-    ];
-    if (!$this->validate($validationRules)) {
-        $validationErrors = $this->validator->getErrors();
-        return redirect()->back()->withInput()->with('errors', $validationErrors);
-    }
-
     $email = $this->request->getVar('email');
     $first_name = $this->request->getVar('first_name');
     $last_name = $this->request->getVar('last_name');
@@ -60,11 +46,11 @@ class UsersController extends BaseController
 
     // Update the user data
     $userData = [
-        'email' => $email,
-        'first_name' => $first_name,
-        'last_name' => $last_name,
-        'phone_number' => $phone_number,
-        'birth_date' => $birth_date
+      'email' => $email,
+      'first_name' => $first_name,
+      'last_name' => $last_name,
+      'phone_number' => $phone_number,
+      'birth_date' => $birth_date
     ];
 
     // Update the password if provided
@@ -143,7 +129,7 @@ class UsersController extends BaseController
       $to = $user['email'];
       $subject = 'Reimposta Password';
       $message = 'Clicca sul seguente link per reimpostare la password: ' . $resetUrl;
-      sendMail($to, $subject, $message);
+      sendMailOld($to, $subject, $message);
       return redirect()->back()->with('success', 'Il link per la reimpostazione della password è stato inviato al vostro indirizzo e-mail.');
     } else {
         return redirect()->back()->with("error', 'Errore nell'invio della mail.")->withInput();

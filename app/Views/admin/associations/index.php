@@ -14,7 +14,7 @@
               <th>Indirizzo</th>
               <th>Codice Fiscale</th>
               <th>Descrizione</th>
-              <th>Action</th>
+              <th>Azioni</th>
           </tr>
         </thead>
         <tbody>

@@ -8,7 +8,7 @@ class ReportModel extends Model
 {
   protected $table = 'reports';
   protected $primaryKey = 'id';
-  protected $allowedFields = ['name', 'email', 'message', 'created_at'];
+  protected $allowedFields = ['name', 'email', 'message', 'is_read','created_at'];
 
   public function getAllReports()
   {

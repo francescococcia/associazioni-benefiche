@@ -13,7 +13,7 @@
               <th>Numero Telefonico</th>
               <th>Data di Nascita</th>
               <th>Email</th>
-              <th>Action</th>
+              <th>Azioni</th>
           </tr>
         </thead>
         <tbody>
