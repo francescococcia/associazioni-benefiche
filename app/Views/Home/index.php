@@ -3,9 +3,15 @@
   <head>
     <?= $this->include('Layout/partial/head'); ?>
     <title>Home</title>
+    <style>
+      .alert {
+        margin-bottom: 0;
+      }
+    </style>
   </head>
   <body>
     <?= $this->include('Layout/partial/navbar'); ?>
+    <?= $this->include('Layout/partial/messages'); ?>
 
     <!-- Preloader -->
     <div id="page-loading-blocs-notifaction" class="page-preloader" style="background:#FFFFFF url(<?php echo base_url('public/img/ug_classe_bambini_1.webp'); ?>) no-repeat center center;animation-name: preloader-fade"></div>

@@ -14,7 +14,8 @@ class AssociationModel extends Model{
     'legal_address',
     'tax_code',
     'description',
-    'image'
+    'image',
+    'link'
   ];
 
   public function login($email, $password)

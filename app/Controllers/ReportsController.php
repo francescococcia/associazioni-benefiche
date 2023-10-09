@@ -23,17 +23,17 @@ class ReportsController extends BaseController
       'email' => $this->request->getPost('email'),
       'message' => $this->request->getPost('message'),
       'created_at' => date('Y-m-d H:i:s')
-  ];
+    ];
 
     // Insert the data into the database
     $reportModel->insert($data);
     $session = session();
-    $session->setFlashdata('success', 'Segnalazione inviata.');
+    // $session->setFlashdata('msg', 'Segnalazione inviata.');
 
     // Redirect back to the current page
-    return redirect()->back();
+    // return redirect()->back();
 
     // Redirect to a success page or display a success message
-    // return redirect()->to('/dashboard')->with('success', 'Report submitted successfully');
+    return redirect()->to('/')->with('success', 'Segnalazione inviata.');
   }
 }

@@ -13,16 +13,23 @@
         <div class="col-md-3 col-sm-6 offset-lg-3">
           <div class="card">
             <div class="card-body">
+              <div class="text-center mb-4">
+                <h3><strong><?= $association['name']; ?></strong></h3>
+              </div>
               <picture>
                 <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
                   data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                  class="img-fluid float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload"
+                  class="img-fluid float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload mb-5"
                   alt="<?php echo $association['image']; ?>" width="350" height="350">
               </picture>
-              <h3><strong><?= $association['name']; ?></strong></h3>
-              <p><strong>Indirizzo:</strong> <?= $association['legal_address']; ?></p>
+              <p><strong>Sede Legale:</strong> <?= $association['legal_address']; ?></p>
               <p><strong>Codice Fiscale:</strong> <?= $association['tax_code']; ?></p>
               <p><strong>Descrizione:</strong> <?= $association['description']; ?></p>
+              <?php if ($association['link']) : ?>
+                <p><strong>Link:</strong> <a href='<?= $association['link']; ?>'><?= $association['link']; ?></a></p>
+                <?php else : ?>
+                  <p><strong>Link:</strong> Link non presente</p>
+              <?php endif; ?>
             </div>
           </div>
         </div>

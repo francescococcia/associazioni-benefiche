@@ -125,7 +125,7 @@ class AssociationsController extends BaseController
 
         // Create the upload directory if it doesn't exist
         if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 0777, true);
+          mkdir($config['upload_path'], 0777, true);
         }
 
         // Move the uploaded file to the destination directory
@@ -134,31 +134,44 @@ class AssociationsController extends BaseController
 
           $imagePath = $image->getName();
 
-            // Save the image path to the database
-            $associationData = [
-              'name' => $this->request->getVar('name'),
-              'legal_address' => $this->request->getVar('legal_address'),
-              'tax_code' => $this->request->getVar('tax_code'),
-              'description' => $this->request->getVar('description'),
-              'image' => $image->getName(), // Salva solo il nome del file senza l'identificatore
-            ];
+          // Save the image path to the database
+          $associationData = [
+            'name' => $this->request->getVar('name'),
+            'legal_address' => $this->request->getVar('legal_address'),
+            'tax_code' => $this->request->getVar('tax_code'),
+            'description' => $this->request->getVar('description'),
+            'link' => $this->request->getVar('link'),
+            'image' => $image->getName(), // Salva solo il nome del file senza l'identificatore
+          ];
 
-            $associationModel->update($association['id'], $associationData);
+          $associationModel->update($association['id'], $associationData);
 
-            $session->setFlashdata('success', 'Informazioni aggiornate.');
+          $session->setFlashdata('success', 'Informazioni aggiornate.');
 
           return redirect()->to('/profile-manager');
             // return redirect()->to('/dashboard')->with('success', 'Association created successfully!');
         } else {
-            // File upload failed
-            $error = $image->getErrorString();
-            // Handle the error
-            return redirect()->back()->with('error', 'File upload failed: ' . $error);
+          // File upload failed
+          $error = $image->getErrorString();
+          // Handle the error
+          return redirect()->back()->with('error', 'File upload failed: ' . $error);
         }
+      } else {
+        // Save the image path to the database
+        $associationData = [
+          'name' => $this->request->getVar('name'),
+          'legal_address' => $this->request->getVar('legal_address'),
+          'tax_code' => $this->request->getVar('tax_code'),
+          'description' => $this->request->getVar('description'),
+          'link' => $this->request->getVar('link'),
+        ];
+
+        $associationModel->update($association['id'], $associationData);
+
+        $session->setFlashdata('success', 'Informazioni aggiornate.');
+
+        return redirect()->to('/profile-manager');
       }
-
-
-    // return redirect()->to('/associations')->with('success', 'Association updated successfully');
   }
 
   public function submitReport()

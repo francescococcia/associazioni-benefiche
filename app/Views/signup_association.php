@@ -39,6 +39,17 @@
                 </div>
 
                 <div class="form-group">
+                  <label>Link Associazione</label>
+                  <input
+                    name="link"
+                    placeholder="Inserisci il link"
+                    class="form-control mb-lg-3 pt-lg-0"
+                    type="text"
+                    value="<?= set_value('legal_address') ?>"
+                  >
+                </div>
+
+                <div class="form-group">
                   <label>Email</label>
                   <input
                     name="email"
@@ -73,9 +84,16 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="image" class="form-label">Image</label>
+                  <label for="image" class="form-label">Immagine</label>
                   <div class="input_container">
-                    <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png, .gif">
+                  <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
+                    <input
+                      type="file"
+                      id="choose-file"
+                      name="image"
+                      accept=".jpg, .jpeg, .png, .gif"
+                      style="visibility:hidden;width:0"
+                      required>
                   </div>
                 </div>
 
@@ -93,5 +111,30 @@
       </div>
     </div>
   </div>
+  
+  <style>
+    .custom-file-upload{
+  /* border-right: 1px solid #ccc;  */
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom:0;
+}
+
+.custom-file-upload:hover{
+  background-color: bisque;
+}
+
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+$(document).ready(function () {
+	$('#choose-file').change(function () {
+		var i = $(this).prev('label').clone();
+		var file = $('#choose-file')[0].files[0].name;
+		$(this).prev('label').text(file);
+	}); 
+ });
+</script>
 
 <?= $this->endSection() ?>
