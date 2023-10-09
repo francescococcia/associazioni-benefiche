@@ -36,28 +36,32 @@ class UserModel extends Model{
   {
     $builder = $this->db->table('users');
     $builder->select('users.*');
-    $builder->where('users.is_platform_manager', false)->orWhere('is_platform_manager', false);
+    $builder->where('(is_platform_manager = false AND is_admin = false)');
     $query = $builder->get();
-    return $query->getResultArray();
+    if ($query->getNumRows() > 0) {
+      return $query->getResultArray();
+    } else {
+      return [];
+    }
   }
 
   public function getAllUsersCount()
   {
     $builder = $this->db->table('users');
     $builder->select('users.*');
-    $builder->where('users.is_platform_manager', false)->orWhere('is_platform_manager', false);
+    $builder->where('is_platform_manager', false);
+    $builder->where('is_admin', false);
     $count = $builder->countAllResults();
     return $count;
   }
 
   public function findByActivationToken($token)
   {
-      return $this->where('activation_token', $token)
-                  ->first(); // Assuming you want to find the first matching user
+    return $this->where('activation_token', $token)->first(); // Assuming you want to find the first matching user
   }
 
   public function findByResetToken($token)
   {
-      return $this->where('reset_token', $token)->first(); // Assuming you want to find the first matching user
+    return $this->where('reset_token', $token)->first(); // Assuming you want to find the first matching user
   }
 }

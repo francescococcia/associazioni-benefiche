@@ -8,9 +8,6 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        /* background-color: #F3E8D8; */
-        /* background-color: #FFFFC1; */
-        /* background-color: #F6F6F6; */
       }
 
       .page-container {
@@ -53,27 +50,6 @@
         align-items: flex-start;
         text-align: center;
       }
-
-      /* .l-bloc .navbar a{
-        color: #fff;
-        font-weight: bold;
-      }
-
-      .l-bloc .navbar a:hover{
-        color: #FFC1C1;
-      }
-
-      .navbar-light .navbar-nav .nav-link {
-        color: #fff;
-      }
-
-      .navbar-light .navbar-nav .nav-link:hover {
-        color: #FFC1C1;
-      }
-
-      .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
-        color: #C1FFC1;
-      } */
 
       /* image */
       .input_container {

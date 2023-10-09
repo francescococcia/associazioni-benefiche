@@ -27,6 +27,6 @@ class UsersController extends BaseController
     // Delete the user
     $userModel->delete($userId);
 
-    return redirect()->back()->with('success', 'Utente cancellato.');
+    return redirect()->back()->with('success', 'Utente rimosso.');
   }
 }

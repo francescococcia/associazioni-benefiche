@@ -19,12 +19,12 @@
               <div class="card-body">
                 <div class="form-group">
                   <label>Nome Associazione</label>
-                  <input type="text" name="name" placeholder="Name" required="" value="<?= set_value('name') ?>" class="form-control mb-lg-3" >
+                  <input type="text" name="name" placeholder="Inserisci nome" required="" value="<?= set_value('name') ?>" class="form-control mb-lg-3" >
                 </div>
 
                 <div class="form-group">
                   <label>Codice Fiscale</label>
-                  <input type="text" name="tax_code" placeholder="Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
+                  <input type="text" name="tax_code" placeholder="Inserisci Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
                 </div>
 
                 <div class="form-group">
@@ -40,7 +40,14 @@
 
                 <div class="form-group">
                   <label>Email</label>
-                  <input name="email" placeholder="email" class="form-control mb-lg-3 pt-lg-0" type="email" value="<?= set_value('email') ?>" data-error-validation-msg="Not a valid email address" required="">
+                  <input
+                    name="email"
+                    placeholder="Inserisci email"
+                    class="form-control mb-lg-3 pt-lg-0"
+                    type="email"
+                    value="<?= set_value('email') ?>"
+                    data-error-validation-msg="Email non valida"
+                    required="">
                 </div>
 
                 <div class="form-group">
@@ -50,11 +57,18 @@
 
                 <div class="form-group">
                   <label>Conferma Password</label>
-                  <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
+                  <input
+                    type="password"
+                    name="confirmpassword"
+                    placeholder="Conferma Password"
+                    class="form-control mb-lg-3 pt-lg-0"
+                    required
+                    data-validation-passwordagain-message='Password non corrisponde'
+                  >
                 </div>
 
                 <div class="mb-3">
-                  <label for="description" class="form-label">Description</label>
+                  <label for="description" class="form-label">Descrizione</label>
                   <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                 </div>
 

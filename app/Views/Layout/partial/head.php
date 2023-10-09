@@ -12,3 +12,4 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/animate.min.css') ?>"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/bootstrap.min.css') ?>"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/style.css') ?>"/>
+<link rel="stylesheet" type="text/css" href="<?= base_url('public/css/default.css') ?>"/>

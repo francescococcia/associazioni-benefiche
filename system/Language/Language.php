@@ -110,9 +110,9 @@ class Language
 
         // if still not found, try English
         if ($output === null) {
-            [$file, $parsedLine] = $this->parseLine($line, 'en');
+            [$file, $parsedLine] = $this->parseLine($line, 'it');
 
-            $output = $this->getTranslationOutput('en', $file, $parsedLine);
+            $output = $this->getTranslationOutput('it', $file, $parsedLine);
         }
 
         $output ??= $line;

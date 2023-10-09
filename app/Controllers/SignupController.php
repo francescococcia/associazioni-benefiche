@@ -47,21 +47,30 @@ class SignupController extends Controller
         'activation_token' => $activationToken,
         'is_active' => false,
       ];
-      
+
       $activationLink = base_url("/activate-account/{$activationToken}");
+
 
       if($userModel->save($data)){
         $firstName = $this->request->getVar('first_name');
         $to = $this->request->getVar('email');
         $subject = 'Conferma Iscrizione';
-        $message = 'Benvenuto ' . $firstName . ",\nclicca questo link per accedere: \n\n{$activationLink}";
 
-        sendMail($to, $subject, $message);
-        return redirect()->to('/signin')->with('success', 'Iscrizione effettuata!');
+        $viewName = 'activation_template'; // This should match the name of your view file without the file extension
+        $data = [
+          'firstName' => $firstName,
+          'activationLink' => $activationLink,
+        ];
+
+        sendMail($to, $subject, $viewName, $data);
+        return redirect()->to('/signin')->with(
+          'success',
+          'Iscrizione effettuata. Controlla l\'email per attivare l\'account'
+        );
       }
 
     } else {
-      $data['validation'] = $this->rules;
+      $data['validation'] = $this->validator;
       echo view('signup', $data);
     }
   }

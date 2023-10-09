@@ -1,6 +1,6 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-<div class="content mb-5">
+  <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
         <h1>Tutti i prodotti</h1>
@@ -10,11 +10,11 @@
             <div class="col">
               <a
                 class="btn btn-clean btn-c-4129 btn-rd"
-                href="<?php echo base_url();?>/store/new">Aggiungi Prodotto</a>
+                href="<?php echo base_url();?>/store/new">Inserisci Prodotto</a>
             </div>
           </div>
           <?php else: ?>
-            <p class="big-paragraph">Partecipa ad un evento</p>
+            <p class="big-paragraph">Acquista un prodotto</p>
           <?php endif; ?>
       </div>
 
@@ -37,7 +37,7 @@
           </div>
         <?php endforeach; ?>
       <?php else : ?>
-        <p>Nessun evento trovato.</p>
+        <p>Nessun prodotto inserito.</p>
       <?php endif; ?>
     </div>
   </div>

@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AssociationModel;
+use App\Models\EventModel;
+use App\Models\ProductModel;
+
 use CodeIgniter\Files\UploadedFile;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -15,6 +18,9 @@ class AssociationsController extends BaseController
   {
     // Assuming you have a model named AssociationModel
     $associationModel = new AssociationModel();
+    $eventModel = new EventModel();
+    $productModel = new ProductModel();
+
     $association = $associationModel->find($id);
 
     if (!$association) {
@@ -22,8 +28,12 @@ class AssociationsController extends BaseController
       return redirect()->to('/associations')->with('error', 'Association not found.');
     }
 
+    $userId = $association['user_id'];
+
     // Pass the association data to the view
     $data['association'] = $association;
+    $data['events'] = $eventModel->getAllEventsByPlatformManager($userId);
+    $data['products'] = $productModel->getAllProductsByPlatformManager($userId);
     return view('associations/show', $data);
   }
 

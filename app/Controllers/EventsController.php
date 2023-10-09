@@ -47,6 +47,7 @@ class EventsController extends Controller
 
   public function create()
   {
+    helper(['form']);
     $data = [];
     $session = session();
     $userId = session()->get('id');
@@ -67,12 +68,12 @@ class EventsController extends Controller
         $model = new EventModel();
 
         $data = [
-            'association_id' => $this->request->getPost('association_id'),
-            'title' => $this->request->getPost('title'),
-            'category' => $this->request->getPost('category'),
-            'description' => $this->request->getPost('description'),
-            'date' => $this->request->getPost('date'),
-            'location' => $this->request->getPost('location'),
+          'association_id' => $this->request->getPost('association_id'),
+          'title' => $this->request->getPost('title'),
+          'category' => $this->request->getPost('category'),
+          'description' => $this->request->getPost('description'),
+          'date' => $this->request->getPost('date'),
+          'location' => $this->request->getPost('location'),
         ];
 
         $model->save($data);
@@ -80,11 +81,9 @@ class EventsController extends Controller
         return redirect()->to('/events');
       } else {
         $data['validation'] = $this->validator;
+        echo view('events/new', $data);
       }
     }
-    $data = $session->get();
-    $session->setFlashdata('msg', 'Errors.');
-    return view('events/new', $data);
   }
 
   public function show($id)

@@ -32,44 +32,43 @@ class ProductsController extends Controller
     // Load the user model
     $association_model = new AssociationModel();
     $associationId = $association_model->getUserWithAssociation($userId);
-    $data['session'] = $associationId;
-    echo view('products/new', ['association_id' => $associationId]);
+    $data['association_id'] = $associationId;
+
+    return view('products/new', $data);
   }
 
   public function create()
   {
+    helper(['form']);
     $data = [];
     $session = session();
 
-    if ($this->request->getMethod() == 'post') {
-      $rules = [
-        'name' => 'required|min_length[3]|max_length[255]',
-        'description' => 'required',
-        'price' => 'required',
-        'quantity' => 'required'
+    $rules = [
+      'name' => 'required|min_length[3]|max_length[255]',
+      'description' => 'required',
+      'price' => 'required',
+      'quantity' => 'required'
+    ];
+
+    if ($this->validate($rules)) {
+      $model = new ProductModel();
+
+      $data = [
+        'association_id' => $this->request->getPost('association_id'),
+        'name' => $this->request->getPost('name'),
+        'description' => $this->request->getPost('description'),
+        'price' => $this->request->getPost('price'),
+        'quantity' => $this->request->getPost('quantity'),
       ];
 
-      if ($this->validate($rules)) {
-        $model = new ProductModel();
-
-        $data = [
-          'association_id' => $this->request->getPost('association_id'),
-          'name' => $this->request->getPost('name'),
-          'description' => $this->request->getPost('description'),
-          'price' => $this->request->getPost('price'),
-          'quantity' => $this->request->getPost('quantity'),
-        ];
-
-        $model->save($data);
-        $session->setFlashdata('message', 'Event created successfully!');
-        return redirect()->to('/store');
-      } else {
-        $data['validation'] = $this->validator;
-      }
+      $model->save($data);
+      // $session->setFlashdata('message', 'Event created successfully!');
+      return redirect()->to('/store')->with('success','Evento creato');
+    } else {
+      $data['association_id'] = $this->request->getPost('association_id');
+      $data['validation'] = $this->validator;
+      echo view('products/new', $data);
     }
-    $data = $session->get();
-    $session->setFlashdata('msg', 'Errors.');
-    return view('products/new', $data);
   }
 
   public function show($id) {

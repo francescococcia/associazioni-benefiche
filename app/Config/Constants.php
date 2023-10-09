@@ -93,5 +93,10 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 
+
+if (!isset($_SERVER['HTTP_HOST'])) {
+  $_SERVER['HTTP_HOST'] = 'localhost';
+}
+
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://'.$_SERVER['HTTP_HOST'] : 'http://'.$_SERVER['HTTP_HOST'];
 defined('BASE') || define('BASE',$protocol);

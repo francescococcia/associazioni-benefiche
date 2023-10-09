@@ -19,6 +19,17 @@
   </div>
 <?php endif; ?>
 
+<?php if (!empty($validation) && $validation->getErrors()): ?>
+  <div class="alert alert-danger alert-dismissible">
+    <ul>
+      <?php foreach ($validation->getErrors() as $error): ?>
+          <li><?= esc($error) ?></li>
+      <?php endforeach; ?>
+    </ul>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<?php endif; ?>
+
 <style>
 
   .closebtn {

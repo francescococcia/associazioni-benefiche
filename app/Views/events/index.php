@@ -10,7 +10,7 @@
             <div class="col">
               <a
                 class="btn btn-clean btn-c-4129 btn-rd"
-                href="<?php echo base_url();?>/events/new">Aggiungi evento</a>
+                href="<?php echo base_url();?>/events/new">Inserisci evento</a>
             </div>
           </div>
           <?php else: ?>
@@ -37,7 +37,7 @@
           </div>
         <?php endforeach; ?>
       <?php else : ?>
-        <p>Nessun evento trovato.</p>
+        <p>Nessun evento inserito.</p>
       <?php endif; ?>
     </div>
   </div>

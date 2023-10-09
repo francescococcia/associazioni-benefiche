@@ -6,20 +6,20 @@
     <div>
       <h2>Associazioni</h2>
       <table>
-      <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Indirizzo</th>
-            <th>Codice Fiscale</th>
-            <th>Descrizione</th>
-            <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($associations as $association): ?>
+        <thead>
           <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Indirizzo</th>
+              <th>Codice Fiscale</th>
+              <th>Descrizione</th>
+              <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($associations as $association): ?>
+            <tr>
               <td><?= $association['id'] ?></td>
               <td><?= $association['name'] ?></td>
               <td><?= $association['email'] ?></td>
@@ -28,12 +28,12 @@
               <td><?= $association['description'] ?></td>
               <td>
 
-                <form action="<?= site_url('admin/users/delete/' . $association['user_id']) ?>" method="post" id="form_<?= $association['user_id'] ?>">
-                  <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $association['user_id'] ?>">Rimuovi</button>
+                <form action="<?= site_url('admin/associations/delete/' . $association['id']) ?>" method="post" id="form_<?= $association['id'] ?>">
+                  <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $association['id'] ?>">Rimuovi</button>
                 </form>
 
                 <!-- Bootstrap Modal -->
-                <div class="modal fade" id="confirmationModal<?= $association['user_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirmationModal<?= $association['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -46,17 +46,17 @@
                           Sei sicuro di voler rimuovere l'elemento?
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                          <button type="button" class="btn btn-danger" onclick="deleteRow(<?= $association['user_id'] ?>)" id="confirmDelete<?= $association['user_id'] ?>">
-                              Rimuovi
-                          </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteRow(<?= $association['id'] ?>)" id="confirmDelete<?= $association['id'] ?>">
+                            Rimuovi
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </td>
-          </tr>
-        <?php endforeach; ?>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>

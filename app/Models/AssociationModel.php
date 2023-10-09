@@ -47,16 +47,16 @@ class AssociationModel extends Model{
   }
 
   public function getAllAssociations()
-{
-  $db = \Config\Database::connect();
-
-    // Build the query to retrieve associations
-    $query = $db->table('associations')
-        ->join('users', 'users.id = associations.user_id')
+  {
+    $query =
+      $this
+        ->db
+        ->table('associations')
+        ->join('users', 'associations.user_id = users.id')
         ->select('associations.*, users.email')
         ->where('users.is_platform_manager', true)
         ->get();
 
     return $query->getResultArray();
-}
+  }
 }

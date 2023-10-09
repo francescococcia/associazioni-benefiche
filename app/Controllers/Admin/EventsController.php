@@ -38,6 +38,6 @@ class EventsController extends BaseController
     $eventModel->delete($eventId);
 
     // Redirect or show a success message
-    return redirect()->back()->with('success', 'Evento cancellato.');
+    return redirect()->back()->with('success', 'Evento rimosso.');
   }
 }

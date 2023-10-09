@@ -12,28 +12,36 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form action="<?php echo base_url(); ?>/ProductsController/create" method="post">
+          <form action="<?php echo base_url(); ?>/ProductsController/create" method="post" data-form-type="blocs-form" novalidate="">
           <input type="hidden" name="association_id" value="<?= $association_id ?>">
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
                   <label for="name" ></label>Titolo</label>
-                  <input class="form-control" type="text" name="name" value="<?= set_value('name') ?>">
+                  <input
+                    minlength="3"
+                    class="form-control"
+                    required
+                    type="text"
+                    name="name"
+                    value="<?= set_value('name') ?>"
+                    data-validation-minlength-message="Il titolo deve essere almeno di '3' caratteri"
+                  >
                 </div>
 
                 <div class="form-group">
                   <label for="description">Descrizione</label>
-                  <textarea class="form-control" name="description"><?= set_value('description') ?></textarea>
+                  <textarea class="form-control" required name="description"><?= set_value('description') ?></textarea>
                 </div>
 
                 <div class="form-group">
                   <label for="price">Prezzo</label>
-                  <input class="form-control" type="number" name="price" value="<?= set_value('price') ?>">
+                  <input class="form-control" required type="number" name="price" value="<?= set_value('price') ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="quantity">Quantità</label>
-                  <input class="form-control" type="number" name="quantity" value="<?= set_value('quantity') ?>">
+                  <input class="form-control" required type="number" name="quantity" value="<?= set_value('quantity') ?>">
                 </div>
 
                 <div class="text-center">

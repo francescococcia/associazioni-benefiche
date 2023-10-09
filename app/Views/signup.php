@@ -53,13 +53,23 @@
 
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
+                    <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0"
+                        required minlength="4"
+                        data-validation-minlength-message="La password deve essere almeno di '4' caratteri">
                   </div>
 
                   <div class="form-group">
-                    <label>Conferma Password</label>
-                    <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control mb-lg-3 pt-lg-0" required="">
+                      <label>Conferma Password</label>
+                      <input
+                        type="password"
+                        name="confirmpassword"
+                        placeholder="Conferma Password"
+                        class="form-control mb-lg-3 pt-lg-0"
+                        required
+                        data-validation-passwordagain-message='Password non corrisponde'
+                      >
                   </div>
+
                   <div class="form-check">
                     <!-- <input class="form-check-input" type="checkbox" id="optin_49815_18619" data-validation-minchecked-minchecked="1" name="optin_49815"> -->
                     <!-- <label class="form-check-label">
@@ -79,5 +89,18 @@
 			</div>
 		</div>
 	</div>
-  
+
+  <script>
+    function checkPasswordMatch(input) {
+        var password = document.querySelector('input[name="password"]').value;
+        var confirmPassword = input.value;
+
+        if (password !== confirmPassword) {
+            input.setCustomValidity("Le password non corrispondono");
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+</script>
+
 <?= $this->endSection() ?>

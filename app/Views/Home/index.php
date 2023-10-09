@@ -87,12 +87,12 @@
             <div class="container bloc-no-padding">
               <div class="row mb-lg-5 mt-lg-5">
                 <div class="col-md-12 col-lg-6 offset-lg-1">
-                <picture>
-                  <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                    data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                    class="img-fluid img-style float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload"
-                    alt="<?php echo $association['image']; ?>" width="500" height="450">
-                </picture>
+                  <picture>
+                    <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                      data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                      class="img-fluid img-style float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload"
+                      alt="<?php echo $association['image']; ?>" width="500" height="450">
+                  </picture>
                 </div>
                 <div class="align-self-center offset-md-1 col-md-10 col-sm-10 offset-sm-1 offset-1 col-10 col-lg-4 offset-lg-0">
                   <h1 class="mg-md h1-style">

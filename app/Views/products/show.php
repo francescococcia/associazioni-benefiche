@@ -20,7 +20,9 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button class="btn btn-md btn-clean btn-c-4129 btn-rd mt-3" type="submit">Aggiungi al Carrello</button>
+                    <button class="btn btn-md btn-clean btn-c-4129 btn-rd mt-3" type="submit">
+                      Inserisci nel Carrello
+                    </button>
                   </div>
                 </form>
               </div>

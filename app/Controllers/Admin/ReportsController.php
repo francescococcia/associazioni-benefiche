@@ -27,6 +27,6 @@ class ReportsController extends BaseController
     // Delete the user
     $reportModel->delete($reportId);
 
-    return redirect()->back()->with('success', 'Segnalazione cancellata.');
+    return redirect()->back()->with('success', 'Segnalazione rimossa.');
   }
 }

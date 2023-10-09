@@ -13,25 +13,27 @@
       <div id="main-content" class="container allContent-section mt-5 py-4">
         <div>
           <?php if (!empty($selectedProducts)): ?>
-          <table>
-            <thead>
-              <tr>
-                  <th>Associazione</th>
-                  <th>Ricavato</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($selectedProducts as $product): ?>
+            <table>
+              <thead>
+                <tr>
+                    <th>Associazione</th>
+                    <th>Ricavato</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($selectedProducts as $product): ?>
                   <tr>
-                      <td><?= $product['association_name'] ?></td>
-                      <td><?= $product['total_price'] ?>€</td>
+                    <td><?= $product['association_name'] ?></td>
+                    <td><?= $product['total_price'] ?>€</td>
                   </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
           <?php else: ?>
+            <div class="row justify-content-center">
             <p>Nessuna transazione presente</p>
-        <?php endif; ?>
+            </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
