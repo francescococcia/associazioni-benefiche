@@ -20,27 +20,31 @@
           </div>
         <?php endif; ?>
       </div>
-
-    </div>
-  </div>
-
-  <div class="container offset-lg-3 mt-4 mb-4">
-    <div class="row justify-content-center">
-      <?php if ($joinedEvents) : ?>
-        <?php foreach ($joinedEvents as $event): ?>
-          <div class="col-auto mb-3">
-            <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                  <h5 class="card-title"><?php echo $event['title']; ?></h5>
-                  <p class="card-text">Descrizione: <?php echo $event['description']; ?></p>
-                  <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="card-link">Dettagli</a>
+      <div class="col-md-12 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="container mt-4 mb-4">
+              <div class="row justify-content-center">
+                <?php if ($joinedEvents) : ?>
+                  <?php foreach ($joinedEvents as $event): ?>
+                    <div class="col-md-12 mb-3">
+                        <h5><strong><?php echo $event['title']; ?></strong></h5>
+                        <div class="d-flex justify-content-between">
+                          <p class="mb-0">Luogo: <?php echo $event['location']; ?></p>
+                          <p class="mb-0">Data: <?php echo date('d/m/y', strtotime($event['date'])); ?></p>
+                          <a href="<?= site_url('events/detail/' . $event['id']) ?>" class="card-link">Dettagli</a>
+                        </div>
+                        <hr>
+                      </div>
+                  <?php endforeach; ?>
+                <?php else : ?>
+                  <p>Nessun evento trovato.</p>
+                <?php endif; ?>
               </div>
             </div>
           </div>
-        <?php endforeach; ?>
-      <?php else : ?>
-        <p>Nessun evento trovato.</p>
-      <?php endif; ?>
+        </div>
+      </div>
     </div>
   </div>
 

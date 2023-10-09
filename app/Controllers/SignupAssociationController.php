@@ -19,11 +19,11 @@ class SignupAssociationController extends Controller
   {
     helper(['form']);
     helper('email_helper');
-
+    $activationToken = bin2hex(random_bytes(32));
     $rules = [
-      'name'          => 'required|min_length[2]|max_length[50]',
-      'legal_address'   => 'required|min_length[2]|max_length[50]',
-      'tax_code'      => 'required|min_length[2]|max_length[50]',
+      'name'          => 'required|max_length[50]',
+      'legal_address'   => 'required|max_length[50]',
+      'tax_code'      => 'required|max_length[50]',
       'email'         => 'required|valid_email|is_unique[users.email]',
       'password'      => 'required|min_length[4]|max_length[50]',
       'confirmpassword'  => 'matches[password]'
@@ -38,13 +38,15 @@ class SignupAssociationController extends Controller
         'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
         'is_admin' => false,
         'is_platform_manager' => true,
+        'activation_token' => $activationToken,
+        'is_active' => false,
       ];
 
       $userId = $userModel->insert($userData);
 
       // Upload the image file
       // $image = $this->request->getFile('image');
-      $file = $request->getFile('image');
+      $file = $this->request->getFile('image');
 
       if ($file && $file->isValid()) {
         // Configure the upload settings
@@ -76,6 +78,7 @@ class SignupAssociationController extends Controller
               'legal_address' => $this->request->getVar('legal_address'),
               'tax_code' => $this->request->getVar('tax_code'),
               'description' => $this->request->getVar('description'),
+              'link' => $this->request->getVar('link'),
               'image' => $filename, // Salva solo il nome del file senza l'identificatore
           ];
 
@@ -87,7 +90,7 @@ class SignupAssociationController extends Controller
 
           $viewName = 'activation_template'; // This should match the name of your view file without the file extension
           $data = [
-            'name' => $name,
+            'firstName' => $name,
             'activationLink' => $activationLink,
           ];
 
@@ -99,15 +102,14 @@ class SignupAssociationController extends Controller
           );
         } else {
           // File upload failed
-          // $error = $image->getErrorString();
+          $error = $image->getErrorString();
           // Handle the error
-          // return redirect()->back()->with('error', 'File upload failed: ' . $error);
-          return redirect()->to('/signup-association')->with(
-            'error',
-            'Associazione creata. Controlla l\'email per attivare l\'account'
-          );
+          return redirect()->back()->with('error', 'File upload failed: ' . $error);
         }
       }
+    } else {
+      $data['validation'] = $this->validator;
+      echo view('signup-association', $data);
     }
   }
 }

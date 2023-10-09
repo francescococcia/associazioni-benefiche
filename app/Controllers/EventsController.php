@@ -57,7 +57,7 @@ class EventsController extends Controller
 
     if ($this->request->getMethod() == 'post') {
       $rules = [
-        'title' => 'required|min_length[3]|max_length[255]',
+        'title' => 'required|max_length[255]',
         'category' => 'required',
         'description' => 'required',
         'date' => 'required',
@@ -77,7 +77,7 @@ class EventsController extends Controller
         ];
 
         $model->save($data);
-        $session->setFlashdata('message', 'Evento creato!');
+        $session->setFlashdata('message', 'Evento inserito');
         return redirect()->to('/events');
       } else {
         $data['validation'] = $this->validator;

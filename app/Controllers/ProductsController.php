@@ -44,7 +44,7 @@ class ProductsController extends Controller
     $session = session();
 
     $rules = [
-      'name' => 'required|min_length[3]|max_length[255]',
+      'name' => 'required|max_length[255]',
       'description' => 'required',
       'price' => 'required',
       'quantity' => 'required'
@@ -63,7 +63,7 @@ class ProductsController extends Controller
 
       $model->save($data);
       // $session->setFlashdata('message', 'Event created successfully!');
-      return redirect()->to('/store')->with('success','Evento creato');
+      return redirect()->to('/store')->with('success','Prodotto inserito');
     } else {
       $data['association_id'] = $this->request->getPost('association_id');
       $data['validation'] = $this->validator;

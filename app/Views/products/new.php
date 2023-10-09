@@ -19,13 +19,11 @@
                 <div class="form-group">
                   <label for="name" ></label>Titolo</label>
                   <input
-                    minlength="3"
                     class="form-control"
                     required
                     type="text"
                     name="name"
                     value="<?= set_value('name') ?>"
-                    data-validation-minlength-message="Il titolo deve essere almeno di '3' caratteri"
                   >
                 </div>
 

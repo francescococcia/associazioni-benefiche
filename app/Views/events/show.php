@@ -94,30 +94,32 @@
                   <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>
                 </form>
               <?php else: ?>
-                <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
-                    <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
-                </form>
+                <?php if (session()->get('isPlatformManager')): ?>
+                  <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
+                      <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
+                  </form>
 
-                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        Sei sicuro di voler rimuovere l'elemento?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                  <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Sei sicuro di voler rimuovere l'elemento?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                          <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
+                <?php endif; ?>
               <?php endif; ?>
             </div>
           </div>

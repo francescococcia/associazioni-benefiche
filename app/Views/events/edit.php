@@ -16,7 +16,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="title" ></label>Title</label>
+                  <label for="title" ></label>Titolo</label>
                   <input class="form-control" type="text" name="title" value="<?= $event['title'] ?>">
                 </div>
 
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="description">Description</label>
+                  <label for="description">Descrizione</label>
                   <textarea class="form-control" name="description"><?= $event['description'] ?></textarea>
                 </div>
 

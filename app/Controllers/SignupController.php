@@ -25,10 +25,10 @@ class SignupController extends Controller
     helper(['form']);
     helper('email_helper');
     $rules = [
-      'first_name'          => 'required|min_length[2]|max_length[50]',
-      'last_name'          => 'required|min_length[2]|max_length[50]',
-      'phone_number'     => 'required|min_length[2]|max_length[50]|regex_match[/^[0-9]+$/]',
-      'birth_date'          => 'required|min_length[2]|max_length[50]',
+      'first_name'          => 'required|max_length[50]',
+      'last_name'          => 'required|max_length[50]',
+      'phone_number'     => 'required|max_length[50]|regex_match[/^[0-9]+$/]',
+      'birth_date'          => 'required|max_length[50]',
       'email'         => 'required|min_length[4]|max_length[100]|valid_email|is_unique[users.email]',
       'password'      => 'required|min_length[4]|max_length[50]',
       'confirmpassword'  => 'matches[password]'
