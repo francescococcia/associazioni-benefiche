@@ -19,7 +19,7 @@
               <picture>
                 <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
                   data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                  class="img-fluid float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload mb-5"
+                  class="img-fluid img-rd-lg lazyload mb-5 center"
                   alt="<?php echo $association['image']; ?>" width="350" height="350">
               </picture>
               <p><strong>Sede Legale:</strong> <?= $association['legal_address']; ?></p>
@@ -82,6 +82,14 @@
           </div>
         </div>
       </div>
-
   </div>
+
+  <style>
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 60%;
+    }
+  </style>
 <?= $this->endSection() ?>

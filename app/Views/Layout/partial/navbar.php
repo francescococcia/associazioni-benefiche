@@ -61,6 +61,7 @@
 
                     <?php if (!session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/cash">Visualizza Prodotti</a>
                     <?php endif; ?>
 
                     <?php if (session()->get('isAdmin')): ?>

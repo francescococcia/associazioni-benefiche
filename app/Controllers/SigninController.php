@@ -62,7 +62,7 @@ class SigninController extends Controller
         return redirect()->to('/signin');
       }
     } else {
-      $session->setFlashdata('msg', "Utente non trovato");
+      $session->setFlashdata('msg', "Utente non registrato.");
       return redirect()->to('/signin');
     }
   }

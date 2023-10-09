@@ -5,7 +5,7 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Eventi</h1>
         <?php if(session()->get('isPlatformManager')): ?>
-          <p class="big-paragraph">Visualizza gli eventi inserti</p>
+          <p class="big-paragraph">Visualizza gli eventi inseriti</p>
           <div class="row">
             <div class="col">
               <a

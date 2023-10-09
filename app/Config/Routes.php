@@ -96,6 +96,7 @@ $routes->get('product/edit/(:segment)', 'ProductsController::edit/$1', ['filter'
 $routes->post('product/update', 'ProductsController::update', ['filter' => 'authGuard']);
 $routes->get('cash-desk', 'ProductsController::cashDesk');
 $routes->post('product/delete/(:num)', 'ProductsController::delete/$1', ['filter' => 'authGuard']);
+$routes->get('/cash', 'ProductsController::cartProducts');
 
 // Partecipants routes
 $routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);

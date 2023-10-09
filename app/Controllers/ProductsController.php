@@ -63,7 +63,7 @@ class ProductsController extends Controller
 
       $model->save($data);
       // $session->setFlashdata('message', 'Event created successfully!');
-      return redirect()->to('/store')->with('success','Prodotto inserito');
+      return redirect()->to('/store')->with('success','Prodotto inserito.');
     } else {
       $data['association_id'] = $this->request->getPost('association_id');
       $data['validation'] = $this->validator;
@@ -157,50 +157,6 @@ class ProductsController extends Controller
     // return redirect()->to('/products/detail/'.$productId)->with('message', 'Products bought successfully!');
   }
 
-  public function cashDesk3(){
-    // Get the selected products (e.g., from a shopping cart or session variable)
-    $productModel = new ProductModel();
-    $userId = session()->get('id'); // get the ID of the currently logged-in user from the session
-    // Load the user model
-    $association_model = new AssociationModel();
-    $associationId = $association_model->getUserWithAssociation($userId);
-
-    $selectedProducts = $productModel->checkProductsSell($associationId);
-
-    // Retrieve the product details from the database using the ProductModel
-    // $productModel = new ProductModel();
-    // $products = [];
-
-    // foreach ($selectedProducts as $productId) {
-    //     $product = $productModel->find($productId);
-
-    //     if ($product) {
-    //         $products[] = $product;
-    //     }
-    // }
-
-    // // Calculate the total price and quantity
-    // $totalPrice = 0;
-    // $totalQuantity = 0;
-
-    // foreach ($products as $product) {
-    //     $quantity = $_POST['quantity'][$product['id']]; // Adjust this based on your form field names
-    //     $subtotal = $product['price'] * $quantity;
-
-    //     $totalPrice += $subtotal;
-    //     $totalQuantity += $quantity;
-    // }
-
-    // $data['products'] = $products;
-    // $data['totalPrice'] = $totalPrice;
-    // $data['totalQuantity'] = $totalQuantity;
-    // $data['selectedProducts'] = $selectedProducts;
-
-
-    // Load the checkout view
-    return view('products/cash_desk', $selectedProducts);
-  }
-  
   public function cashDesk() {
     $productModel = new ProductModel();
     $association_model = new AssociationModel();
@@ -234,5 +190,21 @@ class ProductsController extends Controller
 
     // Redirect or show a success message
     return redirect()->to('/store')->with('success', 'Prodotto cancellato.');
+  }
+
+  public function cartProducts()
+  {
+    $productModel = new ProductModel();
+    $associationModel = new AssociationModel();
+
+    // Assuming you have a function to retrieve the current user's ID
+    $userId = session()->get('id'); // Replace this with the actual method to get user ID
+    // $associationId = $associationModel->getUserWithAssociation($userId);
+    $products = $productModel->getCartProductsyUserId($userId);
+
+    $data['products'] = $products;
+
+    // Pass the data to the view
+    return view('products/cart_products', $data);
   }
 }

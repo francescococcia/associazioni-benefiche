@@ -5,7 +5,7 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Tutti i prodotti</h1>
         <?php if(session()->get('isPlatformManager')): ?>
-          <p class="big-paragraph">Visualizza i prodotti inserti</p>
+          <p class="big-paragraph">Visualizza i prodotti inseriti</p>
           <div class="row">
             <div class="col">
               <a

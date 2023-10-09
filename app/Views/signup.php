@@ -42,7 +42,7 @@
 
                   <div class="form-group">
                     <label>Data di nascinta</label>
-                    <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" value="<?= set_value('birth_date') ?>">
+                    <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" value="<?= set_value('birth_date') ?>" id='txtDate'>
                   </div>
 
                   <div class="form-group">
@@ -90,17 +90,26 @@
 		</div>
 	</div>
 
-  <script>
-    function checkPasswordMatch(input) {
-        var password = document.querySelector('input[name="password"]').value;
-        var confirmPassword = input.value;
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function(){
+   var dtToday = new Date();
 
-        if (password !== confirmPassword) {
-            input.setCustomValidity("Le password non corrispondono");
-        } else {
-            input.setCustomValidity('');
-        }
-    }
+   var month = dtToday.getMonth() + 1;
+   var day = dtToday.getDate();
+   var year = dtToday.getFullYear();
+   if(month < 10)
+       month = '0' + month.toString();
+   if(day < 10)
+       day = '0' + day.toString();
+
+   var maxDate = year + '-' + month + '-' + day;
+
+   // or instead:
+   // var maxDate = dtToday.toISOString().substr(0, 10);
+
+   $('#txtDate').attr('max', maxDate);
+});
 </script>
 
 <?= $this->endSection() ?>

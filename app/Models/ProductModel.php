@@ -59,4 +59,14 @@ class ProductModel extends Model
         return []; // Return an empty array if no results are found
     }
   }
+
+  public function getCartProductsyUserId($userId)
+  {
+    $builder = $this->db->table('products');
+    $builder->select('products.*');
+    $builder->join('orders', 'products.id = orders.product_id');
+    $builder->where('orders.user_id', $userId);
+
+    return $builder->get()->getResultArray();
+  }
 }

@@ -21,7 +21,7 @@ class UsersController extends BaseController
 
     // Check if the user exists
     if (!$userModel->find($userId)) {
-      return redirect()->back()->with('error', 'Utente non trovato.');
+      return redirect()->back()->with('error', 'Utente non registrato.');
     }
 
     // Delete the user
