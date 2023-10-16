@@ -44,7 +44,10 @@ class EventModel extends Model
 
   public function getIdParticipant($eventId)
   {
-    $builder = $this->db->table('participants')
+    $builder =
+      $this
+        ->db
+        ->table('participants')
         ->select('participants.id')
         ->where('participants.event_id',$eventId);
 

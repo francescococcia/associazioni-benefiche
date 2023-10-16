@@ -25,8 +25,8 @@ class App extends BaseConfig
      * @var string
      */
     // public $baseURL = BASE.'/associazioni-benefiche';
-    // public $baseURL = 'https://associazioni-benefiche.000webhostapp.com/';
-    public $baseURL = 'https://bespoke-puffpuff-4fdff3.netlify.app/';
+    public $baseURL = 'https://associazioni-benefiche.000webhostapp.com/';
+    // public $baseURL = 'https://bespoke-puffpuff-4fdff3.netlify.app/';
 
     /**
      * --------------------------------------------------------------------------

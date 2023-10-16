@@ -72,13 +72,13 @@ $routes->get('/feedbacks/create', 'FeedbacksController::create', ['filter' => 'a
 $routes->post('/feedbacks/store/(:num)', 'FeedbacksController::store/$1', ['filter' => 'authGuard']);
 
 // Events routes
-$routes->get('/events', 'EventsController::index', ['filter' => 'authGuard']);
-$routes->match(['get', 'post'], 'EventsController/create', 'EventsController::create',['filter' => 'authGuard']);
+$routes->get('/events', 'EventsController::index');
+$routes->match(['get', 'post'], 'events/create', 'EventsController::create',['filter' => 'authGuard']);
 $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
 $routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
 $routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
-$routes->get('/events/search', 'EventsController::search');
+// $routes->get('/events/search', 'EventsController::search');
 $routes->get('/joined-events', 'EventsController::joinedEvents');
 $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
 

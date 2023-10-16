@@ -12,7 +12,7 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-            <form action="<?php echo base_url(); ?>/EventsController/create" method="post" data-form-type="blocs-form" novalidate="">
+            <form action="<?php echo base_url(); ?>/events/create" method="post" data-form-type="blocs-form" novalidate="">
               <input type="hidden" name="association_id" value="<?= $association_id ?>">
               <div class="card">
                 <div class="card-body">
@@ -29,8 +29,9 @@
 
                   <div class="form-group">
                     <label for="description">Categoria</label>
-                    <select class='form-control search input-text' name="category" id="category" required>
-                      <option value='' selected disabled hidden>Seleziona tipologia</option>
+
+                    <select class='form-control search input-text' name="category" id="category" required >
+                      <option value=''>Seleziona tipologia</option>
                       <option value="feste e sagre">Feste e sagre</option>
                       <option value="serate di gala">Serate di gala</option>
                       <option value="spettacoli teatrali">Spettacoli teatrali</option>
@@ -47,8 +48,24 @@
 
                   <div class="form-group">
                     <label for="date">Data</label>
-                    <input class="form-control" required type="date" name="date" value="<?= set_value('date') ?>" id='txtDate'>
+                    <!-- <input
+                      class="form-control"
+                      required
+                      type="date"
+                      name="date"
+                      value="<#?= set_value('date') ?>"
+                      id='txtDate'
+                      pattern="\d{2}/\d{2}/\d{4}"> -->
+                      <input type="text" class="form-control">
+                      <!-- <input class="datepicker form-control" data-date-format="dd/mm/yyyy"> -->
                   </div>
+                  
+                  <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
 
                   <div class="form-group">
                     <label for="location">Luogo</label>
@@ -68,8 +85,59 @@
 			</div>
 		</div>
 	</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  
   <script>
+    $(document).ready(function () {
+      $(function () {
+   var bindDatePicker = function() {
+		$(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}
+		}).find('input:first').on("blur",function () {
+			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+			// update the format if it's yyyy-mm-dd
+			var date = parseDate($(this).val());
+
+			if (! isValidDate(date)) {
+				//create date based on momentjs (we have that)
+				date = moment().format('YYYY-MM-DD');
+			}
+
+			$(this).val(date);
+		});
+	}
+   
+   var isValidDate = function(value, format) {
+		format = format || false;
+		// lets parse the date to the best of our knowledge
+		if (format) {
+			value = parseDate(value);
+		}
+
+		var timestamp = Date.parse(value);
+
+		return isNaN(timestamp) == false;
+   }
+   
+   var parseDate = function(value) {
+		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+		if (m)
+			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+		return value;
+   }
+   
+   bindDatePicker();
+ });
+    })
+
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 $(function(){
    var dtToday = new Date();
    

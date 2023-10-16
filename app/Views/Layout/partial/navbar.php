@@ -12,27 +12,23 @@
 					<div class="collapse navbar-collapse navbar-38523">
 						<ul class="site-navigation nav navbar-nav ml-auto">
 
-							<?php if (session()->get('isLoggedIn')): ?>
-								<!-- <li class="nav-item <#?php echo (service('request')->uri->getSegment(1) === 'dashboard') ? 'active' : ''; ?>">
-									<a href="<$?php echo base_url();?>/dashboard" class="nav-link strokeme">Home</a>
-								</li> -->
-								<li class="nav-item">
-									<div class="dropdown-divider">
-									</div>
-								</li>
-                <?php if (!session()->get('isAdmin')): ?>
-                  <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
-                    <a href="<?php echo base_url();?>/events" class="nav-link strokeme">Eventi</a>
-                  </li>
-                <?php endif; ?>
-							<?php endif; ?>
+              <li class="nav-item">
+                <div class="dropdown-divider">
+                </div>
+              </li>
 
-							<?php if (!session()->get('isLoggedIn')): ?>
-								<li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events' &&
+              <?php if (!session()->get('isAdmin')): ?>
+                <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'events') ? 'active' : ''; ?>">
+                  <a href="<?php echo base_url();?>/events" class="nav-link strokeme">Eventi</a>
+                </li>
+              <?php endif; ?>
+
+							<!-- <#?php if (!session()->get('isLoggedIn')): ?>
+								<li class="nav-item <#?php echo (service('request')->uri->getSegment(1) === 'events' &&
 									service('request')->uri->getSegment(2) === 'search' || service('request')->uri->getSegment(1) === 'results') ? 'active' : ''; ?>">
-									<a href="<?php echo base_url();?>/events/search" class="nav-link strokeme">Cerca Eventi</a>
+									<a href="<#?php echo base_url();?>/events/search" class="nav-link strokeme">Cerca Eventi</a>
 								</li>
-							<?php endif; ?>
+							<#?php endif; ?> -->
 
               <?php if (session()->get('isLoggedIn') ): ?>
                 <?php if (!session()->get('isAdmin')): ?>

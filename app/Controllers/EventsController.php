@@ -13,13 +13,18 @@ class EventsController extends Controller
 {
   public function index()
   {
-    $model = new EventModel();
+    $eventModel = new EventModel();
     $userId = session()->get('id');
 
-    if(session()->get('isPlatformManager')){
-      $data['events'] = $model->getAllEventsByPlatformManager($userId);
+    $category = $this->request->getVar('category');
+
+
+    if(session()->get('isPlatformManager') && $category == ''){
+      $data['events'] = $eventModel->getAllEventsByPlatformManager($userId);
+    } else if($category != ''){
+      $data['events'] = $eventModel->like('category', $category)->findAll();
     } else {
-      $data['events'] = $model->orderBy('id', 'DESC')->findAll();
+      $data['events'] = $eventModel->orderBy('id', 'DESC')->findAll();
     }
 
     $participantModel = new ParticipantModel();
@@ -29,6 +34,20 @@ class EventsController extends Controller
       $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
       $event['userParticipated'] = $participant !== null;
     }
+    
+    //
+    // $events = []; // Initialize the $events array
+    // $category = $this->request->getVar('category');
+
+    // $eventModel = new EventModel();
+    // if($category != ''){
+    //   $events = $eventModel->like('category', $category)->findAll();
+    // }
+
+    // $data['events'] = $events;
+    $data['category'] = $category;
+    // return view('events/search', $data);
+    //
 
     return view('events/index', $data);
   }
@@ -101,7 +120,6 @@ class EventsController extends Controller
     $data['event'] = $event;
     $data['participantId'] = $participantId;
 
-    //
     $userId = session()->get('id');
 
     if(session()->get('isPlatformManager')){

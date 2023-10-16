@@ -12,6 +12,13 @@
   </div>
 <?php endif; ?>
 
+<?php if (session()->getFlashData('info')): ?>
+  <div class="alert alert-info alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <?= session()->getFlashdata('info') ?>
+  </div>
+<?php endif; ?>
+
 <?php if(session()->getFlashdata('msg')): ?>
   <div class="alert alert-warning">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 

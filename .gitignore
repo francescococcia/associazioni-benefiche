@@ -2,6 +2,7 @@
 *.log
 
 #Exclude session
-/writable/session/
+/writable/
 
 *.htaccess
+*.env

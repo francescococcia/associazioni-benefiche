@@ -12,14 +12,20 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-              <form action="<?php echo base_url(); ?>/UsersController/sendForgotPassword" method="post">
+              <form action="<?php echo base_url(); ?>/UsersController/sendForgotPassword" method="post" novalidate="" data-form-type="blocs-form">
 
 								<div class="card">
 									<div class="card-body">
 										<div class="form-group">
 												<label>Email</label>
-												<input type="email" id="email" name="email" placeholder="Email"
-                          class="form-control mb-lg-3 pt-lg-0" required="">
+												<input
+													type="email"
+													id="email"
+													name="email"
+													placeholder="Inserisci Email"
+                          class="form-control mb-lg-3 pt-lg-0"
+													required=""
+													data-error-validation-msg="Email non valida">
 										</div>
 
 										<div class="text-center">

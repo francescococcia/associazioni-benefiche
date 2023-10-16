@@ -13,10 +13,13 @@ class AuthGuard implements FilterInterface
   {
     if (!session()->get('isLoggedIn'))
     {
-      return redirect()->to('/signin');
+      return redirect()->to('/signin')->with(
+        'info',
+        "Per visualizzare la pagina bisogna effettuare prima l'accesso."
+      );;
     }
   }
-  
+
   public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
   {
       

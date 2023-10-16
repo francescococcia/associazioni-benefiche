@@ -5,7 +5,9 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Dettagli evento</h1>
         <p class="big-paragraph">Informazioni riguardo l'evento</p>
-        <?php if (!is_null($participantId) && !session()->get('isPlatformManager')): ?>
+        <?php if (!is_null($participantId) &&
+          !session()->get('isPlatformManager') &&
+          !session()->get('isAdmin')): ?>
           <div class="row">
             <div class="col">
               <div class="text-center">
@@ -88,7 +90,7 @@
               <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
               <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
               <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
-              <?php if (empty($participantModel) && !session()->get('isPlatformManager')): ?>
+              <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
                 <form method="post" action="<?= site_url('participants/create') ?>">
                   <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
                   <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>

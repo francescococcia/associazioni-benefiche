@@ -41,7 +41,7 @@
                           </button>
                       </div>
                       <div class="modal-body">
-                          Sei sicuro di voler rimuovere l'elemento?
+                          Sei sicuro di voler rimuovere l'utente?
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>

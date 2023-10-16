@@ -5,7 +5,9 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Dettagli Prodotto</h1>
         <p class="big-paragraph">Informazioni riguardo il prodotto</p>
-        <?php if ($isQuantityAvailable && !session()->get('isPlatformManager')): ?>
+        <?php if ($isQuantityAvailable &&
+          !session()->get('isPlatformManager') &&
+          !session()->get('isAdmin')): ?>
           <div class="row">
             <div class="col">
               <div class="text-center">
@@ -21,7 +23,7 @@
                   </div>
                   <div class="text-center">
                     <button class="btn btn-md btn-clean btn-c-4129 btn-rd mt-3" type="submit">
-                      Inserisci nel Carrello
+                      Prenota prodotto
                     </button>
                   </div>
                 </form>

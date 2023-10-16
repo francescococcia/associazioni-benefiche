@@ -3,6 +3,7 @@
   <head>
     <?= $this->include('Layout/partial/head'); ?>
     <title>Register</title>
+    <?= $this->include('Layout/partial/import_js'); ?>
     <style>
       body {
         min-height: 100vh;
@@ -116,6 +117,6 @@
 
     <!-- Main container END -->
 
-    <?= $this->include('Layout/partial/import_js'); ?>
+    <#?= $this->include('Layout/partial/import_js'); ?>
   </body>
 </html>

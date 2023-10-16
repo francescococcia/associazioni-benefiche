@@ -56,13 +56,10 @@ class ReportsController extends BaseController
       $data = [
         'name' => $name,
       ];
-  
+
       sendMail($to, $subject, $viewName, $data);
-  
-      return redirect()->to('/admin/reports')->with(
-        'success',
-        'Feedback inviato'
-      );
+
+      return redirect()->to('/admin/reports')->with('success','Feedback inviato');
     }
   }
 }

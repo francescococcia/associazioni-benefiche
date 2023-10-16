@@ -14,10 +14,47 @@
             </div>
           </div>
           <?php else: ?>
-            <p class="big-paragraph">Partecipa ad un evento</p>
+            <p class="big-paragraph">Visualizza tutti gli eventi o filtra per tipologia</p>
           <?php endif; ?>
       </div>
 
+    </div>
+	</div>
+
+  <div class="content mb-5">
+    <div class="wrap">
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          <div class="col-12 col-md-8 col-lg-6">
+
+          <form  method="GET" action="<?= base_url(); ?>/events">
+              <div class="row">
+
+                <div class="col-md-12">
+                  <div class="input-group mb-3">
+                    <select class='form-control search input-text' name="category" id="category">
+                        <option value='' selected>Seleziona tipologia</option>
+                        <option value="feste e sagre" <?php if ($category == 'feste e sagre') echo 'selected'; ?>>Feste e sagre</option>
+                        <option value="serate di gala" <?php if ($category == 'serate di gala') echo 'selected'; ?>>Serate di gala</option>
+                        <option value="spettacoli teatrali" <?php if ($category == 'spettacoli teatrali') echo 'selected'; ?>>Spettacoli teatrali</option>
+                        <option value="eventi sportivi" <?php if ($category == 'eventi sportivi') echo 'selected'; ?>>Eventi sportivi</option>
+                        <option value="cene" <?php if ($category == 'cene') echo 'selected'; ?>>Cene</option>
+                        <option value="sfilate" <?php if ($category == 'sfilate') echo 'selected'; ?>>Sfilate</option>
+                    </select>
+
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-warning btn-md yellow" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
     </div>
 	</div>
 

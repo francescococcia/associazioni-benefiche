@@ -112,7 +112,7 @@ class UsersController extends BaseController
 
     if (!$user) {
       // User does not exist
-      return redirect()->back()->with('error', 'Email not found.');
+      return redirect()->back()->with('error', 'Email non trovata.');
     }
 
     // Generate a password reset token
