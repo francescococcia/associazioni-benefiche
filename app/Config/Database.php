@@ -54,7 +54,7 @@ class Database extends Config
         'DSN'      => '',
         'hostname' => 'localhost',
         'username' => 'id20115288_root',
-        'password' => '5#(21zjeVyB)?r3!',
+        'password' => 'rootAdmin1_',
         'database' => 'id20115288_associazioni_benefiche',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
