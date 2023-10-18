@@ -59,7 +59,6 @@ $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController:
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard']);
 $routes->get('/activate-account/(:any)', 'AuthController::activateAccount/$1');
-// $routes->get('/reset-password/(:any)', 'AuthController::resetPassword/$1');
 $routes->add('resetPassword/(:segment)', 'AuthController::resetPassword/$1');
 $routes->add('recoverPassword', 'AuthController::recoverPassword');
 
