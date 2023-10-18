@@ -34,12 +34,12 @@
 
                 <div class="form-group">
                   <label for="price">Prezzo</label>
-                  <input class="form-control" required type="number" name="price" value="<?= set_value('price') ?>">
+                  <input class="form-control" required type="number" name="price" min='1' value="<?= set_value('price') ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="quantity">Quantità</label>
-                  <input class="form-control" required type="number" name="quantity" value="<?= set_value('quantity') ?>">
+                  <input class="form-control" required type="number" name="quantity" min='1' value="<?= set_value('quantity') ?>">
                 </div>
 
                 <div class="text-center">

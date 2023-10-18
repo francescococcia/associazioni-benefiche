@@ -27,12 +27,12 @@
 
                 <div class="form-group">
                   <label for="price">Prezzo</label>
-                  <input class="form-control" required type="number" name="price" value="<?= $product['price'] ?>">
+                  <input class="form-control" required type="number" min='1' name="price" value="<?= $product['price'] ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="quantity">Quantità</label>
-                  <input type="number" class="form-control" required name="quantity" value="<?= $product['quantity'] ?>">
+                  <input type="number" class="form-control" required min='1' name="quantity" value="<?= $product['quantity'] ?>">
                 </div>
 
                 <div class="text-center">
