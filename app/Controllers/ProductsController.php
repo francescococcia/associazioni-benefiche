@@ -153,8 +153,10 @@ class ProductsController extends Controller
     $orderModel->insert($data);
 
     // Redirect to a success page or perform further actions
-    return redirect()->to('product/detail/' . $productId);
-    // return redirect()->to('/products/detail/'.$productId)->with('message', 'Products bought successfully!');
+    return redirect()->to('product/detail/' . $productId)->with(
+      'success',
+      "Prenotazione effettuata."
+    );;
   }
 
   public function cashDesk() {

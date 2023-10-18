@@ -19,12 +19,12 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" name="first_name" placeholder="Name" required value="<?= set_value('first_name') ?>" class="form-control mb-lg-3">
+                    <input type="text" name="first_name" placeholder="Inserisci il nome" required value="<?= set_value('first_name') ?>" class="form-control mb-lg-3">
                   </div>
 
                   <div class="form-group">
                     <label>Cognome</label>
-                    <input type="text" name="last_name" placeholder="Cognome" required="" class="form-control" value="<?= set_value('last_name') ?>">
+                    <input type="text" name="last_name" placeholder="Inserisci il cognome" required="" class="form-control" value="<?= set_value('last_name') ?>">
                   </div>
 
                   <div class="form-group">
@@ -32,7 +32,7 @@
                     <input
                       type="text"
                       name="phone_number"
-                      placeholder="Numero"
+                      placeholder="Inserisci il numero di telefono"
                       required
                       value="<?= set_value('phone_number') ?>"
                       class="form-control mb-lg-3"
@@ -63,7 +63,7 @@
                       <input
                         type="password"
                         name="confirmpassword"
-                        placeholder="Conferma Password"
+                        placeholder="Inserisci la Password"
                         class="form-control mb-lg-3 pt-lg-0"
                         required
                         data-validation-passwordagain-message='Password non corrisponde'
@@ -90,26 +90,25 @@
 		</div>
 	</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(function(){
-   var dtToday = new Date();
+  $(document).ready(function () {
+    var dtToday = new Date();
 
-   var month = dtToday.getMonth() + 1;
-   var day = dtToday.getDate();
-   var year = dtToday.getFullYear();
-   if(month < 10)
-       month = '0' + month.toString();
-   if(day < 10)
-       day = '0' + day.toString();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
 
-   var maxDate = year + '-' + month + '-' + day;
+    var maxDate = year + '-' + month + '-' + day;
 
-   // or instead:
-   // var maxDate = dtToday.toISOString().substr(0, 10);
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
 
-   $('#txtDate').attr('max', maxDate);
-});
+    $('#txtDate').attr('max', maxDate);
+  });
 </script>
 
 <?= $this->endSection() ?>

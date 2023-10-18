@@ -11,39 +11,44 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-            <form method="post" action="<?= base_url(); ?>/associations/update" enctype="multipart/form-data">
+            <form method="post" action="<?= base_url(); ?>/associations/update"
+              data-form-type="blocs-form" novalidate="" enctype="multipart/form-data">
               <div class="card">
                 <div class="card-body">
-
-                  <div class="mb-3">
+                  <div class="form-group">
                     <label for="name" class="form-label">Nome Associazione</label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?= $association['name'] ?>">
+                    <input type="text" class="form-control" required name="name" id="name" value="<?= $association['name'] ?>">
                   </div>
-                  <div class="mb-3">
+
+                  <div class="form-group">
                       <label for="legal_address" class="form-label">Sede Legale</label>
-                      <input type="text" class="form-control" name="legal_address" id="legal_address" value="<?= $association['legal_address'] ?>">
+                      <input type="text" class="form-control" required name="legal_address" id="legal_address" value="<?= $association['legal_address'] ?>">
                   </div>
-                  <div class="mb-3">
+
+                  <div class="form-group">
                       <label for="link" class="form-label">Link</label>
-                      <input type="text" class="form-control" name="link" id="link" value="<?= $association['link'] ?>">
+                      <input type="text" class="form-control" required name="link" id="link" value="<?= $association['link'] ?>">
                   </div>
-                  <div class="mb-3">
+
+                  <div class="form-group">
                       <label for="tax_code" class="form-label">Codice Fiscale</label>
-                      <input type="text" class="form-control" name="tax_code" id="tax_code" value="<?= $association['tax_code'] ?>">
+                      <input type="text" class="form-control" required name="tax_code" id="tax_code" value="<?= $association['tax_code'] ?>">
                   </div>
-                  <div class="mb-3">
+
+                  <div class="form-group">
                       <label for="description" class="form-label">Descrizione</label>
                       <textarea class="form-control" name="description" id="description" rows="3"><?= $association['description'] ?></textarea>
                   </div>
 
                   <div class="form-group">
-                  <label for="image" class="form-label">Immagine</label>
-                  <div class="input_container">
-                  <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
-                    <input type="file"  id="choose-file"  name="image" accept=".jpg, .jpeg, .png, .gif" style="display:none;">
+                    <label for="image" class="form-label">Immagine</label>
+                    <div class="input_container">
+                      <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
+                      <input type="file"  id="choose-file"  name="image" accept=".jpg, .jpeg, .png, .gif" style="display:none;">
+                    </div>
+                    <img src="<?= base_url('uploads/'.$association['image']) ?>" alt="<?= $association['name'] ?>" class="mt-3 ml-5" style="max-width: 300px;">
                   </div>
-                  <img src="<?= base_url('uploads/'.$association['image']) ?>" alt="<?= $association['name'] ?>" class="mt-3 ml-5" style="max-width: 300px;">
-                </div>
+
                   <div class="text-center">
                     <button class="btn btn-clean float-lg-none btn-c-4129 btn-rd" type="submit">
                       Aggiorna
@@ -72,8 +77,7 @@
     }
 
   </style>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script>
     $(document).ready(function () {
       $('#choose-file').change(function () {

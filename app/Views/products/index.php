@@ -5,7 +5,7 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Tutti i prodotti</h1>
         <?php if(session()->get('isPlatformManager')): ?>
-          <p class="big-paragraph">Visualizza i prodotti inseriti</p>
+          <p class="big-paragraph">Inserisci un nuovo prodotto</p>
           <div class="row">
             <div class="col">
               <a
@@ -14,7 +14,7 @@
             </div>
           </div>
           <?php else: ?>
-            <p class="big-paragraph">Acquista un prodotto</p>
+            <p class="big-paragraph">Visualizza i prodotti inseriti</p>
           <?php endif; ?>
       </div>
 

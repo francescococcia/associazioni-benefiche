@@ -7,7 +7,13 @@
       .alert {
         margin-bottom: 0;
       }
+      #custom-style-title {
+        font-family: cursive !important;
+        /* text-shadow: #091 1px 0 10px; */
+        text-transform:uppercase;
+      }
     </style>
+    <?= $this->include('Layout/partial/import_js'); ?>
   </head>
   <body>
     <?= $this->include('Layout/partial/navbar'); ?>
@@ -141,23 +147,23 @@
       <?php endforeach; ?>
 
 
-    <div class="bloc full-width-bloc b-parallax l-bloc" style='background-color:#E6E6A6'>
-      <div class="container bloc-lg bloc-sm-lg">
-        <div class="row align-items-center ml-lg-0 no-gutters mt-lg-5">
-          <div class="col-md-3 col-sm-6 align-self-center offset-lg-3">
-            <h1 class="text-sm-left text-center h4-style text-lg-left">
-              Su Di Noi
-            </h1>
-            <h5 class="mb-4 btn-resize-mode h5-style mb-lg-5">
-            Così come dovrebbe essere<br>
-        Fin dal suo primo giorno nel settore, Associazioni offre ai suoi clienti un'ottima selezione di prodotti a prezzi imbattibili. Il nostro negozio online è diventato sinonimo di qualità e forniamo ai clienti un'ampia varietà di merci, tra cui alcuni prodotti in edizione limitata e articoli stagionali per tutte le tasche. Dai un'occhiata e inizia a comprare oggi stesso
-            </h5>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-3">
+      <div class="bloc full-width-bloc b-parallax l-bloc" style='background-color:#E6E6A6'>
+        <div class="container bloc-lg bloc-sm-lg">
+          <div class="row align-items-center ml-lg-0 no-gutters mt-lg-5">
+            <div class="col-md-3 col-sm-6 align-self-center offset-lg-3">
+              <h1 class="text-sm-left text-center h4-style text-lg-left">
+                Su Di Noi
+              </h1>
+              <h5 class="mb-4 btn-resize-mode h5-style mb-lg-5">
+              Così come dovrebbe essere<br>
+          Fin dal suo primo giorno nel settore, Associazioni offre ai suoi clienti un'ottima selezione di prodotti a prezzi imbattibili. Il nostro negozio online è diventato sinonimo di qualità e forniamo ai clienti un'ampia varietà di merci, tra cui alcuni prodotti in edizione limitata e articoli stagionali per tutte le tasche. Dai un'occhiata e inizia a comprare oggi stesso
+              </h5>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
 
@@ -168,17 +174,5 @@
     </div>
     <!-- Main container END -->
 
-
-    <?= $this->include('Layout/partial/import_js'); ?>
-
-
   </body>
 </html>
-
-<style>
-  #custom-style-title {
-    font-family: cursive !important;
-    /* text-shadow: #091 1px 0 10px; */
-    text-transform:uppercase;
-  }
-</style>

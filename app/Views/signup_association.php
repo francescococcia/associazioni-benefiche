@@ -111,30 +111,30 @@
       </div>
     </div>
   </div>
-  
+
   <style>
     .custom-file-upload{
-  /* border-right: 1px solid #ccc;  */
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  margin-bottom:0;
-}
+      /* border-right: 1px solid #ccc;  */
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      margin-bottom:0;
+    }
 
-.custom-file-upload:hover{
-  background-color: bisque;
-}
+    .custom-file-upload:hover{
+      background-color: bisque;
+    }
 
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script>
-$(document).ready(function () {
-	$('#choose-file').change(function () {
-		var i = $(this).prev('label').clone();
-		var file = $('#choose-file')[0].files[0].name;
-		$(this).prev('label').text(file);
-	}); 
- });
-</script>
+    $(document).ready(function () {
+      $('#choose-file').change(function () {
+        var i = $(this).prev('label').clone();
+        var file = $('#choose-file')[0].files[0].name;
+        $(this).prev('label').text(file);
+      }); 
+    });
+  </script>
 
 <?= $this->endSection() ?>

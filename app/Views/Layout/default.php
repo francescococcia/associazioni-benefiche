@@ -3,7 +3,7 @@
   <head>
     <?= $this->include('Layout/partial/head'); ?>
     <title>Register</title>
-    <?= $this->include('Layout/partial/import_js'); ?>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <style>
       body {
         min-height: 100vh;
@@ -98,6 +98,7 @@
         text-transform: uppercase;
       }
     </style>
+    <?= $this->include('Layout/partial/import_js'); ?>
   </head>
   <body>
 
@@ -117,6 +118,5 @@
 
     <!-- Main container END -->
 
-    <#?= $this->include('Layout/partial/import_js'); ?>
   </body>
 </html>

@@ -14,7 +14,6 @@ class SignupAssociationController extends Controller
     echo view('signup_association', $data);
   }
 
-
   public function store()
   {
     helper(['form']);
@@ -98,7 +97,7 @@ class SignupAssociationController extends Controller
 
           return redirect()->to('/signin')->with(
             'success',
-            'Associazione creata. Controlla l\'email per attivare l\'account'
+            "Associazione creata. Controlla l'email per attivare l'account."
           );
         } else {
           // File upload failed

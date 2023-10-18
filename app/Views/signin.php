@@ -21,7 +21,11 @@
 									<div class="card-body">
 										<div class="form-group">
 												<label>Email</label>
-												<input type="email" id="email" name="email" placeholder="Email"
+												<input
+                          type="email"
+                          id="email"
+                          name="email"
+                          placeholder="Inserisci Email"
                           value="<?= set_value('email') ?>"
                           data-error-validation-msg="Email non valida"
                           class="form-control mb-lg-3 pt-lg-0" required="">

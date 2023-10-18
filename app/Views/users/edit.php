@@ -11,33 +11,33 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form method="POST" action="<?= base_url(); ?>/users/update">
+          <form method="POST" action="<?= base_url(); ?>/users/update" data-form-type="blocs-form" novalidate="">
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
                   <label for="inputEmail4">Email</label>
-                  <input type="email" id="email" name="email" placeholder="Email" value="<?= $userData['email']; ?>"
-                    data-error-validation-msg="Not a valid email address" class="form-control mb-lg-3 pt-lg-0"  required="">
+                  <input type="email" id="email" name="email" placeholder="Inserisci email" value="<?= $userData['email']; ?>"
+                    data-error-validation-msg="Email non valida" class="form-control mb-lg-3 pt-lg-0" required>
                 </div>
 
                 <div class="form-group">
                   <label for="first_name">Nome</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="first_name" value="<?= $userData['first_name']; ?>" required>
+                  <input class="form-control mb-lg-3 pt-lg-0" required placeholder="Inserisci nome" type="text" name="first_name" value="<?= $userData['first_name']; ?>">
                 </div>
 
                 <div class="form-group ">
                   <label for="last_name">Cognome</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="last_name" value="<?= $userData['last_name']; ?>">
+                  <input class="form-control mb-lg-3 pt-lg-0" required placeholder="Inserisci cognome" type="text" name="last_name" value="<?= $userData['last_name']; ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="phone_number">Telefono</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="text" name="phone_number" value="<?= $userData['phone_number']; ?>">
+                  <input class="form-control mb-lg-3 pt-lg-0" required placeholder="Inserisci telefono" type="text" name="phone_number" value="<?= $userData['phone_number']; ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="birth_date">Data di nascita</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="date" name="birth_date" value="<?= $userData['birth_date']; ?>">
+                  <input class="form-control mb-lg-3 pt-lg-0" required type="date" name="birth_date" value="<?= $userData['birth_date']; ?>">
                 </div>
 
                 <div class="form-group">

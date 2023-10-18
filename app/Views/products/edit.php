@@ -11,28 +11,28 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form action="<?= base_url(); ?>/product/update" method="post">
-            <input type="hidden" name="product_id" value="<?= $product['id']; ?>">  
+          <form action="<?= base_url(); ?>/product/update" method="post" data-form-type="blocs-form" novalidate="">
+            <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
                   <label for="name" ></label>Titolo</label>
-                  <input class="form-control" type="text" name="name" value="<?= $product['name'] ?>">
+                  <input class="form-control" type="text" name="name" value="<?= $product['name'] ?>" required>
                 </div>
 
                 <div class="form-group">
                   <label for="description"></label>Descrizione</label>
-                  <input class="form-control" type="text" name="description" value="<?= $product['description'] ?>">
+                  <input class="form-control" required type="text" name="description" value="<?= $product['description'] ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="price">Prezzo</label>
-                  <input class="form-control" type="number" name="price" value="<?= $product['price'] ?>">
+                  <input class="form-control" required type="number" name="price" value="<?= $product['price'] ?>">
                 </div>
 
                 <div class="form-group">
                   <label for="quantity">Quantità</label>
-                  <input type="number" class="form-control" name="quantity" value="<?= $product['quantity'] ?>">
+                  <input type="number" class="form-control" required name="quantity" value="<?= $product['quantity'] ?>">
                 </div>
 
                 <div class="text-center">

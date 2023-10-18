@@ -48,24 +48,15 @@
 
                   <div class="form-group">
                     <label for="date">Data</label>
-                    <!-- <input
+                     <input
                       class="form-control"
                       required
                       type="date"
                       name="date"
-                      value="<#?= set_value('date') ?>"
+                      value="<?= set_value('date') ?>"
                       id='txtDate'
-                      pattern="\d{2}/\d{2}/\d{4}"> -->
-                      <input type="text" class="form-control">
-                      <!-- <input class="datepicker form-control" data-date-format="dd/mm/yyyy"> -->
+                    >
                   </div>
-                  
-                  <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
 
                   <div class="form-group">
                     <label for="location">Luogo</label>
@@ -85,76 +76,30 @@
 			</div>
 		</div>
 	</div>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  
+
   <script>
     $(document).ready(function () {
-      $(function () {
-   var bindDatePicker = function() {
-		$(".date").datetimepicker({
-        format:'YYYY-MM-DD',
-			icons: {
-				time: "fa fa-clock-o",
-				date: "fa fa-calendar",
-				up: "fa fa-arrow-up",
-				down: "fa fa-arrow-down"
-			}
-		}).find('input:first').on("blur",function () {
-			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
-			// update the format if it's yyyy-mm-dd
-			var date = parseDate($(this).val());
 
-			if (! isValidDate(date)) {
-				//create date based on momentjs (we have that)
-				date = moment().format('YYYY-MM-DD');
-			}
+      $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 
-			$(this).val(date);
-		});
-	}
-   
-   var isValidDate = function(value, format) {
-		format = format || false;
-		// lets parse the date to the best of our knowledge
-		if (format) {
-			value = parseDate(value);
-		}
+      $(function(){
+         var dtToday = new Date();
 
-		var timestamp = Date.parse(value);
+         var month = dtToday.getMonth() + 1;
+         var day = dtToday.getDate();
+         var year = dtToday.getFullYear();
+         if(month < 10)
+             month = '0' + month.toString();
+         if(day < 10)
+             day = '0' + day.toString();
 
-		return isNaN(timestamp) == false;
-   }
-   
-   var parseDate = function(value) {
-		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
-		if (m)
-			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+         var maxDate = year + '-' + month + '-' + day;
 
-		return value;
-   }
-   
-   bindDatePicker();
- });
+         // or instead:
+         // var maxDate = dtToday.toISOString().substr(0, 10);
+
+         $('#txtDate').attr('min', maxDate);
+      });
     })
-
-  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-$(function(){
-   var dtToday = new Date();
-   
-   var month = dtToday.getMonth() + 1;
-   var day = dtToday.getDate();
-   var year = dtToday.getFullYear();
-   if(month < 10)
-       month = '0' + month.toString();
-   if(day < 10)
-       day = '0' + day.toString();
-   
-   var maxDate = year + '-' + month + '-' + day;
-
-   // or instead:
-   // var maxDate = dtToday.toISOString().substr(0, 10);
-
-   $('#txtDate').attr('min', maxDate);
-});
   </script>
 <?= $this->endSection() ?>

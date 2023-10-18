@@ -11,21 +11,20 @@
           <div class="row">
             <div class="col">
               <div class="text-center">
-                <form method="post" action="<?php echo base_url(); ?>/ProductsController/buy">
+                <form method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
                   <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center align-items-center">
-                      <div class="col-12 col-md-8 col-lg-3">
+                      <div class="form-group">
                         <label for="quantity-<?php echo $product['id']; ?>">Quantità:</label>
-                        <input class='form-control' type="number" name="quantity" min="1" max="<?= $isQuantityAvailable ?>" required>
+                        <input class='form-control' type="number" name="quantity" min="1" max="<?= $isQuantityAvailable ?>" required
+                          data-validation-min-message='Seleziona almeno una quantità'>
                       </div>
                     </div>
                   </div>
-                  <div class="text-center">
-                    <button class="btn btn-md btn-clean btn-c-4129 btn-rd mt-3" type="submit">
-                      Prenota prodotto
-                    </button>
-                  </div>
+                  <button class="btn btn-md btn-clean btn-c-4129 btn-rd" type="submit">
+                    Prenota prodotto
+                  </button>
                 </form>
               </div>
             </div>
@@ -69,7 +68,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        Sei sicuro di voler rimuovere l'elemento?
+                        Sei sicuro di voler rimuovere il prodotto?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>

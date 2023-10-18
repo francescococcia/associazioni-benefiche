@@ -46,7 +46,7 @@
                           </div>
 
                           <div class="form-group">
-                            <textarea class='form-control' name="message" placeholder="Report Message"></textarea>
+                            <textarea class='form-control' name="message" placeholder="Inserisci feedback..."></textarea>
                           </div>
 
                           <div class="modal-footer">
@@ -80,91 +80,90 @@
           </div>
         <?php endif; ?>
       </div>
+    </div><!-- end wrap -->
 
-      <div class="row">
-        <div class="col-12 m-5">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="mb-3"><strong><?= $event['title']; ?></strong></h3>
-              <p><strong>Data:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
-              <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
-              <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
-              <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
-              <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
-                <form method="post" action="<?= site_url('participants/create') ?>">
-                  <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                  <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>
+    <div class="row d-flex align-items-stretch">
+      <div class="col-md-3 col-sm-6 offset-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="mb-3"><strong><?= $event['title']; ?></strong></h3>
+            <p><strong>Data:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
+            <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
+            <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
+            <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
+            <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
+              <form method="post" action="<?= site_url('participants/create') ?>">
+                <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+                <button type="submit" class="btn btn-clean btn-c-4129 btn-rd">Partecipa</button>
+              </form>
+            <?php else: ?>
+              <?php if (session()->get('isPlatformManager')): ?>
+                <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
+                    <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
                 </form>
-              <?php else: ?>
-                <?php if (session()->get('isPlatformManager')): ?>
-                  <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
-                      <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
-                  </form>
 
-                  <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          Sei sicuro di voler rimuovere l'elemento?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                          <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
-                        </div>
+                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Sei sicuro di voler rimuovere l'evento?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                <?php endif; ?>
               <?php endif; ?>
-            </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
-
-      <?php if (!empty($feedbackData)): ?>
-        <div class="row">
-          <div class="col-12 m-5">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title mb-3"><strong>Feedback per questo evento</strong></h4>
-                <?php foreach ($feedbackData as $participantId => $feedbacks): ?>
-                  <?php foreach ($feedbacks as $feedback): ?>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-sm">
-                          <p><?= retrieveEmailUserFromFeedback($feedback['user_id'])->email ?></p>
-                          <div class="rate">
-                            <p><?php for ($i = 1; $i <= 5; $i++): ?>
-                                <?php if ($i <= $feedback['rating']): ?>
-                                    <i class="fas fa-star" style="color:#c59b08;"></i>
-                                <?php else: ?>
-                                    <i class="far fa-star"></i>
-                                <?php endif; ?>
-                            <?php endfor; ?>&nbsp;&nbsp;Feedback del <?php echo date('d/m/y', strtotime($feedback['created_at'])); ?></p>
-                          </div>
+      <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-3"><strong>Feedback per questo evento</strong></h4>
+            <?php if (!empty($feedbackData)): ?>
+              <?php foreach ($feedbackData as $participantId => $feedbacks): ?>
+                <?php foreach ($feedbacks as $feedback): ?>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <p><?= retrieveEmailUserFromFeedback($feedback['user_id'])->email ?></p>
+                        <div class="rate">
+                          <p><?php for ($i = 1; $i <= 5; $i++): ?>
+                              <?php if ($i <= $feedback['rating']): ?>
+                                  <i class="fas fa-star" style="color:#c59b08;"></i>
+                              <?php else: ?>
+                                  <i class="far fa-star"></i>
+                              <?php endif; ?>
+                          <?php endfor; ?>&nbsp;&nbsp;Feedback del <?php echo date('d/m/y', strtotime($feedback['created_at'])); ?></p>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-sm">
-                            <p> <?= $feedback['message']; ?></p>
-                          </div>
-                        </div>
                     </div>
-                    <hr>
-                  <?php endforeach; ?>
+                    <div class="row">
+                      <div class="col-sm">
+                          <p> <?= $feedback['message']; ?></p>
+                        </div>
+                      </div>
+                  </div>
+                  <hr>
                 <?php endforeach; ?>
-              </div>
-            </div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              Nessun feedback inserito
+            <?php endif; ?>
           </div>
         </div>
-      <?php endif; ?>
+      </div>
     </div>
   </div>
 

@@ -11,13 +11,13 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form action="<?= base_url(); ?>/events/update" method="post">
-            <input type="hidden" name="event_id" value="<?= $event['id']; ?>">  
+          <form action="<?= base_url(); ?>/events/update" method="post" data-form-type="blocs-form" novalidate="">
+            <input type="hidden" name="event_id" value="<?= $event['id']; ?>">
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
                   <label for="title" ></label>Titolo</label>
-                  <input class="form-control" type="text" name="title" value="<?= $event['title'] ?>">
+                  <input class="form-control" type="text" name="title" value="<?= $event['title'] ?>" required>
                 </div>
 
                 <div class="form-group">
@@ -61,25 +61,24 @@
 			</div>
 		</div>
 	</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
-$(function(){
-   var dtToday = new Date();
-   
-   var month = dtToday.getMonth() + 1;
-   var day = dtToday.getDate();
-   var year = dtToday.getFullYear();
-   if(month < 10)
-       month = '0' + month.toString();
-   if(day < 10)
-       day = '0' + day.toString();
-   
-   var maxDate = year + '-' + month + '-' + day;
+    $(document).ready(function () {
+      var dtToday = new Date();
 
-   // or instead:
-   // var maxDate = dtToday.toISOString().substr(0, 10);
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+      if(month < 10)
+          month = '0' + month.toString();
+      if(day < 10)
+          day = '0' + day.toString();
+      
+      var maxDate = year + '-' + month + '-' + day;
 
-   $('#txtDate').attr('min', maxDate);
-});
+      // or instead:
+      // var maxDate = dtToday.toISOString().substr(0, 10);
+
+      $('#txtDate').attr('min', maxDate);
+    });
   </script>
 <?= $this->endSection() ?>

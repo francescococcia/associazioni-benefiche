@@ -14,13 +14,16 @@
 <!-- Additional JS END -->
 
 <script>
-  document.getElementById('confirmDelete').addEventListener('click', function() {
-    document.querySelector('form').submit();
-});
+//   document.getElementById('confirmDelete').addEventListener('click', function() {
+//     console.log('in')
+//     document.querySelector('form').submit();
+// });
 
-$('.date').datepicker({  
+// $('.date').datepicker({  
 
-format: 'dd/mm/yyyy'  
+// format: 'dd/mm/yyyy'  
 
-});  
+// });
+
 </script>
+
