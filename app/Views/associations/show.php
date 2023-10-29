@@ -83,13 +83,4 @@
       </div>
     </div>
   </div>
-
-  <style>
-    .center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 60%;
-    }
-  </style>
 <?= $this->endSection() ?>

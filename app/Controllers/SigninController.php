@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\UserModel;
-
+use App\Models\AssociationModel;
 
 class SigninController extends Controller
 {
@@ -18,6 +18,7 @@ class SigninController extends Controller
     $session = session();
 
     $userModel = new UserModel();
+    $associationModel = new AssociationModel();
 
     $email = $this->request->getVar('email');
     $password = $this->request->getVar('password');
@@ -46,6 +47,9 @@ class SigninController extends Controller
           }
 
           if ($data['is_platform_manager']) {
+            $association = $associationModel->where('user_id', $data['id'])->first();
+
+            $ses_data['nameAssociation'] = $association['name'];
             $ses_data['isPlatformManager'] = TRUE;
           }
 

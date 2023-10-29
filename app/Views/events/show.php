@@ -66,19 +66,18 @@
           </div>
         <?php endif; ?>
 
-        <?php if (session()->get('isPlatformManager')): ?>
+        <!-- <#?php if (session()->get('isPlatformManager')): ?>
           <div class="row">
             <div class="col">
               <div class="text-center">
-                <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
-                <a href="<?= site_url('events/edit/'.$event['id']) ?>"
+                <a href="<#?= site_url('events/edit/'.$event['id']) ?>"
                   class="btn btn-md btn-clean btn-c-4129 btn-rd">
                     Modifica
                 </a>
               </div>
             </div>
           </div>
-        <?php endif; ?>
+        <#?php endif; ?> -->
       </div>
     </div><!-- end wrap -->
 
@@ -86,11 +85,33 @@
       <div class="col-md-3 col-sm-6 offset-lg-3">
         <div class="card">
           <div class="card-body">
-            <h3 class="mb-3"><strong><?= $event['title']; ?></strong></h3>
-            <p><strong>Data:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
+            <div class="text-center mb-4">
+              <h3><strong><?= $event['title']; ?></strong></h3>
+            </div>
+
+            <?php if ($event['image']): ?>
+              <picture>
+                <img src="<?php echo base_url('uploads/events/'.$event['image']); ?>"
+                  data-src="<?php echo base_url('uploads/events/'.$event['image']); ?>"
+                  class="img-fluid img-rd-lg lazyload mb-5 center"
+                  alt="<?php echo $event['image']; ?>" width="350" height="350">
+              </picture>
+            <?php endif; ?>
+
+            <p><strong>Data dal:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
+            <p><strong>Data al:</strong> <?= date('d/m/y', strtotime($event['date_to'])); ?></p>
             <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
             <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
             <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
+            <p>
+              <strong>Link:</strong>
+              <?php if ($event['link']): ?>
+                <a href="<?= ($event['link'])?>"><?= ($event['link'])?></a>
+              <?php else: ?>
+                Link non presente
+              <?php endif; ?>
+            </p>
+
             <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
               <form method="post" action="<?= site_url('participants/create') ?>">
                 <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
@@ -98,27 +119,39 @@
               </form>
             <?php else: ?>
               <?php if (session()->get('isPlatformManager')): ?>
-                <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
-                    <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
-                </form>
+                <div class="row">
+                  <div class="col-3">
+                    <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
+                      <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
+                    </form>
 
-                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        Sei sicuro di voler rimuovere l'evento?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Sei sicuro di voler rimuovere l'evento?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                  </div>
+                  <div class="col-3">
+                    <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
+                    <a href="<?= site_url('events/edit/'.$event['id']) ?>"
+                      class="btn btn-warning text-white">
+                        Modifica
+                    </a>
                   </div>
                 </div>
 

@@ -20,7 +20,6 @@
 
     </div>
 	</div>
-
   <div class="content mb-5">
     <div class="wrap">
 
@@ -35,12 +34,14 @@
                   <div class="input-group mb-3">
                     <select class='form-control search input-text' name="category" id="category">
                         <option value='' selected>Seleziona tipologia</option>
-                        <option value="feste e sagre" <?php if ($category == 'feste e sagre') echo 'selected'; ?>>Feste e sagre</option>
-                        <option value="serate di gala" <?php if ($category == 'serate di gala') echo 'selected'; ?>>Serate di gala</option>
-                        <option value="spettacoli teatrali" <?php if ($category == 'spettacoli teatrali') echo 'selected'; ?>>Spettacoli teatrali</option>
-                        <option value="eventi sportivi" <?php if ($category == 'eventi sportivi') echo 'selected'; ?>>Eventi sportivi</option>
-                        <option value="cene" <?php if ($category == 'cene') echo 'selected'; ?>>Cene</option>
-                        <option value="sfilate" <?php if ($category == 'sfilate') echo 'selected'; ?>>Sfilate</option>
+                        <option value="Feste e sagre" <?php if ($category == 'Feste e sagre') echo 'selected'; ?>>Feste e sagre</option>
+                        <option value="Mercatini" <?php if ($category == 'Mercatini') echo 'selected'; ?>>Mercatini</option>
+                        <option value="Spettacoli teatrali" <?php if ($category == 'Spettacoli teatrali') echo 'selected'; ?>>Spettacoli teatrali</option>
+                        <option value="Eventi sportivi" <?php if ($category == 'Eventi sportivi') echo 'selected'; ?>>Eventi sportivi</option>
+                        <option value="Eventi culinari" <?php if ($category == 'Eventi culinari') echo 'selected'; ?>>Eventi culinari</option>
+                        <option value="Sfilate" <?php if ($category == 'Sfilate') echo 'selected'; ?>>Sfilate</option>
+                        <option value="Talk" <?php if ($category == 'Talk') echo 'selected'; ?>>Talk</option>
+                        <option value="Altro" <?php if ($category == 'Altro') echo 'selected'; ?>>Altro</option>
                     </select>
 
                     <div class="input-group-append">

@@ -25,29 +25,38 @@
               <td><?= $user['phone_number'] ?></td>
               <td><?= $user['birth_date'] ?></td>
               <td><?= $user['email'] ?></td>
-              <td>
-                <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post" id="userForm_<?= $user['id'] ?>">
-                  <button class="btn btn-danger" type="button" id="openModalButton">Rimuovi</button>
-                </form>
+              <td class='row'>
+                <div class="col-4">
+
+                  <form action="<?= site_url('admin/user/update/' . $user['id']) ?>" method="post" id="form_<?= $user['id'] ?>">
+                    <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#confirmationModal<?= $user['id'] ?>">Modifica</button>
+                  </form>
+
+                </div>
+                <div class="col-4">
+                  <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post" id="userForm_<?= $user['id'] ?>">
+                    <button class="btn btn-sm btn-danger" type="button" id="openModalButton">Rimuovi</button>
+                  </form>
 
                 <!-- Bootstrap Modal -->
-                <div class="modal fade" id="confirmationModal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          Sei sicuro di voler rimuovere l'utente?
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                          <button type="button" class="btn btn-danger" onclick="deleteUser(<?= $user['id'] ?>)" id="confirmDelete<?= $user['id'] ?>">
-                              Rimuovi
-                          </button>
+                  <div class="modal fade" id="confirmationModal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Sei sicuro di voler rimuovere l'utente?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn btn-danger" onclick="deleteUser(<?= $user['id'] ?>)" id="confirmDelete<?= $user['id'] ?>">
+                                Rimuovi
+                            </button>
+                        </div>
                       </div>
                     </div>
                   </div>

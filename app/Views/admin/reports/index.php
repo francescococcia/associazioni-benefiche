@@ -72,7 +72,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            Cliccando su contrassegna, invierai una mail all'untente per informarlo della presa visione della segnalazione
+                            Cliccando su contrassegna, invierai una mail all'utente per informarlo della presa visione della segnalazione
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>

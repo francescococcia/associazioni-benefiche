@@ -19,12 +19,14 @@
                   <div class="input-group mb-3">
                     <select class='form-control search input-text' name="category" id="category">
                         <option value='' selected disabled hidden>Seleziona tipologia</option>
-                        <option value="feste e sagre">Feste e sagre</option>
-                        <option value="serate di gala">Serate di gala</option>
-                        <option value="spettacoli teatrali">Spettacoli teatrali</option>
-                        <option value="eventi sportivi">Eventi sportivi</option>
-                        <option value="cene">Cene</option>
-                        <option value="sfilate">Sfilate</option>
+                        <option value="Feste e sagre">Feste e sagre</option>
+                        <option value="Mercatini">Mercatini</option>
+                        <option value="Spettacoli teatrali">Spettacoli teatrali</option>
+                        <option value="Eventi sportivi">Eventi sportivi</option>
+                        <option value="Eventi culinari">Eventi culinari</option>
+                        <option value="Sfilate">Sfilate</option>
+                        <option value="Talk">Talk</option>
+                        <option value="Altro">Altro</option>
                     </select>
 
                     <div class="input-group-append">

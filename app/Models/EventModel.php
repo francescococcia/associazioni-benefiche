@@ -14,7 +14,10 @@ class EventModel extends Model
       'category',
       'description',
       'date',
-      'location'
+      'location',
+      'date_to',
+      'link',
+      'image',
   ];
 
   public function getEvents()
@@ -58,19 +61,11 @@ class EventModel extends Model
   }
 
   public function getAllEventsByPlatformManager($userId) {
-    $builder = $this->db->table('events');
-    $builder->select('events.*');
-    $builder->join('associations', 'events.association_id = associations.id');
-    $builder->where('associations.user_id', $userId);
-    $query = $builder->get();
-
-    $result = $query->getResultArray();
-
-    if (!empty($result)) {
-        return $result;
-    } else {
-        return []; // Return an empty array if no results are found
-    }
+    return $this->select('events.*')
+        ->join('associations', 'events.association_id = associations.id')
+        ->where('associations.user_id', $userId)
+        ->orderBy('events.id', 'DESC')
+        ->findAll();
   }
 
   public function getJoinedEventsByUserId($userId)

@@ -86,7 +86,7 @@ $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' =
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
 
 // Products routes
-$routes->get('/store', 'ProductsController::index', ['filter' => 'authGuard']);
+$routes->get('/store', 'ProductsController::index');
 $routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create', ['filter' => 'authGuard']);
 $routes->match(['get', 'post'], 'ProductsController/buy', 'ProductsController::buy', ['filter' => 'authGuard']);
 $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
@@ -109,9 +109,6 @@ $routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersCont
 // Association routes
 $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
 $routes->post('/associations/update/', 'AssociationsController::update', ['filter' => 'authGuard']);
-
-// $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
-// $routes->post('/associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
 $routes->get('/associations/create', 'AssociationsController::create');
 $routes->post('/associations/store', 'AssociationsController::store');
 $routes->get('/associations/(:num)', 'AssociationsController::show/$1');

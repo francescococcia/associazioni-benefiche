@@ -22,7 +22,7 @@ class EventsController extends Controller
     if(session()->get('isPlatformManager') && $category == ''){
       $data['events'] = $eventModel->getAllEventsByPlatformManager($userId);
     } else if($category != ''){
-      $data['events'] = $eventModel->like('category', $category)->findAll();
+      $data['events'] = $eventModel->like('category', $category)->orderBy('id', 'DESC')->findAll();
     } else {
       $data['events'] = $eventModel->orderBy('id', 'DESC')->findAll();
     }
@@ -34,20 +34,8 @@ class EventsController extends Controller
       $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
       $event['userParticipated'] = $participant !== null;
     }
-    
-    //
-    // $events = []; // Initialize the $events array
-    // $category = $this->request->getVar('category');
 
-    // $eventModel = new EventModel();
-    // if($category != ''){
-    //   $events = $eventModel->like('category', $category)->findAll();
-    // }
-
-    // $data['events'] = $events;
     $data['category'] = $category;
-    // return view('events/search', $data);
-    //
 
     return view('events/index', $data);
   }
@@ -86,21 +74,67 @@ class EventsController extends Controller
       if ($this->validate($rules)) {
         $model = new EventModel();
 
-        $data = [
-          'association_id' => $this->request->getPost('association_id'),
-          'title' => $this->request->getPost('title'),
-          'category' => $this->request->getPost('category'),
-          'description' => $this->request->getPost('description'),
-          'date' => $this->request->getPost('date'),
-          'location' => $this->request->getPost('location'),
-        ];
+        $file = $this->request->getFile('image');
 
-        $model->save($data);
-        $session->setFlashdata('message', 'Evento inserito');
-        return redirect()->to('/events');
+        if ($file && $file->isValid()) {
+          // Configure the upload settings
+          $config = [
+            'upload_path' => './uploads/events/',
+            'allowed_types' => 'gif|jpg|jpeg|png',
+            'max_size' => 2048, // Maximum file size in kilobytes
+            'encrypt_name' => true, // Encrypt the uploaded file name
+          ];
+
+          // Create the upload directory if it doesn't exist
+          if (!is_dir($config['upload_path'])) {
+              mkdir($config['upload_path'], 0777, true);
+          }
+
+          // Move the uploaded file to the destination directory
+          $uniqueId = uniqid(); // You can use any method to generate a unique identifier
+
+          if ($file->move($config['upload_path'], $uniqueId . '_' . $file->getRandomName())) {
+
+            $filename = $file->getName();
+            // Save the image path to the database
+
+            $data = [
+              'association_id' => $this->request->getPost('association_id'),
+              'title' => $this->request->getPost('title'),
+              'category' => $this->request->getPost('category'),
+              'description' => $this->request->getPost('description'),
+              'date' => $this->request->getPost('date'),
+              'location' => $this->request->getPost('location'),
+              'date_to' => $this->request->getPost('date_to'),
+              'link' => $this->request->getPost('link'),
+              'image' => $filename,
+            ];
+            $model->save($data);
+            return redirect()->to('/events')->with('success','Evento inserito.');
+          } else {
+            // File upload failed
+            $error = $image->getErrorString();
+            // Handle the error
+            return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
+          }
+        } else {
+          // No image uploaded
+          $data = [
+            'association_id' => $this->request->getPost('association_id'),
+            'title' => $this->request->getPost('title'),
+            'category' => $this->request->getPost('category'),
+            'description' => $this->request->getPost('description'),
+            'date' => $this->request->getPost('date'),
+            'location' => $this->request->getPost('location'),
+            'date_to' => $this->request->getPost('date_to'),
+            'link' => $this->request->getPost('link'),
+          ];
+          $model->save($data);
+          return redirect()->to('/events')->with('success','Evento inserito.');
+        }
       } else {
-        $data['validation'] = $this->validator;
-        echo view('events/new', $data);
+          $data['validation'] = $this->validator;
+          echo view('events/new', $data);
       }
     }
   }
@@ -185,7 +219,7 @@ class EventsController extends Controller
     $session = session();
     $eventModel = new EventModel();
     $eventId = $this->request->getVar('event_id');
-    $event = $eventModel->where('id', $eventId)->first();
+    $event = $eventModel->find($eventId);
 
     if (!$event) {
       return redirect()->to('/events')->with('error', 'Evento non trovato');
@@ -197,14 +231,36 @@ class EventsController extends Controller
       'description' => $this->request->getVar('description'),
       'date' => $this->request->getVar('date'),
       'location' => $this->request->getVar('location'),
+      'date_to' => $this->request->getVar('date_to'),
+      'link' => $this->request->getVar('link'),
     ];
 
-      $eventModel->update($event['id'], $data);
+    $image = $this->request->getFile('image');
 
-      $session->setFlashdata('success', 'Informazioni aggiornate.');
+    if ($image->isValid()) {
+      $config = [
+        'upload_path' => './uploads/events/',
+        'allowed_types' => 'gif|jpg|jpeg|png',
+        'max_size' => 2048,
+        'encrypt_name' => true,
+      ];
 
-    return redirect()->to('/events/edit/'.$event['id']);
+      if ($image->move($config['upload_path'])) {
+        $imagePath = $image->getName();
+        $data['image'] = $imagePath;
+      } else {
+        $error = $image->getErrorString();
+        return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
+      }
+    }
+
+    $eventModel->update($eventId, $data);
+
+    $session->setFlashdata('success', 'Informazioni aggiornate.');
+
+    return redirect()->to('/events/detail/' . $eventId);
   }
+
 
   public function search()
   {

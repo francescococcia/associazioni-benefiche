@@ -97,6 +97,25 @@
         font-weight: bold;
         text-transform: uppercase;
       }
+
+      .custom-file-upload{
+        /* border-right: 1px solid #ccc;  */
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        margin-bottom:0;
+      }
+
+      .custom-file-upload:hover{
+        background-color: bisque;
+      }
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+      }
+
     </style>
     <?= $this->include('Layout/partial/import_js'); ?>
   </head>
@@ -110,10 +129,12 @@
         <?= $this->include('Layout/partial/messages'); ?>
         <?= $this->renderSection('content') ?>
       </div>
-      <footer id="footer" style="background-color: #FFFFC1;">
-      <!-- <footer id="footer" style="color: #ffffff; background-color: #ffffc1;"> -->
-        <?= $this->include('Layout/partial/footer'); ?>
-      </footer>
+
+      <?php if (!session()->get('isAdmin')): ?>
+        <footer id="footer" style="background-color: #FFFFC1;">
+          <?= $this->include('Layout/partial/footer'); ?>
+        </footer>
+      <?php endif; ?>
     </div>
 
     <!-- Main container END -->

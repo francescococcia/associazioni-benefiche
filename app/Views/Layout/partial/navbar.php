@@ -30,22 +30,27 @@
 								</li>
 							<#?php endif; ?> -->
 
-              <?php if (session()->get('isLoggedIn') ): ?>
-                <?php if (!session()->get('isAdmin')): ?>
-                  <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
-                    <a href="<?php echo base_url();?>/store" class="nav-link strokeme">Prodotti</a>
-                  </li>
 
-                  <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
-                    <a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
-                  </li>
-                <?php endif; ?>
+              <?php if (!session()->get('isAdmin')): ?>
+                <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'store') ? 'active' : ''; ?>">
+                  <a href="<?php echo base_url();?>/store" class="nav-link strokeme">Prodotti</a>
+                </li>
+              <?php endif; ?>
+
+              <?php if (session()->get('isLoggedIn') ): ?>
+                <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
+                  <a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
+                </li>
               <?php endif; ?>
 
 							<?php if (session()->get('isLoggedIn')): ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link strokeme dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i> <?= session()->get('email')?>
+                    <?php if (session()->get('isPlatformManager')): ?>
+                      <i class="fas fa-user"></i> <?= session()->get('nameAssociation')?>
+                    <?php else: ?>
+                      <i class="fas fa-user"></i> <?= session()->get('first_name')?>
+                    <?php endif; ?>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <?php if (session()->get('isPlatformManager')): ?>
@@ -56,13 +61,13 @@
                     <?php endif; ?>
 
                     <?php if (!session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
-                      <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">Visualizza Eventi</a>
-                      <a class="dropdown-item" href="<?php echo base_url();?>/cash">Visualizza Prodotti</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/joined-events">I miei eventi</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/cash">I miei prodotti</a>
                     <?php endif; ?>
 
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Utenti</a>
-                      <a class="dropdown-item" href="<?php echo base_url();?>/admin/associations">Associaioni</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/admin/associations">Associazioni</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
                     <?php endif; ?>

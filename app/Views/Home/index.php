@@ -35,8 +35,8 @@
                 <?php if (session()->get('isAdmin')): ?>
                   <div class="text-center text-lg-right">
                     <a href="<?php echo base_url();?>/admin/dashboard"
-                      class="btn mr-lg-3 btn-style btn-lg btn-clean float-lg-none btn-c-4129 btn-rd">
-                      Home
+                      class="btn mr-lg-3 btn-style btn-xl btn-clean float-lg-none btn-c-4129 btn-rd">
+                      Dashboard
                     </a>
                   </div>
                 <?php endif; ?>
@@ -164,8 +164,6 @@
           </div>
         </div>
       </div>
-
-
 
       <footer  id="footer" style='color: #ffffff;background-color: #FFFFC1;'>
         <?= $this->include('Layout/partial/footer'); ?>

@@ -112,21 +112,6 @@
     </div>
   </div>
 
-  <style>
-    .custom-file-upload{
-      /* border-right: 1px solid #ccc;  */
-      display: inline-block;
-      padding: 6px 12px;
-      cursor: pointer;
-      margin-bottom:0;
-    }
-
-    .custom-file-upload:hover{
-      background-color: bisque;
-    }
-
-  </style>
-
   <script>
     $(document).ready(function () {
       $('#choose-file').change(function () {
