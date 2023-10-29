@@ -16,12 +16,14 @@
             <div class="text-center mb-4">
               <h3><strong><?= $association['name']; ?></strong></h3>
             </div>
-            <picture>
-              <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                class="img-fluid img-rd-lg lazyload mb-5 center"
-                alt="<?php echo $association['image']; ?>" width="350" height="350">
-            </picture>
+            <?php if ($association['image']) : ?>
+              <picture>
+                <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                  data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
+                  class="img-fluid img-rd-lg lazyload mb-5 center"
+                  alt="<?php echo $association['image']; ?>" width="350" height="350">
+              </picture>
+            <?php endif; ?>
             <p><strong>Sede Legale:</strong> <?= $association['legal_address']; ?></p>
             <p><strong>Codice Fiscale:</strong> <?= $association['tax_code']; ?></p>
             <p><strong>Descrizione:</strong> <?= $association['description']; ?></p>

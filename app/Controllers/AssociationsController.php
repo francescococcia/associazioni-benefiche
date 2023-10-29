@@ -154,7 +154,7 @@ class AssociationsController extends BaseController
           // File upload failed
           $error = $image->getErrorString();
           // Handle the error
-          return redirect()->back()->with('error', 'File upload failed: ' . $error);
+          return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
         }
       } else {
         // Save the image path to the database

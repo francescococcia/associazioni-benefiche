@@ -61,9 +61,27 @@ class ProductsController extends Controller
         'quantity' => $this->request->getPost('quantity'),
       ];
 
+      $image = $this->request->getFile('image');
+
+      if ($image->isValid() && !$image->hasMoved()) {
+        $config = [
+            'upload_path' => './uploads/products/',
+            'allowed_types' => 'gif|jpg|jpeg|png',
+            'max_size' => 2048,
+            'encrypt_name' => true,
+        ];
+
+        if ($image->move($config['upload_path'], $image->getName())) {
+            $imagePath = $image->getName();
+            $data['image'] = $imagePath;
+        } else {
+            $error = $image->getErrorString();
+            return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
+        }
+      }
+
       $model->save($data);
-      // $session->setFlashdata('message', 'Event created successfully!');
-      return redirect()->to('/store')->with('success','Prodotto inserito.');
+      return redirect()->to('/store')->with('success', 'Prodotto inserito.');
     } else {
       $data['association_id'] = $this->request->getPost('association_id');
       $data['validation'] = $this->validator;
@@ -85,6 +103,14 @@ class ProductsController extends Controller
 
     $data['product'] = $product;
     $data['isQuantityAvailable'] = $isQuantityAvailable;
+
+    $userId = session()->get('id');
+
+    $products = $productModel->getCartProductsByUserIdAndProductId($userId, $id);
+
+    $productsBookedCount = count($products);
+
+    $data['productsBookedCount'] = $productsBookedCount;
 
     return view('products/show', $data);
   }
@@ -121,11 +147,30 @@ class ProductsController extends Controller
       'quantity' => $this->request->getVar('quantity'),
     ];
 
-      $productModel->update($product['id'], $data);
+    $image = $this->request->getFile('image');
 
-      $session->setFlashdata('success', 'Informazioni aggiornate.');
+    if ($image->isValid()) {
+      $config = [
+        'upload_path' => './uploads/products/',
+        'allowed_types' => 'gif|jpg|jpeg|png',
+        'max_size' => 2048,
+        'encrypt_name' => true,
+      ];
 
-    return redirect()->to('/product/edit/'.$product['id']);
+      if ($image->move($config['upload_path'])) {
+        $imagePath = $image->getName();
+        $data['image'] = $imagePath;
+      } else {
+        $error = $image->getErrorString();
+        return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
+      }
+    }
+
+    $productModel->update($product['id'], $data);
+
+    $session->setFlashdata('success', 'Informazioni aggiornate.');
+
+    return redirect()->to('/product/detail/'.$product['id']);
   }
 
   public function buy()
@@ -194,19 +239,47 @@ class ProductsController extends Controller
     return redirect()->to('/store')->with('success', 'Prodotto cancellato.');
   }
 
+  // public function cartProducts()
+  // {
+  //   $productModel = new ProductModel();
+  //   $associationModel = new AssociationModel();
+
+  //   $userId = session()->get('id');
+  //   $products = $productModel->findAll(); // Fetch all products
+
+  //   $productsWithBookedCounts = [];
+
+  //   foreach ($products as $product) {
+  //       $productId = $product['id'];
+  //       $bookedProducts = $productModel->getCartProductsByUserIdAndProductId($userId, $productId);
+  //       $bookedCount = count($bookedProducts);
+
+  //       $product['bookedCount'] = $bookedCount;
+  //       $productsWithBookedCounts[] = $product;
+  //   }
+
+  //   $data['products'] = $productsWithBookedCounts;
+
+  //   return view('products/cart_products', $data);
+  // }
   public function cartProducts()
   {
     $productModel = new ProductModel();
     $associationModel = new AssociationModel();
 
-    // Assuming you have a function to retrieve the current user's ID
-    $userId = session()->get('id'); // Replace this with the actual method to get user ID
-    // $associationId = $associationModel->getUserWithAssociation($userId);
-    $products = $productModel->getCartProductsyUserId($userId);
+    $userId = session()->get('id');
+    $products = $productModel->findAll();
 
-    $data['products'] = $products;
-
-    // Pass the data to the view
+    $data = [];
+    if (!empty($products)) {
+      foreach ($products as $product) {
+        $bookedProducts = $productModel->getCartProductsByUserIdAndProductId($userId, $product['id']);
+        if (!empty($bookedProducts)) {
+            $product['bookedCount'] = count($bookedProducts);
+            $data['products'][] = $product;
+        }
+      }
+    }
     return view('products/cart_products', $data);
   }
 }

@@ -46,7 +46,13 @@
                       <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
                       <input type="file"  id="choose-file"  name="image" accept=".jpg, .jpeg, .png, .gif" style="display:none;">
                     </div>
-                    <img src="<?= base_url('uploads/'.$association['image']) ?>" alt="<?= $association['name'] ?>" class="mt-3 ml-5" style="max-width: 300px;">
+                    <?php if ($association['image']): ?>
+                      <img
+                        src="<?= base_url('uploads/'.$association['image']) ?>"
+                        alt="<?= $association['name'] ?>"
+                        class="mt-3 ml-5"
+                        style="max-width: 300px;">
+                      <?php endif; ?>
                   </div>
 
                   <div class="text-center">

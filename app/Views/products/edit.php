@@ -11,7 +11,9 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form action="<?= base_url(); ?>/product/update" method="post" data-form-type="blocs-form" novalidate="">
+          <form action="<?= base_url(); ?>/product/update" method="post"
+            data-form-type="blocs-form" novalidate=""
+            enctype="multipart/form-data">
             <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
             <div class="card">
               <div class="card-body">
@@ -35,6 +37,22 @@
                   <input type="number" class="form-control" required min='1' name="quantity" value="<?= $product['quantity'] ?>">
                 </div>
 
+                <div class="form-group">
+                  <label for="image" class="form-label">Immagine</label>
+                  <div class="input_container">
+                    <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
+                    <input type="file"  id="choose-file"  name="image" accept=".jpg, .jpeg, .png, .gif" style="display:none;">
+                  </div>
+                  <?php if ($product['image']): ?>
+                    <img
+                      src="<?= base_url('uploads/products/'.$product['image']) ?>"
+                      alt="<?= $product['name'] ?>"
+                      class="mt-3 ml-5"
+                      style="max-width: 300px;"
+                    >
+                  <?php endif; ?>
+                </div>
+
                 <div class="text-center">
                   <button class="btn btn-clean float-lg-none btn-c-4129 btn-rd mt-lg-4" type="submit">
                     Aggiorna
@@ -48,4 +66,15 @@
 			</div>
 		</div>
 	</div>
+
+  <script>
+    $(document).ready(function () {
+
+      $('#choose-file').change(function () {
+        var i = $(this).prev('label').clone();
+        var file = $('#choose-file')[0].files[0].name;
+        $(this).prev('label').text(file);
+      });
+    });
+  </script>
 <?= $this->endSection() ?>

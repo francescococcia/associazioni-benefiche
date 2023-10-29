@@ -68,7 +68,7 @@
                       type="datetime-local"
                       name="date_to"
                       value="<?= set_value('date_to') ?>"
-                      id='txtDate_to'
+                      id='txtDateTo'
                     >
                   </div>
 
@@ -116,30 +116,25 @@
       $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 
       $(function(){
-         var dtToday = new Date();
+        var dtToday = new Date();
+        var year = dtToday.getFullYear();
+        var month = (dtToday.getMonth() + 1).toString().padStart(2, '0');
+        var day = dtToday.getDate().toString().padStart(2, '0');
+        var hours = dtToday.getHours().toString().padStart(2, '0');
+        var minutes = dtToday.getMinutes().toString().padStart(2, '0');
 
-         var month = dtToday.getMonth() + 1;
-         var day = dtToday.getDate();
-         var year = dtToday.getFullYear();
-         if(month < 10)
-             month = '0' + month.toString();
-         if(day < 10)
-             day = '0' + day.toString();
-
-         var maxDate = year + '-' + month + '-' + day;
-
-         // or instead:
-         // var maxDate = dtToday.toISOString().substr(0, 10);
+        var maxDate = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
 
         $('#txtDate').attr('min', maxDate);
+        $('#txtDateTo').attr('min', maxDate);
 
       });
 
       $('#choose-file').change(function () {
-          var i = $(this).prev('label').clone();
-          var file = $('#choose-file')[0].files[0].name;
-          $(this).prev('label').text(file);
-        });
+        var i = $(this).prev('label').clone();
+        var file = $('#choose-file')[0].files[0].name;
+        $(this).prev('label').text(file);
+      });
     })
   </script>
 <?= $this->endSection() ?>

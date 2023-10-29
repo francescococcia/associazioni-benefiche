@@ -143,6 +143,11 @@ class EventsController extends Controller
   {
     helper('event_helper');
     $model = new EventModel();
+    $participantModel = new ParticipantModel();
+    $feedbackModel = new FeedbackModel();
+    // Get the user's first name and last name based on the feedback's user_id
+    $userModel = new UserModel();
+
     $event = $model->find($id);
 
     if (!$event) {
@@ -162,39 +167,38 @@ class EventsController extends Controller
       $data['events'] = $model->orderBy('id', 'DESC')->findAll();
     }
 
-    $participantModel = new ParticipantModel();
-
     // Loop through the events and check if the user has participated in each event
-    // foreach ($data['events'] as &$event) {
-      $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
-      $event['userParticipated'] = $participant !== null;
-    // }
+    $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
+    $event['userParticipated'] = $participant !== null;
     $data['participantModel'] = $participant;
 
     // Get all feedback related to the event
 
     $participants = $participantModel->where('event_id', $id)->findAll();
 
-    $feedbackModel = new FeedbackModel(); // Replace with your actual Feedback model
     $feedbackData = [];
-    // Get the user's first name and last name based on the feedback's user_id
-    $userModel = new UserModel();
+
     $feedback = [''];
     foreach ($participants as $participant) {
-        $feedback = $feedbackModel->where('participant_id', $participant['id'])->findAll();
-        if (!empty($feedback)) {
-            $feedbackData[$participant['id']] = $feedback;
-        }
+      $feedback = $feedbackModel->where('participant_id', $participant['id'])->findAll();
+      if (!empty($feedback)) {
+          $feedbackData[$participant['id']] = $feedback;
+      }
     }
-
-    // $userData = $userModel->user($feedback['user_id']);
 
     // Pass the feedback and user data to the view
     $data['feedback'] = $feedback;
 
     $data['feedbackData'] = $feedbackData;
 
-    //
+    $date = strtotime($event['date']);
+    $formattedDate = date('d/m/Y H:i', $date);
+    $data['formattedDate'] = $formattedDate;
+
+    $date_to = strtotime($event['date_to']);
+    $formattedDateTo = date('d/m/Y H:i', $date_to);
+    $data['formattedDateTo'] = $formattedDateTo;
+
     return view('events/show', $data);
   }
 
@@ -207,9 +211,15 @@ class EventsController extends Controller
       return redirect()->to('/events')->with('error', 'Evento non trovato');
     }
 
-    $formattedDate = date('Y-m-d', strtotime($event['date']));
     $data['event'] = $event;
+
+    $date = strtotime($event['date']);
+    $formattedDate = date('Y-m-d\TH:i', $date);
     $data['formattedDate'] = $formattedDate;
+
+    $date_to = strtotime($event['date_to']);
+    $formattedDateTo = date('Y-m-d\TH:i', $date_to);
+    $data['formattedDateTo'] = $formattedDateTo;
 
     return view('events/edit', $data);
   }
@@ -260,7 +270,6 @@ class EventsController extends Controller
 
     return redirect()->to('/events/detail/' . $eventId);
   }
-
 
   public function search()
   {

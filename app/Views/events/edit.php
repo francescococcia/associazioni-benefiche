@@ -56,8 +56,8 @@
                       class="form-control"
                       type="datetime-local"
                       name="date_to"
-                      value="<?= $event['date_to'] ?>"
-                      id='txtDate_to'
+                      value="<?= $formattedDateTo ?>"
+                      id='txtDateTo'
                     >
                   </div>
 
@@ -101,24 +101,20 @@
 			</div>
 		</div>
 	</div>
+
   <script>
     $(document).ready(function () {
       var dtToday = new Date();
-
-      var month = dtToday.getMonth() + 1;
-      var day = dtToday.getDate();
       var year = dtToday.getFullYear();
-      if(month < 10)
-          month = '0' + month.toString();
-      if(day < 10)
-          day = '0' + day.toString();
+      var month = (dtToday.getMonth() + 1).toString().padStart(2, '0');
+      var day = dtToday.getDate().toString().padStart(2, '0');
+      var hours = dtToday.getHours().toString().padStart(2, '0');
+      var minutes = dtToday.getMinutes().toString().padStart(2, '0');
 
-      var maxDate = year + '-' + month + '-' + day;
-
-      // or instead:
-      // var maxDate = dtToday.toISOString().substr(0, 10);
+      var maxDate = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
 
       $('#txtDate').attr('min', maxDate);
+      $('#txtDateTo').attr('min', maxDate);
 
       $('#choose-file').change(function () {
         var i = $(this).prev('label').clone();

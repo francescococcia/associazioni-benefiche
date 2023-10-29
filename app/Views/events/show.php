@@ -98,8 +98,12 @@
               </picture>
             <?php endif; ?>
 
-            <p><strong>Data dal:</strong> <?= date('d/m/y', strtotime($event['date'])); ?></p>
-            <p><strong>Data al:</strong> <?= date('d/m/y', strtotime($event['date_to'])); ?></p>
+            <p>
+              <strong>Data dal:</strong> <?= $formattedDate ?>
+              <?php if ($event['date_to']): ?>
+                <strong> al:</strong> <?= $formattedDateTo ?>
+              <?php endif; ?>
+            </p>
             <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
             <p><strong>Descrizione:</strong> <?= $event['description']; ?></p>
             <p><strong>Categoria:</strong> <?= $event['category']; ?></p>

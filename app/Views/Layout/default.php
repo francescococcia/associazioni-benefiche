@@ -109,6 +109,7 @@
       .custom-file-upload:hover{
         background-color: bisque;
       }
+
       .center {
         display: block;
         margin-left: auto;

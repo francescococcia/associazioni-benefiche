@@ -13,7 +13,8 @@ class ProductModel extends Model
     'name',
     'description',
     'price',
-    'quantity'
+    'quantity',
+    'image',
   ];
 
   public function isQuantityAvailable($productId, $quantity) {
@@ -45,19 +46,11 @@ class ProductModel extends Model
   }
 
   public function getAllProductsByPlatformManager($userId) {
-    $builder = $this->db->table('products');
-    $builder->select('products.*');
-    $builder->join('associations', 'products.association_id = associations.id');
-    $builder->where('associations.user_id', $userId);
-    $query = $builder->get();
-
-    $result = $query->getResultArray();
-
-    if (!empty($result)) {
-        return $result;
-    } else {
-        return []; // Return an empty array if no results are found
-    }
+    return $this->select('products.*')
+        ->join('associations', 'products.association_id = associations.id')
+        ->where('associations.user_id', $userId)
+        ->orderBy('products.id', 'DESC')
+        ->findAll();
   }
 
   public function getCartProductsyUserId($userId)
@@ -66,6 +59,17 @@ class ProductModel extends Model
     $builder->select('products.*');
     $builder->join('orders', 'products.id = orders.product_id');
     $builder->where('orders.user_id', $userId);
+
+    return $builder->get()->getResultArray();
+  }
+
+  public function getCartProductsByUserIdAndProductId($userId, $productId)
+  {
+    $builder = $this->db->table('products');
+    $builder->select('products.*');
+    $builder->join('orders', 'products.id = orders.product_id');
+    $builder->where('orders.user_id', $userId);
+    $builder->where('orders.product_id', $productId);
 
     return $builder->get()->getResultArray();
   }
