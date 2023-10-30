@@ -27,13 +27,6 @@
               <td><?= $user['email'] ?></td>
               <td class='row'>
                 <div class="col-4">
-
-                  <form action="<?= site_url('admin/user/update/' . $user['id']) ?>" method="post" id="form_<?= $user['id'] ?>">
-                    <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#confirmationModal<?= $user['id'] ?>">Modifica</button>
-                  </form>
-
-                </div>
-                <div class="col-4">
                   <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post" id="userForm_<?= $user['id'] ?>">
                     <button class="btn btn-sm btn-danger" type="button" id="openModalButton">Rimuovi</button>
                   </form>

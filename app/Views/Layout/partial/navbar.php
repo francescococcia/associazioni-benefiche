@@ -37,7 +37,7 @@
                 </li>
               <?php endif; ?>
 
-              <?php if (session()->get('isLoggedIn') ): ?>
+              <?php if (session()->get('isLoggedIn') && !session()->get('isAdmin') ): ?>
                 <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
                   <a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
                 </li>
