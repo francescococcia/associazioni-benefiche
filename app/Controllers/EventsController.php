@@ -171,6 +171,7 @@ class EventsController extends Controller
     $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
     $event['userParticipated'] = $participant !== null;
     $data['participantModel'] = $participant;
+    $data['userId'] = $userId;
 
     // Get all feedback related to the event
 

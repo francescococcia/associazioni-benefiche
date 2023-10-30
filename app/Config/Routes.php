@@ -69,6 +69,7 @@ $routes->post('/reports/store', 'ReportsController::store');
 // Feedback routes
 $routes->get('/feedbacks/create', 'FeedbacksController::create', ['filter' => 'authGuard']);
 $routes->post('/feedbacks/store/(:num)', 'FeedbacksController::store/$1', ['filter' => 'authGuard']);
+$routes->post('feedback/delete/(:num)', 'FeedbacksController::delete/$1', ['filter' => 'authGuard']);
 
 // Events routes
 $routes->get('/events', 'EventsController::index');

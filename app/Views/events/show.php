@@ -125,7 +125,7 @@
               <?php if (session()->get('isPlatformManager')): ?>
                 <div class="row">
                   <div class="col-3">
-                    <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" onsubmit="return false;">
+                    <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" id="form_<?= $event['id'] ?>">
                       <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
                     </form>
 
@@ -143,7 +143,11 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                            <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                            <button
+                              type="button"
+                              class="btn btn-danger"
+                              onclick="deleteRow(<?= $event['id'] ?>)"
+                              id="confirmDelete<?= $event['id'] ?>">Rimuovi</button>
                           </div>
                         </div>
                       </div>
@@ -186,11 +190,51 @@
                         </div>
                       </div>
                     </div>
+
                     <div class="row">
                       <div class="col-sm">
-                          <p> <?= $feedback['message']; ?></p>
-                        </div>
+                        <p> <?= $feedback['message']; ?></p>
+                        <?php if (session()->get('isPlatformManager') && ($userId == session()->get('id'))): ?>
+                          <form action="<?= site_url('feedback/delete/' . $feedback['id']) ?>" method="post" id="form_<?= $feedback['id'] ?>">
+                            <input
+                              type="hidden"
+                              name="event_id"
+                              id="event_id"
+                              value="<?= $event['id'] ?>">
+                            <button
+                              class='btn btn-danger'
+                              type="button"
+                              data-toggle="modal"
+                              data-target="#removeFeedbackModal">Rimuovi</button>
+                          </form>
+
+                          <div class="modal fade" id="removeFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="removeFeedbackModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="removeFeedbackModalLabel">Conferma Eliminazione</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Sei sicuro di voler rimuovere il feedback?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-danger"
+                                    onclick="deleteRow(<?= $feedback['id'] ?>)" id="confirmDelete<?= $feedback['id'] ?>">
+                                    Rimuovi
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <?php endif; ?>
                       </div>
+                    </div>
                   </div>
                   <hr>
                 <?php endforeach; ?>
@@ -242,4 +286,15 @@
         color: #c59b08;
     }
   </style>
+
+  <script>
+    function deleteRow(id) {
+      // Construct the form ID based on the user ID
+      var formId = 'form_' + id;
+
+      // Submit the form with the constructed ID
+      document.getElementById(formId).submit();
+    }
+
+  </script>
 <?= $this->endSection() ?>
