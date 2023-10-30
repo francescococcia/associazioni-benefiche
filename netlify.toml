@@ -1,0 +1,7 @@
+[build]
+  command = "composer install && php spark build"
+  publish = "public"
+
+[build.environment]
+  PHP_VERSION = "7.4"
+  CI_APP_URL = "https://mani-generose.netlify.app/"
