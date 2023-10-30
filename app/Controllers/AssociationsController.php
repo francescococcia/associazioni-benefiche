@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AssociationModel;
 use App\Models\EventModel;
 use App\Models\ProductModel;
+use App\Models\NewModel;
 
 use CodeIgniter\Files\UploadedFile;
 use CodeIgniter\HTTP\RequestInterface;
@@ -20,6 +21,7 @@ class AssociationsController extends BaseController
     $associationModel = new AssociationModel();
     $eventModel = new EventModel();
     $productModel = new ProductModel();
+    $newModel = new NewModel();
 
     $association = $associationModel->find($id);
 
@@ -32,8 +34,11 @@ class AssociationsController extends BaseController
 
     // Pass the association data to the view
     $data['association'] = $association;
+    $data['userId'] = $userId;
     $data['events'] = $eventModel->getAllEventsByPlatformManager($userId);
     $data['products'] = $productModel->getAllProductsByPlatformManager($userId);
+    $data['news'] = $newModel->getAllNewsByPlatformManager($association['id']);
+
     return view('associations/show', $data);
   }
 

@@ -20,6 +20,7 @@
 
     </div>
 	</div>
+
   <div class="content mb-5">
     <div class="wrap">
 
@@ -27,7 +28,7 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
           <div class="col-12 col-md-8 col-lg-6">
 
-          <form  method="GET" action="<?= base_url(); ?>/events">
+            <form  method="GET" action="<?= base_url(); ?>/events">
               <div class="row">
 
                 <div class="col-md-12">

@@ -113,6 +113,13 @@ $routes->get('/associations/create', 'AssociationsController::create');
 $routes->post('/associations/store', 'AssociationsController::store');
 $routes->get('/associations/(:num)', 'AssociationsController::show/$1');
 
+// Association routes
+$routes->get('news/create', 'NewsController::create');
+$routes->post('news/store', 'NewsController::store');
+$routes->post('news/delete/(:num)', 'NewsController::delete/$1', ['filter' => 'authGuard']);
+$routes->get('new/edit/(:segment)', 'NewsController::edit/$1', ['filter' => 'authGuard']);
+$routes->post('new/update', 'NewsController::update', ['filter' => 'authGuard']);
+
 $routes->get('/logout', 'Home::exit');
 /*
  * --------------------------------------------------------------------
