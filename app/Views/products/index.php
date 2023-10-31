@@ -23,23 +23,95 @@
 
   <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
-      <?php if ($products) : ?>
-        <?php foreach ($products as $product) : ?>
-          <div class="col-auto mb-3">
-            <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                  <h5 class="card-title"><strong><?php echo $product['name']; ?></strong></h5>
-                  <p class="card-text">Descrizione: <?php echo $product['description']; ?></p>
-                  <p class="card-text">Prezzo: <?php echo $product['price']; ?></p>
-                  <a href="<?= site_url('product/detail/'.$product['id']) ?>" class="card-link">Dettagli</a>
+      <div class="grid-container">
+        <?php if ($products) : ?>
+          <?php foreach ($products as $product) : ?>
+            <div class="grid-item">
+              <a href="<?= site_url('product/detail/'.$product['id']) ?>">
+                <?php if ($product['image']) : ?>
+                  <img
+                    src="<?= base_url('uploads/products/'.$product['image']); ?>"
+                    data-src="<?= base_url('uploads/products/'.$product['image']); ?>"
+                    class=""
+                    alt="<?= $product['image']; ?>"
+                  >
+                  <?php else : ?>
+                    <img
+                    src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
+                    data-src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
+                    class=""
+                    alt="Immagine non caricata"
+                  >
+                <?php endif; ?>
+
+                <div class="overlay">
+                  <div class="row text-center">
+                    <div class="col">
+
+                      <h2><?= $product['name']; ?></h2><br>
+                      <p><strong>€<?= $product['price']; ?></strong></p>
+                    </div>
+                  </div>
                 </div>
+              </a>
             </div>
-          </div>
-        <?php endforeach; ?>
-      <?php else : ?>
-        <p>Nessun prodotto inserito.</p>
-      <?php endif; ?>
+
+          <?php endforeach; ?>
+        <?php else : ?>
+          <p>Nessun prodotto inserito.</p>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
+
+  <style>
+
+    /* Style for the grid container */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+
+    /* Style for each grid item */
+    .grid-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    /* Overlay style */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Show overlay on hover */
+    .grid-item:hover .overlay {
+      opacity: 1;
+    }
+
+    /* Zoom effect on image hover */
+    .grid-item:hover img {
+      transform: scale(1.1);
+    }
+
+  </style>
 <?= $this->endSection() ?>
 

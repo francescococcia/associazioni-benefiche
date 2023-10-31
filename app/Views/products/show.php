@@ -42,73 +42,90 @@
           </div> -->
         <?php endif; ?>
       </div>
+    </div>
 
-      <div class="row d-flex align-items-stretch">
-        <div class="col-md-6 col-sm-6 offset-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center mb-4">
-                <h3><strong><?= $product['name']; ?></strong></h3>
-              </div>
+    <div class="row d-flex align-items-stretch">
+      <div class="col-md-3 col-sm-6 offset-lg-3">
+        <div class="card" style='border:none'>
+          <div class="card-body">
 
-              <?php if ($product['image']): ?>
-                <picture>
-                  <img src="<?php echo base_url('uploads/products/'.$product['image']); ?>"
-                    data-src="<?php echo base_url('uploads/products/'.$product['image']); ?>"
-                    class="img-fluid img-rd-lg lazyload mb-5 center"
-                    alt="<?php echo $product['image']; ?>" width="350" height="350">
-                </picture>
-              <?php endif; ?>
+            <?php if ($product['image']): ?>
+              <picture>
+                <img src="<?php echo base_url('uploads/products/'.$product['image']); ?>"
+                  data-src="<?php echo base_url('uploads/products/'.$product['image']); ?>"
+                  class="center"
+                  alt="<?php echo $product['image']; ?>"
+                  style='width:100% !important; height:100% !important'>
+              </picture>
+            <?php else : ?>
+                <img
+                  src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
+                  data-src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
+                  class=""
+                  alt="Immagine non caricata"
+                >
+            <?php endif; ?>
 
-              <p><strong>Descrizione:</strong> <?= $product['description']; ?></p>
-              <p><strong>Prezzo:</strong> <?= $product['price']; ?>€</p>
-              <p><strong>Quantità disponibile:</strong> <?= $isQuantityAvailable; ?></p>
-              <?php if ($productsBookedCount): ?>
-                <p><strong>Quantità prenotata:</strong> <?= $productsBookedCount; ?></p>
-              <?php endif; ?>
-
-              <?php if (session()->get('isPlatformManager')): ?>
-                <div class="row">
-                  <div class="col-3">
-                    <form action="<?= site_url('product/delete/' . $product['id']) ?>" method="post" onsubmit="return false;">
-                      <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
-                    </form>
-
-                    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            Sei sicuro di voler rimuovere il prodotto?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                            <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-3">
-                    <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
-                    <a href="<?= site_url('product/edit/'.$product['id']) ?>"
-                      class="btn btn-warning text-white">
-                      Modifica
-                    </a>
-                  </div>
-                </div>
-              <?php endif; ?>
-            </div>
           </div>
         </div>
       </div>
 
+      <div class="col-md-5 col-sm-6">
+        <div class="card" style='border:none'>
+          <div class="card-body">
+            <div class="mb-4">
+              <h3><strong><?= $product['name']; ?></strong></h3>
+              <p><strong>€<?= $product['price']; ?></strong></p>
+            </div>
+            <p><?= $isQuantityAvailable; ?> disponibili</p>
+            <?php if ($productsBookedCount): ?>
+              <p><?= $productsBookedCount; ?> prenotati</p>
+            <?php endif; ?>
+            
+            <p>Descrizione</p>
+            <div class="panel panel-default" style='heigth:30%;color: #333; background-color: #f5f5f5;border-color: #ddd;'>
+              <div class="panel-body"><?= $product['description']; ?></div>
+            </div>
+            <?php if (session()->get('isPlatformManager')): ?>
+              <div class="row">
+                <div class="col-3">
+                  <form action="<?= site_url('product/delete/' . $product['id']) ?>" method="post" onsubmit="return false;">
+                    <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
+                  </form>
+
+                  <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="confirmationModalLabel">Conferma Eliminazione</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Sei sicuro di voler rimuovere il prodotto?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                          <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-3">
+                  <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
+                  <a href="<?= site_url('product/edit/'.$product['id']) ?>"
+                    class="btn btn-warning text-white">
+                    Modifica
+                  </a>
+                </div>
+              </div>
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 <?= $this->endSection() ?>
