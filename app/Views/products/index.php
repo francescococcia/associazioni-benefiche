@@ -27,6 +27,7 @@
         <?php if ($products) : ?>
           <?php foreach ($products as $product) : ?>
             <div class="grid-item">
+              <span class="onsale out-of-stock-button"><span>Out of stock</span></span>
               <a href="<?= site_url('product/detail/'.$product['id']) ?>">
                 <?php if ($product['image']) : ?>
                   <img
@@ -110,6 +111,31 @@
     /* Zoom effect on image hover */
     .grid-item:hover img {
       transform: scale(1.1);
+    }
+
+    .out-of-stock-button{
+      font-family: Raleway, sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+    }
+    .grid-item .out-of-stock-button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 10px 20px;
+    }
+    .grid-item::before {
+      content: '';
+      background: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transform: rotate(-45deg) translateY(75%);
     }
 
   </style>

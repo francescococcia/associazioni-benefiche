@@ -99,7 +99,7 @@ class ProductsController extends Controller
     }
 
     // Check if the quantity is available
-    $isQuantityAvailable = $productModel->isQuantityAvailable($id, $product['quantity']);
+    $quantityAvailable = $productModel->quantityAvailable($id, $product['quantity']);
 
     $data['product'] = $product;
     $data['isQuantityAvailable'] = $isQuantityAvailable;

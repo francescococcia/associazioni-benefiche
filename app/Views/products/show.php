@@ -5,7 +5,7 @@
       <div class="page-headline-wrap cc-category-headline">
         <h1>Dettagli Prodotto</h1>
         <p class="big-paragraph">Informazioni riguardo il prodotto</p>
-        <?php if ($isQuantityAvailable &&
+        <?php if ($quantityAvailable &&
           !session()->get('isPlatformManager') &&
           !session()->get('isAdmin')): ?>
           <div class="row">
@@ -17,7 +17,7 @@
                     <div class="col-12 d-flex justify-content-center align-items-center">
                       <div class="form-group">
                         <label for="quantity-<?php echo $product['id']; ?>">Quantità:</label>
-                        <input class='form-control' type="number" name="quantity" min="1" max="<?= $isQuantityAvailable ?>" required
+                        <input class='form-control' type="number" name="quantity" min="1" max="<?= $quantityAvailable ?>" required
                           data-validation-min-message='Seleziona almeno una quantità'>
                       </div>
                     </div>
@@ -75,17 +75,45 @@
           <div class="card-body">
             <div class="mb-4">
               <h3><strong><?= $product['name']; ?></strong></h3>
-              <p><strong>€<?= $product['price']; ?></strong></p>
+              <div class="panel-body" style='color:#e79999'>
+                <p><strong>€<?= $product['price']; ?></strong></p>
+                <?= $product['description']; ?>
+              </div>
             </div>
-            <p><?= $isQuantityAvailable; ?> disponibili</p>
-            <?php if ($productsBookedCount): ?>
-              <p><?= $productsBookedCount; ?> prenotati</p>
+
+            <?php if ($quantityAvailable &&
+              !session()->get('isPlatformManager') &&
+              !session()->get('isAdmin')): ?>
+              <p><?= $quantityAvailable; ?> disponibili</p>
+              <div class="row">
+                <div class="col">
+                  <form id="productForm" method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
+                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                    <div class="row">
+                      <div class="col-2 d-flex">
+                        <div class="form-group">
+                            <div class="quantity mainMenu">
+                                <button class="minus mt-2" type="button" onclick="decrementQuantity()">-</button>
+                                <span class='centerQuantity mt-2' id="quantityDisplay">1</span>
+                                <button class="plus mt-2" type="button" onclick="incrementQuantity()">+</button>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                          <button class="btn btn-md btn-clean btn-c-4129" type="button" onclick="submitForm()">
+                              Prenota prodotto
+                          </button>
+                      </div>
+                    </div>
+                  </form>
+
+                  </div>
+              </div>
+            <?php else: ?>
+              <p class='out-of-stock'><strong>Esaurito</strong></p>
             <?php endif; ?>
-            
-            <p>Descrizione</p>
-            <div class="panel panel-default" style='heigth:30%;color: #333; background-color: #f5f5f5;border-color: #ddd;'>
-              <div class="panel-body"><?= $product['description']; ?></div>
-            </div>
+
+
             <?php if (session()->get('isPlatformManager')): ?>
               <div class="row">
                 <div class="col-3">
@@ -128,4 +156,95 @@
       </div>
     </div>
   </div>
+  <style>
+    .quantity {
+    display: flex;
+    align-items: center;
+    width: 150px; /* Adjust width as needed */
+    }
+
+    .form-control {
+        width: 100%; /* Take up remaining space */
+        text-align: center;
+    }
+
+    .minus,
+    .plus {
+        width: 30px;
+        height: 30px;
+        background-color: #ccc;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .minus:hover,
+    .plus:hover {
+        background-color: #999;
+    }
+
+    /* Adjust the button alignment */
+    .minus {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .plus {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    #quantityInput {
+        display: none;
+    }
+    .mainMenu {
+      list-style-type: none;
+      text-align: center;
+      position: relative;
+      vertical-align: middle;
+    }
+    .centerQuantity {
+      list-style-type: none;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 2px solid;
+    }
+    .out-of-stock{
+      display: inline-block;
+    font-weight: 700;
+    color: #393939;
+    padding-bottom: 1px;
+    border-bottom: 2px solid;
+    margin: 30px 0;
+    }
+  </style>
+  <script>
+let quantity = 1; // Initial quantity
+
+function incrementQuantity() {
+    const maxQuantity = <?= $quantityAvailable ?>; // Fetch the maximum available quantity
+    if (quantity < maxQuantity) {
+        quantity++;
+        document.getElementById('quantityDisplay').innerText = quantity;
+    }
+}
+
+function decrementQuantity() {
+    if (quantity > 1) {
+        quantity--;
+        document.getElementById('quantityDisplay').innerText = quantity;
+    }
+}
+
+function submitForm() {
+    const form = document.getElementById('productForm');
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'quantity';
+    input.value = quantity;
+    form.appendChild(input);
+    form.submit();
+}
+
+  </script>
 <?= $this->endSection() ?>

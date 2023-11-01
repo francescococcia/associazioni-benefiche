@@ -17,6 +17,21 @@ class ProductModel extends Model
     'image',
   ];
 
+  public function quantityAvailable($productId, $quantity) {
+    $builder = $this->db->table('orders');
+    $builder->select('SUM(quantity) as total_quantity');
+    $builder->where('product_id', $productId);
+    $query = $builder->get();
+    $row = $query->getRow();
+
+    $totalQuantity = $row->total_quantity ?? 0; // Total quantity ordered for the specified user and product
+    if($quantity > $totalQuantity){
+      return $quantity - $totalQuantity;
+    } else {
+      return 0;
+    }
+  }
+
   public function isQuantityAvailable($productId, $quantity) {
     $builder = $this->db->table('orders');
     $builder->select('SUM(quantity) as total_quantity');
