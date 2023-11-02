@@ -242,29 +242,6 @@ class ProductsController extends Controller
     return redirect()->to('/store')->with('success', 'Prodotto cancellato.');
   }
 
-  // public function cartProducts()
-  // {
-  //   $productModel = new ProductModel();
-  //   $associationModel = new AssociationModel();
-
-  //   $userId = session()->get('id');
-  //   $products = $productModel->findAll(); // Fetch all products
-
-  //   $productsWithBookedCounts = [];
-
-  //   foreach ($products as $product) {
-  //       $productId = $product['id'];
-  //       $bookedProducts = $productModel->getCartProductsByUserIdAndProductId($userId, $productId);
-  //       $bookedCount = count($bookedProducts);
-
-  //       $product['bookedCount'] = $bookedCount;
-  //       $productsWithBookedCounts[] = $product;
-  //   }
-
-  //   $data['products'] = $productsWithBookedCounts;
-
-  //   return view('products/cart_products', $data);
-  // }
   public function cartProducts()
   {
     $productModel = new ProductModel();

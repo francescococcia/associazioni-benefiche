@@ -24,7 +24,7 @@
                 <?php foreach ($selectedProducts as $product): ?>
                   <tr>
                     <td><?= $product['association_name'] ?></td>
-                    <td><?= $product['total_price'] ?>€</td>
+                    <td>€<?= number_format($product['total_price'], 2, ',', ' '); ?></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
