@@ -4,20 +4,20 @@
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
         <h1>Dettagli Prodotto</h1>
-        <p class="big-paragraph">Informazioni riguardo il prodotto</p>
-        <?php if ($quantityAvailable &&
+        <p class="big-paragraph">Informazioni sul prodotto</p>
+        <!-- <#?php if ($quantityAvailable &&
           !session()->get('isPlatformManager') &&
           !session()->get('isAdmin')): ?>
           <div class="row">
             <div class="col">
               <div class="text-center">
-                <form method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
-                  <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                <form method="post" action="<#?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
+                  <input type="hidden" name="product_id" value="<#?= $product['id']; ?>">
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center align-items-center">
                       <div class="form-group">
-                        <label for="quantity-<?php echo $product['id']; ?>">Quantità:</label>
-                        <input class='form-control' type="number" name="quantity" min="1" max="<?= $quantityAvailable ?>" required
+                        <label for="quantity-<#?php echo $product['id']; ?>">Quantità:</label>
+                        <input class='form-control' type="number" name="quantity" min="1" max="<#?= $quantityAvailable ?>" required
                           data-validation-min-message='Seleziona almeno una quantità'>
                       </div>
                     </div>
@@ -28,7 +28,7 @@
                 </form>
               </div>
             </div>
-          </div>
+          </div> -->
         <!-- <#?php elseif(session()->get('isPlatformManager')): ?>
           <div class="row">
             <div class="col">
@@ -40,7 +40,7 @@
               </div>
             </div>
           </div> -->
-        <?php endif; ?>
+        <!-- <#?php endif; ?> -->
       </div>
     </div>
 
@@ -75,9 +75,9 @@
           <div class="card-body">
             <div class="mb-4">
               <h3><strong><?= $product['name']; ?></strong></h3>
-              <div class="panel-body" style='color:#e79999'>
-                <p><strong>€<?= $product['price']; ?></strong></p>
-                <?= $product['description']; ?>
+              <div class="panel-body" style='font-size:20px'>
+                <p><strong>€<?=  number_format($product['price'], 2, ',', ' '); ?></strong></p>
+                <p style='font-size:18px'><?= $product['description']; ?></p>
               </div>
             </div>
 
@@ -116,7 +116,7 @@
 
             <?php if (session()->get('isPlatformManager')): ?>
               <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                   <form action="<?= site_url('product/delete/' . $product['id']) ?>" method="post" onsubmit="return false;">
                     <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
                   </form>
@@ -142,7 +142,7 @@
                   </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-2">
                   <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
                   <a href="<?= site_url('product/edit/'.$product['id']) ?>"
                     class="btn btn-warning text-white">
@@ -211,11 +211,12 @@
     }
     .out-of-stock{
       display: inline-block;
-    font-weight: 700;
-    color: #393939;
-    padding-bottom: 1px;
-    border-bottom: 2px solid;
-    margin: 30px 0;
+      font-weight: 700;
+      color: #393939;
+      padding-bottom: 1px;
+      border-bottom: 2px solid;
+      margin: 30px 0;
+      color:#a30c02
     }
   </style>
   <script>

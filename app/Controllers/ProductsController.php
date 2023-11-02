@@ -11,7 +11,6 @@ use App\Models\OrderModel;
 
 class ProductsController extends Controller
 {
-  protected $format = 'json';
 
   public function index()
   {
@@ -22,6 +21,10 @@ class ProductsController extends Controller
     } else {
       $data['products'] = $model->orderBy('id', 'DESC')->findAll();
     }
+
+    foreach ($data['products'] as $key => $product) {
+      $data['products'][$key]['quantityAvailable'] = $model->quantityAvailable($product['id'], $product['quantity']);
+  }
     return view('products/index', $data);
   }
 
@@ -102,7 +105,7 @@ class ProductsController extends Controller
     $quantityAvailable = $productModel->quantityAvailable($id, $product['quantity']);
 
     $data['product'] = $product;
-    $data['isQuantityAvailable'] = $isQuantityAvailable;
+    $data['quantityAvailable'] = $quantityAvailable;
 
     $userId = session()->get('id');
 

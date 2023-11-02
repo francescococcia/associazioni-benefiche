@@ -27,7 +27,9 @@
         <?php if ($products) : ?>
           <?php foreach ($products as $product) : ?>
             <div class="grid-item">
-              <span class="onsale out-of-stock-button"><span>Out of stock</span></span>
+              <?php if ($product['quantityAvailable'] < 1) : ?>
+                <span class="onsale out-of-stock-button"><span>Out of stock</span></span>
+              <?php endif; ?>
               <a href="<?= site_url('product/detail/'.$product['id']) ?>">
                 <?php if ($product['image']) : ?>
                   <img
@@ -50,7 +52,7 @@
                     <div class="col">
 
                       <h2><?= $product['name']; ?></h2><br>
-                      <p><strong>€<?= $product['price']; ?></strong></p>
+                      <p><strong>€<?= number_format($product['price'], 2, ',', ' '); ?></strong></p>
                     </div>
                   </div>
                 </div>
@@ -113,29 +115,33 @@
       transform: scale(1.1);
     }
 
-    .out-of-stock-button{
+    .out-of-stock-button {
       font-family: Raleway, sans-serif;
-    font-size: 12px;
-    line-height: 18px;
-    font-weight: 700;
-    font-style: normal;
-    text-transform: uppercase;
+      font-size: 12px;
+      line-height: 18px;
+      font-weight: 700;
+      font-style: normal;
+      text-transform: uppercase;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      width: 25%;
+      background: #FFFFC1;
+      border: 1px solid;
     }
+
     .grid-item .out-of-stock-button {
       position: absolute;
-      bottom: 0;
-      right: 0;
-      padding: 10px 20px;
+      top: 0;
+      left: 0;
+      padding: 10px 10px;
+      width: 25%;
     }
     .grid-item::before {
       content: '';
       background: white;
       position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      transform: rotate(-45deg) translateY(75%);
     }
 
   </style>

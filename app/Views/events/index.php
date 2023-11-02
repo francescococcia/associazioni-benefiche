@@ -66,11 +66,39 @@
         <?php foreach ($events as $event) : ?>
           <div class="col-auto mb-3">
             <div class="card" style="width: 18rem;">
+              <a href="<?= site_url('events/detail/'.$event['id']) ?>">
+                <div class="post_image">
+                  <?php if ($event['image']) : ?>
+                    <img
+                      src="<?= base_url('uploads/events/'.$event['image']); ?>"
+                      data-src="<?= base_url('uploads/events/'.$event['image']); ?>"
+                      class="card-img image"
+                      alt="Immagine non caricata"
+                    >
+                  <?php else : ?>
+                      <img
+                      src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
+                      data-src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
+                      class="card-img image"
+                      alt="Immagine non caricata"
+                    >
+                  <?php endif; ?>
+                  <div class="middle">
+                    <div class="text"><i class="fa-solid fa-eye"></i></div>
+                  </div>
+
+                </div>
+              </a>
+
               <div class="card-body">
-                  <h5 class="card-title"><strong><?php echo $event['title']; ?></strong></h5>
-                  <p class="card-text">Luogo: <?php echo $event['location']; ?></p>
-                  <p class="card-text">Data: <?php echo date('d/m/y', strtotime($event['date'])); ?></p>
-                  <a href="<?= site_url('events/detail/'.$event['id']) ?>" class="card-link">Dettagli</a>
+                <p class="card-text" style='font-weight: bold;'><?= formatDateItalian($event['date']); ?></p>
+                  <a href="<?= site_url('events/detail/'.$event['id']) ?>">
+                  <?php if (strlen($event['title']) > 20) : ?>
+                    <h5 class="card-title"><strong><?= (substr($event['title'], 0, 20).'...'); ?></strong></h5>
+                    <?php else : ?>
+                      <h5 class="card-title"><strong><?= $event['title']; ?></strong></h5>
+                  <?php endif; ?>
+                  </a>
               </div>
             </div>
           </div>
@@ -80,5 +108,61 @@
       <?php endif; ?>
     </div>
   </div>
+
+  <style>
+    a, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+    }
+    a:hover {
+      color: #e79999
+    }
+    .card-img {
+        width: 100%; /* Adjust the width to fit the card */
+        height: 250px; /* Define a fixed height for uniformity */
+        object-fit: cover; /* Crop the image to cover the container */
+    }
+    /* event */
+
+    .post_image {
+  position: relative;
+  background-color: #e79999;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.post_image:hover .image {
+  opacity: 0.3;
+}
+
+.post_image:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 25px;
+  padding: 16px 32px;
+}
+    /* endevent */
+    
+  </style>
 
 <?= $this->endSection() ?>

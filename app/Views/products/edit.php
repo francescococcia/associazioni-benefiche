@@ -29,7 +29,13 @@
 
                 <div class="form-group">
                   <label for="price">Prezzo</label>
-                  <input class="form-control" required type="number" min='1' name="price" value="<?= $product['price'] ?>">
+                  <input
+                    class="form-control"
+                    required
+                    type="number"
+                    min='1'
+                    name="price"
+                    value="<?= number_format($product['price'], 2, ',', ' '); ?>">
                 </div>
 
                 <div class="form-group">

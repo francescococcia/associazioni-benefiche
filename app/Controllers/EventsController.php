@@ -13,6 +13,7 @@ class EventsController extends Controller
 {
   public function index()
   {
+    helper('date');
     $eventModel = new EventModel();
     $userId = session()->get('id');
 

@@ -20,7 +20,7 @@
                         <div class="d-flex justify-content-between">
                           <p class="mb-0">Descrizione: <?php echo $product['description']; ?></p>
                           <p class="mb-0">Quantità: <?= $product['bookedCount']; ?></p>
-                          <p class="mb-0">Prezzo: <?= $product['price'] ?></p>
+                          <p class="mb-0">Prezzo: €<?= number_format($product['price'], 2, ',', ' '); ?></p>
                           <a href="<?= site_url('product/detail/'.$product['id']) ?>" class="card-link">Dettagli</a>
                         </div>
                         <hr>
