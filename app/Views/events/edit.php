@@ -11,7 +11,8 @@
 				<div class="col-12 d-flex justify-content-center align-items-center">
 					<div class="col-12 col-md-8 col-lg-6">
 
-          <form action="<?= base_url(); ?>/events/update" method="post" data-form-type="blocs-form" novalidate="" enctype="multipart/form-data">
+          <form action="<?= base_url(); ?>/events/update"
+            method="post" data-form-type="blocs-form" novalidate="" enctype="multipart/form-data">
             <input type="hidden" name="event_id" value="<?= $event['id']; ?>">
             <div class="card">
               <div class="card-body">
@@ -22,8 +23,8 @@
 
                 <div class="form-group">
                   <label for="description">Categoria</label>
-                  <select class='form-control search input-text' name="category" id="category">
-                    <option value="" selected disabled hidden>Select a category</option>
+                  <select class='form-control search input-text' name="category" id="category" required>
+                    <option value="">Seleziona categoria</option>
                     <option value="Feste e sagre" <?= ($event['category'] == 'Feste e sagre') ? 'selected' : '' ?>>Feste e sagre</option>
                     <option value="Mercatini" <?= ($event['category'] == 'Mercatini') ? 'selected' : '' ?>>Mercatini</option>
                     <option value="Spettacoli teatrali" <?= ($event['category'] == 'Spettacoli teatrali') ? 'selected' : '' ?>>Spettacoli teatrali</option>
@@ -104,6 +105,8 @@
 
   <script>
     $(document).ready(function () {
+      $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+
       var dtToday = new Date();
       var year = dtToday.getFullYear();
       var month = (dtToday.getMonth() + 1).toString().padStart(2, '0');

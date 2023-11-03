@@ -30,8 +30,8 @@
                   <div class="form-group">
                     <label for="description">Categoria</label>
 
-                    <select class='form-control search input-text' name="category" id="category" required >
-                      <option value=''>Seleziona tipologia</option>
+                    <select class='form-control search input-text' name="category" id="category" required>
+                      <option value=''>Seleziona categoria</option>
                       <option value="Feste e sagre">Feste e sagre</option>
                       <option value="Mercatini">Mercatini</option>
                       <option value="Spettacoli teatrali">Spettacoli teatrali</option>
