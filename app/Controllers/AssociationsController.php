@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AssociationModel;
 use App\Models\EventModel;
 use App\Models\ProductModel;
+use App\Models\UserModel;
 use App\Models\NewModel;
 
 use CodeIgniter\Files\UploadedFile;
@@ -96,13 +97,19 @@ class AssociationsController extends BaseController
   {
     $userId = session()->get('id');
     $associationModel = new AssociationModel();
+    $userModel = new UserModel();
+
+    $user = $userModel->where('id', $userId)->first();
     $association = $associationModel->where('user_id', $userId)->first();
 
     if (!$association) {
       return redirect()->to('/associations')->with('error', 'Association not found');
     }
 
-    return view('associations/edit', ['association' => $association]);
+    $data['user'] = $user;
+    $data['association'] = $association;
+
+    return view('associations/edit', $data);
   }
 
   public function update()
@@ -110,73 +117,76 @@ class AssociationsController extends BaseController
     $session = session();
     $userId = session()->get('id');
     $associationModel = new AssociationModel();
+    $userModel = new UserModel();
+
     $association = $associationModel->where('user_id', $userId)->first();
 
     if (!$association) {
-        return redirect()->to('/dashboard')->with('error', 'Association not found');
+      return redirect()->to('/dashboard')->with('error', 'Association not found');
     }
+
+    $userData = [
+      'email'    => $this->request->getVar('email'),
+    ];
+
+    $password = $this->request->getVar('password');
+
+    // Update the password if provided
+    if (!empty($password)) {
+      $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    $associationData = [
+      'name' => $this->request->getVar('name'),
+      'legal_address' => $this->request->getVar('legal_address'),
+      'tax_code' => $this->request->getVar('tax_code'),
+      'description' => $this->request->getVar('description'),
+      'link' => $this->request->getVar('link'),
+    ];
 
     // Upload the image file
     $image = $this->request->getFile('image');
 
     if ($image->isValid() && !$image->hasMoved()) {
-        // Configure the upload settings
-        $config = [
-            'upload_path' => './uploads/',
-            'allowed_types' => 'gif|jpg|jpeg|png',
-            'max_size' => 2048, // Maximum file size in kilobytes
-            'encrypt_name' => true, // Encrypt the uploaded file name
-        ];
+      // Configure the upload settings
+      $config = [
+          'upload_path' => './uploads/',
+          'allowed_types' => 'gif|jpg|jpeg|png',
+          'max_size' => 2048, // Maximum file size in kilobytes
+          'encrypt_name' => true, // Encrypt the uploaded file name
+      ];
 
-        // Create the upload directory if it doesn't exist
-        if (!is_dir($config['upload_path'])) {
-          mkdir($config['upload_path'], 0777, true);
-        }
+      // Create the upload directory if it doesn't exist
+      if (!is_dir($config['upload_path'])) {
+        mkdir($config['upload_path'], 0777, true);
+      }
 
-        // Move the uploaded file to the destination directory
-        $uniqueId = uniqid(); // You can use any method to generate a unique identifier
-        if ($image->move($config['upload_path'], $uniqueId . '_' . $image->getName())) {
+      // Move the uploaded file to the destination directory
+      $uniqueId = uniqid(); // You can use any method to generate a unique identifier
+      if ($image->move($config['upload_path'], $uniqueId . '_' . $image->getName())) {
 
-          $imagePath = $image->getName();
+        $imagePath = $image->getName();
 
-          // Save the image path to the database
-          $associationData = [
-            'name' => $this->request->getVar('name'),
-            'legal_address' => $this->request->getVar('legal_address'),
-            'tax_code' => $this->request->getVar('tax_code'),
-            'description' => $this->request->getVar('description'),
-            'link' => $this->request->getVar('link'),
-            'image' => $image->getName(), // Salva solo il nome del file senza l'identificatore
-          ];
-
-          $associationModel->update($association['id'], $associationData);
-
-          $session->setFlashdata('success', 'Informazioni aggiornate.');
-
-          return redirect()->to('/profile-manager');
-            // return redirect()->to('/dashboard')->with('success', 'Association created successfully!');
-        } else {
-          // File upload failed
-          $error = $image->getErrorString();
-          // Handle the error
-          return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
-        }
-      } else {
         // Save the image path to the database
         $associationData = [
-          'name' => $this->request->getVar('name'),
-          'legal_address' => $this->request->getVar('legal_address'),
-          'tax_code' => $this->request->getVar('tax_code'),
-          'description' => $this->request->getVar('description'),
-          'link' => $this->request->getVar('link'),
+          'image' => $image->getName(), // Salva solo il nome del file senza l'identificatore
         ];
 
-        $associationModel->update($association['id'], $associationData);
-
-        $session->setFlashdata('success', 'Informazioni aggiornate.');
-
-        return redirect()->to('/profile-manager');
+      } else {
+        // File upload failed
+        $error = $image->getErrorString();
+        // Handle the error
+        return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
       }
+    }
+
+    $userModel->update($userId, $userData);
+
+    $associationModel->update($association['id'], $associationData);
+
+    $session->setFlashdata('success', 'Informazioni aggiornate.');
+
+    return redirect()->to('/profile-manager');
   }
 
   public function submitReport()

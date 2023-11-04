@@ -41,6 +41,31 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Inserisci email" value="<?= $user['email']; ?>"
+                      data-error-validation-msg="Email non valida" class="form-control mb-lg-3 pt-lg-0" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">Passworrd</label>
+                    <input
+                      class="form-control mb-lg-3 pt-lg-0"
+                      type="password"
+                      name="password"
+                      minlength="4"
+                      data-validation-minlength-message="La password deve essere almeno di '4' caratteri">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone_number">Conferma password</label>
+                    <input
+                      class="form-control mb-lg-3 pt-lg-0"
+                      type="password"
+                      name="confirm_password"
+                      data-validation-passwordagain-message='Password non corrisponde'>
+                  </div>
+
+                  <div class="form-group">
                     <label for="image" class="form-label">Immagine</label>
                     <div class="input_container">
                       <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>

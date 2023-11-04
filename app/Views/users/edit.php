@@ -42,12 +42,21 @@
 
                 <div class="form-group">
                   <label for="password">Passworrd</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="password" name="password">
+                  <input
+                    class="form-control mb-lg-3 pt-lg-0"
+                    type="password"
+                    name="password"
+                    minlength="4"
+                    data-validation-minlength-message="La password deve essere almeno di '4' caratteri">
                 </div>
 
                 <div class="form-group">
                   <label for="phone_number">Conferma password</label>
-                  <input class="form-control mb-lg-3 pt-lg-0" type="password" name="confirm_password">
+                  <input
+                    class="form-control mb-lg-3 pt-lg-0"
+                    type="password"
+                    name="confirm_password"
+                    data-validation-passwordagain-message='Password non corrisponde'>
                 </div>
 
                 <div class="text-center">

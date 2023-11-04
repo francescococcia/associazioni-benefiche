@@ -54,7 +54,8 @@
                   <div class="form-group">
                     <label>Password</label>
                     <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0"
-                        required minlength="4"
+                        required
+                        minlength="4"
                         data-validation-minlength-message="La password deve essere almeno di '4' caratteri">
                   </div>
 
