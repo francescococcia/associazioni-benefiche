@@ -1,9 +1,9 @@
 <?php
-  function retrieveEmailUserFromFeedback($userId)
+  function retrieveUserFromFeedback($userId)
   {
     $db = \Config\Database::connect();
     $user = $db->table('users')
-        ->select('email')
+        ->select('*')
         ->where('id', $userId)
         ->get()
         ->getRow();

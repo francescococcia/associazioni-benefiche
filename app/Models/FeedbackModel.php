@@ -14,6 +14,7 @@ class FeedbackModel extends Model
       'created_at',
       'rating',
       'participant_id',
+      'title',
     ];
 
     public function getAllFeedbacks()

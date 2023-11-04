@@ -81,36 +81,36 @@
               </div>
             </div>
 
-            <?php if ($quantityAvailable &&
-              !session()->get('isPlatformManager') &&
-              !session()->get('isAdmin')): ?>
-              <p><?= $quantityAvailable; ?> disponibili</p>
-              <div class="row">
-                <div class="col">
-                  <form id="productForm" method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
-                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-                    <div class="row">
-                      <div class="col-2 d-flex">
-                        <div class="form-group">
-                            <div class="quantity mainMenu">
-                                <button class="minus mt-2" type="button" onclick="decrementQuantity()">-</button>
-                                <span class='centerQuantity mt-2' id="quantityDisplay">1</span>
-                                <button class="plus mt-2" type="button" onclick="incrementQuantity()">+</button>
-                            </div>
+            <?php if (!session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
+              <?php if ($quantityAvailable): ?>
+                <p><?= $quantityAvailable; ?> disponibili</p>
+                <div class="row">
+                  <div class="col">
+                    <form id="productForm" method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
+                      <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                      <div class="row">
+                        <div class="col-2 d-flex">
+                          <div class="form-group">
+                              <div class="quantity mainMenu">
+                                  <button class="minus mt-2" type="button" onclick="decrementQuantity()">-</button>
+                                  <span class='centerQuantity mt-2' id="quantityDisplay">1</span>
+                                  <button class="plus mt-2" type="button" onclick="incrementQuantity()">+</button>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-md btn-clean btn-c-4129" type="button" onclick="submitForm()">
+                                Prenota prodotto
+                            </button>
                         </div>
                       </div>
-                      <div class="col">
-                          <button class="btn btn-md btn-clean btn-c-4129" type="button" onclick="submitForm()">
-                              Prenota prodotto
-                          </button>
-                      </div>
-                    </div>
-                  </form>
+                    </form>
 
                   </div>
-              </div>
-            <?php else: ?>
-              <p class='out-of-stock'><strong>Esaurito</strong></p>
+                </div>
+              <?php else: ?>
+                <p class='out-of-stock'><strong>Esaurito</strong></p>
+              <?php endif; ?>
             <?php endif; ?>
 
 

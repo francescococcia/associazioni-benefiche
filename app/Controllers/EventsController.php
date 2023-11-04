@@ -143,6 +143,8 @@ class EventsController extends Controller
   public function show($id)
   {
     helper('event_helper');
+    helper('date_helper');
+    helper(['form']);
     $model = new EventModel();
     $participantModel = new ParticipantModel();
     $feedbackModel = new FeedbackModel();
@@ -194,12 +196,12 @@ class EventsController extends Controller
     $data['feedbackData'] = $feedbackData;
 
     $date = strtotime($event['date']);
-    $formattedDate = date('d/m/Y H:i', $date);
-    $data['formattedDate'] = $formattedDate;
+    $time = date('H:i', $date);
+    $data['time'] = $time;
 
     $date_to = strtotime($event['date_to']);
-    $formattedDateTo = date('d/m/Y H:i', $date_to);
-    $data['formattedDateTo'] = $formattedDateTo;
+    $timeTo = date('H:i', $date_to);
+    $data['timeTo'] = $timeTo;
 
     return view('events/show', $data);
   }
@@ -266,11 +268,17 @@ class EventsController extends Controller
       }
     }
 
-    $eventModel->update($eventId, $data);
+    if (strtotime($data['date']) >= strtotime($data['date_to'])) {
+      // The date_to is less than or equal to the date, indicating an error
+      $error = 'La data di fine deve essere maggiore della data di inizio';
+      return redirect()->back()->with('error', $error);
+    } else {
+        // Perform the action when the date_to is greater than the date
+        $eventModel->update($eventId, $data);
+        $session->setFlashdata('success', 'Informazioni aggiornate.');
+        return redirect()->to('/events/detail/' . $eventId);
+    }
 
-    $session->setFlashdata('success', 'Informazioni aggiornate.');
-
-    return redirect()->to('/events/detail/' . $eventId);
   }
 
   public function search()

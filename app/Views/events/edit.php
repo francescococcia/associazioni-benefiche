@@ -38,11 +38,11 @@
 
                 <div class="form-group">
                   <label for="description">Descrizione</label>
-                  <textarea class="form-control" name="description"><?= $event['description'] ?></textarea>
+                  <textarea class="form-control" name="description" rows="8" cols="40"><?= $event['description'] ?></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label for="date">Data dal:</label>
+                  <label for="date">Data inizio:</label>
                   <input
                     class="form-control"
                     type="datetime-local"
@@ -52,13 +52,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="date">Data al:</label>
+                    <label for="date">Data fine:</label>
                     <input
                       class="form-control"
                       type="datetime-local"
                       name="date_to"
                       value="<?= $formattedDateTo ?>"
                       id='txtDateTo'
+                      data-validation-min-message="Seleziona una data futura alla data d'inizio"
                     >
                   </div>
 
