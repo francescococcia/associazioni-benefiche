@@ -8,69 +8,75 @@
 			</div>
 
 			<div class="row">
-				<div class="col-12 d-flex justify-content-center align-items-center">
-					<div class="col-12 col-md-8 col-lg-6">
+				<div class="col-12 align-items-center">
 
           <form action="<?= base_url(); ?>/events/update"
             method="post" data-form-type="blocs-form" novalidate="" enctype="multipart/form-data">
             <input type="hidden" name="event_id" value="<?= $event['id']; ?>">
-            <div class="card">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
               <div class="card-body">
-                <div class="form-group">
-                  <label for="title" ></label>Titolo</label>
-                  <input class="form-control" type="text" name="title" value="<?= $event['title'] ?>" required>
-                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="title" >Titolo</label>
+                      <input class="form-control" type="text" name="title" value="<?= $event['title'] ?>" required>
+                    </div>
 
-                <div class="form-group">
-                  <label for="description">Categoria</label>
-                  <select class='form-control search input-text' name="category" id="category" required>
-                    <option value="">Seleziona categoria</option>
-                    <option value="Feste e sagre" <?= ($event['category'] == 'Feste e sagre') ? 'selected' : '' ?>>Feste e sagre</option>
-                    <option value="Mercatini" <?= ($event['category'] == 'Mercatini') ? 'selected' : '' ?>>Mercatini</option>
-                    <option value="Spettacoli teatrali" <?= ($event['category'] == 'Spettacoli teatrali') ? 'selected' : '' ?>>Spettacoli teatrali</option>
-                    <option value="Eventi sportivi" <?= ($event['category'] == 'Eventi sportivi') ? 'selected' : '' ?>>Eventi sportivi</option>
-                    <option value="Eventi culinari" <?= ($event['category'] == 'Eventi culinari') ? 'selected' : ''?>>Eventi culinari</option>
-                    <option value="Sfilate" <?= ($event['category'] == 'Sfilate') ? 'selected' : ''?>>Sfilate</option>
-                    <option value="Talk" <?= ($event['category'] == 'Talk') ? 'selected' : ''?>>Talk</option>
-                    <option value="Altro" <?= ($event['category'] == 'Altro') ? 'selected' : ''?>>Altro</option>
-                  </select>
-                </div>
+                    <div class="form-group">
+                      <label for="date">Data inizio</label>
+                      <input
+                        class="form-control"
+                        type="datetime-local"
+                        name="date"
+                        value="<?= $formattedDate ?>"
+                        id='txtDate'>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="location">Luogo</label>
+                      <input class="form-control" type="text" name="location" value="<?= $event['location'] ?>">
+                    </div>
+                  </div><!-- end col -->
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="description">Categoria</label>
+                      <select class='form-control search input-text' name="category" id="category" required>
+                        <option value="">Seleziona categoria</option>
+                        <option value="Feste e sagre" <?= ($event['category'] == 'Feste e sagre') ? 'selected' : '' ?>>Feste e sagre</option>
+                        <option value="Mercatini" <?= ($event['category'] == 'Mercatini') ? 'selected' : '' ?>>Mercatini</option>
+                        <option value="Spettacoli teatrali" <?= ($event['category'] == 'Spettacoli teatrali') ? 'selected' : '' ?>>Spettacoli teatrali</option>
+                        <option value="Eventi sportivi" <?= ($event['category'] == 'Eventi sportivi') ? 'selected' : '' ?>>Eventi sportivi</option>
+                        <option value="Eventi culinari" <?= ($event['category'] == 'Eventi culinari') ? 'selected' : ''?>>Eventi culinari</option>
+                        <option value="Sfilate" <?= ($event['category'] == 'Sfilate') ? 'selected' : ''?>>Sfilate</option>
+                        <option value="Talk" <?= ($event['category'] == 'Talk') ? 'selected' : ''?>>Talk</option>
+                        <option value="Altro" <?= ($event['category'] == 'Altro') ? 'selected' : ''?>>Altro</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="date">Data fine</label>
+                      <input
+                        class="form-control"
+                        type="datetime-local"
+                        name="date_to"
+                        value="<?= $formattedDateTo ?>"
+                        id='txtDateTo'
+                        data-validation-min-message="Seleziona una data futura alla data d'inizio"
+                      >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="link">Link</label>
+                      <input class="form-control" type="text" name="link" value="<?= $event['link'] ?>">
+                    </div>
+                  </div><!-- end col -->
+                </div><!-- emd row -->
+
 
                 <div class="form-group">
                   <label for="description">Descrizione</label>
                   <textarea class="form-control" name="description" rows="8" cols="40"><?= $event['description'] ?></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="date">Data inizio:</label>
-                  <input
-                    class="form-control"
-                    type="datetime-local"
-                    name="date"
-                    value="<?= $formattedDate ?>"
-                    id='txtDate'>
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Data fine:</label>
-                    <input
-                      class="form-control"
-                      type="datetime-local"
-                      name="date_to"
-                      value="<?= $formattedDateTo ?>"
-                      id='txtDateTo'
-                      data-validation-min-message="Seleziona una data futura alla data d'inizio"
-                    >
-                  </div>
-
-                <div class="form-group">
-                  <label for="location">Luogo</label>
-                  <input class="form-control" type="text" name="location" value="<?= $event['location'] ?>">
-                </div>
-
-                <div class="form-group">
-                  <label for="link">Link</label>
-                  <input class="form-control" type="text" name="link" value="<?= $event['link'] ?>">
                 </div>
 
 
@@ -84,8 +90,8 @@
                     <img
                       src="<?= base_url('uploads/events/'.$event['image']) ?>"
                       alt="<?= $event['title'] ?>"
-                      class="mt-3 ml-5"
-                      style="max-width: 300px;"
+                      class="mt-3 center"
+                      style="max-width: 350px;"
                     >
                   <?php endif; ?>
                 </div>
@@ -98,7 +104,6 @@
               </div>
             </div>
           </form>
-					</div>
 				</div>
 			</div>
 		</div>

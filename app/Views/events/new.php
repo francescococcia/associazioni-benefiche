@@ -9,102 +9,106 @@
 			</div>
 
 			<div class="row">
-				<div class="col-12 d-flex justify-content-center align-items-center">
-					<div class="col-12 col-md-8 col-lg-6">
-
-            <form action="<?php echo base_url(); ?>/events/create" method="post" data-form-type="blocs-form" novalidate="" enctype="multipart/form-data">
-              <input type="hidden" name="association_id" value="<?= $association_id ?>">
-              <div class="card">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="title" ></label>Titolo</label>
-                    <input
-                      class="form-control"
-                      required
-                      type="text"
-                      name="title"
-                      value="<?= set_value('title') ?>"
-                    >
-                  </div>
-
-                  <div class="form-group">
-                    <label for="description">Categoria</label>
-
-                    <select class='form-control search input-text' name="category" id="category" required>
-                      <option value=''>Seleziona categoria</option>
-                      <option value="Feste e sagre">Feste e sagre</option>
-                      <option value="Mercatini">Mercatini</option>
-                      <option value="Spettacoli teatrali">Spettacoli teatrali</option>
-                      <option value="Eventi sportivi">Eventi sportivi</option>
-                      <option value="Eventi culinari">Eventi culinari</option>
-                      <option value="Sfilate">Sfilate</option>
-                      <option value="Talk">Talk</option>
-                      <option value="Altro">Altro</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="description">Descrizione</label>
-                    <textarea class="form-control" required name="description"><?= set_value('description') ?></textarea>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="date_to">Data dal:</label>
-                    <input
-                      class="form-control"
-                      required
-                      type="datetime-local"
-                      name="date"
-                      value="<?= set_value('date') ?>"
-                      id='txtDate'
-                    >
-                  </div>
-
-                  <div class="form-group">
-                    <label for="date">Data al:</label>
-                    <input
-                      class="form-control"
-
-                      type="datetime-local"
-                      name="date_to"
-                      value="<?= set_value('date_to') ?>"
-                      id='txtDateTo'
-                    >
-                  </div>
-
-                  <div class="form-group">
-                    <label for="location">Luogo</label>
-                    <input class="form-control" required type="text" name="location" value="<?= set_value('location') ?>">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="link">Link</label>
-                    <input class="form-control" type="text" name="link" value="<?= set_value('link') ?>">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="image" class="form-label">Immagine</label>
-                    <div class="input_container">
-                      <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
+				<div class="col-12 align-items-center">
+          <form action="<?php echo base_url(); ?>/events/create" method="post" data-form-type="blocs-form" novalidate="" enctype="multipart/form-data">
+            <input type="hidden" name="association_id" value="<?= $association_id ?>">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="title">Titolo</label>
                       <input
-                        type="file"
-                        id="choose-file"
-                        name="image"
-                        accept=".jpg, .jpeg, .png, .gif"
-                        style="visibility:hidden;width:0"
+                        class="form-control"
+                        required
+                        type="text"
+                        name="title"
+                        value="<?= set_value('title') ?>"
                       >
                     </div>
-                  </div>
 
-                  <div class="text-center">
-                    <button class="btn btn-clean float-lg-none btn-c-4129 btn-rd mt-lg-4" type="submit">
-                      Crea
-                    </button>
+                    <div class="form-group">
+                      <label for="date_to">Data inizio:</label>
+                      <input
+                        class="form-control"
+                        required
+                        type="datetime-local"
+                        name="date"
+                        value="<?= set_value('date') ?>"
+                        id='txtDate'
+                      >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="location">Luogo</label>
+                      <input class="form-control" required type="text" name="location" value="<?= set_value('location') ?>">
+                    </div>
+                  </div><!-- end col -->
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="description">Categoria</label>
+                      <select class='form-control search input-text' name="category" id="category" required>
+                        <option value=''>Seleziona categoria</option>
+                        <option value="Feste e sagre">Feste e sagre</option>
+                        <option value="Mercatini">Mercatini</option>
+                        <option value="Spettacoli teatrali">Spettacoli teatrali</option>
+                        <option value="Eventi sportivi">Eventi sportivi</option>
+                        <option value="Eventi culinari">Eventi culinari</option>
+                        <option value="Sfilate">Sfilate</option>
+                        <option value="Talk">Talk</option>
+                        <option value="Altro">Altro</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="date">Data fine:</label>
+                      <input
+                        class="form-control"
+
+                        type="datetime-local"
+                        name="date_to"
+                        value="<?= set_value('date_to') ?>"
+                        id='txtDateTo'
+                      >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="link">Link</label>
+                      <input class="form-control" type="text" name="link" value="<?= set_value('link') ?>">
+                    </div>
+                  </div><!-- end col -->
+
+                </div><!-- end row -->
+
+
+                <div class="form-group">
+                  <label for="description">Descrizione</label>
+                  <textarea class="form-control" required name="description"><?= set_value('description') ?></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="image" class="form-label">Immagine</label>
+                  <div class="input_container">
+                    <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleziona file</label>
+                    <input
+                      type="file"
+                      id="choose-file"
+                      name="image"
+                      accept=".jpg, .jpeg, .png, .gif"
+                      style="visibility:hidden;width:0"
+                    >
                   </div>
                 </div>
+
+                <div class="text-center">
+                  <button class="btn btn-clean float-lg-none btn-c-4129 btn-rd mt-lg-4" type="submit">
+                    Crea
+                  </button>
+                </div>
               </div>
-            </form>
-					</div>
+            </div>
+          </form>
 				</div>
 			</div>
 		</div>

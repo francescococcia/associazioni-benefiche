@@ -12,7 +12,7 @@
 					<div class="col-12 col-md-8 col-lg-6">
 
           <form method="POST" action="<?= base_url(); ?>/users/update" data-form-type="blocs-form" novalidate="">
-            <div class="card">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
               <div class="card-body">
                 <div class="form-group">
                   <label for="inputEmail4">Email</label>

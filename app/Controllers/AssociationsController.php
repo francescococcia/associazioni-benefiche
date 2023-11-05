@@ -18,6 +18,7 @@ class AssociationsController extends BaseController
 {
   public function show($id)
   {
+    helper('date');
     // Assuming you have a model named AssociationModel
     $associationModel = new AssociationModel();
     $eventModel = new EventModel();
