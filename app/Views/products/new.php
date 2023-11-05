@@ -16,7 +16,7 @@
             method="post" data-form-type="blocs-form" novalidate=""
             enctype="multipart/form-data">
           <input type="hidden" name="association_id" value="<?= $association_id ?>">
-            <div class="card">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
               <div class="card-body">
                 <div class="form-group">
                   <label for="name" ></label>Titolo</label>

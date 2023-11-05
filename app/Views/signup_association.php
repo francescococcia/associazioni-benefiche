@@ -9,72 +9,78 @@
       </div>
 
       <div class="row">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-          <div class="col-12 col-md-8 col-lg-6">
+        <div class="col-12 align-items-center">
           <form action="<?php echo base_url(); ?>/SignupAssociationController/store" method="post" enctype="multipart/form-data"
             data-form-type="blocs-form" novalidate=""
             data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
 
-            <div class="card">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
               <div class="card-body">
-                <div class="form-group">
-                  <label>Nome Associazione</label>
-                  <input type="text" name="name" placeholder="Inserisci nome" required="" value="<?= set_value('name') ?>" class="form-control mb-lg-3" >
-                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Nome Associazione</label>
+                      <input type="text" name="name" placeholder="Inserisci nome" required="" value="<?= set_value('name') ?>" class="form-control mb-lg-3" >
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Sede Legale</label>
+                      <input
+                        name="legal_address"
+                        placeholder="Sede Legale"
+                        class="form-control mb-lg-3 pt-lg-0"
+                        type="text"
+                        value="<?= set_value('legal_address') ?>"
+                        required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Password</label>
+                      <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
+                    </div>
+                  </div><!-- end col -->
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Email</label>
+                      <input
+                        name="email"
+                        placeholder="Inserisci email"
+                        class="form-control mb-lg-3 pt-lg-0"
+                        type="email"
+                        value="<?= set_value('email') ?>"
+                        data-error-validation-msg="Email non valida"
+                        required="">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Codice Fiscale</label>
+                      <input type="text" name="tax_code" placeholder="Inserisci Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Conferma Password</label>
+                      <input
+                        type="password"
+                        name="confirmpassword"
+                        placeholder="Conferma Password"
+                        class="form-control mb-lg-3 pt-lg-0"
+                        required
+                        data-validation-passwordagain-message='Password non corrisponde'
+                      >
+                    </div>
+                  </div><!-- end col -->
+                </div><!-- end row -->
+
 
                 <div class="form-group">
-                  <label>Codice Fiscale</label>
-                  <input type="text" name="tax_code" placeholder="Inserisci Codice fiscale" required="" class="form-control" required="" value="<?= set_value('tax_code') ?>">
-                </div>
-
-                <div class="form-group">
-                  <label>Sede Legale</label>
-                  <input
-                    name="legal_address"
-                    placeholder="Sede Legale"
-                    class="form-control mb-lg-3 pt-lg-0"
-                    type="text"
-                    value="<?= set_value('legal_address') ?>"
-                    required="">
-                </div>
-
-                <div class="form-group">
-                  <label>Link Associazione</label>
+                  <label class="form-label">Link</label>
                   <input
                     name="link"
                     placeholder="Inserisci il link"
                     class="form-control mb-lg-3 pt-lg-0"
                     type="text"
                     value="<?= set_value('legal_address') ?>"
-                  >
-                </div>
-
-                <div class="form-group">
-                  <label>Email</label>
-                  <input
-                    name="email"
-                    placeholder="Inserisci email"
-                    class="form-control mb-lg-3 pt-lg-0"
-                    type="email"
-                    value="<?= set_value('email') ?>"
-                    data-error-validation-msg="Email non valida"
-                    required="">
-                </div>
-
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" name="password" placeholder="Password" class="form-control mb-lg-3 pt-lg-0" required="">
-                </div>
-
-                <div class="form-group">
-                  <label>Conferma Password</label>
-                  <input
-                    type="password"
-                    name="confirmpassword"
-                    placeholder="Conferma Password"
-                    class="form-control mb-lg-3 pt-lg-0"
-                    required
-                    data-validation-passwordagain-message='Password non corrisponde'
                   >
                 </div>
 
@@ -105,8 +111,6 @@
               </div>
             </div>
           </form>
-
-          </div>
         </div>
       </div>
     </div>

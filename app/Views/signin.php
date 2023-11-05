@@ -17,7 +17,7 @@
 								data-success-msg="Your message has been sent."
 								data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
 
-								<div class="card">
+								<div class="card shadow-lg p-3 mb-5 bg-white rounded">
 									<div class="card-body">
 										<div class="form-group">
 												<label>Email</label>

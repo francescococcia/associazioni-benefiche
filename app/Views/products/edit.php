@@ -15,7 +15,7 @@
             data-form-type="blocs-form" novalidate=""
             enctype="multipart/form-data">
             <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-            <div class="card">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
               <div class="card-body">
                 <div class="form-group">
                   <label for="name" ></label>Titolo</label>
@@ -35,7 +35,7 @@
                     type="number"
                     min='1'
                     name="price"
-                    value="<?= number_format($product['price'], 2, ',', ' '); ?>">
+                    value="<?= $product['price'] ?>">
                 </div>
 
                 <div class="form-group">
