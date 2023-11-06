@@ -262,7 +262,9 @@
 
                         <?php if (session()->get('isPlatformManager') && ($userId == session()->get('id'))): ?>
                           <form action="<?= site_url('news/delete/' . $new['id']) ?>" method="post" id="form_<?= $new['id'] ?>">
-                            <button class="btn btn-sm btn-danger mx-3" type="button" data-toggle="modal" data-target="#confirmationModal<?= $new['id'] ?>"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-danger mx-3" type="button" data-toggle="modal" data-target="#confirmationModal<?= $new['id'] ?>">
+                              <i class="fa-solid fa-trash"></i>
+                            </button>
                           </form>
                           <div class="modal fade" id="confirmationModal<?= $new['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">

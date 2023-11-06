@@ -38,12 +38,27 @@ $routes->set404Override();
 //Admin routes
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
   $routes->get('dashboard', 'Home::index', ['filter' => 'authGuard']);
+
   $routes->get('users', 'UsersController::index', ['filter' => 'authGuard']);
   $routes->post('users/delete/(:num)', 'UsersController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('users/edit/(:segment)', 'UsersController::edit/$1', ['filter' => 'authGuard']);
+  $routes->post('users/update', 'UsersController::update', ['filter' => 'authGuard']);
+
   $routes->get('associations', 'AssociationsController::index', ['filter' => 'authGuard']);
   $routes->post('associations/delete/(:num)', 'AssociationsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('associations/edit/(:segment)', 'AssociationsController::edit/$1', ['filter' => 'authGuard']);
+  $routes->post('associations/update', 'AssociationsController::update', ['filter' => 'authGuard']);
+
   $routes->get('events', 'EventsController::index', ['filter' => 'authGuard']);
   $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
+  $routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
+
+  $routes->get('products', 'ProductsController::index', ['filter' => 'authGuard']);
+  $routes->post('products/delete/(:num)', 'ProductsController::delete/$1', ['filter' => 'authGuard']);
+  $routes->get('products/edit/(:segment)', 'ProductsController::edit/$1', ['filter' => 'authGuard']);
+  $routes->post('products/update', 'ProductsController::update', ['filter' => 'authGuard']);
+
   $routes->get('reports', 'ReportsController::index', ['filter' => 'authGuard']);
   $routes->post('report/delete/(:num)', 'ReportsController::delete/$1', ['filter' => 'authGuard']);
   $routes->get('report/readReport/(:num)', 'ReportsController::readReport/$1', ['filter' => 'authGuard']);

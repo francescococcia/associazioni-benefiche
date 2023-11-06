@@ -27,7 +27,9 @@
               <div class="col-3">
 
                 <form action="<?= site_url('admin/report/delete/' . $report['id']) ?>" method="post" id="form_<?= $report['id'] ?>">
-                  <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $report['id'] ?>">Rimuovi</button>
+                  <button class="btn btn-sm btn-danger mx-3" type="button" data-toggle="modal" data-target="#confirmationModal<?= $report['id'] ?>">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
                 </form>
 
                 <!-- Bootstrap Modal -->
@@ -55,10 +57,12 @@
               </div>
 
               <?php if (!$report['is_read']) : ?>
-                <div class="col-5">
+                <div class="col-3">
                   <form action="<?= site_url('admin/report/readReport/' . $report['id']) ?>" method="post"
                     id="form_report<?= $report['id'] ?>">
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#readModal<?= $report['id'] ?>">Contrassegna</button>
+                    <button class="btn btn-sm btn-primary mx-3" type="button" data-toggle="modal" data-target="#readModal<?= $report['id'] ?>">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
                   </form>
 
                   <!-- Bootstrap Modal -->

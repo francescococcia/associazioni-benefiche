@@ -6,6 +6,8 @@ use App\Models\AssociationModel;
 use App\Models\UserModel;
 use App\Models\EventModel;
 use App\Models\ReportModel;
+use App\Models\ProductModel;
+
 use App\Controllers\BaseController;
 
 class Home extends BaseController
@@ -16,6 +18,7 @@ class Home extends BaseController
     $associationModel = new AssociationModel();
     $eventModel = new EventModel();
     $reportModel = new ReportModel();
+    $productModel = new ProductModel();
 
     $userId = session()->get('id');
     $userData = $userModel->find($userId);
@@ -27,6 +30,7 @@ class Home extends BaseController
     $countUsers = $userModel->getAllUsersCount();
     $countEvents = $eventModel->countAll();
     $countReports = $reportModel->countAll();
+    $countProducts = $productModel->countAll();
 
     $data['isLoggedIn'] = $isLoggedIn;
     $data['userData'] = $userData;
@@ -35,6 +39,7 @@ class Home extends BaseController
     $data['countUsers'] = $countUsers;
     $data['countEvents'] = $countEvents;
     $data['countReports'] = $countReports;
+    $data['countProducts'] = $countProducts;
 
     return view('admin/dashboard', $data);
   }
