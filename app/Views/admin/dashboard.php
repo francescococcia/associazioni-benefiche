@@ -1,6 +1,7 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-  <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/admin.css') ?>"/>
+
+  <?= $this->include('admin/sidebar'); ?>
   <div id="main-content" class="container allContent-section mt-5 py-4">
     <div class="row">
       <div class="col-sm-3 offset-2">
@@ -54,4 +55,5 @@
       </div>
     </div>
   </div>
+
 <?= $this->endSection() ?>
