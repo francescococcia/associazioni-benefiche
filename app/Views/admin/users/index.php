@@ -1,7 +1,7 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-  <?= $this->include('admin/sidebar'); ?>
-  <div id="main-content" class="container allContent-section mt-5 py-4">  
+  <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/admin.css') ?>"/>
+  <div id="main-content" class="container allContent-section mt-5 py-4">
     <h2>Utenti</h2>
     <?php if ($users) : ?>
       <table>
@@ -26,7 +26,7 @@
               <td><?= $user['birth_date'] ?></td>
               <td><?= $user['email'] ?></td>
               <td class='row'>
-                <div class="col-4">
+                <div class="col-3">
                   <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post" id="userForm_<?= $user['id'] ?>">
                     <button class="btn btn-sm btn-danger" type="button" id="openModalButton">
                       <i class="fa-solid fa-trash"></i>
@@ -57,7 +57,7 @@
                   </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-3">
 
                   <!-- Your button to trigger the modal -->
                   <form action="<?= site_url('admin/user/edit/' . $user['id']) ?>" method="post" id="userForm_<?= $user['id'] ?>">

@@ -19,6 +19,33 @@ class EventsController extends Controller
 
     $category = $this->request->getVar('category');
 
+    if($category != ''){
+      $data['events'] = $eventModel->like('category', $category)->orderBy('id', 'DESC')->findAll();
+    } else {
+      $data['events'] = $eventModel->orderBy('id', 'DESC')->findAll();
+    }
+
+    $participantModel = new ParticipantModel();
+
+    // Loop through the events and check if the user has participated in each event
+    foreach ($data['events'] as &$event) {
+      $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
+      $event['userParticipated'] = $participant !== null;
+    }
+
+    $data['category'] = $category;
+
+    return view('events/index', $data);
+  }
+
+  public function index_manager()
+  {
+    helper('date');
+    $eventModel = new EventModel();
+    $userId = session()->get('id');
+
+    $category = $this->request->getVar('category');
+
 
     if(session()->get('isPlatformManager') && $category == ''){
       $data['events'] = $eventModel->getAllEventsByPlatformManager($userId);
@@ -38,7 +65,7 @@ class EventsController extends Controller
 
     $data['category'] = $category;
 
-    return view('events/index', $data);
+    return view('events/index_manager', $data);
   }
 
   public function new($association_id = null)

@@ -7,7 +7,7 @@
 <body>
     <h1>Salve <?= $name ?>,</h1>
     <p>Ti informiamo che l'amministratore della piattaforma ha preso in carico la tua segnalazione.</p>
-    <p>Verrà lavorata nel minor tempo possibile</p>
+    <p>Verrà lavorata nel minor tempo possibile.</p>
 </body>
 </html>
 

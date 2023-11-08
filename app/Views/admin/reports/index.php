@@ -1,6 +1,6 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-  <?= $this->include('admin/sidebar'); ?>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/admin.css') ?>"/>
   <div id="main-content" class="container allContent-section mt-5 py-4">
     <h2>Segnalazioni</h2>
     <?php if ($reports) : ?>
@@ -27,7 +27,7 @@
               <div class="col-3">
 
                 <form action="<?= site_url('admin/report/delete/' . $report['id']) ?>" method="post" id="form_<?= $report['id'] ?>">
-                  <button class="btn btn-sm btn-danger mx-3" type="button" data-toggle="modal" data-target="#confirmationModal<?= $report['id'] ?>">
+                  <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $report['id'] ?>">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </form>
@@ -60,7 +60,7 @@
                 <div class="col-3">
                   <form action="<?= site_url('admin/report/readReport/' . $report['id']) ?>" method="post"
                     id="form_report<?= $report['id'] ?>">
-                    <button class="btn btn-sm btn-primary mx-3" type="button" data-toggle="modal" data-target="#readModal<?= $report['id'] ?>">
+                    <button class="btn btn-sm btn-primary mx-1" type="button" data-toggle="modal" data-target="#readModal<?= $report['id'] ?>">
                       <i class="fa-solid fa-eye"></i>
                     </button>
                   </form>

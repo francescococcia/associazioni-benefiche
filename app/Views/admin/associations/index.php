@@ -1,7 +1,7 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
 
-  <?= $this->include('admin/sidebar'); ?>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/admin.css') ?>"/>
   <div id="main-content" class="container allContent-section mt-5 py-4">
       <h2>Associazioni</h2>
       <table>
@@ -13,7 +13,6 @@
               <th>Indirizzo</th>
               <th>Codice Fiscale</th>
               <th>Link</th>
-              <th>Descrizione</th>
               <th>Azioni</th>
           </tr>
         </thead>
@@ -26,7 +25,6 @@
               <td><?= $association['legal_address'] ?></td>
               <td><?= $association['tax_code'] ?></td>
               <td><?= $association['link'] ?></td>
-              <td><?= $association['description'] ?></td>
               <td class='row'>
                 <div class="col-3">
                   <form action="<?= site_url('admin/associations/delete/' . $association['id']) ?>" method="post" id="form_<?= $association['id'] ?>">
@@ -62,7 +60,7 @@
                 <div class="col-3">
                   <!-- Your button to trigger the modal -->
                   <form action="<?= site_url('admin/associations/edit/' . $association['user_id']) ?>" method="post" id="associationForm_<?= $association['id'] ?>">
-                    <button class="btn btn-sm btn-warning text-white mx-3" type="button" data-toggle="modal" data-target="#editAssociationModal_<?= $association['id'] ?>">
+                    <button class="btn btn-sm btn-warning text-white mx-2" type="button" data-toggle="modal" data-target="#editAssociationModal_<?= $association['id'] ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                   </form>

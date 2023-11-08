@@ -1,6 +1,6 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-  <?= $this->include('admin/sidebar'); ?>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/admin.css') ?>"/>
   <div id="main-content" class="container allContent-section mt-5 py-4">
     <h2>Prodotti</h2>
     <?php if ($products) : ?>
@@ -9,7 +9,6 @@
           <tr>
               <th>ID</th>
               <th>Titolo</th>
-              <th>Descrizione</th>
               <th>Prezzo</th>
               <th>Quantità</th>
               <th>Azioni</th>
@@ -20,11 +19,10 @@
             <tr>
               <td><?= $product['id'] ?></td>
               <td><?= $product['name'] ?></td>
-              <td><?= $product['description'] ?></td>
               <td>€<?= number_format($product['price'], 2, ',', ' '); ?></td>
               <td><?= $product['quantity'] ?></td>
               <td class='row'>
-                <div class="col-3">
+                <div class="col-2">
 
                   <form action="<?= site_url('admin/products/delete/' . $product['id']) ?>" method="post" id="form_<?= $product['id'] ?>">
                     <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-target="#confirmationModal<?= $product['id'] ?>">
@@ -56,7 +54,7 @@
                   </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-2">
                 <form action="<?= site_url('admin/products/edit/' . $product['id']) ?>" method="post" id="productForm_<?= $product['id'] ?>">
                     <button class="btn btn-sm btn-warning text-white mx-3" type="button" data-toggle="modal" data-target="#editProductModal_<?= $product['id'] ?>">
                         <i class="fa-solid fa-pen-to-square"></i>

@@ -15,18 +15,28 @@ class ProductsController extends Controller
   public function index()
   {
     $model = new ProductModel();
-    if(session()->get('isPlatformManager')){
-      $userId = session()->get('id');
-      $data['products'] = $model->getAllProductsByPlatformManager($userId);
-    } else {
-      $data['products'] = $model->orderBy('id', 'DESC')->findAll();
-    }
+    $userId = session()->get('id');
+
+    $data['products'] = $model->orderBy('id', 'DESC')->findAll();
 
     foreach ($data['products'] as $key => $product) {
       $data['products'][$key]['quantityAvailable'] = $model->quantityAvailable($product['id'], $product['quantity']);
   }
     return view('products/index', $data);
   }
+
+  // public function index_manager()
+  // {
+  //   $model = new ProductModel();
+  //   $userId = session()->get('id');
+
+  //   $data['products'] = $model->orderBy('id', 'DESC')->findAll();
+
+  //   foreach ($data['products'] as $key => $product) {
+  //     $data['products'][$key]['quantityAvailable'] = $model->quantityAvailable($product['id'], $product['quantity']);
+  // }
+  //   return view('products/index', $data);
+  // }
 
   public function new($association_id = null)
   {

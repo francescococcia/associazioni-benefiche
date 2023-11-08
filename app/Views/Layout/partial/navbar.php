@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col">
 				<nav class="navbar navbar-light row navbar-expand-md" role="navigation">
-					<a class="navbar-brand strokeme" href="<?php echo base_url();?>/">MANI GENEROSE</a>
+					<a class="navbar-brand strokeme" href="<?php echo base_url();?>/"><i class="fa-solid fa-handshake-angle fa-lg"></i> MANI GENEROSE</a>
 					<button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-38523" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path class="svg-menu-icon" d="m2 9h28m-28 7h28m-28 7h28"></path></svg></span>
 					</button>
@@ -65,6 +65,11 @@
                       <a class="dropdown-item" href="<?php echo base_url();?>/cash">I miei prodotti</a>
                     <?php endif; ?>
 
+                    <?php if (session()->get('isPlatformManager') ): ?>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/events-manager">I nostri eventi</a>
+                      <a class="dropdown-item" href="<?php echo base_url();?>/cash">I nostri prodotti</a>
+                    <?php endif; ?>
+
                     <?php if (session()->get('isAdmin')): ?>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Utenti</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/associations">Associazioni</a>
@@ -72,7 +77,7 @@
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/products">Prodotti</a>
                       <a class="dropdown-item" href="<?php echo base_url();?>/admin/reports">Segnalazioni</a>
                     <?php endif; ?>
-                    <a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Logout</a>
+                    <a class="dropdown-item" href="<?php echo base_url('/logout'); ?>">Esci</a>
                   </div>
                 </li>
 							<?php endif; ?>

@@ -113,7 +113,7 @@
                                   } else {
                                       echo base_url('public/img/yehorlisnyi210400016.jpg');
                                   }
-                                  echo '" alt="Event Image">';
+                                  echo '" alt="' . $events[$i]['image'] . '">';
                                   echo '<div class="card-body">';
                                   echo "<p class='card-text'>" . formatDateItalian($events[$i]['date']) . "</p>";
                                   echo "<h5 class='card-title'><strong>{$events[$i]['title']}</strong></h5>";
@@ -169,11 +169,10 @@
                                   } else {
                                       echo base_url('public/img/yehorlisnyi210400016.jpg');
                                   }
-                                  echo '" alt="Event Image">';
+                                  echo '" alt="' . $products[$i]['image'] . '">';
                                   echo '<div class="card-body">';
                                   echo "<h5 class='card-title'><strong>{$products[$i]['name']}</strong></h5>";
-                                  // echo "<p class='card-text'>" . formatDateItalian($products[$i]['date']) . "</p>";
-                                  echo "<a href='".site_url('products/detail/' . $products[$i]['id'])."' class='card-link'>Maggiori Informazioni <i class='fa-solid fa-arrow-right'></i></a>";
+                                  echo "<a href='".site_url('product/detail/' . $products[$i]['id'])."' class='card-link'>Maggiori Informazioni <i class='fa-solid fa-arrow-right'></i></a>";
                                   echo '</div>';
                                   echo '</div>';
                                   echo '</div>';
