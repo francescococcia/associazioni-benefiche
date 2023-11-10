@@ -17,26 +17,37 @@ class ProductsController extends Controller
     $model = new ProductModel();
     $userId = session()->get('id');
 
-    $data['products'] = $model->orderBy('id', 'DESC')->findAll();
+    $perPage = 12; // Number of items per page
+
+    $query = $model->orderBy('id', 'DESC'); // Your original query
+
+    $data['products'] = $query->paginate($perPage); // Apply pagination
+    $data['pager'] = $model->pager; // Store the pager
+
+    foreach ($data['products'] as $key => $product) {
+      $data['products'][$key]['quantityAvailable'] = $model->quantityAvailable($product['id'], $product['quantity']);
+    }
+    return view('products/index', $data);
+  }
+
+  public function index_manager()
+  {
+    $model = new ProductModel();
+    $userId = session()->get('id');
+
+    $perPage = 12; // Number of items per page
+
+    $query = $model->getAllProductsByPlatformManager($userId); // Modified method
+
+    $data['products'] = $query->paginate($perPage); // Apply pagination
+    $data['pager'] = $model->pager; // Include the pager information
+
 
     foreach ($data['products'] as $key => $product) {
       $data['products'][$key]['quantityAvailable'] = $model->quantityAvailable($product['id'], $product['quantity']);
   }
-    return view('products/index', $data);
+    return view('products/index_manager', $data);
   }
-
-  // public function index_manager()
-  // {
-  //   $model = new ProductModel();
-  //   $userId = session()->get('id');
-
-  //   $data['products'] = $model->orderBy('id', 'DESC')->findAll();
-
-  //   foreach ($data['products'] as $key => $product) {
-  //     $data['products'][$key]['quantityAvailable'] = $model->quantityAvailable($product['id'], $product['quantity']);
-  // }
-  //   return view('products/index', $data);
-  // }
 
   public function new($association_id = null)
   {
@@ -94,7 +105,7 @@ class ProductsController extends Controller
       }
 
       $model->save($data);
-      return redirect()->to('/store')->with('success', 'Prodotto inserito.');
+      return redirect()->to('/store-manager')->with('success', 'Prodotto inserito.');
     } else {
       $data['association_id'] = $this->request->getPost('association_id');
       $data['validation'] = $this->validator;

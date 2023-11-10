@@ -62,7 +62,7 @@
 
             <?php if (session()->get('isPlatformManager')): ?>
               <div class="row">
-                <div class="col-1">
+                <div class="col-2">
                   <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" id="form_<?= $event['id'] ?>">
                     <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
                   </form>
@@ -92,7 +92,7 @@
                   </div>
                 </div>
 
-                <div class="col-2 ml-4">
+                <div class="col-2 ml-0 pl-0">
                   <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
                   <a href="<?= site_url('events/edit/'.$event['id']) ?>"
                     class="btn btn-warning text-white">

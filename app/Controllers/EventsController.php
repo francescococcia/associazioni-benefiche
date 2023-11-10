@@ -19,11 +19,16 @@ class EventsController extends Controller
 
     $category = $this->request->getVar('category');
 
-    if($category != ''){
-      $data['events'] = $eventModel->like('category', $category)->orderBy('id', 'DESC')->findAll();
-    } else {
-      $data['events'] = $eventModel->orderBy('id', 'DESC')->findAll();
+    $query = $eventModel->orderBy('id', 'DESC');
+
+    if (!empty($category)) {
+        $query->like('category', $category);
     }
+
+    $perPage = 9; // Number of items per page
+
+    $data['events'] = $query->paginate($perPage);
+    $data['pager'] = $eventModel->pager;
 
     $participantModel = new ParticipantModel();
 
@@ -46,13 +51,12 @@ class EventsController extends Controller
 
     $category = $this->request->getVar('category');
 
+    $perPage = 9; // Define the number of items per page
 
-    if(session()->get('isPlatformManager') && $category == ''){
-      $data['events'] = $eventModel->getAllEventsByPlatformManager($userId);
-    } else if($category != ''){
-      $data['events'] = $eventModel->like('category', $category)->orderBy('id', 'DESC')->findAll();
-    } else {
-      $data['events'] = $eventModel->orderBy('id', 'DESC')->findAll();
+    if (session()->get('isPlatformManager')) {
+        $query = $eventModel->getAllEventsByPlatformManager($userId);
+        $data['events'] = $query->paginate($perPage);
+        $data['pager'] = $eventModel->pager;
     }
 
     $participantModel = new ParticipantModel();
@@ -158,7 +162,7 @@ class EventsController extends Controller
             'link' => $this->request->getPost('link'),
           ];
           $model->save($data);
-          return redirect()->to('/events')->with('success','Evento inserito.');
+          return redirect()->to('/events-manager')->with('success','Evento inserito.');
         }
       } else {
           $data['validation'] = $this->validator;

@@ -116,7 +116,11 @@
                                   echo '" alt="' . $events[$i]['image'] . '">';
                                   echo '<div class="card-body">';
                                   echo "<p class='card-text'>" . formatDateItalian($events[$i]['date']) . "</p>";
-                                  echo "<h5 class='card-title'><strong>{$events[$i]['title']}</strong></h5>";
+                                  if (strlen($events[$i]['title']) > 20) {
+                                    echo "<h5 class='card-title'><strong>" . (substr($events[$i]['title'], 0, 20).'...') . "</strong></h5>";
+                                  } else {
+                                    echo "<h5 class='card-title'><strong>{$events[$i]['title']}</strong></h5>";
+                                  }
                                   echo "<a href='".site_url('events/detail/' . $events[$i]['id'])."' class='card-link'>Maggiori Informazioni <i class='fa-solid fa-arrow-right'></i></a>";
                                   echo '</div>';
                                   echo '</div>';
@@ -171,7 +175,11 @@
                                   }
                                   echo '" alt="' . $products[$i]['image'] . '">';
                                   echo '<div class="card-body">';
-                                  echo "<h5 class='card-title'><strong>{$products[$i]['name']}</strong></h5>";
+                                  if (strlen($products[$i]['name']) > 20) {
+                                    echo "<h5 class='card-title'><strong>" . (substr($products[$i]['name'], 0, 20).'...') . "</strong></h5>";
+                                  } else {
+                                    echo "<h5 class='card-title'><strong>{$products[$i]['name']}</strong></h5>";
+                                  }
                                   echo "<a href='".site_url('product/detail/' . $products[$i]['id'])."' class='card-link'>Maggiori Informazioni <i class='fa-solid fa-arrow-right'></i></a>";
                                   echo '</div>';
                                   echo '</div>';

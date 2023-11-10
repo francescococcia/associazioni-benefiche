@@ -116,6 +116,36 @@
         margin-right: auto;
         width: 60%;
       }
+      
+      /* CSS to style pagination links */
+
+      /* Style for pagination links */
+      ul.pagination {
+          list-style-type: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+      }
+
+      ul.pagination li {
+          display: inline;
+          margin: 0 5px; /* Adjust margin as needed */
+      }
+
+      ul.pagination li a {
+          padding: 5px 10px;
+          text-decoration: none;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          color: #333;
+      }
+
+      ul.pagination li.active a {
+          background: #007bff; /* Adjust active link background color */
+          color: #fff;
+          border-color: #007bff;
+      }
 
     </style>
     <?= $this->include('Layout/partial/import_js'); ?>

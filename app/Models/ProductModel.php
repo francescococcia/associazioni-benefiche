@@ -64,8 +64,7 @@ class ProductModel extends Model
     return $this->select('products.*')
         ->join('associations', 'products.association_id = associations.id')
         ->where('associations.user_id', $userId)
-        ->orderBy('products.id', 'DESC')
-        ->findAll();
+        ->orderBy('products.id', 'DESC');
   }
 
   public function getCartProductsyUserId($userId)

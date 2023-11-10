@@ -3,19 +3,19 @@
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
-        <h1>Eventi</h1>
-        <?php if(session()->get('isPlatformManager')): ?>
+        <h1>Tutti gli Eventi</h1>
+        <!-- <#?php if(session()->get('isPlatformManager')): ?>
           <p class="big-paragraph">Visualizza gli eventi inseriti</p>
           <div class="row">
             <div class="col">
               <a
                 class="btn btn-clean btn-c-4129 btn-rd"
-                href="<?php echo base_url();?>/events/new">Inserisci evento</a>
+                href="<#?php echo base_url();?>/events/new">Inserisci evento</a>
             </div>
           </div>
-          <?php else: ?>
+          <#?php else: ?> -->
             <p class="big-paragraph">Visualizza tutti gli eventi o filtra per tipologia</p>
-          <?php endif; ?>
+          <!-- <#?php endif; ?> -->
       </div>
 
     </div>
@@ -107,6 +107,10 @@
         <p>Nessun evento inserito.</p>
       <?php endif; ?>
     </div>
+    <!-- Display Pagination Links -->
+    <?php if ($events) : ?>
+      <?= $pager->links() ?>
+    <?php endif; ?>
   </div>
 
   <style>
@@ -125,44 +129,43 @@
     /* event */
 
     .post_image {
-  position: relative;
-  background-color: #e79999;
-}
+      position: relative;
+      background-color: #e79999;
+    }
 
-.image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
+    .image {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
 
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
 
-.post_image:hover .image {
-  opacity: 0.3;
-}
+    .post_image:hover .image {
+      opacity: 0.3;
+    }
 
-.post_image:hover .middle {
-  opacity: 1;
-}
+    .post_image:hover .middle {
+      opacity: 1;
+    }
 
-.text {
-  color: white;
-  font-size: 25px;
-  padding: 16px 32px;
-}
+    .text {
+      color: white;
+      font-size: 25px;
+      padding: 16px 32px;
+    }
     /* endevent */
-    
   </style>
 
 <?= $this->endSection() ?>

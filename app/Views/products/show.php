@@ -61,8 +61,9 @@
                 <img
                   src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
                   data-src="<?= base_url('public/img/yehorlisnyi210400016.jpg'); ?>"
-                  class=""
+                  class="center"
                   alt="Immagine non caricata"
+                  style='width:100% !important; height:100% !important'
                 >
             <?php endif; ?>
 
@@ -81,9 +82,9 @@
               </div>
             </div>
 
-            <?php if (!session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
-              <?php if ($quantityAvailable): ?>
-                <p><?= $quantityAvailable; ?> disponibili</p>
+            <?php if ($quantityAvailable): ?>
+              <p><?= $quantityAvailable; ?> disponibili</p>
+              <?php if (!session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
                 <div class="row">
                   <div class="col">
                     <form id="productForm" method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
@@ -108,9 +109,9 @@
 
                   </div>
                 </div>
-              <?php else: ?>
-                <p class='out-of-stock'><strong>Esaurito</strong></p>
               <?php endif; ?>
+            <?php else: ?>
+                <p class='out-of-stock'><strong>Esaurito</strong></p>
             <?php endif; ?>
 
 
@@ -142,7 +143,7 @@
                   </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-2 ml-0 pl-0">
                   <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
                   <a href="<?= site_url('product/edit/'.$product['id']) ?>"
                     class="btn btn-warning text-white">
