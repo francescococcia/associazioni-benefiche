@@ -118,7 +118,7 @@
             <?php if (session()->get('isPlatformManager')): ?>
               <div class="row">
                 <div class="col-2">
-                  <form action="<?= site_url('product/delete/' . $product['id']) ?>" method="post" onsubmit="return false;">
+                  <form action="<?= site_url('product/delete/' . $product['id']) ?>" method="post" id="form_<?= $product['id'] ?>">
                     <button class='btn btn-danger' type="button" data-toggle="modal" data-target="#confirmationModal">Rimuovi</button>
                   </form>
 
@@ -136,7 +136,14 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                          <button type="button" class="btn btn-danger" id="confirmDelete">Rimuovi</button>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            id="confirmDelete<?= $product['id'] ?>"
+                            onclick="deleteRow(<?= $product['id'] ?>)"
+                          >
+                            Rimuovi
+                            </button>
                         </div>
                       </div>
                     </div>
@@ -248,5 +255,12 @@ function submitForm() {
     form.submit();
 }
 
+  function deleteRow(id) {
+      // Construct the form ID based on the user ID
+      var formId = 'form_' + id;
+
+      // Submit the form with the constructed ID
+      document.getElementById(formId).submit();
+    }
   </script>
 <?= $this->endSection() ?>

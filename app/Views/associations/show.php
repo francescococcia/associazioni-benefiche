@@ -76,7 +76,7 @@
             <p><strong>Descrizione:</strong> <?= $association['description']; ?></p>
             <?php if ($association['link']): ?>
               Per saperne di più su <strong><?= $association['name']; ?></strong> clicca sul seguente
-              <a href="<?= ($association['link'])?>">LINK</a>
+              <a href="<?= ($association['link'])?>" target="_blank">LINK</a>
             <?php endif; ?>
           </div>
         </div>

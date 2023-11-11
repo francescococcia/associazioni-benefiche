@@ -54,7 +54,7 @@ class EventsController extends Controller
     $perPage = 9; // Define the number of items per page
 
     if (session()->get('isPlatformManager')) {
-        $query = $eventModel->getAllEventsByPlatformManager($userId);
+        $query = $eventModel->getAllEventsByPlatformManagerPaginate($userId);
         $data['events'] = $query->paginate($perPage);
         $data['pager'] = $eventModel->pager;
     }
@@ -91,8 +91,17 @@ class EventsController extends Controller
     $session = session();
     $userId = session()->get('id');
     $association_model = new AssociationModel();
-    $associationId = $association_model->getUserWithAssociation($userId);
-    $data['association_id'] = $associationId;
+
+    $data = [
+      'association_id' => $this->request->getPost('association_id'),
+      'title' => $this->request->getPost('title'),
+      'category' => $this->request->getPost('category'),
+      'description' => $this->request->getPost('description'),
+      'date' => $this->request->getPost('date'),
+      'location' => $this->request->getPost('location'),
+      'date_to' => $this->request->getPost('date_to') ?: null,
+      'link' => $this->request->getPost('link'),
+    ];
 
     if ($this->request->getMethod() == 'post') {
       $rules = [
@@ -108,7 +117,7 @@ class EventsController extends Controller
 
         $file = $this->request->getFile('image');
 
-        if ($file && $file->isValid()) {
+        if ($file->isValid()) {
           // Configure the upload settings
           $config = [
             'upload_path' => './uploads/events/',
@@ -125,45 +134,23 @@ class EventsController extends Controller
           // Move the uploaded file to the destination directory
           $uniqueId = uniqid(); // You can use any method to generate a unique identifier
 
-          if ($file->move($config['upload_path'], $uniqueId . '_' . $file->getRandomName())) {
+          if ($file->move($config['upload_path'])) {
 
             $filename = $file->getName();
+            // , $uniqueId . '_' . $file->getRandomName())
             // Save the image path to the database
 
-            $data = [
-              'association_id' => $this->request->getPost('association_id'),
-              'title' => $this->request->getPost('title'),
-              'category' => $this->request->getPost('category'),
-              'description' => $this->request->getPost('description'),
-              'date' => $this->request->getPost('date'),
-              'location' => $this->request->getPost('location'),
-              'date_to' => $this->request->getPost('date_to'),
-              'link' => $this->request->getPost('link'),
-              'image' => $filename,
-            ];
-            $model->save($data);
-            return redirect()->to('/events')->with('success','Evento inserito.');
+            $data['image'] = $filename;
           } else {
             // File upload failed
-            $error = $image->getErrorString();
+            $error = $file->getErrorString();
             // Handle the error
             return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
           }
-        } else {
-          // No image uploaded
-          $data = [
-            'association_id' => $this->request->getPost('association_id'),
-            'title' => $this->request->getPost('title'),
-            'category' => $this->request->getPost('category'),
-            'description' => $this->request->getPost('description'),
-            'date' => $this->request->getPost('date'),
-            'location' => $this->request->getPost('location'),
-            'date_to' => $this->request->getPost('date_to'),
-            'link' => $this->request->getPost('link'),
-          ];
-          $model->save($data);
-          return redirect()->to('/events-manager')->with('success','Evento inserito.');
         }
+
+        $model->save($data);
+        return redirect()->to('/events-manager')->with('success','Evento inserito.');
       } else {
           $data['validation'] = $this->validator;
           echo view('events/new', $data);
@@ -230,9 +217,12 @@ class EventsController extends Controller
     $time = date('H:i', $date);
     $data['time'] = $time;
 
-    $date_to = strtotime($event['date_to']);
-    $timeTo = date('H:i', $date_to);
-    $data['timeTo'] = $timeTo;
+    if($event['date_to']){
+      $date_to = strtotime($event['date_to']);
+      $timeTo = date('H:i', $date_to);
+      $data['timeTo'] = $timeTo;
+    }
+
 
     return view('events/show', $data);
   }
@@ -299,7 +289,7 @@ class EventsController extends Controller
       }
     }
 
-    if (strtotime($data['date']) >= strtotime($data['date_to'])) {
+    if ($data['date_to'] && (strtotime($data['date']) >= strtotime($data['date_to']))) {
       // The date_to is less than or equal to the date, indicating an error
       $error = 'La data di fine deve essere maggiore della data di inizio';
       return redirect()->back()->with('error', $error);

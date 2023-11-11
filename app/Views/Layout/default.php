@@ -146,6 +146,27 @@
           color: #fff;
           border-color: #007bff;
       }
+      
+      .fixed-width-column {
+        width: 15%;
+      }
+      
+      .counter {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: gray;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
 
     </style>
     <?= $this->include('Layout/partial/import_js'); ?>

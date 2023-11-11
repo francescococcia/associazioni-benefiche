@@ -68,6 +68,13 @@ class EventModel extends Model
         ->findAll();
   }
 
+  public function getAllEventsByPlatformManagerPaginate($userId) {
+    return $this->select('events.*')
+        ->join('associations', 'events.association_id = associations.id')
+        ->where('associations.user_id', $userId)
+        ->orderBy('events.id', 'DESC');
+  }
+
   public function getJoinedEventsByUserId($userId)
   {
     $builder = $this->db->table('participants');

@@ -1,7 +1,7 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
 
-<link rel="stylesheet" type="text/css" href="<?= base_url('public/css/admin.css') ?>"/>
+<link rel="stylesheet" type="text/css" href="<#?= base_url('public/css/admin.css') ?>"/>
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
@@ -13,7 +13,7 @@
     <div id="main-content" class="container allContent-section mt-5 py-4">
         <div>
           <?php if (!empty($products)): ?>
-            <table>
+            <table class="table table-striped table-bordered">
               <thead>
                 <tr>
                     <th></th>

@@ -37,7 +37,7 @@ class ProductsController extends Controller
 
     $perPage = 12; // Number of items per page
 
-    $query = $model->getAllProductsByPlatformManager($userId); // Modified method
+    $query = $model->getAllProductsByPlatformManagerPaginate($userId); // Modified method
 
     $data['products'] = $query->paginate($perPage); // Apply pagination
     $data['pager'] = $model->pager; // Include the pager information

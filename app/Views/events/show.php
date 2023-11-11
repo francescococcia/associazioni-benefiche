@@ -42,14 +42,14 @@
             <p><?= $event['description']; ?></p>
             <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
             <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
-            <p><strong>Inizio:</strong> <?= formatDateItalian($event['date']) ?> <?=$timeTo?></p>
+            <p><strong>Inizio:</strong> <?= formatDateItalian($event['date']) ?> <?=$time?></p>
             <?php if ($event['date_to']): ?>
               <p><strong>Fine:</strong> <?= formatDateItalian($event['date_to']) ?> <?=$timeTo?></p>
             <?php endif; ?>
             <p>
               <?php if ($event['link']): ?>
                 Per saperne di più su <strong><?= $event['title']; ?></strong> clicca sul seguente
-                <a href="<?= ($event['link'])?>">LINK</a>
+                <a href="<?= ($event['link'])?>" target="_blank">LINK</a>
               <?php endif; ?>
             </p>
 

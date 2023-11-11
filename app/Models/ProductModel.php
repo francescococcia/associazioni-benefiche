@@ -68,6 +68,13 @@ class ProductModel extends Model
         ->findAll();
   }
 
+  public function getAllProductsByPlatformManagerPaginate($userId) {
+    return $this->select('products.*')
+        ->join('associations', 'products.association_id = associations.id')
+        ->where('associations.user_id', $userId)
+        ->orderBy('products.id', 'DESC');
+  }
+
   public function getCartProductsyUserId($userId)
   {
     $builder = $this->db->table('products');

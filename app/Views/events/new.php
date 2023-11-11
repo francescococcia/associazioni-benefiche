@@ -65,7 +65,6 @@
                       <label for="date">Data fine:</label>
                       <input
                         class="form-control"
-
                         type="datetime-local"
                         name="date_to"
                         value="<?= set_value('date_to') ?>"
