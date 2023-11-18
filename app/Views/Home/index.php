@@ -28,40 +28,6 @@
 
       <!-- bloc-1 -->
       <div class="bloc bloc-fill-screen scroll-fx-out-fade d-bloc" id="bloc-1" style="background-image:url(<?= base_url('public/img/Comunita.jpg') ?>);">
-        <div class="container fill-bloc-top-edge">
-          <div class="row">
-            <div class="col-12 mr-lg-5">
-              <?php if ($isLoggedIn): ?>
-                <?php if (session()->get('isAdmin')): ?>
-                  <div class="text-center text-lg-right">
-                    <a href="<?php echo base_url();?>/admin/dashboard"
-                      class="btn mr-lg-3 btn-style btn-xl btn-clean float-lg-none btn-c-4129 btn-rd">
-                      Dashboard
-                    </a>
-                  </div>
-                <?php endif; ?>
-              <?php else: ?>
-                  <div class="text-center text-lg-right">
-                    <a href="<?php echo base_url();?>/signin"
-                      class="btn mr-lg-3 btn-style btn-lg btn-clean float-lg-none btn-c-4129 btn-rd">
-                      Accedi
-                    </a>
-                    <div class="btn-group btn-dropdown dropdown bloc-style float-lg-none">
-                      <a href="#" class="btn dropdown-toggle btn-c-4129 btn-iscriviti-style btn-clean btn-lg pr-lg-4 btn-rd" data-toggle="dropdown" aria-expanded="false">Iscriviti</a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li>
-                          <a href="<?php echo base_url();?>/signup-association" class="dropdown-item a-block link-style text-lg-left">Associazione</a>
-                        </li>
-                        <li>
-                          <a href="<?php echo base_url();?>/signup" class="dropdown-item a-block link-utente-style text-lg-left">Utente</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-              <?php endif; ?>
-            </div>
-          </div>
-        </div>
         <div class="container">
           <div class="row">
             <div class="col">

@@ -9,21 +9,14 @@
 <script src="<?= base_url('public/js/scrollFX.js') ?>"></script>
 <script src="<?= base_url('public/js/jqBootstrapValidation.js') ?>"></script>
 <script src="<?= base_url('public/js/formHandler.js') ?>"></script>
+<!-- <script src="<#?= base_url('public/js/universal-parallax.js') ?>"></script> -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
 
 <!-- Additional JS END -->
 
-<script>
-//   document.getElementById('confirmDelete').addEventListener('click', function() {
-//     console.log('in')
-//     document.querySelector('form').submit();
-// });
+<!-- jQuery and Bootstrap scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-// $('.date').datepicker({  
-
-// format: 'dd/mm/yyyy'  
-
-// });
-
-</script>
-
+<!-- Your other scripts -->

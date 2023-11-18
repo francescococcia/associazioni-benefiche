@@ -58,6 +58,36 @@
                 <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
                 <button type="submit" class="btn btn-clean btn-c-4129">Partecipa</button>
               </form>
+            <?php else: ?>
+
+              <form action="<?= site_url('participant/delete/' . $event['id']) ?>" method="post" id="formParticipant_<?= $event['id'] ?>">
+                <button class="btn btn-sm btn-danger ml-0" type="button" data-toggle="modal" data-target="#deleteParticipant<?= $event['id'] ?>">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
+
+              <!-- Bootstrap Modal -->
+              <div class="modal fade" id="deleteParticipant<?= $event['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteParticipantLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteParticipantLabel">Conferma Eliminazione</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler rimuovere la prenotazione?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                      <button type="button" class="btn btn-danger" onclick="deleteParticipant(<?= $event['id'] ?>)" id="deleteParticipant<?= $event['id'] ?>">
+                          Rimuovi
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <?php endif; ?>
 
             <?php if (session()->get('isPlatformManager')): ?>
@@ -299,6 +329,14 @@
     function deleteRow(id) {
       // Construct the form ID based on the user ID
       var formId = 'form_' + id;
+
+      // Submit the form with the constructed ID
+      document.getElementById(formId).submit();
+    }
+
+    function deleteParticipant(id) {
+      // Construct the form ID based on the user ID
+      var formId = 'formParticipant_' + id;
 
       // Submit the form with the constructed ID
       document.getElementById(formId).submit();

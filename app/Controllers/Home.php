@@ -23,6 +23,11 @@ class Home extends BaseController
     return view('Home/index', $data);
   }
 
+  public function chi_siamo()
+  {
+    return view('chi_siamo');
+  }
+
   public function exit()
   {
     session()->destroy();

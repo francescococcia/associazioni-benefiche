@@ -66,6 +66,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
 });
 
 $routes->get('/', 'Home::index');
+$routes->get('/chi-siamo', 'Home::chi_siamo');
 $routes->get('/signup-association', 'SignupAssociationController::index');
 $routes->match(['get', 'post'], 'SignupAssociationController/store', 'SignupAssociationController::store');
 $routes->get('/signup', 'SignupController::index');
@@ -101,6 +102,8 @@ $routes->get('events-manager', 'EventsController::index_manager', ['filter' => '
 
 // Participants routes
 $routes->match(['get', 'post'], 'ParticipantsController/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
+$routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
+$routes->post('participant/delete/(:num)', 'ParticipantsController::delete/$1', ['filter' => 'authGuard']);
 
 // Products routes
 $routes->get('/store', 'ProductsController::index');
@@ -115,9 +118,6 @@ $routes->post('product/delete/(:num)', 'ProductsController::delete/$1', ['filter
 $routes->get('/cash', 'ProductsController::cartProducts');
 $routes->get('/store-manager', 'ProductsController::index_manager');
 
-// Partecipants routes
-$routes->post('participants/create', 'ParticipantsController::create', ['filter' => 'authGuard']);
-
 // Users routes
 $routes->get('/profile', 'UsersController::edit', ['filter' => 'authGuard']);
 $routes->post('/users/update', 'UsersController::update', ['filter' => 'authGuard']);
@@ -131,12 +131,15 @@ $routes->get('/associations/create', 'AssociationsController::create');
 $routes->post('/associations/store', 'AssociationsController::store');
 $routes->get('/associations/(:num)', 'AssociationsController::show/$1');
 
-// Association routes
+// News routes
 $routes->get('news/create', 'NewsController::create');
 $routes->post('news/store', 'NewsController::store');
 $routes->post('news/delete/(:num)', 'NewsController::delete/$1', ['filter' => 'authGuard']);
 $routes->get('new/edit/(:segment)', 'NewsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('new/update', 'NewsController::update', ['filter' => 'authGuard']);
+
+// Orders routes
+$routes->post('order/delete/(:num)', 'OrdersController::delete/$1', ['filter' => 'authGuard']);
 
 $routes->get('/logout', 'Home::exit');
 /*

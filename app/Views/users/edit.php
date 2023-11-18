@@ -1,6 +1,6 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-<div class="content mb-5">
+  <div class="content mb-5">
 		<div class="wrap">
 			<div class="page-headline-wrap cc-category-headline">
 				<h1>Informazioni Utente</h1>

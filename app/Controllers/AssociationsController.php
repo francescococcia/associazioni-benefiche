@@ -143,6 +143,7 @@ class AssociationsController extends BaseController
       'tax_code' => $this->request->getVar('tax_code'),
       'description' => $this->request->getVar('description'),
       'link' => $this->request->getVar('link'),
+      'office' => $this->request->getVar('office'),
     ];
 
     // Upload the image file

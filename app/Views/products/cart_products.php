@@ -27,7 +27,36 @@
               <tbody>
                   <?php foreach ($products as $productId => $product) : ?>
                   <tr>
-                    <td></td>
+                    <td>
+                      <form action="<?= site_url('order/delete/' . $product['id']) ?>" method="post" id="form_<?= $product['id'] ?>">
+                        <button class="btn btn-sm btn-danger mt-3" type="button" data-toggle="modal" data-target="#deleteParticipant<?= $product['id'] ?>">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </form>
+
+                      <!-- Bootstrap Modal -->
+                      <div class="modal fade" id="deleteParticipant<?= $product['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteParticipantLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteParticipantLabel">Conferma Eliminazione</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Sei sicuro di voler rimuovere la prenotazione?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                              <button type="button" class="btn btn-danger" onclick="deleteParticipant(<?= $product['id'] ?>)" id="deleteParticipant<?= $product['id'] ?>">
+                                  Rimuovi
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td>
                     <?php if ($product['image']) : ?>
                         <img
@@ -63,5 +92,15 @@
         </div>
       </div>
   </div>
+
+  <script>
+    function deleteParticipant(id) {
+      // Construct the form ID based on the user ID
+      var formId = 'form_' + id;
+
+      // Submit the form with the constructed ID
+      document.getElementById(formId).submit();
+    }
+  </script>
 
 <?= $this->endSection() ?>

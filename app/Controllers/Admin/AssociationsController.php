@@ -60,7 +60,7 @@ class AssociationsController extends BaseController
         'tax_code' => $this->request->getVar('tax_code'),
         'description' => $this->request->getVar('description'),
         'link' => $this->request->getVar('link'),
-        // Add other association fields here...
+        'office' => $this->request->getVar('office'),
     ];
 
     // Check and update the password

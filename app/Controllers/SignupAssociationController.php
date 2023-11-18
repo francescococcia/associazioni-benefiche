@@ -78,6 +78,7 @@ class SignupAssociationController extends Controller
               'tax_code' => $this->request->getVar('tax_code'),
               'description' => $this->request->getVar('description'),
               'link' => $this->request->getVar('link'),
+              'office' => $this->request->getVar('office'),
               'image' => $filename, // Salva solo il nome del file senza l'identificatore
           ];
 
