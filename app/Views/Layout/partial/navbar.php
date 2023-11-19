@@ -47,8 +47,8 @@
                         <ul class="dropdown-menu justify-content-end" aria-labelledby="navbarDropdown">
                           <li>
                             <?php if (session()->get('isPlatformManager')): ?>
-                              <!-- <a class="dropdown-item" href="<#?php echo base_url();?>/profile-manager">Profilo</a> -->
-                              <a class="dropdown-item" href="<?= site_url('/profile-manager') ?>">Profilo</a>
+                              <!-- <a class="dropdown-item" href="<#?= site_url('/profile-manager') ?>">Profilo</a> -->
+                              <a class="dropdown-item" href="<?= site_url('associations/'.session()->get('id')) ?>">Profilo</a>
                             <?php else: ?>
                               <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a> 
                             <?php endif; ?>
@@ -112,7 +112,9 @@
                             </a>
                           </li>
                           <li>
-                            <a href="<?php echo base_url();?>/signup" class="dropdown-item a-block link-utente-style text-lg-start">Utente</a>
+                            <a href="<?php echo base_url();?>/signup" class="dropdown-item a-block link-utente-style text-lg-start">
+                              Privato
+                            </a>
                           </li>
                         </ul>
                       </div>

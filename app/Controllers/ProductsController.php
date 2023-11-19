@@ -8,6 +8,7 @@ use App\Models\ParticipantModel;
 use App\Models\ProductModel;
 use App\Models\AssociationModel;
 use App\Models\OrderModel;
+use App\Models\UserModel;
 
 class ProductsController extends Controller
 {
@@ -200,16 +201,25 @@ class ProductsController extends Controller
   public function buy()
   {
     helper('url');
+    helper('email_helper');
     // Load the ProductModel and OrderModel
     $productModel = new ProductModel();
     $orderModel = new OrderModel();
+    $userModel = new UserModel();
+    $associationModel = new AssociationModel();
 
     // Get the logged-in user's ID
     $userId = session()->get('id');
+    $associationId = $this->request->getVar('association_id');
+
+    $userData = $userModel->find($userId);
+    $associationData = $associationModel->find($associationId);
 
     // Get the submitted form data
     $productId = $this->request->getPost('product_id');
     $quantity = $this->request->getPost('quantity');
+
+    $productData = $productModel->find($productId);
 
     // Example: Save the order details to the "orders" table
     $data = [
@@ -220,6 +230,25 @@ class ProductsController extends Controller
     ];
 
     $orderModel->insert($data);
+
+    $firstName = $userData['first_name'];
+    $email = $userData['email'];
+    $to = $email;
+    $subject = 'Conferma Prenotazione Prodotto';
+
+    $viewName = 'book_product'; // This should match the name of your view file without the file extension
+    $titleProduct = $productData['name'];
+    $data = [
+      'firstName' => $firstName,
+      'titleProduct' => $titleProduct,
+      'quantity' => $quantity,
+      'productName' => $productData['name'],
+      'productPrice' => $productData['price'],
+      'associationAddress' => $associationData['legal_address'],
+      'nameAssociation' => $associationData['name'],
+    ];
+
+    sendMail($to, $subject, $viewName, $data);
 
     // Redirect to a success page or perform further actions
     return redirect()->to('product/detail/' . $productId)->with(

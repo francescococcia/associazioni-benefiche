@@ -9,6 +9,7 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        background-color: white;
       }
 
       .page-container {

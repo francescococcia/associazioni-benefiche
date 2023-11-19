@@ -1,27 +1,43 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-  <div class="content mb-5">
-    <div class="wrap">
-      <div class="page-headline-wrap cc-category-headline">
-        <h1>Eventi</h1>
-        <?php if(session()->get('isPlatformManager')): ?>
-          <p class="big-paragraph">Inserisci un nuovo evento</p>
-          <div class="row">
-            <div class="col">
-              <a
-                class="btn btn-clean btn-c-4129 btn-rd"
-                href="<?php echo base_url();?>/events/new">Inserisci evento</a>
-            </div>
-          </div>
-          <?php else: ?>
-            <p class="big-paragraph">Visualizza tutti gli eventi o filtra per tipologia</p>
-          <?php endif; ?>
-      </div>
-
-    </div>
+<div class="bloc l-bloc" id="bloc-4">
+	<div class="container bloc-md-lg bloc-md">
+		<div class="row">
+			<div class="text-center text-md-start col-md-12 col-lg-4 align-self-center mb-4 ps-0 pe-0 ps-sm-2 pe-sm-2 ps-lg-3 pe-lg-3">
+				<h3 class="section-heading primary-text mb-0">
+					Eventi<br>
+				</h3>
+			</div>
+			<div class="col">
+				<div>
+				</div>
+			</div>
+			<div class="text-center text-md-start col-md-12 align-self-center ps-0 pe-0 ps-sm-2 pe-sm-2 mb-3 mb-md-4 text-lg-center col-lg-12">
+				<div class="bento-box pt-lg-3 pb-lg-3 shadow">
+					<div class="row">
+						<div class="col-lg-8 align-self-center">
+							<p class="tc-2190 box-info mb-3 text-center text-lg-start mb-lg-0 p-bloc-4-style">
+								Visualizza o gestisci gli eventi della tua associazione<br>
+							</p>
+						</div>
+						<div class="align-self-center col-lg-3 offset-lg-1 text-lg-end text-center">
+							<a href="<?php echo base_url();?>/events/new" class="btn btn-d btn-rd box-btn primary-btn float-lg-none fill-mob-btn">Crea nuovo evento</a>
+						</div>
+					</div>
+				</div>
+          <a href="<?php echo base_url('/events-manager?category=Feste e sagre'); ?>" class="a-btn text-lg-left mt-lg-3 token-link <?= ($category == 'Feste e sagre') ? 'active' : ''; ?>">Feste e sagre</a>
+          <a href="<?php echo base_url('/events-manager?category=Mercatini'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Mercatini') ? 'active' : ''; ?>">Mercatini</a>
+          <a href="<?php echo base_url('/events-manager?category=Sport'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Sport') ? 'active' : ''; ?>">Sport</a>
+          <a href="<?php echo base_url('/events-manager?category=Cucina'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Cucina') ? 'active' : ''; ?>">Cucina</a>
+          <a href="<?php echo base_url('/events-manager?category=Ambiente'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Ambiente') ? 'active' : ''; ?>">Ambiente</a>
+          <a href="<?php echo base_url('/events-manager?category=Altro'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Altro') ? 'active' : ''; ?>">Altro</a>
+          <a href="<?php echo base_url('/events-manager?category='); ?>" class="a-btn text-lg-left token-link">Annulla</a>
+			</div>
+		</div>
 	</div>
+</div>
 
-  <div class="container mt-4 mb-4">
+<div class="container mt-4 mb-4">
     <div class="row justify-content-center">
       <?php if ($events) : ?>
         <?php foreach ($events as $event) : ?>
@@ -126,7 +142,11 @@
   padding: 16px 32px;
 }
     /* endevent */
-    
+    .token-link:hover,
+    .token-link.active {
+        background-color: #ff8300;
+        font-weight: bold;
+    }
   </style>
 
 <?= $this->endSection() ?>

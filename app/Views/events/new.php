@@ -52,11 +52,9 @@
                         <option value=''>Seleziona categoria</option>
                         <option value="Feste e sagre">Feste e sagre</option>
                         <option value="Mercatini">Mercatini</option>
-                        <option value="Spettacoli teatrali">Spettacoli teatrali</option>
-                        <option value="Eventi sportivi">Eventi sportivi</option>
-                        <option value="Eventi culinari">Eventi culinari</option>
-                        <option value="Sfilate">Sfilate</option>
-                        <option value="Talk">Talk</option>
+                        <option value="Sport">Sport</option>
+                        <option value="Cucina">Cucina</option>
+                        <option value="Ambiente">Ambiente</option>
                         <option value="Altro">Altro</option>
                       </select>
                     </div>

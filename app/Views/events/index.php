@@ -1,64 +1,44 @@
 <?= $this->extend('Layout/default') ?>
 <?= $this->section('content') ?>
-  <div class="content mb-5">
-    <div class="wrap">
-      <div class="page-headline-wrap cc-category-headline">
-        <h1>Tutti gli Eventi</h1>
-        <!-- <#?php if(session()->get('isPlatformManager')): ?>
-          <p class="big-paragraph">Visualizza gli eventi inseriti</p>
-          <div class="row">
-            <div class="col">
-              <a
-                class="btn btn-clean btn-c-4129 btn-rd"
-                href="<#?php echo base_url();?>/events/new">Inserisci evento</a>
-            </div>
-          </div>
-          <#?php else: ?> -->
-            <p class="big-paragraph">Visualizza tutti gli eventi o filtra per tipologia</p>
-          <!-- <#?php endif; ?> -->
-      </div>
-
-    </div>
-	</div>
-
-  <div class="content mb-5">
-    <div class="wrap">
-
+  <div class="bloc l-bloc" id="bloc-4">
+    <div class="container bloc-md-lg bloc-md">
       <div class="row">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-          <div class="col-12 col-md-8 col-lg-6">
-
-            <form  method="GET" action="<?= base_url(); ?>/events">
-              <div class="row">
-
-                <div class="col-md-12">
-                  <div class="input-group mb-3">
-                    <select class='form-control search input-text' name="category" id="category">
-                        <option value='' selected>Seleziona tipologia</option>
-                        <option value="Feste e sagre" <?php if ($category == 'Feste e sagre') echo 'selected'; ?>>Feste e sagre</option>
-                        <option value="Mercatini" <?php if ($category == 'Mercatini') echo 'selected'; ?>>Mercatini</option>
-                        <option value="Spettacoli teatrali" <?php if ($category == 'Spettacoli teatrali') echo 'selected'; ?>>Spettacoli teatrali</option>
-                        <option value="Eventi sportivi" <?php if ($category == 'Eventi sportivi') echo 'selected'; ?>>Eventi sportivi</option>
-                        <option value="Eventi culinari" <?php if ($category == 'Eventi culinari') echo 'selected'; ?>>Eventi culinari</option>
-                        <option value="Sfilate" <?php if ($category == 'Sfilate') echo 'selected'; ?>>Sfilate</option>
-                        <option value="Talk" <?php if ($category == 'Talk') echo 'selected'; ?>>Talk</option>
-                        <option value="Altro" <?php if ($category == 'Altro') echo 'selected'; ?>>Altro</option>
-                    </select>
-
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-warning btn-md yellow" type="submit">
-                        <i class="fa fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </form>
+        <div class="text-center text-md-start col-md-12 col-lg-4 align-self-center mb-4 ps-0 pe-0 ps-sm-2 pe-sm-2 ps-lg-3 pe-lg-3">
+          <h3 class="section-heading primary-text mb-0">
+            Eventi<br>
+          </h3>
+        </div>
+        <div class="col">
+          <div>
           </div>
         </div>
+        <div class="text-center text-md-start col-md-12 align-self-center ps-0 pe-0 ps-sm-2 pe-sm-2 mb-3 mb-md-4 text-lg-center col-lg-12">
+          <div class="bento-box pt-lg-3 pb-lg-3 shadow">
+              <div class="row">
+                  <div class="col-lg-8 align-self-center">
+                      <p class="tc-2190 box-info mb-3 text-center text-lg-start mb-lg-0 p-bloc-4-style">
+                        Visualizza tutti gli eventi o filtra per tipologia<br>
+                      </p>
+                  </div>
+                    <!-- <div class="align-self-center col-lg-3 offset-lg-1 text-lg-end text-center">
+                        <a href="<#?php echo base_url(); ?>/events/new" class="btn btn-d btn-rd box-btn primary-btn float-lg-none fill-mob-btn">Crea nuovo evento</a>
+                    </div> -->
+              </div>
+          </div>
+
+          <a href="<?php echo base_url('/events?category=Feste e sagre'); ?>" class="a-btn text-lg-left mt-lg-3 token-link <?= ($category == 'Feste e sagre') ? 'active' : ''; ?>">Feste e sagre</a>
+          <a href="<?php echo base_url('/events?category=Mercatini'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Mercatini') ? 'active' : ''; ?>">Mercatini</a>
+          <a href="<?php echo base_url('/events?category=Sport'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Sport') ? 'active' : ''; ?>">Sport</a>
+          <a href="<?php echo base_url('/events?category=Cucina'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Cucina') ? 'active' : ''; ?>">Cucina</a>
+          <a href="<?php echo base_url('/events?category=Ambiente'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Ambiente') ? 'active' : ''; ?>">Ambiente</a>
+          <a href="<?php echo base_url('/events?category=Altro'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Altro') ? 'active' : ''; ?>">Altro</a>
+          <a href="<?php echo base_url('/events?category='); ?>" class="a-btn text-lg-left token-link">Annulla</a>
+      </div>
+
       </div>
     </div>
-	</div>
+  </div>
+
 
   <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
@@ -166,6 +146,12 @@
       padding: 16px 32px;
     }
     /* endevent */
+    
+    .token-link:hover,
+    .token-link.active {
+        background-color: #ff8300;
+        font-weight: bold;
+    }
   </style>
 
 <?= $this->endSection() ?>

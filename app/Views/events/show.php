@@ -22,7 +22,7 @@
     </div><!-- end wrap -->
 
     <div class="row d-flex align-items-stretch">
-      <div class="col-md-6 offset-lg-3">
+      <div class="col-md-6 offset-lg-2">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded">
           <div class="card-body">
           <?php if ($event['image']): ?>
@@ -52,43 +52,6 @@
                 <a href="<?= ($event['link'])?>" target="_blank">LINK</a>
               <?php endif; ?>
             </p>
-
-            <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
-              <form method="post" action="<?= site_url('participants/create') ?>">
-                <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                <button type="submit" class="btn btn-clean btn-c-4129">Partecipa</button>
-              </form>
-            <?php else: ?>
-
-              <form action="<?= site_url('participant/delete/' . $event['id']) ?>" method="post" id="formParticipant_<?= $event['id'] ?>">
-                <button class="btn btn-sm btn-danger ml-0" type="button" data-toggle="modal" data-target="#deleteParticipant<?= $event['id'] ?>">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </form>
-
-              <!-- Bootstrap Modal -->
-              <div class="modal fade" id="deleteParticipant<?= $event['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteParticipantLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteParticipantLabel">Conferma Eliminazione</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Sei sicuro di voler rimuovere la prenotazione?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                      <button type="button" class="btn btn-danger" onclick="deleteParticipant(<?= $event['id'] ?>)" id="deleteParticipant<?= $event['id'] ?>">
-                          Rimuovi
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <?php endif; ?>
 
             <?php if (session()->get('isPlatformManager')): ?>
               <div class="row">
@@ -134,9 +97,8 @@
             <?php endif; ?>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 offset-lg-3 mb-3">
+        <!-- start feedback -->
         <div class="card shadow-lg p-3 mb-5 bg-white rounded">
           <div class="card-body">
             <h4 class="card-title mb-3"><strong>Recensioni</strong>
@@ -283,6 +245,77 @@
           </div>
         </div>
       </div>
+
+      <!-- start news -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <h4 class="card-title mb-3">Partecipanti
+              <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
+                <form method="post" style='float: right' action="<?= site_url('participants/create') ?>">
+                  <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+                  <button type="submit" class="btn btn-md btn-clean btn-c-4129" >Partecipa</button>
+                </form>
+              <?php endif; ?>
+            </h4>
+            <hr>
+            <div class="container mt-4 mb-4">
+              <div class="row justify-content-center">
+                <?php if ($participants) : ?>
+                  <?php foreach ($participants as $participant): ?>
+                    <div class="col-12 mb-3">
+                      <div class="d-flex justify-content-between">
+                        <?php if (isset($participant['user_info']) && $participant['user_info']): ?>
+                          <ul class='pl-2'>
+                            <li><p class="mb-0">Username: <?= $participant['user_info']['first_name']; ?></p>
+                            <p class="mb-0"> Email: <?= $participant['user_info']['email']; ?></p></li>
+                          </ul>
+                          <?php if ($participant['user_info']['id'] == session()->get('id')): ?>
+                            <form action="<?= site_url('participant/delete/' . $event['id']) ?>" method="post" id="formParticipant_<?= $event['id'] ?>">
+                              <button class="btn btn-sm btn-danger ml-0" type="button" data-toggle="modal" data-target="#deleteParticipant<?= $event['id'] ?>">
+                                <i class="fa-solid fa-trash"></i>
+                              </button>
+                            </form>
+
+                            <!-- Bootstrap Modal -->
+                            <div class="modal fade" id="deleteParticipant<?= $event['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteParticipantLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="deleteParticipantLabel">Conferma Eliminazione</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      Sei sicuro di voler rimuovere la prenotazione?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                                    <button type="button" class="btn btn-danger" onclick="deleteParticipant(<?= $event['id'] ?>)" id="deleteParticipant<?= $event['id'] ?>">
+                                        Rimuovi
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <?php endif; ?>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+
+                    <hr>
+                  <?php endforeach; ?>
+                <?php else : ?>
+                  <p>Nessun partecipante.</p>
+                <?php endif; ?>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- end news  -->
     </div>
   </div>
 

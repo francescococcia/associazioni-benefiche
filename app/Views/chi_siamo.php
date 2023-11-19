@@ -19,7 +19,7 @@
         <div class="col">
           <div>
             <div>
-              <div class="bento-box container-div-bloc-4-style pt-lg-4 mt-lg-5">
+              <div class="bento-box container-div-bloc-4-style pt-lg-4 mt-lg-5 shadow">
                 <h1 class="mb-4 box-heading primary-text h1-su-di-noi-style">
                   Su di noi
                 </h1>
@@ -27,7 +27,7 @@
                   Così come dovrebbe essere<br>Fin dal suo primo giorno nel settore, Associazioni offre ai suoi clienti un'ottima selezione di prodotti a prezzi imbattibili. Il nostro negozio online è diventato sinonimo di qualità e forniamo ai clienti un'ampia varietà di merci, tra cui alcuni prodotti in edizione limitata e articoli stagionali per tutte le tasche. Dai un'occhiata e inizia a comprare oggi stesso<br>
                 </h5>
               </div>
-              <div class="bento-box pt-lg-4 mt-lg-4 ">
+              <div class="bento-box pt-lg-4 mt-lg-4 shadow">
                 <h1 class="mb-4 box-heading primary-text h1-bloc-4-style">
                   La nostra mission<br>
                 </h1>

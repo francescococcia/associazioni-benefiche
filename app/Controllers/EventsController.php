@@ -44,33 +44,41 @@ class EventsController extends Controller
   }
 
   public function index_manager()
-  {
+{
     helper('date');
     $eventModel = new EventModel();
     $userId = session()->get('id');
-
     $category = $this->request->getVar('category');
-
     $perPage = 9; // Define the number of items per page
 
+    $data = [];
+
     if (session()->get('isPlatformManager')) {
+        // Start building the query
         $query = $eventModel->getAllEventsByPlatformManagerPaginate($userId);
+
+        // Check if a category filter is applied
+        if (!empty($category)) {
+            $query->like('category', $category);
+        }
+
+        // Get paginated events
         $data['events'] = $query->paginate($perPage);
         $data['pager'] = $eventModel->pager;
-    }
 
-    $participantModel = new ParticipantModel();
-
-    // Loop through the events and check if the user has participated in each event
-    foreach ($data['events'] as &$event) {
-      $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
-      $event['userParticipated'] = $participant !== null;
+        // Check user participation
+        $participantModel = new ParticipantModel();
+        foreach ($data['events'] as &$event) {
+            $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
+            $event['userParticipated'] = $participant !== null;
+        }
     }
 
     $data['category'] = $category;
 
     return view('events/index_manager', $data);
-  }
+}
+
 
   public function new($association_id = null)
   {
@@ -223,6 +231,21 @@ class EventsController extends Controller
       $data['timeTo'] = $timeTo;
     }
 
+    foreach ($participants as &$participant) {
+      // Get user information for each participant
+      $userId = $participant['user_id'];
+  
+      // Load your user model
+      $userModel = new UserModel();
+  
+      // Query user information based on user ID
+      $userInfo = $userModel->find($userId);
+  
+      // Attach user information to the participant data
+      $participant['user_info'] = $userInfo;
+  }
+  
+  $data['participants'] = $participants;
 
     return view('events/show', $data);
   }
@@ -300,21 +323,6 @@ class EventsController extends Controller
         return redirect()->to('/events/detail/' . $eventId);
     }
 
-  }
-
-  public function search()
-  {
-    $events = []; // Initialize the $events array
-    $category = $this->request->getVar('category');
-
-    $eventModel = new EventModel();
-    if($category != ''){
-      $events = $eventModel->like('category', $category)->findAll();
-    }
-
-    $data['events'] = $events;
-    $data['category'] = $category;
-    return view('events/search', $data);
   }
 
   public function joinedEvents()

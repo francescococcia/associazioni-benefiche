@@ -45,11 +45,9 @@
                         <option value="">Seleziona categoria</option>
                         <option value="Feste e sagre" <?= ($event['category'] == 'Feste e sagre') ? 'selected' : '' ?>>Feste e sagre</option>
                         <option value="Mercatini" <?= ($event['category'] == 'Mercatini') ? 'selected' : '' ?>>Mercatini</option>
-                        <option value="Spettacoli teatrali" <?= ($event['category'] == 'Spettacoli teatrali') ? 'selected' : '' ?>>Spettacoli teatrali</option>
-                        <option value="Eventi sportivi" <?= ($event['category'] == 'Eventi sportivi') ? 'selected' : '' ?>>Eventi sportivi</option>
-                        <option value="Eventi culinari" <?= ($event['category'] == 'Eventi culinari') ? 'selected' : ''?>>Eventi culinari</option>
-                        <option value="Sfilate" <?= ($event['category'] == 'Sfilate') ? 'selected' : ''?>>Sfilate</option>
-                        <option value="Talk" <?= ($event['category'] == 'Talk') ? 'selected' : ''?>>Talk</option>
+                        <option value="Sport" <?= ($event['category'] == 'Sport') ? 'selected' : '' ?>>Sport</option>
+                        <option value="Cucina" <?= ($event['category'] == 'Cucina') ? 'selected' : ''?>>Cucina</option>
+                        <option value="Ambiente" <?= ($event['category'] == 'Ambiente') ? 'selected' : ''?>>Ambiente</option>
                         <option value="Altro" <?= ($event['category'] == 'Altro') ? 'selected' : ''?>>Altro</option>
                       </select>
                     </div>

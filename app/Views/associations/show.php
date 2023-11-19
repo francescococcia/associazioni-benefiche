@@ -72,12 +72,22 @@
               </picture>
             <?php endif; ?>
             <p><strong>Sede Legale:</strong> <?= $association['legal_address']; ?></p>
+            <?php if ($association['office']): ?>
+              <p><strong>Sede Operativa:</strong> <?= $association['office']; ?></p>
+            <?php endif; ?>
             <p><strong>Codice Fiscale:</strong> <?= $association['tax_code']; ?></p>
             <p><strong>Descrizione:</strong> <?= $association['description']; ?></p>
             <?php if ($association['link']): ?>
               Per saperne di più su <strong><?= $association['name']; ?></strong> clicca sul seguente
               <a href="<?= ($association['link'])?>" target="_blank">LINK</a>
             <?php endif; ?>
+            <div class="col-2 ml-0 pl-0 mt-3">
+              <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
+              <a href="<?= site_url('profile-manager') ?>"
+                class="btn btn-warning text-white">
+                  Modifica
+              </a>
+            </div>
           </div>
         </div>
 

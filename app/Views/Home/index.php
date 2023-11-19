@@ -64,12 +64,12 @@
           <!-- <div class="bloc full-width-bloc l-bloc scroll-fx-in-fade" id="bloc-2" style='background-color: #F6F6F6;'> -->
             <div class="container bloc-no-padding">
               <div class="row mb-lg-5 mt-lg-5">
-                <div class="col-md-12 col-lg-6 offset-lg-1">
+                <div class="col-md-12 col-lg-5 offset-lg-2">
                   <picture>
                     <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
                       data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                      class="img-fluid img-style float-lg-none ml-lg-5 mr-lg-0 img-rd-lg lazyload"
-                      alt="<?php echo $association['image']; ?>" width="500" height="450">
+                      class="img-fluid img-style float-lg-none mr-lg-0 img-rd-lg lazyload"
+                      alt="<?php echo $association['image']; ?>" width="400" height="400">
                   </picture>
                 </div>
                 <div class="align-self-center offset-md-1 col-md-10 col-sm-10 offset-sm-1 offset-1 col-10 col-lg-4 offset-lg-0">
@@ -88,13 +88,13 @@
           <div class="bloc full-width-bloc l-bloc" id="bloc-3">
           <!-- <div class="bloc full-width-bloc l-bloc" id="bloc-3" style='background-color: #F6F6F6;'> -->
             <div class="container bloc-no-padding">
-              <div class="row mb-lg-5 mr-lg-5">
-                <div class="order-md-0 col-md-12 col-lg-6 order-lg-1 ml-lg-0 offset-lg-0">
+              <div class="row mb-lg-5">
+                <div class="order-md-0 col-md-12 col-lg-5 order-lg-1 ml-lg-0 offset-lg-0">
                   <picture>
                   <img src="<?php echo base_url('uploads/'.$association['image']); ?>"
                     data-src="<?php echo base_url('uploads/'.$association['image']); ?>"
-                    class="img-fluid img-bloc-3-style img-rd-lg float-lg-right mr-lg-5 lazyload"
-                    alt="<?php echo $association['image']; ?>" width="491" height="450">
+                    class="img-fluid img-bloc-3-style img-rd-lg float-lg-right lazyload"
+                    alt="<?php echo $association['image']; ?>" width="400" height="400">
                 </div>
                 <div class="align-self-center offset-md-1 col-md-10 col-lg-4 col-sm-10 offset-sm-1 col-10 offset-1 offset-lg-2">
                   <h1 class="mg-md h1-ciao-vinny-style">
@@ -111,25 +111,6 @@
 
         <?php $counter++; ?>
       <?php endforeach; ?>
-
-
-      <div class="bloc full-width-bloc b-parallax l-bloc" style='background-color:#E6E6A6'>
-        <div class="container bloc-lg bloc-sm-lg">
-          <div class="row align-items-center ml-lg-0 no-gutters mt-lg-5">
-            <div class="col-md-3 col-sm-6 align-self-center offset-lg-3">
-              <h1 class="text-sm-left text-center h4-style text-lg-left">
-                Su Di Noi
-              </h1>
-              <h5 class="mb-4 btn-resize-mode h5-style mb-lg-5">
-              Così come dovrebbe essere<br>
-          Fin dal suo primo giorno nel settore, Associazioni offre ai suoi clienti un'ottima selezione di prodotti a prezzi imbattibili. Il nostro negozio online è diventato sinonimo di qualità e forniamo ai clienti un'ampia varietà di merci, tra cui alcuni prodotti in edizione limitata e articoli stagionali per tutte le tasche. Dai un'occhiata e inizia a comprare oggi stesso
-              </h5>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-3">
-            </div>
-          </div>
-        </div>
-      </div>
 
       <footer  id="footer" style='color: #ffffff;background-color: #FFFFC1;'>
         <?= $this->include('Layout/partial/footer'); ?>

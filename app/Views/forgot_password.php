@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="d-flex ps-0 pe-0 col-12 col-md-6 ps-md-2 pe-md-2 ps-lg-3 pe-lg-3">
-          <div class="bento-box bgc-5341">
+          <div class="bento-box bgc-5341 shadow">
             <form action="<?php echo base_url(); ?>/UsersController/sendForgotPassword" method="post" novalidate="" data-form-type="blocs-form">
             <!-- <form data-clean-url-used="true" id="form_13311" data-form-type="blocs-form" novalidate="" data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!"> -->
               <div class="form-group mb-3">

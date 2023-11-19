@@ -89,6 +89,7 @@
                   <div class="col">
                     <form id="productForm" method="post" action="<?php echo base_url(); ?>/ProductsController/buy" data-form-type="blocs-form" novalidate="">
                       <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                      <input type="hidden" name="association_id" value="<?= $product['association_id']; ?>">
                       <div class="row">
                         <div class="col-2 d-flex">
                           <div class="form-group">

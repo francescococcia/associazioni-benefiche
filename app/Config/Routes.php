@@ -94,7 +94,6 @@ $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
 $routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
 $routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
-// $routes->get('/events/search', 'EventsController::search');
 $routes->get('/joined-events', 'EventsController::joinedEvents');
 $routes->post('events/delete/(:num)', 'EventsController::delete/$1', ['filter' => 'authGuard']);
 $routes->get('events-manager', 'EventsController::index_manager', ['filter' => 'authGuard']);

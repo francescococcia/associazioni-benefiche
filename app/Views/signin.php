@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="d-flex ps-0 pe-0 col-12 col-md-6 ps-md-2 pe-md-2 ps-lg-3 pe-lg-3">
-          <div class="bento-box bgc-5341">
+          <div class="bento-box bgc-5341 shadow">
             <form action="<?php echo base_url(); ?>/SigninController/loginAuth" method="post"
 								data-form-type="blocs-form" novalidate=""
 								data-success-msg="Your message has been sent."

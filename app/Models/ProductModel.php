@@ -95,4 +95,17 @@ class ProductModel extends Model
 
     return $builder->get()->getResultArray();
   }
+
+  public function getTotalQuantityByUserIdAndProductId($userId, $productId)
+{
+    $builder = $this->db->table('orders');
+    $builder->selectSum('quantity', 'totalQuantity');
+    $builder->where('user_id', $userId);
+    $builder->where('product_id', $productId);
+
+    $result = $builder->get()->getRowArray();
+
+    return $result['totalQuantity'] ?? 0;
+}
+
 }
