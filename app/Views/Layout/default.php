@@ -150,8 +150,8 @@
       .fixed-width-column {
         width: 15%;
       }
-      
-      .counter {
+
+    .counter {
     position: absolute;
     bottom: 50px;
     left: 50%;
@@ -165,7 +165,7 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
-}
+  }
 
 
     </style>

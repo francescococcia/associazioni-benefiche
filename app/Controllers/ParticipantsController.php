@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\EventModel;
 use App\Models\ParticipantModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 
 
@@ -19,39 +20,22 @@ class ParticipantsController extends Controller
     return view('participants/index', $data);
   }
 
-  // public function create()
-  // {
-  //   $eventId = $this->request->getPost('event_id');
-  //   $userId = session()->get('id');
-  //   $model = new ParticipantModel();
 
-  //   $data = [
-  //     'event_id' => $eventId,
-  //     'user_id' => $userId,
-  //     'created_at' => date('Y-m-d H:i:s')
-  //   ];
-  //   $session = session();
-  //   $session->setFlashdata('success', 'Your message here');
-  //   $data['session'] = $session;
-  //   $model->insert($data);
-
-  //   return redirect()->to('events/');
-  // }
-  
   public function create()
-{
-    // Check if the user is logged in, if not, redirect to the login page or show an error message
-    // if (!logged_in()) {
-    //     // Redirect to the login page or show an error message
-    //     return redirect()->to('login');
-    // }
+  {
+    helper(['form']);
+    helper('email_helper');
 
     // Get the event ID and user ID from the form submission
     $eventId = $this->request->getPost('event_id');
     $userId = session()->get('id'); // Assuming you have a helper function to retrieve the logged-in user's ID
 
-    // Create an instance of the ParticipantModel
+    $userModel = new UserModel();
+    $eventModel = new EventModel();
     $participantModel = new ParticipantModel();
+
+    $userData = $userModel->find($userId);
+    $eventData = $eventModel->find($eventId);
 
     // Prepare the data to be inserted into the participants table
     $data = [
@@ -63,8 +47,44 @@ class ParticipantsController extends Controller
     // Insert the data into the participants table
     $participantModel->insert($data);
 
+    $firstName = $userData['first_name'];
+    $email = $userData['email'];
+    $to = $email;
+    $subject = 'Conferma Prenotazione Evento';
+
+    $viewName = 'participant_event'; // This should match the name of your view file without the file extension
+    $titleEvent = $eventData['title'];
+    $data = [
+      'firstName' => $firstName,
+      'titleEvent' => $titleEvent,
+    ];
+
+    sendMail($to, $subject, $viewName, $data);
+
     // Optionally, you can show a success message or redirect to a confirmation page
     // For example, redirect to the event details page
     return redirect()->to('events/detail/' . $eventId);
-}
+  }
+
+  public function delete($eventId)
+  {
+    $participantModel = new ParticipantModel();
+
+    $userId = session()->get('id');
+
+    // Check if the user has a reservation for the specified event
+    $participantEvent = $participantModel->where('event_id', $eventId)
+                                         ->where('user_id', $userId)
+                                         ->first();
+
+    // Check if the reservation exists
+    if (!$participantEvent) {
+        return redirect()->back()->with('error', 'Prenotazione non trovata.');
+    }
+
+    // Delete the reservation
+    $participantModel->delete($participantEvent['id']);
+
+    return redirect()->to('events/detail/'.$eventId)->with('success', 'Prenotazione annullata.');
+  }
 }
