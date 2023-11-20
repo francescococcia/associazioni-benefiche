@@ -3,7 +3,7 @@
   <div class="content mb-5">
 		<div class="wrap">
 			<div class="page-headline-wrap cc-category-headline">
-				<h1>Informazioni Prodotto</h1>
+				<h1 class="section-heading primary-text">Informazioni Prodotto</h1>
 				<p class="big-paragraph">Modifica le seguenti informazioni</p>
 			</div>
 

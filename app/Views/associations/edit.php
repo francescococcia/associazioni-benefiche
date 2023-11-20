@@ -3,7 +3,7 @@
   <div class="content mb-5">
 		<div class="wrap">
 			<div class="page-headline-wrap cc-category-headline">
-				<h1>Informazioni Associazione</h1>
+				<h1 class="section-heading primary-text">Informazioni Associazione</h1>
 				<p class="big-paragraph">Modifica le seguenti informazioni</p>
 			</div>
 
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="password">Passworrd</label>
+                      <label for="password">Password</label>
                       <input
                         class="form-control mb-lg-3 pt-lg-0"
                         type="password"
@@ -104,13 +104,4 @@
 		</div>
 	</div>
 
-  <script>
-    $(document).ready(function () {
-      $('#choose-file').change(function () {
-        var i = $(this).prev('label').clone();
-        var file = $('#choose-file')[0].files[0].name;
-        $(this).prev('label').text(file);
-      }); 
-    });
-  </script>
 <?= $this->endSection() ?>

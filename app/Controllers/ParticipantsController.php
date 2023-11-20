@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\EventModel;
 use App\Models\ParticipantModel;
 use App\Models\UserModel;
+use App\Models\AssociationModel;
 use CodeIgniter\Controller;
 
 
@@ -33,9 +34,15 @@ class ParticipantsController extends Controller
     $userModel = new UserModel();
     $eventModel = new EventModel();
     $participantModel = new ParticipantModel();
+    $associationModel = new AssociationModel();
 
     $userData = $userModel->find($userId);
     $eventData = $eventModel->find($eventId);
+
+    $associationId = $eventData['association_id'];
+    $associationData = $associationModel->find($associationId);
+    $platformId = $associationData['id'];
+    $platformManager = $userModel->find($platformId);
 
     // Prepare the data to be inserted into the participants table
     $data = [
@@ -61,9 +68,23 @@ class ParticipantsController extends Controller
 
     sendMail($to, $subject, $viewName, $data);
 
+    // platform manager
+    $toManager = $platformManager['email'];
+    $subjectManager = 'Prenotazione Evento';
+
+    $viewNameManager = 'participant_event_manager'; // This should match the name of your view file without the file extension
+    // $titleEvent = $eventData['title'];
+    $dataManager = [
+      'firstName' => $firstName,
+      'titleEvent' => $titleEvent,
+      'userEmail' => $userData['email'],
+      'nameAssociation' => $associationData['name'],
+    ];
+    sendMail($toManager, $subjectManager, $viewNameManager, $dataManager);
+
     // Optionally, you can show a success message or redirect to a confirmation page
     // For example, redirect to the event details page
-    return redirect()->to('events/detail/' . $eventId);
+    return redirect()->to('event/detail/' . $eventId);
   }
 
   public function delete($eventId)
@@ -85,6 +106,6 @@ class ParticipantsController extends Controller
     // Delete the reservation
     $participantModel->delete($participantEvent['id']);
 
-    return redirect()->to('events/detail/'.$eventId)->with('success', 'Prenotazione annullata.');
+    return redirect()->to('event/detail/'.$eventId)->with('success', 'Prenotazione annullata.');
   }
 }

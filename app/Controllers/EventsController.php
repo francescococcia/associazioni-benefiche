@@ -19,7 +19,7 @@ class EventsController extends Controller
 
     $category = $this->request->getVar('category');
 
-    $query = $eventModel->orderBy('id', 'DESC');
+    $query = $eventModel->orderBy('date', 'DESC');
 
     if (!empty($category)) {
         $query->like('category', $category);
@@ -289,7 +289,7 @@ class EventsController extends Controller
       'description' => $this->request->getVar('description'),
       'date' => $this->request->getVar('date'),
       'location' => $this->request->getVar('location'),
-      'date_to' => $this->request->getVar('date_to'),
+      'date_to' => $this->request->getVar('date_to') ?: null,
       'link' => $this->request->getVar('link'),
     ];
 
@@ -320,7 +320,7 @@ class EventsController extends Controller
         // Perform the action when the date_to is greater than the date
         $eventModel->update($eventId, $data);
         $session->setFlashdata('success', 'Informazioni aggiornate.');
-        return redirect()->to('/events/detail/' . $eventId);
+        return redirect()->to('/event/detail/' . $eventId);
     }
 
   }

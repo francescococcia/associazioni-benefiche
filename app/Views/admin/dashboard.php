@@ -6,7 +6,7 @@
   <div id="main-content" class="container card-admin allContent-section mt-5 py-4">
     <div class="row">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-      <div class="col-sm-3 offset-2">
+      <div class="col-sm-3 offset-1">
         <a href="<?php echo base_url();?>/admin/users" class="card human-resources">
           <div class="overlay"></div>
           <div class="circle">
@@ -129,7 +129,7 @@
         </a>
       </div>
 
-      <div class="col-sm-3 offset-2 mt-4">
+      <div class="col-sm-3 offset-1 mt-4">
         <a href="<?php echo base_url();?>/admin/products" class="card feedback">
           <div class="overlay"></div>
           <div class="circle">

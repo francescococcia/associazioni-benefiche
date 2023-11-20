@@ -6,7 +6,7 @@
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
-        <h1>Cassa</h1>
+        <h1 class="section-heading primary-text">Cassa</h1>
         <p class="big-paragraph">Visualizza il ricavato delle associazioni</p>
       </div>
 

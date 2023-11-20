@@ -184,7 +184,7 @@
       </div>
 
       <?php if (!session()->get('isAdmin')): ?>
-        <footer id="footer" style="background-color: #FFFFC1;">
+        <footer id="footer">
           <?= $this->include('Layout/partial/footer'); ?>
         </footer>
       <?php endif; ?>

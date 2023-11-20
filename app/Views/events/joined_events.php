@@ -3,7 +3,7 @@
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
-        <h1>Eventi a cui partecipi</h1>
+        <h1 class="section-heading primary-text">Eventi a cui partecipi</h1>
         <p class="big-paragraph">Informazioni riguardo l'evento</p>
         <?php if (!empty($participantModel) && !session()->get('isPlatformManager')): ?>
           <div class="row">
@@ -32,7 +32,7 @@
                         <div class="d-flex justify-content-between">
                           <p class="mb-0">Luogo: <?php echo $event['location']; ?></p>
                           <p class="mb-0">Data: <?php echo date('d/m/y', strtotime($event['date'])); ?></p>
-                          <a href="<?= site_url('events/detail/' . $event['id']) ?>" class="card-link">Dettagli</a>
+                          <a href="<?= site_url('event/detail/' . $event['id']) ?>" class="card-link">Dettagli</a>
                         </div>
                         <hr>
                       </div>

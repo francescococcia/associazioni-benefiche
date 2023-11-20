@@ -95,13 +95,18 @@
                                         </div>
 
                                         <div class="form-group">
-                                          <label for="password">Passworrd</label>
+                                          <label for="password">Password</label>
                                           <input
                                             class="form-control mb-lg-3 pt-lg-0"
                                             type="password"
                                             name="password"
                                             minlength="4"
                                             data-validation-minlength-message="La password deve essere almeno di '4' caratteri">
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="tax_code" class="form-label">Codice Fiscale</label>
+                                          <input type="text" class="form-control" required name="tax_code" id="tax_code" value="<?= $association['tax_code'] ?>">
                                         </div>
                                       </div>
 
@@ -113,8 +118,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                          <label for="tax_code" class="form-label">Codice Fiscale</label>
-                                          <input type="text" class="form-control" required name="tax_code" id="tax_code" value="<?= $association['tax_code'] ?>">
+                                          <label for="tax_code" class="form-label">Sede operativa</label>
+                                          <input type="text" class="form-control" name="office" id="office" value="<?= $association['office'] ?>">
                                         </div>
 
                                         <div class="form-group">
@@ -126,13 +131,14 @@
                                             data-validation-passwordagain-message='Password non corrisponde'>
                                         </div>
 
+                                        <div class="form-group">
+                                          <label for="link" class="form-label">Link</label>
+                                          <input type="text" class="form-control" required name="link" id="link" value="<?= $association['link'] ?>">
+                                        </div>
+
                                       </div><!-- end col -->
                                     </div><!-- end row -->
 
-                                    <div class="form-group">
-                                      <label for="link" class="form-label">Link</label>
-                                      <input type="text" class="form-control" required name="link" id="link" value="<?= $association['link'] ?>">
-                                    </div>
 
                                     <div class="form-group">
                                       <label for="description" class="form-label">Descrizione</label>

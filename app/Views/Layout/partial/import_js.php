@@ -14,3 +14,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Your other scripts -->
+<script>
+  $(document).ready(function () {
+    $('#choose-file').change(function () {
+      var i = $(this).prev('label').clone();
+      var file = $('#choose-file')[0].files[0].name;
+      $(this).prev('label').text(file);
+    });
+  });
+</script>

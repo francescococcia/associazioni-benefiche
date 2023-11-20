@@ -17,7 +17,7 @@
 								<div class="card">
 									<div class="card-body">
                   <div class="form-group">
-                  <label for="password">Passworrd</label>
+                  <label for="password">Password</label>
                   <input class="form-control mb-lg-3 pt-lg-0" type="password" name="password">
                 </div>
 

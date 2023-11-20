@@ -96,16 +96,15 @@ class ProductModel extends Model
     return $builder->get()->getResultArray();
   }
 
-  public function getTotalQuantityByUserIdAndProductId($userId, $productId)
-{
+  public function getBookedProductCount($userId, $productId)
+  {
     $builder = $this->db->table('orders');
-    $builder->selectSum('quantity', 'totalQuantity');
+    $builder->selectSum('quantity', 'bookedCount');
     $builder->where('user_id', $userId);
     $builder->where('product_id', $productId);
 
-    $result = $builder->get()->getRowArray();
+    $result = $builder->get()->getRow();
 
-    return $result['totalQuantity'] ?? 0;
-}
-
+    return $result ? (int)$result->bookedCount : 0;
+  }
 }

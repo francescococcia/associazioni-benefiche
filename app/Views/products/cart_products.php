@@ -5,7 +5,7 @@
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
-        <h1>Prodotti prenotati</h1>
+        <h1 class="section-heading primary-text">Prodotti prenotati</h1>
         <p class="big-paragraph">Visualizza i prodotti prenotati</p>
       </div>
     </div>

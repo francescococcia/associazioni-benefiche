@@ -215,6 +215,9 @@ class ProductsController extends Controller
     $userData = $userModel->find($userId);
     $associationData = $associationModel->find($associationId);
 
+    $platformId = $associationData['user_id'];
+    $platformManager = $userModel->find($platformId);
+
     // Get the submitted form data
     $productId = $this->request->getPost('product_id');
     $quantity = $this->request->getPost('quantity');
@@ -249,6 +252,24 @@ class ProductsController extends Controller
     ];
 
     sendMail($to, $subject, $viewName, $data);
+
+    // platform manager
+    $toManager = $platformManager['email'];
+    $subjectManager = 'Prenotazione Prodotto';
+
+    $viewNameManager = 'book_product_manager'; // This should match the name of your view file without the file extension
+    $titleProduct = $productData['name'];
+    $dataManager = [
+      'firstName' => $firstName,
+      'titleProduct' => $titleProduct,
+      'userEmail' => $userData['email'],
+      'quantity' => $quantity,
+      'productName' => $productData['name'],
+      'productPrice' => $productData['price'],
+      'associationAddress' => $associationData['legal_address'],
+      'nameAssociation' => $associationData['name'],
+    ];
+    sendMail($toManager, $subjectManager, $viewNameManager, $dataManager);
 
     // Redirect to a success page or perform further actions
     return redirect()->to('product/detail/' . $productId)->with(
@@ -302,14 +323,16 @@ class ProductsController extends Controller
 
     $data = [];
     if (!empty($products)) {
-      foreach ($products as $product) {
-        $bookedProducts = $productModel->getCartProductsByUserIdAndProductId($userId, $product['id']);
-        if (!empty($bookedProducts)) {
-            $product['bookedCount'] = count($bookedProducts);
-            $data['products'][] = $product;
+        foreach ($products as $product) {
+            $bookedCount = $productModel->getBookedProductCount($userId, $product['id']);
+            
+            if ($bookedCount > 0) {
+                $product['bookedCount'] = $bookedCount;
+                $data['products'][] = $product;
+            }
         }
-      }
     }
+
     return view('products/cart_products', $data);
   }
 }

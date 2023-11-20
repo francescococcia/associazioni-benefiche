@@ -9,7 +9,7 @@ if (!function_exists('sendMail'))
 
     $email = \Config\Services::email();
     $email->setTo($to);
-    $email->setFrom('associazionibenefiche@gmail.com', 'Responsabile Piattaforma');
+    $email->setFrom('manigenerosebari@gmail.com', 'Responsabile Piattaforma');
 
     $email->setSubject($subject);
     $email->setMessage($message);
@@ -33,7 +33,7 @@ if (!function_exists('sendMail'))
 
     $email = \Config\Services::email();
     $email->setTo($to);
-    $email->setFrom('associazionibenefiche@gmail.com', 'Responsabile Piattaforma');
+    $email->setFrom('manigenerosebari@gmail.com', 'Responsabile Piattaforma');
 
     $email->setSubject($subject);
     $email->setMessage($htmlContent, 'text/html'); // Set content as HTML

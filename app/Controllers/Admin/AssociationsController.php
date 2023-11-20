@@ -72,7 +72,20 @@ class AssociationsController extends BaseController
     // Update the image if provided
     $image = $this->request->getFile('image');
     if ($image->isValid() && !$image->hasMoved()) {
-        // Handle image upload logic here...
+        $config = [
+          'upload_path' => './uploads/',
+          'allowed_types' => 'gif|jpg|jpeg|png',
+          'max_size' => 2048,
+          'encrypt_name' => true,
+      ];
+
+      if ($image->move($config['upload_path'])) {
+          $imagePath = $image->getName();
+          $associationData['image'] = $imagePath;
+      } else {
+          $error = $image->getErrorString();
+          return redirect()->back()->with('error', 'Errore nel caricamento dell\'immagine: ' . $error);
+      }
     }
 
     // Update user and association data

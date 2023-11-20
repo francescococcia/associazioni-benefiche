@@ -45,7 +45,7 @@ class Email extends BaseConfig
 	 * @var string
 	 */
 	// Enter your email id from where you send email
-	public $SMTPUser = 'associazionibenefiche@gmail.com';
+	public $SMTPUser = 'manigenerosebari@gmail.com';
 	
 	/**
 	 * SMTP Password
@@ -53,7 +53,7 @@ class Email extends BaseConfig
 	 * @var string
 	 */
 	// Enter your email's password
-	public $SMTPPass = 'ijuqfqwvsasndwep';
+	public $SMTPPass = 'kqybaavo cwbu kikp';
 	/**
 	 * SMTP Port
 	 *

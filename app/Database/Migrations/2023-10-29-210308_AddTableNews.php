@@ -22,7 +22,7 @@ class AddTableNews extends Migration
             ],
             'description' => [
                 'type' => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => 500,
             ],
             'created_at' => [
                 'type' => 'DATETIME',

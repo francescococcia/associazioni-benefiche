@@ -4,57 +4,24 @@
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
-        <h1>Dettagli</h1>
-        <p class="big-paragraph">Informazioni riguardo l'associazione</p>
-        <?php if (session()->get('isPlatformManager') && ($userId == session()->get('id'))): ?>
+        <h1 class="section-heading primary-text">Dettagli</h1>
+        <!-- <#?php if(session()->get('isPlatformManager')): ?>
+          <p class="big-paragraph">Visualizza gli eventi inseriti</p>
           <div class="row">
             <div class="col">
-              <div class="text-center">
-                <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
-                <!-- <a href="#" data-toggle="modal" data-target="#feedbackModal"
-                  class="btn btn-md btn-clean btn-c-4129 btn-rd">
-                    Aggiungi avviso
-                </a>
-
-                <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Aggiungi avviso</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-
-                        <form action="<#?= base_url('news/store') ?>" method="post" data-form-type="blocs-form" novalidate="">
-                          <input type="hidden" name="association_id" id="association_id"
-                            value="<#?= $association['id'] ?>">
-                            <div class="form-group">
-                              <textarea
-                                placeholder="Inserisci avviso"
-                                class='form-control'
-                                name="description"
-                                id="description"
-                                rows="4"
-                                cols="50"
-                                required></textarea>
-                            </div>
-                            <button class='btn btn-primary' type="submit">Aggiungi</button>
-                        </form>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div> -->
-              </div>
+              <a
+                class="btn btn-clean btn-c-4129 btn-rd"
+                href="<#?php echo base_url();?>/events/new">Inserisci evento</a>
             </div>
           </div>
-        <?php endif; ?>
+          <#?php else: ?> -->
+            <p class="big-paragraph">Informazioni riguardo l'associazione</p>
+          <!-- <#?php endif; ?> -->
       </div>
     </div>
+  </div>
 
+  <div class="content mb-5">
     <div class="row d-flex">
       <!-- start associations -->
       <div class="col-md-6 col-sm-6 offset-lg-2">
@@ -131,7 +98,7 @@
                                   } else {
                                     echo "<h5 class='card-title'><strong>{$events[$i]['title']}</strong></h5>";
                                   }
-                                  echo "<a href='".site_url('events/detail/' . $events[$i]['id'])."' class='card-link'>Maggiori Informazioni <i class='fa-solid fa-arrow-right'></i></a>";
+                                  echo "<a href='".site_url('event/detail/' . $events[$i]['id'])."' class='card-link'>Maggiori Informazioni <i class='fa-solid fa-arrow-right'></i></a>";
                                   echo '</div>';
                                   echo '</div>';
                                   echo '</div>';
@@ -271,7 +238,7 @@
                       <div class="d-flex justify-content-between">
                         <ul class='pl-2'>
                           <li><p class="mb-0"><?= $new['description']; ?></p>
-                          <p class="mb-0"><?= formatDateItalian($new['created_at']); ?></p></li>
+                          <p class="mb-0" style='color:gray; font-size:15.5px'><?= formatDateItalian($new['created_at']); ?></p></li>
                         </ul>
                       </div>
 
@@ -306,7 +273,7 @@
                           </div>
 
                           <form action="<?= site_url('news/edit/' . $new['id']) ?>" method="post" id="form_<?= $new['id'] ?>">
-                            <button class="btn btn-sm btn-warning" type="button" data-toggle="modal" data-target="#editModal<?= $new['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-sm btn-warning text-white" type="button" data-toggle="modal" data-target="#editModal<?= $new['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></button>
                           </form>
                           <!-- Bootstrap Modal -->
                           <div class="modal fade" id="editModal<?= $new['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">

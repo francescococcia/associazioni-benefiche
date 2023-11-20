@@ -4,7 +4,7 @@
   <div class="content mb-5">
 		<div class="wrap">
 			<div class="page-headline-wrap cc-category-headline">
-				<h1>Nuovo Evento</h1>
+				<h1 class='primary-text section-heading'>Nuovo Evento</h1>
 				<p class="big-paragraph">Inserisci le seguenti informazioni</p>
 			</div>
 

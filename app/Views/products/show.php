@@ -3,7 +3,7 @@
   <div class="content mb-5">
     <div class="wrap">
       <div class="page-headline-wrap cc-category-headline">
-        <h1>Dettagli Prodotto</h1>
+        <h1 class="section-heading primary-text">Dettagli Prodotto</h1>
         <p class="big-paragraph">Informazioni sul prodotto</p>
         <!-- <#?php if ($quantityAvailable &&
           !session()->get('isPlatformManager') &&

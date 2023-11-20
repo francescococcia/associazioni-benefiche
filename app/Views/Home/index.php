@@ -112,7 +112,7 @@
         <?php $counter++; ?>
       <?php endforeach; ?>
 
-      <footer  id="footer" style='color: #ffffff;background-color: #FFFFC1;'>
+      <footer  id="footer">
         <?= $this->include('Layout/partial/footer'); ?>
       </footer>
 

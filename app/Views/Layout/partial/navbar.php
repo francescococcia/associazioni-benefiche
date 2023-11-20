@@ -32,6 +32,12 @@
 									</li>
 
                   <?php if (session()->get('isLoggedIn')): ?>
+                    <li class="nav-item <?php echo (service('request')->uri->getSegment(1) === 'cash-desk') ? 'active' : ''; ?>">
+                      <a href="<?php echo base_url();?>/cash-desk" class="nav-link strokeme">Cassa</a>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php if (session()->get('isLoggedIn')): ?>
 
                     <div class="navbar-content-area">
 
@@ -50,7 +56,7 @@
                               <!-- <a class="dropdown-item" href="<#?= site_url('/profile-manager') ?>">Profilo</a> -->
                               <a class="dropdown-item" href="<?= site_url('associations/'.session()->get('id')) ?>">Profilo</a>
                             <?php else: ?>
-                              <a class="dropdown-item" href="<?php echo base_url();?>/profile">Profilo</a> 
+                              <a class="dropdown-item" href="<?php echo base_url();?>/profile">Modifica Profilo</a> 
                             <?php endif; ?>
                           </li>
                           <li>
@@ -92,7 +98,7 @@
 
                   <div class="navbar-content-area col text-lg-start">
                     <div class="text-lg-end">
-                      <a href="<?php echo base_url();?>/admin/dashboard" class="btn mr-lg-3 btn-style btn-md btn-clean btn-c-4129 btn-rd box-btn primary-btn fill-mob-btn">
+                      <a href="<?php echo base_url();?>/admin/dashboard" class="btn mr-lg-3 btn-style btn-md btn-clean btn-c-4129 btn-rd primary-btn fill-mob-btn">
                         Dashboard
                       </a>
                     </div>

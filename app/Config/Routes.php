@@ -63,10 +63,12 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
   $routes->post('report/delete/(:num)', 'ReportsController::delete/$1', ['filter' => 'authGuard']);
   $routes->get('report/readReport/(:num)', 'ReportsController::readReport/$1', ['filter' => 'authGuard']);
   $routes->post('report/readReport/(:num)', 'ReportsController::readReport/$1', ['filter' => 'authGuard']);
+
+  $routes->get('team/edit/(:segment)', 'TeamController::edit/$1', ['filter' => 'authGuard']);
+  $routes->post('team/update', 'TeamController::update', ['filter' => 'authGuard']);
 });
 
 $routes->get('/', 'Home::index');
-$routes->get('/chi-siamo', 'Home::chi_siamo');
 $routes->get('/signup-association', 'SignupAssociationController::index');
 $routes->match(['get', 'post'], 'SignupAssociationController/store', 'SignupAssociationController::store');
 $routes->get('/signup', 'SignupController::index');
@@ -77,6 +79,9 @@ $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'authGuard
 $routes->get('/activate-account/(:any)', 'AuthController::activateAccount/$1');
 $routes->add('resetPassword/(:segment)', 'AuthController::resetPassword/$1');
 $routes->add('recoverPassword', 'AuthController::recoverPassword');
+
+// Team routes
+$routes->get('/chi-siamo', 'TeamController::index');
 
 // Reports routes
 $routes->get('/reports/create', 'ReportsController::create');
@@ -91,7 +96,7 @@ $routes->post('feedback/delete/(:num)', 'FeedbacksController::delete/$1', ['filt
 $routes->get('/events', 'EventsController::index');
 $routes->match(['get', 'post'], 'events/create', 'EventsController::create',['filter' => 'authGuard']);
 $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
-$routes->get('events/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('event/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
 $routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
 $routes->get('/joined-events', 'EventsController::joinedEvents');

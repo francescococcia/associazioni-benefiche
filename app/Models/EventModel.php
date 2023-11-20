@@ -72,7 +72,7 @@ class EventModel extends Model
     return $this->select('events.*')
         ->join('associations', 'events.association_id = associations.id')
         ->where('associations.user_id', $userId)
-        ->orderBy('events.id', 'DESC');
+        ->orderBy('events.date', 'DESC');
   }
 
   public function getJoinedEventsByUserId($userId)

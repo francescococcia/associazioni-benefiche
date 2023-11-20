@@ -70,6 +70,6 @@ class FeedbacksController extends BaseController
     $feedbackModel->delete($id);
 
     // Redirect or show a success message
-    return redirect()->to('/events/detail/'.$eventId)->with('success', 'Feedback cancellato.');
+    return redirect()->to('/event/detail/'.$eventId)->with('success', 'Feedback cancellato.');
   }
 }
