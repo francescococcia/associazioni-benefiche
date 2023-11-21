@@ -53,7 +53,7 @@
               <?php endif; ?>
             </p>
 
-            <?php if (session()->get('isPlatformManager')): ?>
+            <?php if (session()->get('isPlatformManager') && $association['id'] == session()->get('id')): ?>
               <div class="row">
                 <div class="col-2">
                   <form action="<?= site_url('events/delete/' . $event['id']) ?>" method="post" id="form_<?= $event['id'] ?>">
@@ -108,7 +108,7 @@
 
                 <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
                 <a href="#" data-toggle="modal" data-target="#feedbackModal"
-                  class="btn btn-md btn-clean btn-c-4129"
+                  class="btn btn-md btn-clean btn-c-4129  primary-btn"
                   style="float: right;">
                     Invia un feedback
                 </a>
@@ -254,7 +254,7 @@
               <h4 class="card-title mb-3">Prenotazione
                 <form method="post" style='float: right' action="<?= site_url('participants/create') ?>">
                   <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                  <button type="submit" class="btn btn-md btn-clean btn-c-4129" >Partecipa</button>
+                  <button type="submit" class="btn btn-sm btn-clean btn-c-4129 btn-rd primary-btn" >Partecipa</button>
                 </form>
               </h4>
               <?php elseif(session()->get('isPlatformManager')): ?>

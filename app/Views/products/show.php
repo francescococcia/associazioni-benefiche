@@ -55,7 +55,8 @@
                   data-src="<?php echo base_url('uploads/products/'.$product['image']); ?>"
                   class="center"
                   alt="<?php echo $product['image']; ?>"
-                  style='width:100% !important; height:100% !important'>
+                  style='width:100% !important; height:100% !important'
+                  >
               </picture>
             <?php else : ?>
                 <img
@@ -101,7 +102,7 @@
                           </div>
                         </div>
                         <div class="col">
-                            <button class="btn btn-md btn-clean btn-c-4129" type="button" onclick="submitForm()">
+                            <button class="btn btn-sm btn-clean btn-c-4129 primary-btn" type="button" onclick="submitForm()">
                                 Prenota prodotto
                             </button>
                         </div>
@@ -116,7 +117,7 @@
             <?php endif; ?>
 
 
-            <?php if (session()->get('isPlatformManager')): ?>
+            <?php if (session()->get('isPlatformManager') && $association['id'] == session()->get('id')): ?>
               <div class="row">
                 <div class="col-2">
                   <form action="<?= site_url('product/delete/' . $product['id']) ?>" method="post" id="form_<?= $product['id'] ?>">

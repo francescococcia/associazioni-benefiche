@@ -26,7 +26,7 @@
 
           </div>
           
-          <p>Utenti</p>
+          <p>Privati</p>
           <div class="counter"><?= $countUsers ?></div>
         </a>
       </div>

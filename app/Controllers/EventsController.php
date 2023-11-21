@@ -171,13 +171,16 @@ class EventsController extends Controller
     helper('event_helper');
     helper('date_helper');
     helper(['form']);
+
     $model = new EventModel();
     $participantModel = new ParticipantModel();
     $feedbackModel = new FeedbackModel();
-    // Get the user's first name and last name based on the feedback's user_id
     $userModel = new UserModel();
+    $associationModel = new AssociationModel();
 
     $event = $model->find($id);
+    $association = $associationModel->find($event['association_id']);
+    $data['association'] = $association;
 
     if (!$event) {
       // Event not found, redirect or show error message

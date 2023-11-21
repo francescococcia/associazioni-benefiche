@@ -116,7 +116,11 @@ class ProductsController extends Controller
 
   public function show($id) {
     $productModel = new ProductModel();
+    $associationModel = new AssociationModel();
+
     $product = $productModel->find($id);
+    $association = $associationModel->find($product['association_id']);
+    $data['association'] = $association;
 
     if (!$product) {
       // Product not found, redirect or show error message

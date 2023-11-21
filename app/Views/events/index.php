@@ -39,15 +39,16 @@
           <a style="text-decoration:none; color:black !important;" href="<?= site_url('event/detail/'.$event['id']) ?>">
             <div class="wrapper shadow mr-3 mb-3">
               <div class="container p-0">
-              <div class="top"
-                style="
-                background: url('<?= !empty($event['image']) && file_exists('uploads/events/'.$event['image']) ? base_url('uploads/events/'.$event['image']) : base_url('public/img/yehorlisnyi210400016.jpg'); ?>') no-repeat center center;
-                -webkit-background-size: 100%;
-                -moz-background-size: 100%;
-                -o-background-size: 100%;"
-                >
-                <!-- background-size: 100%;" -->
-                </div>
+                <div class="top"
+                  style="
+                  background: url('<?= !empty($event['image']) && file_exists('uploads/events/'.$event['image']) ? base_url('uploads/events/'.$event['image']) : base_url('public/img/yehorlisnyi210400016.jpg'); ?>') no-repeat center center;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;
+                  background-size: cover;"
+                  >
+                  <!-- background-size: 100%;" -->
+                  </div>
                 <div class="bottom">
                   <div class="left">
                     <div class="details pl-3 pt-2">

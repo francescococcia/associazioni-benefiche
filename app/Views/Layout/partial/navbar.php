@@ -75,7 +75,7 @@
 
 
                             <?php if (session()->get('isAdmin')): ?>
-                              <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Utenti</a>
+                              <a class="dropdown-item" href="<?php echo base_url();?>/admin/users">Privati</a>
                               <a class="dropdown-item" href="<?php echo base_url();?>/admin/associations">Associazioni</a>
                               <a class="dropdown-item" href="<?php echo base_url();?>/admin/events">Eventi</a>
                               <a class="dropdown-item" href="<?php echo base_url();?>/admin/products">Prodotti</a>

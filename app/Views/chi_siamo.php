@@ -34,12 +34,20 @@
   
                               <div class="form-group">
                                   <label for="description">Descrizione</label>
-                                  <input type="text" id="description" name="description"  value="<?= $team['description'] ?>" class="form-control" required>
+                                  <textarea
+                                    type="text" id="description" name="description"
+                                    value="<?= $team['description'] ?>" class="form-control" required
+                                    rows="2">
+                                  </textarea>
                               </div>
   
                               <div class="form-group">
                                   <label for="description_mission">Missione</label>
-                                  <input type="text" id="description_mission" name="description_mission" value="<?= $team['description_mission'] ?>" class="form-control" required>
+                                  <textarea
+                                    type="text" id="description_mission" name="description_mission"
+                                    value="<?= $team['description_mission'] ?>" class="form-control" required
+                                    rows="2">
+                                  </textarea>
                               </div>
                               
                               <div class="form-group">
@@ -85,17 +93,17 @@
             <h1 class="mb-4 box-heading primary-text h1-su-di-noi-style">
               Su di noi
             </h1>
-            <h5 class="mb-4 h3-bloc-4-style">
+            <p style='font-size:18px' class="mb-4">
               <?= $team['description'] ?>
-            </h5>
+            </p>
           </div>
           <div class="bento-box pt-lg-4 mt-lg-4 shadow">
             <h1 class="mb-4 box-heading primary-text h1-bloc-4-style">
               La nostra mission<br>
             </h1>
-            <h5 class="mb-4 h3-bloc-4-style">
+            <p style='font-size:18px' class="mb-4">
               <?= $team['description_mission'] ?>
-            </h5>
+            </p>
           </div>
         </div>
       </div>
