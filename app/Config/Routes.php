@@ -96,7 +96,7 @@ $routes->post('feedback/delete/(:num)', 'FeedbacksController::delete/$1', ['filt
 $routes->get('/events', 'EventsController::index');
 $routes->match(['get', 'post'], 'events/create', 'EventsController::create',['filter' => 'authGuard']);
 $routes->get('events/new', 'EventsController::new', ['filter' => 'authGuard']);
-$routes->get('event/detail/(:segment)', 'EventsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('event/detail/(:segment)', 'EventsController::show/$1');
 $routes->get('events/edit/(:segment)', 'EventsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('events/update', 'EventsController::update', ['filter' => 'authGuard']);
 $routes->get('/joined-events', 'EventsController::joinedEvents');
@@ -114,7 +114,7 @@ $routes->get('/store', 'ProductsController::index');
 $routes->match(['get', 'post'], 'ProductsController/create', 'ProductsController::create', ['filter' => 'authGuard']);
 $routes->match(['get', 'post'], 'ProductsController/buy', 'ProductsController::buy', ['filter' => 'authGuard']);
 $routes->get('store/new', 'ProductsController::new', ['filter' => 'authGuard']);
-$routes->get('product/detail/(:segment)', 'ProductsController::show/$1', ['filter' => 'authGuard']);
+$routes->get('product/detail/(:segment)', 'ProductsController::show/$1');
 $routes->get('product/edit/(:segment)', 'ProductsController::edit/$1', ['filter' => 'authGuard']);
 $routes->post('product/update', 'ProductsController::update', ['filter' => 'authGuard']);
 $routes->get('cash-desk', 'ProductsController::cashDesk');

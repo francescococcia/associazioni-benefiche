@@ -48,6 +48,7 @@
                         <option value="Sport" <?= ($event['category'] == 'Sport') ? 'selected' : '' ?>>Sport</option>
                         <option value="Cucina" <?= ($event['category'] == 'Cucina') ? 'selected' : ''?>>Cucina</option>
                         <option value="Ambiente" <?= ($event['category'] == 'Ambiente') ? 'selected' : ''?>>Ambiente</option>
+                        <option value="Cultura" <?= ($event['category'] == 'Cultura') ? 'selected' : ''?>>Cultura</option>
                         <option value="Altro" <?= ($event['category'] == 'Altro') ? 'selected' : ''?>>Altro</option>
                       </select>
                     </div>

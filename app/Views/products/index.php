@@ -30,9 +30,10 @@
               <div class="top"
                 style="
                 background: url('<?= !empty($product['image']) && file_exists('uploads/products/'.$product['image']) ? base_url('uploads/products/'.$product['image']) : base_url('public/img/yehorlisnyi210400016.jpg'); ?>') no-repeat center center;
-                -webkit-background-size: 100%;
-                -moz-background-size: 100%;
-                -o-background-size: 100%;"
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;"
                 >
                 <!-- background-size: 100%;" -->
                 </div>

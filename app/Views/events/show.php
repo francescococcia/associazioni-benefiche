@@ -104,6 +104,7 @@
             <h4 class="card-title mb-3"><strong>Recensioni</strong>
               <?php if (!is_null($participantId) &&
                 !session()->get('isPlatformManager') &&
+                session()->get('isLoggedIn') &&
                 !session()->get('isAdmin')): ?>
 
                 <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->

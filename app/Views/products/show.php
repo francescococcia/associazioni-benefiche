@@ -102,7 +102,7 @@
                           </div>
                         </div>
                         <div class="col">
-                            <button class="btn btn-sm btn-clean btn-c-4129 primary-btn" type="button" onclick="submitForm()">
+                            <button class="btn btn-sm btn-clean btn-c-4129 mt-2" type="button" onclick="submitForm()">
                                 Prenota prodotto
                             </button>
                         </div>
@@ -230,32 +230,32 @@
     }
   </style>
   <script>
-let quantity = 1; // Initial quantity
+    let quantity = 1; // Initial quantity
 
-function incrementQuantity() {
-    const maxQuantity = <?= $quantityAvailable ?>; // Fetch the maximum available quantity
-    if (quantity < maxQuantity) {
-        quantity++;
-        document.getElementById('quantityDisplay').innerText = quantity;
+    function incrementQuantity() {
+        const maxQuantity = <?= $quantityAvailable ?>; // Fetch the maximum available quantity
+        if (quantity < maxQuantity) {
+            quantity++;
+            document.getElementById('quantityDisplay').innerText = quantity;
+        }
     }
-}
 
-function decrementQuantity() {
-    if (quantity > 1) {
-        quantity--;
-        document.getElementById('quantityDisplay').innerText = quantity;
+    function decrementQuantity() {
+        if (quantity > 1) {
+            quantity--;
+            document.getElementById('quantityDisplay').innerText = quantity;
+        }
     }
-}
 
-function submitForm() {
-    const form = document.getElementById('productForm');
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'quantity';
-    input.value = quantity;
-    form.appendChild(input);
-    form.submit();
-}
+    function submitForm() {
+        const form = document.getElementById('productForm');
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'quantity';
+        input.value = quantity;
+        form.appendChild(input);
+        form.submit();
+    }
 
   function deleteRow(id) {
       // Construct the form ID based on the user ID

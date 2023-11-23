@@ -55,6 +55,7 @@
                         <option value="Sport">Sport</option>
                         <option value="Cucina">Cucina</option>
                         <option value="Ambiente">Ambiente</option>
+                        <option value="Cultura">Cultura</option>
                         <option value="Altro">Altro</option>
                       </select>
                     </div>

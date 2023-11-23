@@ -12,7 +12,6 @@
               <th>Email</th>
               <th>Indirizzo</th>
               <th>Codice Fiscale</th>
-              <th>Link</th>
               <th>Azioni</th>
           </tr>
         </thead>
@@ -24,7 +23,6 @@
               <td><?= $association['email'] ?></td>
               <td><?= $association['legal_address'] ?></td>
               <td><?= $association['tax_code'] ?></td>
-              <td><?= $association['link'] ?></td>
               <td class='fixed-width-column'>
                 <div class="row">
                   <div class="col-3">

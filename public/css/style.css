@@ -333,12 +333,14 @@ button{
 }
 
 .btn-c-4129{
-	background:var(--swatch-var-Nessuna-selezione-Copy-Copy);
-	color:#FFFFFF!important;
+    background:linear-gradient(335deg, var(--swatch-var-Primary) 0%, var(--swatch-var-Primary-Variant) 100%);
+    color:var(--swatch-var-White)!important;
+    font-family:"Poppins";
+    font-weight:500;
 }
 .btn-c-4129:hover{
-	background:rgba(196,0,0,0.40)!important;
-	color:#FFFFFF!important;
+    background:linear-gradient(128deg, var(--swatch-var-Primary)  0%, var(--swatch-var-Primary-Variant) 100%);
+    color:var(--swatch-var-White)!important;
 }
 .a-block{
 	width:100%;
@@ -460,6 +462,11 @@ button{
 h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	font-family:"Helvetica";
 }
+
+.big-paragraph{
+  font-family:"Poppins";
+}
+
 .container{
 	max-width:1140px;
 }

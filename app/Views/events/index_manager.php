@@ -21,18 +21,18 @@
               <a href="<?php echo base_url();?>/events/new" class="btn btn-d btn-rd box-btn primary-btn float-lg-none fill-mob-btn">Crea nuovo evento</a>
             </div>
       </div>
-      <div class="text-center text-md-start col-md-12 align-self-center ps-0 pe-0 ps-sm-2 pe-sm-2 mb-3 mb-md-4 text-lg-center col-lg-12">
-
-      <a href="<?php echo base_url('/events-manager?category=Feste e sagre'); ?>" class="a-btn text-lg-left mt-lg-3 token-link <?= ($category == 'Feste e sagre') ? 'active' : ''; ?>">Feste e sagre</a>
-            <a href="<?php echo base_url('/events-manager?category=Mercatini'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Mercatini') ? 'active' : ''; ?>">Mercatini</a>
-            <a href="<?php echo base_url('/events-manager?category=Sport'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Sport') ? 'active' : ''; ?>">Sport</a>
-            <a href="<?php echo base_url('/events-manager?category=Cucina'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Cucina') ? 'active' : ''; ?>">Cucina</a>
-            <a href="<?php echo base_url('/events-manager?category=Ambiente'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Ambiente') ? 'active' : ''; ?>">Ambiente</a>
-            <a href="<?php echo base_url('/events-manager?category=Altro'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Altro') ? 'active' : ''; ?>">Altro</a>
-            <a href="<?php echo base_url('/events-manager?category='); ?>" class="a-btn text-lg-left token-link">Annulla</a>
-      </div>
-
     </div>
+    <div class="text-center text-md-start col-md-12 align-self-center ps-0 pe-0 ps-sm-2 pe-sm-2 mb-3 mb-md-4 text-lg-center col-lg-12">
+
+        <a href="<?php echo base_url('/events-manager?category=Feste e sagre'); ?>" class="a-btn text-lg-left mt-lg-3 token-link <?= ($category == 'Feste e sagre') ? 'active' : ''; ?>">Feste e sagre</a>
+          <a href="<?php echo base_url('/events-manager?category=Mercatini'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Mercatini') ? 'active' : ''; ?>">Mercatini</a>
+          <a href="<?php echo base_url('/events-manager?category=Sport'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Sport') ? 'active' : ''; ?>">Sport</a>
+          <a href="<?php echo base_url('/events-manager?category=Cucina'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Cucina') ? 'active' : ''; ?>">Cucina</a>
+          <a href="<?php echo base_url('/events-manager?category=Ambiente'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Ambiente') ? 'active' : ''; ?>">Ambiente</a>
+          <a href="<?php echo base_url('/events-manager?category=Cultura'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Cultura') ? 'active' : ''; ?>">Cultura</a>
+          <a href="<?php echo base_url('/events-manager?category=Altro'); ?>" class="a-btn text-lg-left token-link <?= ($category == 'Altro') ? 'active' : ''; ?>">Altro</a>
+          <a href="<?php echo base_url('/events-manager?category='); ?>"><i class="fa-solid fa-arrow-left"></i></a>
+      </div>
   </div>
 
   <div class="container mt-4 mb-4">
@@ -96,7 +96,7 @@
     color: inherit;
     }
     a:hover {
-      color: #e79999
+      color: rgba(255,38,0,1.00)
     }
     .card-img {
         width: 100%; /* Adjust the width to fit the card */

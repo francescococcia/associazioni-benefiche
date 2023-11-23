@@ -89,9 +89,22 @@ class ParticipantsController extends Controller
 
   public function delete($eventId)
   {
+    helper('email_helper');
+    $userModel = new UserModel();
+    $eventModel = new EventModel();
     $participantModel = new ParticipantModel();
+    $associationModel = new AssociationModel();
 
     $userId = session()->get('id');
+
+    $userData = $userModel->find($userId);
+    $eventData = $eventModel->find($eventId);
+
+    $associationId = $eventData['association_id'];
+    $associationData = $associationModel->find($associationId);
+    $platformId = $associationData['id'];
+    $titleEvent = $eventData['title'];
+    $platformManager = $userModel->find($platformId);
 
     // Check if the user has a reservation for the specified event
     $participantEvent = $participantModel->where('event_id', $eventId)
@@ -105,6 +118,21 @@ class ParticipantsController extends Controller
 
     // Delete the reservation
     $participantModel->delete($participantEvent['id']);
+
+    // platform manager
+    $firstName = $userData['first_name'];
+    $toManager = $platformManager['email'];
+    $subjectManager = 'Partecipazione Evento rimossa';
+
+    $viewNameManager = 'Layout/template/remove_participant_event_manager'; // This should match the name of your view file without the file extension
+    // $titleEvent = $eventData['title'];
+    $dataManager = [
+      'firstName' => $firstName,
+      'titleEvent' => $titleEvent,
+      'userEmail' => $userData['email'],
+      'nameAssociation' => $associationData['name'],
+    ];
+    sendMail($toManager, $subjectManager, $viewNameManager, $dataManager);
 
     return redirect()->to('event/detail/'.$eventId)->with('success', 'Prenotazione annullata.');
   }
