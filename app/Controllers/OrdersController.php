@@ -27,20 +27,24 @@ class OrdersController extends Controller
     $order = $orderModel->where('product_id', $productId)
                         ->where('user_id', $userId)
                         ->first();
+                        
+    $product = $productModel->find($productId);
 
     // Check if the reservation exists
     if (!$order) {
         return redirect()->back()->with('error', 'Prenotazione non trovata.');
     }
-
+    $dataProduct['quantity'] = $quantity + $product['quantity'];
     if ($quantity == $order['quantity']) {
         // Delete the reservation
         $orderModel->delete($order['id']);
+        $productModel->update($productId, $dataProduct);
         return redirect()->to('/cash')->with('success', 'Prenotazione annullata.');
     } elseif ($quantity < $order['quantity']) {
         $newQuantity = $order['quantity'] - $quantity;
         $data['quantity'] = $newQuantity;
         $orderModel->update($order['id'], $data); // Use $productModel to update the quantity
+        $productModel->update($productId, $dataProduct);
         return redirect()->to('/cash')->with('success', 'Prenotazione annullata.');
     }
 }
