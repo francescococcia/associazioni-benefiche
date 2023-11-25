@@ -6,8 +6,7 @@
 </head>
 <body>
     <h1>Ciao <?= $nameAssociation ?>,</h1>
-    <p>L'utente <?= $firstName ?> ha appena effettuato la prenotazione a questo evento: <strong>"<?= $titleEvent ?>"</strong>.</p>
-    <p>Ti ricordiamo che tutte le informazioni inerenti agli eventi inseriti, le puoi trovare nella sezione "I nostri eventi" del tuo profilo personale.</p>
+    <p>L'utente <?= $firstName ?> (<?= $userEmail?>) si è appena registrato al tuo evento <strong>"<?= $titleEvent ?>"</strong>.</p>
 </body>
 </html>
 

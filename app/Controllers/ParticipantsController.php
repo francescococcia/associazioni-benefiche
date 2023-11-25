@@ -7,6 +7,7 @@ use App\Models\ParticipantModel;
 use App\Models\UserModel;
 use App\Models\AssociationModel;
 use CodeIgniter\Controller;
+use CodeIgniter\I18n\Time;
 
 
 class ParticipantsController extends Controller
@@ -43,6 +44,24 @@ class ParticipantsController extends Controller
     $associationData = $associationModel->find($associationId);
     $platformId = $associationData['id'];
     $platformManager = $userModel->find($platformId);
+
+    $today = Time::now();
+
+  // Data dell'evento (presumo che $eventData['date'] sia una stringa nel formato 'Y-m-d')
+  $dataEventoTimestamp = Time::parse($eventData['date']);
+
+  // Data fine (se disponibile)
+  $dataFine = null;
+  if ($eventData['date_to']) {
+      $dataFine = Time::parse($eventData['date_to']);
+  }
+
+  // Confronta le date
+  if ($dataEventoTimestamp < $today) {
+      return redirect()->to('/event/detail/' . $eventData['id'])->with('error', "Impossibile partecipare all'evento perchè è passato.");
+  }elseif ($dataFine !== null && ($dataEventoTimestamp <= $dataFine) && $dataFine < $dataOdiernaTimestamp) {
+      return redirect()->to('/event/detail/'. $eventData['id'])->with('error', "Impossibile partecipare all'evento perchè è passato.");
+    }
 
     // Prepare the data to be inserted into the participants table
     $data = [

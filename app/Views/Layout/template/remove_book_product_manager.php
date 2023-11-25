@@ -3,13 +3,13 @@
 <html>
 
 <head>
-    <title>Conferma Iscrzione</title>
+    <title>Rimozione prodotto</title>
 </head>
 
 <body style="font-family: Arial, sans-serif;">
 
     <h1>Ciao <?= $nameAssociation ?>,</h1>
-    <p>L'utente <?= $firstName ?> (<?= $userEmail?>) ha appena effettuato questa prenotazione:</p>
+    <p>L'utente <?= $firstName ?> (<?= $userEmail?>) ha appena eliminato questa prenotazione:</p>
 
     <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
         <thead>

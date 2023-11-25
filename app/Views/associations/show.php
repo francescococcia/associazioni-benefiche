@@ -169,7 +169,7 @@
                               echo '</div>';
                           }
                       } else {
-                          echo '<p>Nessun evento inserito.</p>';
+                          echo '<p>Nessun prodotto inserito.</p>';
                       }
                       ?>
                   </div>

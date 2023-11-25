@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                   <label for="description"></label>Descrizione</label>
-                  <textarea class="form-control" required type="text" name="description" value="<?= $product['description'] ?>" rows="2"></textarea>
+                  <textarea class="form-control" required type="text" name="description" rows="2"><?= $product['description'] ?></textarea>
                 </div>
 
                 <div class="form-group">

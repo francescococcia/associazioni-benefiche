@@ -139,7 +139,7 @@
         </tbody>
       </table>
     <?php else : ?>
-      <p>Nessun producto presente.</p>
+      <p>Nessun prodotto presente.</p>
     <?php endif; ?>
   </div>
 

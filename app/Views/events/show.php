@@ -42,6 +42,7 @@
             <p><?= $event['description']; ?></p>
             <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
             <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
+            <p><strong>Categoria:</strong> <?= $today ?></p>
             <p><strong>Inizio:</strong> <?= formatDateItalian($event['date']) ?> <?=$time?></p>
             <?php if ($event['date_to']): ?>
               <p><strong>Fine:</strong> <?= formatDateItalian($event['date_to']) ?> <?=$timeTo?></p>
@@ -251,7 +252,9 @@
       <div class="col-md-3 col-sm-6">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded">
           <div class="card-body">
-            <?php if (empty($participantModel) && !session()->get('isPlatformManager') && !session()->get('isAdmin')): ?>
+            <?php if (empty($participantModel) &&
+              !session()->get('isPlatformManager') &&
+              !session()->get('isAdmin')): ?>
               <h4 class="card-title mb-3">Prenotazione
                 <form method="post" style='float: right' action="<?= site_url('participants/create') ?>">
                   <input type="hidden" name="event_id" value="<?= $event['id'] ?>">

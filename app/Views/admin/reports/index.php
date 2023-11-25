@@ -82,7 +82,7 @@
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
                               <button type="button" class="btn btn-primary" onclick="readReport(<?= $report['id'] ?>)" id="confirmRead<?= $report['id'] ?>">
-                                  Contassegna
+                                  Contrassegna
                               </button>
                           </div>
                         </div>

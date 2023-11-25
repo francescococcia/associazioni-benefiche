@@ -9,7 +9,7 @@
           <h3 class="section-heading primary-text mb-3 mb-md-4 mt-lg-4">
             Chi siamo
           </h3>
-          <?php if (session()->get('isAdmin')): ?>
+          <?php if (session()->get('isAdmin') && session()->get('isPlatformManager') ): ?>
             <div class="align-self-center col-lg-8 offset-lg-2 text-lg-end text-center mb-3">
               <!-- <a href="<#?php echo base_url();?>/store/new" class="btn btn-d btn-rd box-btn primary-btn float-lg-none fill-mob-btn">Inserisci prodotto</a> -->
               <form action="<?= site_url('admin/team/edit/' . $team['id']) ?>" method="post" id="teamForm_<?= $team['id'] ?>">

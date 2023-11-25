@@ -6,7 +6,7 @@
       <div class="row">
         <div class="text-md-start col-lg-12 col-md-12 text-start ps-0 pe-0 ps-md-2 pe-md-2 ps-lg-3 pe-lg-3">
           <h3 class="section-heading primary-text mb-3 mb-md-4">
-            Reimposta password
+            Passowrd dimenticata
           </h3>
         </div>
         <div class="d-flex mb-3 ps-0 pe-0 col-12 col-md-6 ps-md-2 pe-md-2 mb-md-0 ps-lg-3 pe-lg-3">

@@ -8,7 +8,7 @@ use App\Models\AssociationModel;
 use App\Models\ParticipantModel;
 use App\Models\FeedbackModel;
 use CodeIgniter\Controller;
-
+use CodeIgniter\I18n\Time;
 class EventsController extends Controller
 {
   public function index()
@@ -247,8 +247,8 @@ class EventsController extends Controller
       // Attach user information to the participant data
       $participant['user_info'] = $userInfo;
   }
-  
-  $data['participants'] = $participants;
+
+    $data['participants'] = $participants;
 
     return view('events/show', $data);
   }
@@ -268,9 +268,11 @@ class EventsController extends Controller
     $formattedDate = date('Y-m-d\TH:i', $date);
     $data['formattedDate'] = $formattedDate;
 
-    $date_to = strtotime($event['date_to']);
-    $formattedDateTo = date('Y-m-d\TH:i', $date_to);
-    $data['formattedDateTo'] = $formattedDateTo;
+    if($event['date_to']){
+      $date_to = strtotime($event['date_to']);
+      $formattedDateTo = date('Y-m-d\TH:i', $date_to);
+      $data['formattedDateTo'] = $formattedDateTo;
+    }
 
     return view('events/edit', $data);
   }
