@@ -42,7 +42,6 @@
             <p><?= $event['description']; ?></p>
             <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
             <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
-            <p><strong>Categoria:</strong> <?= $today ?></p>
             <p><strong>Inizio:</strong> <?= formatDateItalian($event['date']) ?> <?=$time?></p>
             <?php if ($event['date_to']): ?>
               <p><strong>Fine:</strong> <?= formatDateItalian($event['date_to']) ?> <?=$timeTo?></p>

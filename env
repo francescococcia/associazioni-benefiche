@@ -20,7 +20,7 @@
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = 'https://associazioni-benefiche.000webhostapp.com/'
+# app.baseURL = 'https://manigenerose.000webhostapp.com/'
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
@@ -40,8 +40,8 @@
 #--------------------------------------------------------------------
 
 database.default.hostname = localhost
-database.default.database = id20115288_associazioni_benefiche
-database.default.username = id20115288_root
+database.default.database = id21573219_mani_generose
+database.default.username = id21573219_root
 database.default.password = rootAdmin1_
 database.default.DBDriver = MySQLi
 database.default.DBPrefix =
