@@ -44,7 +44,7 @@ class EventsController extends Controller
   }
 
   public function index_manager()
-{
+  {
     helper('date');
     $eventModel = new EventModel();
     $userId = session()->get('id');
@@ -77,7 +77,7 @@ class EventsController extends Controller
     $data['category'] = $category;
 
     return view('events/index_manager', $data);
-}
+  }
 
 
   public function new($association_id = null)
@@ -246,7 +246,7 @@ class EventsController extends Controller
   
       // Attach user information to the participant data
       $participant['user_info'] = $userInfo;
-  }
+    }
 
     $data['participants'] = $participants;
 

@@ -47,19 +47,19 @@ class ParticipantsController extends Controller
 
     $today = Time::now();
 
-  // Data dell'evento (presumo che $eventData['date'] sia una stringa nel formato 'Y-m-d')
-  $dataEventoTimestamp = Time::parse($eventData['date']);
+    // Data dell'evento (presumo che $eventData['date'] sia una stringa nel formato 'Y-m-d')
+    $dataEventoTimestamp = Time::parse($eventData['date']);
 
-  // Data fine (se disponibile)
-  $dataFine = null;
-  if ($eventData['date_to']) {
+    // Data fine (se disponibile)
+    $dataFine = null;
+    if ($eventData['date_to']) {
       $dataFine = Time::parse($eventData['date_to']);
-  }
+    }
 
-  // Confronta le date
-  if ($dataEventoTimestamp < $today) {
+    // Confronta le date
+    if ($dataEventoTimestamp < $today) {
       return redirect()->to('/event/detail/' . $eventData['id'])->with('error', "Impossibile partecipare all'evento perchè è passato.");
-  }elseif ($dataFine !== null && ($dataEventoTimestamp <= $dataFine) && $dataFine < $dataOdiernaTimestamp) {
+    } elseif ($dataFine !== null && ($dataEventoTimestamp <= $dataFine) && $dataFine < $dataEventoTimestamp) {
       return redirect()->to('/event/detail/'. $eventData['id'])->with('error', "Impossibile partecipare all'evento perchè è passato.");
     }
 

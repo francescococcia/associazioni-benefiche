@@ -32,6 +32,20 @@ class ProductModel extends Model
     }
   }
 
+  public function checkProductsSell() {
+    $builder = $this->db->table('orders')
+      ->select('associations.name as association_name, SUM(products.price * orders.quantity) as total_price')
+      ->join('products', 'orders.product_id = products.id', 'inner')
+      ->join('associations', 'products.association_id = associations.id', 'inner')
+      ->groupBy('associations.id');
+
+    $query = $builder->get();
+    $result = $query->getResultArray();
+
+    return $result;
+  }
+
+
   public function isQuantityAvailable($productId, $quantity) {
     $builder = $this->db->table('orders');
     $builder->select('SUM(quantity) as total_quantity');
@@ -47,18 +61,6 @@ class ProductModel extends Model
     }
   }
 
-  public function checkProductsSell() {
-    $builder = $this->db->table('orders')
-      ->select('associations.name as association_name, SUM(products.price * orders.quantity) as total_price')
-      ->join('products', 'orders.product_id = products.id', 'inner')
-      ->join('associations', 'products.association_id = associations.id', 'inner')
-      ->groupBy('associations.id');
-
-    $query = $builder->get();
-    $result = $query->getResultArray();
-
-    return $result;
-  }
 
   public function getAllProductsByPlatformManager($userId) {
     return $this->select('products.*')

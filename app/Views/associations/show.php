@@ -49,7 +49,8 @@
               <a href="<?= ($association['link'])?>" target="_blank">LINK</a>
             <?php endif; ?>
 
-            <?php if (session()->get('isPlatformManager')): ?>
+            <?php if (session()->get('isPlatformManager') &&
+              session()->get('id') == $association['id']): ?>
               <div class="col-2 ml-0 pl-0 mt-3">
                 <!-- Add data-toggle and data-target attributes for Bootstrap Modal -->
                 <a href="<?= site_url('profile-manager') ?>"

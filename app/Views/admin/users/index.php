@@ -2,13 +2,13 @@
 <?= $this->section('content') ?>
   <link rel="stylesheet" type="text/css" href="<#?= base_url('public/css/admin.css') ?>"/>
   <div id="main-content" class="container allContent-section mt-5 py-4">
-    <h2>Utenti</h2>
+    <h2>Privati</h2>
     <?php if ($users) : ?>
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>Nome</th>
               <th>Cognome</th>
               <th>Numero Telefonico</th>
               <th>Data di Nascita</th>

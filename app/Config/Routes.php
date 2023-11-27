@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('HomeController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -37,7 +37,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 //Admin routes
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
-  $routes->get('dashboard', 'Home::index', ['filter' => 'authGuard']);
+  $routes->get('dashboard', 'HomeController::index', ['filter' => 'authGuard']);
 
   $routes->get('users', 'UsersController::index', ['filter' => 'authGuard']);
   $routes->post('users/delete/(:num)', 'UsersController::delete/$1', ['filter' => 'authGuard']);
@@ -68,7 +68,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
   $routes->post('team/update', 'TeamController::update', ['filter' => 'authGuard']);
 });
 
-$routes->get('/', 'Home::index');
+$routes->get('/', 'HomeController::index');
 $routes->get('/signup-association', 'SignupAssociationController::index');
 $routes->match(['get', 'post'], 'SignupAssociationController/store', 'SignupAssociationController::store');
 $routes->get('/signup', 'SignupController::index');
@@ -145,7 +145,7 @@ $routes->post('new/update', 'NewsController::update', ['filter' => 'authGuard'])
 // Orders routes
 $routes->post('order/delete/(:num)', 'OrdersController::delete/$1', ['filter' => 'authGuard']);
 
-$routes->get('/logout', 'Home::exit');
+$routes->get('/logout', 'HomeController::exit');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -10,7 +10,7 @@ use App\Models\ProductModel;
 
 use App\Controllers\BaseController;
 
-class Home extends BaseController
+class HomeController extends BaseController
 {
   public function index()
   {
