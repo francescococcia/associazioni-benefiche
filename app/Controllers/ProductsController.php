@@ -243,7 +243,7 @@ class ProductsController extends Controller
     $to = $email;
     $subject = 'Conferma Prenotazione Prodotto';
 
-    $viewName = 'book_product'; // This should match the name of your view file without the file extension
+    $viewName = 'email/template/book_product'; // This should match the name of your view file without the file extension
     $titleProduct = $productData['name'];
     $data = [
       'firstName' => $firstName,
@@ -261,7 +261,7 @@ class ProductsController extends Controller
     $toManager = $platformManager['email'];
     $subjectManager = 'Prenotazione Prodotto';
 
-    $viewNameManager = 'book_product_manager'; // This should match the name of your view file without the file extension
+    $viewNameManager = 'email/template/book_product_manager'; // This should match the name of your view file without the file extension
     $titleProduct = $productData['name'];
     $dataManager = [
       'firstName' => $firstName,

@@ -67,16 +67,32 @@ class OrdersController extends Controller
 
     // Get the submitted form data
 
-
+    // email user
     $firstName = $userData['first_name'];
     $email = $userData['email'];
     $to = $email;
+
+    $subject = 'Conferma Rimozione Prenotazione Prodotto';
+
+    $viewName = 'email/template/remove_book_product'; // This should match the name of your view file without the file extension
+    $titleProduct = $product['name'];
+    $data = [
+      'firstName' => $firstName,
+      'titleProduct' => $titleProduct,
+      'quantity' => $quantity,
+      'productName' => $product['name'],
+      'productPrice' => $product['price'],
+      'associationAddress' => $associationData['legal_address'],
+      'nameAssociation' => $associationData['name'],
+    ];
+
+    sendMail($to, $subject, $viewName, $data);
 
     // platform manager
     $toManager = $platformManager['email'];
     $subjectManager = 'Rimozione Prenotazione Prodotto';
 
-    $viewNameManager = 'Layout/template/remove_book_product_manager'; // This should match the name of your view file without the file extension
+    $viewNameManager = 'email/template/remove_book_product_manager'; // This should match the name of your view file without the file extension
     $titleProduct = $product['name'];
     $dataManager = [
       'firstName' => $firstName,

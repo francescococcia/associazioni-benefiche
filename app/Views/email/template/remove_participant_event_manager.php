@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Ciao <?= $nameAssociation ?>,</h1>
-    <p>L'utente <?= $firstName ?> ha appena cancellato la prenotazione al tuo evento : <strong>"<?= $titleEvent ?>"</strong>.</p>
+    <p>L'utente <?= $firstName ?> ha appena <strong>rimosso</strong> la prenotazione al tuo evento: <strong>"<?= $titleEvent ?>"</strong>.</p>
 </body>
 </html>
 

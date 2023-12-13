@@ -29,77 +29,49 @@ class AuthController extends Controller
     }
   }
 
-  // public function resetPassword($token)
-  // {
-  //   echo view('reset_password');
-  //   $userModel = new UserModel();
-  //   $user = $userModel->findByResetToken($token);
-
-
-  //   $password = $this->request->getVar('password');
-
-
-  //   // Update the password if provided
-  //   if (!empty($password)) {
-  //       $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
-  //   }
-
-  //   $userModel->update($user['id'], $userData);
-
-  //   // Set the success message
-  //   $session->setFlashdata('success', 'Informazioni aggiornate.');
-
-  //   return redirect()->to('/profile');
-
-  // }
-  
-  // AuthController.php
-
-  public function resetPassword($token)
-  {
-      // Check if the token is valid and not expired
-      $userModel = new UserModel();
-      $user = $userModel->where('reset_token', $token)->first();
-      $data['user'] = $user;
-      if (!$user) {
-          // Token is invalid
-          // You can handle this case by displaying an error message
-      } else {
-          // Token is valid
-          echo view('reset_password',$data);
-      }
-  }
-
-  public function recoverPassword()
-  {
-    $userModel = new UserModel();
-    $session = session();
-
-    $token = $this->request->getVar('token'); // Use 'token' instead of 'reset_token'
-    $password = $this->request->getVar('password');
-    $confirmPassword = $this->request->getVar('confirm_password');
-
-    // Check if the token exists and matches a user
-    $user = $userModel->where('reset_token', $token)->first();
-
-    if (!$user) {
-        return redirect()->to('/signin')->with('error', 'Token scaduto.');
+    public function resetPassword($token)
+    {
+        // Check if the token is valid and not expired
+        $userModel = new UserModel();
+        $user = $userModel->where('reset_token', $token)->first();
+        $data['user'] = $user;
+        if (!$user) {
+            // Token is invalid
+            // You can handle this case by displaying an error message
+        } else {
+            // Token is valid
+            echo view('reset_password',$data);
+        }
     }
 
-    // Check if the password and confirm_password match
-    if ($password !== $confirmPassword) {
-        return redirect()->back()->with('error', 'Password non coincide.');
+    public function recoverPassword()
+    {
+        $userModel = new UserModel();
+        $session = session();
+
+        $token = $this->request->getVar('token'); // Use 'token' instead of 'reset_token'
+        $password = $this->request->getVar('password');
+        $confirmPassword = $this->request->getVar('confirm_password');
+
+        // Check if the token exists and matches a user
+        $user = $userModel->where('reset_token', $token)->first();
+
+        if (!$user) {
+            return redirect()->to('/signin')->with('error', 'Token scaduto.');
+        }
+
+        // Check if the password and confirm_password match
+        if ($password !== $confirmPassword) {
+            return redirect()->back()->with('error', 'Password non coincide.');
+        }
+
+        // Hash the new password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Update the user's password
+        $userModel->update($user['id'], ['password' => $hashedPassword]);
+
+        $session->setFlashdata('success', 'Password aggiornata.');
+        return redirect()->to('/signin');
     }
-
-    // Hash the new password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    // Update the user's password
-    $userModel->update($user['id'], ['password' => $hashedPassword]);
-
-    $session->setFlashdata('success', 'Password aggiornata.');
-    return redirect()->to('/signin');
-  }
-
-
 }

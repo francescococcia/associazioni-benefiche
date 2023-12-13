@@ -3,13 +3,13 @@
 <html>
 
 <head>
-    <title>Conferma Iscrzione</title>
+    <title>Rimozione prodotto</title>
 </head>
 
 <body style="font-family: Arial, sans-serif;">
 
     <h1>Ciao <?= $nameAssociation ?>,</h1>
-    <p>L'utente <?= $firstName ?> (<?= $userEmail?>) ha appena effettuato questa prenotazione:</p>
+    <p>L'utente <?= $firstName ?> (<?= $userEmail?>) ha appena <strong>eliminato</strong> questa prenotazione:</p>
 
     <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
         <thead>
@@ -29,10 +29,6 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- <p>Potrai ritirare il/i prodotto/i presso la sede di <strong><#?= $nameAssociation ?></strong> in <#?= $associationAddress ?>.</p>
-    <p>Ti ricordiamo che tutte le informazioni inerenti ai prodotti prenotati, le puoi trovare nella sezione "I miei prodotti" del tuo profilo personale.</p>
-    <p>Grazie per la tua donazione!</p> -->
 </body>
 
 </html>
