@@ -84,11 +84,7 @@ class UsersController extends BaseController
     // Generate a password reset token
     $token = bin2hex(random_bytes(16));
 
-    // Save the token in the user's record in the database
-    // $userModel->update($user['id'], ['reset_token' => $token]);
 
-    // Create the password reset URL
-    // $resetUrl = base_url('reset-password?token=' . $token);
     $resetUrl = base_url("resetPassword/$token");
 
     if ( $userModel->update($user['id'], ['reset_token' => $token])) {

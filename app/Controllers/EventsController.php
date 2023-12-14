@@ -54,24 +54,23 @@ class EventsController extends Controller
     $data = [];
 
     if (session()->get('isPlatformManager')) {
-        // Start building the query
-        $query = $eventModel->getAllEventsByPlatformManagerPaginate($userId);
+      $query = $eventModel->getAllEventsByPlatformManagerPaginate($userId);
 
-        // Check if a category filter is applied
-        if (!empty($category)) {
-            $query->like('category', $category);
-        }
+      // Check if a category filter is applied
+      if (!empty($category)) {
+          $query->like('category', $category);
+      }
 
-        // Get paginated events
-        $data['events'] = $query->paginate($perPage);
-        $data['pager'] = $eventModel->pager;
+      // Get paginated events
+      $data['events'] = $query->paginate($perPage);
+      $data['pager'] = $eventModel->pager;
 
-        // Check user participation
-        $participantModel = new ParticipantModel();
-        foreach ($data['events'] as &$event) {
-            $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
-            $event['userParticipated'] = $participant !== null;
-        }
+      // Check user participation
+      $participantModel = new ParticipantModel();
+      foreach ($data['events'] as &$event) {
+          $participant = $participantModel->where('user_id', $userId)->where('event_id', $event['id'])->first();
+          $event['userParticipated'] = $participant !== null;
+      }
     }
 
     $data['category'] = $category;
@@ -84,7 +83,7 @@ class EventsController extends Controller
   {
     helper(['form']);
     $userId = session()->get('id'); // get the ID of the currently logged-in user from the session
-    // Load the user model
+
     $association_model = new AssociationModel();
     $associationId = $association_model->getUserWithAssociation($userId);
     $data['association_id'] = $associationId;
@@ -268,11 +267,12 @@ class EventsController extends Controller
     $formattedDate = date('Y-m-d\TH:i', $date);
     $data['formattedDate'] = $formattedDate;
 
+    $formattedDateTo = null;
     if($event['date_to']){
       $date_to = strtotime($event['date_to']);
       $formattedDateTo = date('Y-m-d\TH:i', $date_to);
-      $data['formattedDateTo'] = $formattedDateTo;
     }
+    $data['formattedDateTo'] = $formattedDateTo;
 
     return view('events/edit', $data);
   }
@@ -334,8 +334,7 @@ class EventsController extends Controller
   {
     $eventModel = new EventModel();
 
-    // Assuming you have a function to retrieve the current user's ID
-    $userId = session()->get('id'); // Replace this with the actual method to get user ID
+    $userId = session()->get('id');
     $joinedEvents = $eventModel->getJoinedEventsByUserId($userId);
 
     $data['joinedEvents'] = $joinedEvents;

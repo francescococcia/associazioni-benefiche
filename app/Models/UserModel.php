@@ -57,11 +57,11 @@ class UserModel extends Model{
 
   public function findByActivationToken($token)
   {
-    return $this->where('activation_token', $token)->first(); // Assuming you want to find the first matching user
+    return $this->where('activation_token', $token)->first();
   }
 
   public function findByResetToken($token)
   {
-    return $this->where('reset_token', $token)->first(); // Assuming you want to find the first matching user
+    return $this->where('reset_token', $token)->first();
   }
 }

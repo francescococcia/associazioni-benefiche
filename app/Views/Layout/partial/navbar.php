@@ -107,9 +107,14 @@
               <?php else: ?>
 
                   <div class="navbar-content-area col text-lg-start">
-                    <div class="text-lg-end">
-                      <a href="<?php echo base_url();?>/signin" class="btn mr-lg-3 btn-style btn-md btn-clean btn-c-4129 btn-rd box-btn primary-btn fill-mob-btn">Accedi</a>
-                      <div class="btn-group btn-dropdown dropdown bloc-style float-lg-none">
+                    <div class="row text-lg-end">
+                      <div class="col-xs-3 mr-lg-3 mr-3">
+                        <a href="<?php echo base_url();?>/signin"
+                          class="btn btn-md btn-clean btn-c-4129 btn-rd box-btn primary-btn fill-mob-btn">
+                          Accedi
+                        </a>
+                      </div>
+                      <div class="col-xs-3 btn-group btn-dropdown dropdown bloc-style float-lg-none">
                         <a href="#" class="btn dropdown-toggle btn-c-4129 btn-iscriviti-style btn-clean btn-md pr-lg-4 btn-rd box-btn primary-btn fill-mob-btn" aria-expanded="false" data-bs-toggle="dropdown">Iscriviti</a>
                         <ul class="dropdown-menu justify-content-end" role="menu">
                           <li>

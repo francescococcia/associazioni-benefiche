@@ -3,6 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\FeedbackModel;
+use App\Models\EventModel;
+use App\Models\ParticipantModel;
+use CodeIgniter\I18n\Time;
 
 class FeedbacksController extends BaseController
 {
@@ -20,6 +23,11 @@ class FeedbacksController extends BaseController
     $session = session();
     // Create a new instance of the FeedbackModel
     $feedbackModel = new FeedbackModel();
+    $participantModel = new ParticipantModel();
+    $eventModel = new EventModel();
+
+    $participant = $participantModel->find($participantId);
+    $event = $eventModel->find($participant['event_id']);
     $userId = session()->get('id');
 
     $rules = [
@@ -39,6 +47,24 @@ class FeedbacksController extends BaseController
         'created_at' => date('Y-m-d H:i:s')
       ];
 
+      // check if a user can leave a feedback
+      $today = Time::now();
+
+      // Data dell'evento (presumo che $eventData['date'] sia una stringa nel formato 'Y-m-d')
+      $dataEventoTimestamp = Time::parse($event['date']);
+
+      // Data fine (se disponibile)
+      $dataFine = null;
+      if ($event['date_to']) {
+        $dataFine = Time::parse($event['date_to']);
+      }
+
+      // Confronta le date
+      if ($dataEventoTimestamp > $today) {
+        return redirect()->to('/event/detail/' . $event['id'])->with('error', "Impossibile inserire un feedback poichè l'evento non è ancora terminato.");
+      } elseif ($dataFine !== null && ($dataEventoTimestamp >= $dataFine) && $dataFine > $dataEventoTimestamp) {
+        return redirect()->to('/event/detail/'. $event['id'])->with('error', "Impossibile inserire un feedback poichè l'evento non è ancora terminato.");
+      }
       // Insert the data into the database
       $feedbackModel->insert($data);
 

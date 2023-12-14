@@ -63,7 +63,7 @@
 
                     <div class="form-group mb-3">
                       <label class="form-label tc-2190 label-nome-style">
-                      Data di nascinta
+                      Data di nascita
                       </label>
                       <input type="date" name="birth_date" placeholder="Data di nascita" required="" class="form-control" value="<?= set_value('birth_date') ?>" id='txtDate'>
                     </div>

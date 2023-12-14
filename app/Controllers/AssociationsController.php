@@ -19,7 +19,6 @@ class AssociationsController extends BaseController
   public function show($id)
   {
     helper('date');
-    // Assuming you have a model named AssociationModel
     $associationModel = new AssociationModel();
     $eventModel = new EventModel();
     $productModel = new ProductModel();
@@ -29,7 +28,7 @@ class AssociationsController extends BaseController
 
     if (!$association) {
       // Handle case when association with the given ID is not found
-      return redirect()->to('/associations')->with('error', 'Association not found.');
+      return redirect()->to('/associations')->with('error', 'Associazione non trovata.');
     }
 
     $userId = $association['user_id'];

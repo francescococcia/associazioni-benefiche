@@ -68,21 +68,13 @@
                     </div>
                     <!-- <div class="buy"><i class="fa-solid fa-shopping-cart"></i></div> -->
                   </div>
-                  <!-- <div class="right">
-                    <div class="done"><i class="material-icons">done</i></div>
-                    <div class="details">
-                      <h1>Chair</h1>
-                      <p>Added to your cart</p>
-                    </div>
-                    <div class="remove"><i class="material-icons">clear</i></div>
-                  </div> -->
                 </div>
               </div>
             </div>
           </a>
           <?php endforeach; ?>
         <?php else : ?>
-          <p>Nessun prodotto inserito.</p>
+          <p>Nessun evento inserito.</p>
         <?php endif; ?>
     </div>
     <?php if ($pager) : ?>
@@ -106,42 +98,42 @@
     /* event */
 
     .post_image {
-  position: relative;
-  background-color: #e79999;
-}
+      position: relative;
+      background-color: #e79999;
+    }
 
-.image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
+    .image {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
 
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
 
-.post_image:hover .image {
-  opacity: 0.3;
-}
+    .post_image:hover .image {
+      opacity: 0.3;
+    }
 
-.post_image:hover .middle {
-  opacity: 1;
-}
+    .post_image:hover .middle {
+      opacity: 1;
+    }
 
-.text {
-  color: white;
-  font-size: 25px;
-  padding: 16px 32px;
-}
+    .text {
+      color: white;
+      font-size: 25px;
+      padding: 16px 32px;
+    }
     /* endevent */
     .token-link:hover,
     .token-link.active {
@@ -149,11 +141,6 @@
         font-weight: bold;
     }
 
-    /* html, body{
-  background: #E3E3D8;
-  font-family: sans-serif;
-  padding: 25px;
-} */
 
   .wrapper{
     width: 300px;

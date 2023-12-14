@@ -51,7 +51,6 @@ class AssociationsController extends BaseController
     // Retrieve user and association data from the request
     $userData = [
         'email' => $this->request->getVar('email'),
-        // Add other user fields here...
     ];
 
     $associationData = [

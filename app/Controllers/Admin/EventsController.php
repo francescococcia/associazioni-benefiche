@@ -15,7 +15,7 @@ class EventsController extends BaseController
 
     return view('admin/events/index', $data);
   }
-  
+
   public function edit($id)
   {
     $eventModel = new EventModel();

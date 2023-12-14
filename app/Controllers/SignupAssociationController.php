@@ -43,8 +43,7 @@ class SignupAssociationController extends Controller
 
       $userId = $userModel->insert($userData);
 
-      // Upload the image file
-      // $image = $this->request->getFile('image');
+
       $file = $this->request->getFile('image');
 
       if ($file && $file->isValid()) {
@@ -67,7 +66,6 @@ class SignupAssociationController extends Controller
 
         if ($file->move($config['upload_path'], $uniqueId . '_' . $file->getRandomName())) {
 
-          // $imagePath = $image->getName();
           $filename = $file->getName();
 
           // Save the image path to the database
@@ -88,7 +86,7 @@ class SignupAssociationController extends Controller
           $to = $this->request->getVar('email');
           $subject = 'Conferma Iscrizione';
 
-          $viewName = 'activation_template'; // This should match the name of your view file without the file extension
+          $viewName = 'activation_template';
           $data = [
             'firstName' => $name,
             'activationLink' => $activationLink,

@@ -20,7 +20,10 @@
     <?= $this->include('Layout/partial/messages'); ?>
 
     <!-- Preloader -->
-    <div id="page-loading-blocs-notifaction" class="page-preloader" style="background:#FFFFFF url(<?php echo base_url('public/img/ug_classe_bambini_1.webp'); ?>) no-repeat center center;animation-name: preloader-fade"></div>
+    <div
+      id="page-loading-blocs-notifaction" class="page-preloader"
+      style="background:#FFFFFF url(<?php echo base_url('public/img/ug_classe_bambini_1.webp'); ?>) no-repeat center center;animation-name: preloader-fade">
+    </div>
     <!-- Preloader END -->
 
     <!-- Main container -->

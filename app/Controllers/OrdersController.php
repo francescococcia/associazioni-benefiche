@@ -16,11 +16,7 @@ class OrdersController extends Controller
   {
     helper('email_helper');
     $orderModel = new OrderModel();
-    $productModel = new ProductModel(); // Add this line
-
-    // $data = [
-    //   'quantity' => $this->request->getVar('quantity'),
-    // ];
+    $productModel = new ProductModel();
 
     $quantity = $this->request->getVar('quantity');
 
@@ -40,20 +36,17 @@ class OrdersController extends Controller
     if ($quantity == $order['quantity']) {
       $dataProduct['quantity'] = $quantity + $product['quantity'];
       $orderModel->delete($order['id']);
-      // $productModel->update($productId, $dataProduct);
-  } elseif ($quantity < $order['quantity']) {
-      // Se la quantità è minore, aggiorna le tabelle
-      $newQuantity = $order['quantity'] - $quantity;
-      $dataOrder['quantity'] = $newQuantity;
-      $dataOrder['user_id'] = $userId;
-      $dataOrder['product_id'] = $productId;
-      // $dataProduct['quantity'] = $product['quantity'] + $quantity;
-  
-      $orderModel->update($order['id'], $dataOrder);
-      // $productModel->update($productId, $dataProduct);
-  }
-  
-  //email
+    } elseif ($quantity < $order['quantity']) {
+        // Se la quantità è minore, aggiorna le tabelle
+        $newQuantity = $order['quantity'] - $quantity;
+        $dataOrder['quantity'] = $newQuantity;
+        $dataOrder['user_id'] = $userId;
+        $dataOrder['product_id'] = $productId;
+
+        $orderModel->update($order['id'], $dataOrder);
+    }
+
+    //email user
     $userModel = new UserModel();
     $associationModel = new AssociationModel();
 
@@ -65,16 +58,13 @@ class OrdersController extends Controller
     $platformId = $associationData['user_id'];
     $platformManager = $userModel->find($platformId);
 
-    // Get the submitted form data
-
-    // email user
     $firstName = $userData['first_name'];
     $email = $userData['email'];
     $to = $email;
 
     $subject = 'Conferma Rimozione Prenotazione Prodotto';
 
-    $viewName = 'email/template/remove_book_product'; // This should match the name of your view file without the file extension
+    $viewName = 'email/template/remove_book_product';
     $titleProduct = $product['name'];
     $data = [
       'firstName' => $firstName,
@@ -92,7 +82,7 @@ class OrdersController extends Controller
     $toManager = $platformManager['email'];
     $subjectManager = 'Rimozione Prenotazione Prodotto';
 
-    $viewNameManager = 'email/template/remove_book_product_manager'; // This should match the name of your view file without the file extension
+    $viewNameManager = 'email/template/remove_book_product_manager';
     $titleProduct = $product['name'];
     $dataManager = [
       'firstName' => $firstName,

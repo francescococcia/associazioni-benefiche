@@ -78,7 +78,7 @@ class ParticipantsController extends Controller
     $to = $email;
     $subject = 'Conferma Prenotazione Evento';
 
-    $viewName = 'email/template/participant_event'; // This should match the name of your view file without the file extension
+    $viewName = 'email/template/participant_event';
     $titleEvent = $eventData['title'];
     $data = [
       'firstName' => $firstName,
@@ -91,8 +91,7 @@ class ParticipantsController extends Controller
     $toManager = $platformManager['email'];
     $subjectManager = 'Prenotazione Evento';
 
-    $viewNameManager = 'email/template/participant_event_manager'; // This should match the name of your view file without the file extension
-    // $titleEvent = $eventData['title'];
+    $viewNameManager = 'email/template/participant_event_manager';
     $dataManager = [
       'firstName' => $firstName,
       'titleEvent' => $titleEvent,
@@ -101,8 +100,7 @@ class ParticipantsController extends Controller
     ];
     sendMail($toManager, $subjectManager, $viewNameManager, $dataManager);
 
-    // Optionally, you can show a success message or redirect to a confirmation page
-    // For example, redirect to the event details page
+
     return redirect()->to('event/detail/' . $eventId);
   }
 
@@ -145,7 +143,7 @@ class ParticipantsController extends Controller
 
     $subject = 'Conferma Rimozione Prenotazione Evento';
 
-    $viewName = 'email/template/remove_participant_event'; // This should match the name of your view file without the file extension
+    $viewName = 'email/template/remove_participant_event';
     $data = [
       'firstName' => $firstName,
       'titleEvent' => $titleEvent,
@@ -160,8 +158,7 @@ class ParticipantsController extends Controller
     $toManager = $platformManager['email'];
     $subjectManager = 'Partecipazione Evento rimossa';
 
-    $viewNameManager = 'email/template/remove_participant_event_manager'; // This should match the name of your view file without the file extension
-    // $titleEvent = $eventData['title'];
+    $viewNameManager = 'email/template/remove_participant_event_manager';
     $dataManager = [
       'firstName' => $firstName,
       'titleEvent' => $titleEvent,

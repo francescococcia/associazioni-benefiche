@@ -34,7 +34,6 @@ class NewsController extends BaseController
 
     $data = [
         'description' => $this->request->getVar('description'),
-        // You might have more fields to update in the future
     ];
 
     $newModel->update($newId, $data);

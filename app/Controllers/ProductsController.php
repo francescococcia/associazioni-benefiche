@@ -228,7 +228,6 @@ class ProductsController extends Controller
 
     $productData = $productModel->find($productId);
 
-    // Example: Save the order details to the "orders" table
     $data = [
       'user_id' => $userId,
       'product_id' => $productId,
@@ -243,7 +242,7 @@ class ProductsController extends Controller
     $to = $email;
     $subject = 'Conferma Prenotazione Prodotto';
 
-    $viewName = 'email/template/book_product'; // This should match the name of your view file without the file extension
+    $viewName = 'email/template/book_product';
     $titleProduct = $productData['name'];
     $data = [
       'firstName' => $firstName,
@@ -261,7 +260,7 @@ class ProductsController extends Controller
     $toManager = $platformManager['email'];
     $subjectManager = 'Prenotazione Prodotto';
 
-    $viewNameManager = 'email/template/book_product_manager'; // This should match the name of your view file without the file extension
+    $viewNameManager = 'email/template/book_product_manager';
     $titleProduct = $productData['name'];
     $dataManager = [
       'firstName' => $firstName,

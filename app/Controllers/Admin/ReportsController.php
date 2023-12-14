@@ -52,7 +52,7 @@ class ReportsController extends BaseController
       $to = $email;
       $subject = 'Feedback Segnalazione';
 
-      $viewName = 'read_report_template'; // This should match the name of your view file without the file extension
+      $viewName = 'read_report_template';
       $data = [
         'name' => $name,
       ];

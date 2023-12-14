@@ -28,8 +28,8 @@
               <td class='fixed-width-column'>
                 <div class="row">
                   <div class="col-3">
-                    <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post" id="userForm_<?= $user['id'] ?>">
-                      <button class="btn btn-sm btn-danger" type="button" id="openModalButton">
+                    <form action="<?= site_url('admin/users/delete/' . $user['id']) ?>" method="post" id="form_<?= $user['id'] ?>">
+                      <button class="btn btn-sm btn-danger ml-0" type="button" data-toggle="modal" data-target="#confirmationModal<?= $user['id'] ?>">
                         <i class="fa-solid fa-trash"></i>
                       </button>
                     </form>
@@ -49,7 +49,7 @@
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                              <button type="button" class="btn btn-danger" onclick="deleteUser(<?= $user['id'] ?>)" id="confirmDelete<?= $user['id'] ?>">
+                              <button type="button" class="btn btn-danger" onclick="deleteRow(<?= $user['id'] ?>)" id="confirmDelete<?= $user['id'] ?>">
                                   Rimuovi
                               </button>
                           </div>
@@ -130,18 +130,12 @@
   </div>
 
   <script>
-    function deleteUser(userId) {
+    function deleteRow(id) {
       // Construct the form ID based on the user ID
-      var formId = 'userForm_' + userId;
+      var formId = 'form_' + id;
 
       // Submit the form with the constructed ID
       document.getElementById(formId).submit();
     }
-
-    $(document).on('click', '#openModalButton', function () {
-      // Open the Bootstrap modal
-      $('#confirmationModal<?= $user['id'] ?>').modal('show');
-    });
-
   </script>
 <?= $this->endSection() ?>

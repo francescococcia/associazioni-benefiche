@@ -56,7 +56,7 @@ class SignupController extends Controller
         $to = $this->request->getVar('email');
         $subject = 'Conferma Iscrizione';
 
-        $viewName = 'activation_template'; // This should match the name of your view file without the file extension
+        $viewName = 'activation_template';
         $data = [
           'firstName' => $firstName,
           'activationLink' => $activationLink,

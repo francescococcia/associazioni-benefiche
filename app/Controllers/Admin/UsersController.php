@@ -34,17 +34,14 @@ class UsersController extends BaseController
     $email = $this->request->getPost('email');
     $first_name = $this->request->getPost('first_name');
     $last_name = $this->request->getPost('last_name');
-    // ... (get other fields)
 
     // Update the user information in the database
     $userModel = new UserModel();
 
-    // Assuming $userData is an array with the updated fields
     $userData = [
         'email' => $email,
         'first_name' => $first_name,
         'last_name' => $last_name,
-        // ... (add other fields)
     ];
 
     $userModel->update($userId, $userData);
