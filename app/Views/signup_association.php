@@ -11,7 +11,7 @@
         </div>
         <div class="col">
           <div>
-          <form action="<?php echo base_url(); ?>/SignupAssociationController/store" method="post" enctype="multipart/form-data"
+          <form action="<?php echo base_url(); ?>/AssociationsController/create" method="post" enctype="multipart/form-data"
             data-form-type="blocs-form" novalidate=""
             data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
             <div class="bento-box primary-gradient container-div-style pt-lg-4">

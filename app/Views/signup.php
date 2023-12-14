@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>
-            <form action="<?php echo base_url(); ?>/SignupController/store" method="post"
+            <form action="<?php echo base_url(); ?>/UsersController/create" method="post"
               id="form_18619" data-form-type="blocs-form" novalidate=""
               data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
               <div class="bento-box mt-lg-4 shadow">

@@ -69,10 +69,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
 });
 
 $routes->get('/', 'HomeController::index');
-$routes->get('/signup-association', 'SignupAssociationController::index');
-$routes->match(['get', 'post'], 'SignupAssociationController/store', 'SignupAssociationController::store');
-$routes->get('/signup', 'SignupController::index');
-$routes->match(['get', 'post'], 'SignupController/store', 'SignupController::store');
 $routes->match(['get', 'post'], 'SigninController/loginAuth', 'SigninController::loginAuth');
 $routes->get('/signin', 'SigninController::index');
 $routes->get('/activate-account/(:any)', 'AuthController::activateAccount/$1');
@@ -126,13 +122,15 @@ $routes->get('/profile', 'UsersController::edit', ['filter' => 'authGuard']);
 $routes->post('/users/update', 'UsersController::update', ['filter' => 'authGuard']);
 $routes->add('forgot-password', 'UsersController::forgotPassword');
 $routes->match(['get', 'post'], 'UsersController/sendForgotPassword', 'UsersController::sendForgotPassword');
+$routes->get('/signup', 'UsersController::new');
+$routes->match(['get', 'post'], 'UsersController/create', 'UsersController::create');
 
 // Association routes
 $routes->get('/profile-manager', 'AssociationsController::edit', ['filter' => 'authGuard']);
 $routes->post('/associations/update/', 'AssociationsController::update', ['filter' => 'authGuard']);
-$routes->get('/associations/create', 'AssociationsController::create');
-$routes->post('/associations/store', 'AssociationsController::store');
 $routes->get('/associations/(:num)', 'AssociationsController::show/$1');
+$routes->get('/signup-association', 'AssociationsController::new');
+$routes->match(['get', 'post'], 'AssociationsController/create', 'AssociationsController::create');
 
 // News routes
 $routes->get('news/create', 'NewsController::create');
