@@ -40,6 +40,7 @@
 
             <h3 class="my-3" style='color: #e79999'><strong><?= $event['title']; ?></strong></h3>
             <p><?= $event['description']; ?></p>
+            <p><strong>Associazione:</strong> <?= $association['name']; ?></p>
             <p><strong>Luogo:</strong> <?= $event['location']; ?></p>
             <p><strong>Categoria:</strong> <?= $event['category']; ?></p>
             <p><strong>Inizio:</strong> <?= formatDateItalian($event['date']) ?> <?=$time?></p>

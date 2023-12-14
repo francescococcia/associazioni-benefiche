@@ -24,9 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = "http://localhost/associazioni-benefiche/";
-    // public $baseURL = 'https://associazioni-benefiche.000webhostapp.com/';
-    // public $baseURL = 'https://bespoke-puffpuff-4fdff3.netlify.app/';
+    public $baseURL = "http://localhost/mani-generose/";
 
     /**
      * --------------------------------------------------------------------------

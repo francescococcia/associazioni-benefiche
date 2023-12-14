@@ -52,7 +52,7 @@
                 <div class="bottom">
                   <div class="left">
                     <div class="details pl-3 pt-2">
-                      <p class="card-text" style='font-weight: bold;'><?= formatDateItalian($event['date']); ?></p>
+                      <p class="card-text" style='font-weight: bold;font-size:15px;'><?= formatDateItalian($event['date']); ?></p>
                       <?php if (strlen($event['title']) > 20) : ?>
                         <h5 class="card-title">
                           <strong><?= (substr($event['title'], 0, 20).'...'); ?></strong>
@@ -141,7 +141,7 @@
       padding: 16px 32px;
     }
     /* endevent */
-    
+
     .token-link:hover,
     .token-link.active {
         background-color: #ff8300;

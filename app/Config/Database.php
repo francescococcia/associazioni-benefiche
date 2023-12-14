@@ -36,7 +36,7 @@ class Database extends Config
       'hostname' => '127.0.0.1',
       'username' => 'root',
       'password' => '',
-      'database' => 'associazioni-benefiche',
+      'database' => 'mani-generose',
       'DBDriver' => 'MySQLi',
       'DBPrefix' => '',
       'pConnect' => false,
@@ -50,25 +50,6 @@ class Database extends Config
       'failover' => [],
       'port'     => 3306,
   ];
-    // public $default = [
-    //     'DSN'      => '',
-    //     'hostname' => 'localhost',
-    //     'username' => 'id20115288_root',
-    //     'password' => 'rootAdmin1_',
-    //     'database' => 'id20115288_associazioni_benefiche',
-    //     'DBDriver' => 'MySQLi',
-    //     'DBPrefix' => '',
-    //     'pConnect' => false,
-    //     'DBDebug'  => (ENVIRONMENT == 'production'),
-    //     'charset'  => 'utf8',
-    //     'DBCollat' => 'utf8_general_ci',
-    //     'swapPre'  => '',
-    //     'encrypt'  => false,
-    //     'compress' => false,
-    //     'strictOn' => false,
-    //     'failover' => [],
-    //     'port'     => 3306,
-    // ];
 
     /**
      * This database connection is used when
