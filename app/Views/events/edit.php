@@ -124,6 +124,12 @@
       $('#txtDate').attr('min', maxDate);
       $('#txtDateTo').attr('min', maxDate);
 
+      $('#txtDate').on('change', function () {
+            var startDate = $(this).val();
+
+            $('#txtDateTo').attr('min', startDate);
+        });
+
       $('#choose-file').change(function () {
         var i = $(this).prev('label').clone();
         var file = $('#choose-file')[0].files[0].name;

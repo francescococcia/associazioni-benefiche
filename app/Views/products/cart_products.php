@@ -69,7 +69,7 @@
                                       </button>
                                   </div>
                                   <div class="modal-body">
-                                      Selezina la quantità che vuoi rimuovere
+                                      Seleziona la quantità che vuoi rimuovere
                                   </div>
                                   <div class="form-group">
                                     <div class="row">

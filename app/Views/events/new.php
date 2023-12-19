@@ -117,7 +117,7 @@
 
       $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 
-      $(function(){
+      $(function () {
         var dtToday = new Date();
         var year = dtToday.getFullYear();
         var month = (dtToday.getMonth() + 1).toString().padStart(2, '0');
@@ -130,7 +130,12 @@
         $('#txtDate').attr('min', maxDate);
         $('#txtDateTo').attr('min', maxDate);
 
-      });
+        $('#txtDate').on('change', function () {
+            var startDate = $(this).val();
+
+            $('#txtDateTo').attr('min', startDate);
+        });
+    });
 
       $('#choose-file').change(function () {
         var i = $(this).prev('label').clone();
